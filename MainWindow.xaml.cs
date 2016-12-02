@@ -35,6 +35,7 @@ namespace ProjectCarsSeasonExtension
             [In] int id);
 
         private const int HOTKEY_ID = 9000;
+        private HwndSource _source;
 
         public MainWindow()
         {
@@ -44,13 +45,46 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             this.Content = new Views.HighscoreView();
+        }
 
+        private void Window_SourceInitialized(object sender, EventArgs e)
+        {
             var helper = new WindowInteropHelper(this);
+            _source = HwndSource.FromHwnd(helper.Handle);
+            _source.AddHook(HwndHook);
 
-            if (!RegisterHotKey(helper.Handle, HOTKEY_ID, 0x0, 0x60))
+            if (!RegisterHotKey(helper.Handle, HOTKEY_ID, 0x0001, 0x50))
             {
                 MessageBox.Show("could not register the hotkey");
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            _source.RemoveHook(HwndHook);
+            _source = null;
+
+            var helper = new WindowInteropHelper(this);
+            UnregisterHotKey(helper.Handle, HOTKEY_ID);
+
+            base.OnClosed(e);
+        }
+
+        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch (wParam.ToInt32())
+            {
+                case HOTKEY_ID:
+                    OnHotKeyPressed();
+                    handled = true;
+                    break;
+            }
+            return IntPtr.Zero;
+        }
+
+        private void OnHotKeyPressed()
+        {
+            MessageBox.Show("hotkey got clicked");
         }
     }
 }
