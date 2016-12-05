@@ -6,6 +6,5 @@
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension"
         mc:Ignorable="d"
         Title="Project Cars Season Extension" Height="350" Width="525"
-        SourceInitialized="Window_SourceInitialized"
-        Closed="Window_Closed">
+        SourceInitialized="Window_SourceInitialized">
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectCarsSeasonExtension.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -22,21 +23,6 @@ namespace ProjectCarsSeasonExtension
     /// </summary>
     public partial class MainWindow : Window
     {
-        [DllImport("User32.dll")]
-        private static extern bool RegisterHotKey(
-            [In] IntPtr hWnd,
-            [In] int id,
-            [In] uint fsModifiers,
-            [In] uint vk);
-
-        [DllImport("User32.dll")]
-        private static extern bool UnregisterHotKey(
-            [In] IntPtr hWnd,
-            [In] int id);
-
-        private const int HOTKEY_ID = 9000;
-        private HwndSource _source;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -49,42 +35,10 @@ namespace ProjectCarsSeasonExtension
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
-            var helper = new WindowInteropHelper(this);
-            _source = HwndSource.FromHwnd(helper.Handle);
-            _source.AddHook(HwndHook);
-
-            if (!RegisterHotKey(helper.Handle, HOTKEY_ID, 0x0001, 0x50))
-            {
-                MessageBox.Show("could not register the hotkey");
-            }
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            _source.RemoveHook(HwndHook);
-            _source = null;
-
-            var helper = new WindowInteropHelper(this);
-            UnregisterHotKey(helper.Handle, HOTKEY_ID);
-
-            base.OnClosed(e);
-        }
-
-        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            switch (wParam.ToInt32())
-            {
-                case HOTKEY_ID:
-                    OnHotKeyPressed();
-                    handled = true;
-                    break;
-            }
-            return IntPtr.Zero;
-        }
-
-        private void OnHotKeyPressed()
-        {
-            MessageBox.Show("hotkey got clicked");
+            HotkeyController.Init(this);
+            HotkeyController.Register(9000, HotkeyController.NONE, VirtualKeyCode.VK_ADD, () => {
+                MessageBox.Show("hotkey got clicked");
+            });
         }
     }
 }
