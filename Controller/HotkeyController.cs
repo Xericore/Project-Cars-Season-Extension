@@ -42,11 +42,6 @@ namespace ProjectCarsSeasonExtension.Controller
             [In] IntPtr hWnd,
             [In] int id);
 
-        ~HotkeyController()
-        {
-            Clear();
-        }
-
         public static void Init(Window window)
         {
             if (_instance == null)

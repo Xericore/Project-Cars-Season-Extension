@@ -26,5 +26,10 @@ namespace ProjectCarsSeasonExtension
             HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd,
                 () => { MessageBox.Show("hotkey got clicked"); });
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            HotkeyController.Clear();
+        }
     }
 }
