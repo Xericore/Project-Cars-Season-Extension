@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension"
         mc:Ignorable="d"
-        Title="OverlayWindow" AllowsTransparency="True" WindowStyle="None" Opacity="0.7">
+        Title="OverlayWindow" AllowsTransparency="True" Opacity="0.7"
+        WindowStyle="None">
     <Grid/>
 </Window>
