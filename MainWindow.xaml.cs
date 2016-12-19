@@ -45,7 +45,7 @@ namespace ProjectCarsSeasonExtension
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            Content = new HighscoreView();
+            Content = Injector.Get<HighscoreView>();
             _mainScreen = GetMainScreen();
         }
 
@@ -70,7 +70,7 @@ namespace ProjectCarsSeasonExtension
         {
             if (_overlayWindow == null)
             {
-                _overlayWindow = new OverlayWindow();
+                _overlayWindow = Injector.Get<OverlayWindow>();
                 _overlayWindow.Topmost = true;
                 _overlayWindow.Loaded += new RoutedEventHandler((object sender, RoutedEventArgs e) =>
                 {

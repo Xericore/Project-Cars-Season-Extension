@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ProjectCarsSeasonExtension.Controller;
 using System.Windows;
 
 namespace ProjectCarsSeasonExtension
@@ -13,5 +8,17 @@ namespace ProjectCarsSeasonExtension
     /// </summary>
     public partial class App : Application
     {
+        // ----------------------------------------------------------------------------------------
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Injector.Initialize(new Module());
+            Current.MainWindow = Injector.Get<MainWindow>();
+            Current.MainWindow.Show();
+        }
+
+        // ----------------------------------------------------------------------------------------
     }
 }

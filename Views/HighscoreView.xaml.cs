@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectCarsSeasonExtension.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,11 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class HighscoreView : Page
     {
-        public HighscoreView()
+        private readonly HighscoreViewModel viewModel;
+
+        public HighscoreView(HighscoreViewModel _viewModel)
         {
+            this.viewModel = _viewModel;
             InitializeComponent();
         }
     }

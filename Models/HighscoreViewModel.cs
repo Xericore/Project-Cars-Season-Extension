@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
-    class PlayerSelectionViewModel
+    public class HighscoreViewModel
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
-    class CurrentTrackViewModel
+    public class CurrentTrackViewModel
     {
     }
 }
