@@ -4,11 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
       Title="HighscoreView">
+    <Grid Margin="10">
+        <GroupBox Header="Track Name">
+            <StackPanel>
+                <DockPanel Height="150" Margin="10,10,10,10">
+                    <Image Source="/Assets/Track.png" Name="TrackImage" DockPanel.Dock="Left"/>
+                    <TextBlock Width="400" Name="Description"/>
+                    <Image Source="/Assets/Car.png" Name="CarImage" DockPanel.Dock="Right"/>
+                </DockPanel>
+                <DataGrid ItemsSource="{Binding Player}" ColumnWidth="*" RowHeight="25" CanUserAddRows="False"
+                          IsReadOnly="True">
 
-    <Grid>
-        <TextBlock>Highscore View</TextBlock>
+                </DataGrid>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Page>

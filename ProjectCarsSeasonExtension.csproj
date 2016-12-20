@@ -65,6 +65,8 @@
     <Compile Include="Controller\Injector.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />
     <Compile Include="Controller\Module.cs" />
+    <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\TrackModel.cs" />
     <Compile Include="OverlayWindow.xaml.cs">
       <DependentUpon>OverlayWindow.xaml</DependentUpon>
     </Compile>
@@ -139,6 +141,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Project Cars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Car.png" />
+    <Resource Include="Assets\Track.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

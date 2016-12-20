@@ -21,12 +21,21 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class HighscoreView : Page
     {
-        private readonly HighscoreViewModel viewModel;
+        // ----------------------------------------------------------------------------------------
 
         public HighscoreView(HighscoreViewModel _viewModel)
         {
-            this.viewModel = _viewModel;
+            DataContext = _viewModel;
             InitializeComponent();
         }
+
+        // ----------------------------------------------------------------------------------------
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+        }
+
+        // ----------------------------------------------------------------------------------------
     }
 }
