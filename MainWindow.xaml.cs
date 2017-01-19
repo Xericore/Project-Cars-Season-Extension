@@ -1,10 +1,9 @@
-﻿using System;
+﻿using ProjectCarsSeasonExtension.Controller;
+using ProjectCarsSeasonExtension.Views;
+using System;
 using System.Windows;
 using System.Windows.Forms;
-using ProjectCarsSeasonExtension.Controller;
-using ProjectCarsSeasonExtension.Views;
 using System.Windows.Input;
-using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension
 {

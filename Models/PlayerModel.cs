@@ -3,23 +3,12 @@ using System.ComponentModel;
 
 namespace ProjectCarsSeasonExtension.Models
 {
-    public class PlayerModel : INotifyPropertyChanged
+    public class PlayerModel : ModelBase
     {
         // ----------------------------------------------------------------------------------------
 
-        public event PropertyChangedEventHandler PropertyChanged;
         private string _name;
         private DateTime _time;
-
-        // ----------------------------------------------------------------------------------------
-
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
         // ----------------------------------------------------------------------------------------
         // getter and setter
