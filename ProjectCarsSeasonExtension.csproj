@@ -68,8 +68,10 @@
     <Compile Include="Controls\HighscoreTrackControl.xaml.cs">
       <DependentUpon>HighscoreTrackControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\PlayerTimeModel.cs" />
+    <Compile Include="Models\SeasonModel.cs" />
     <Compile Include="Models\TrackModel.cs" />
     <Compile Include="OverlayWindow.xaml.cs">
       <DependentUpon>OverlayWindow.xaml</DependentUpon>
@@ -83,9 +85,9 @@
     <Compile Include="Views\PlayerSelectionView.xaml.cs">
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\CurrentTrackViewModel.cs" />
-    <Compile Include="Models\HighscoreViewModel.cs" />
-    <Compile Include="Models\PlayerSelectionViewModel.cs" />
+    <Compile Include="ViewModels\CurrentTrackViewModel.cs" />
+    <Compile Include="ViewModels\HighscoreViewModel.cs" />
+    <Compile Include="ViewModels\PlayerSelectionViewModel.cs" />
     <Page Include="Controls\HighscoreTrackControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

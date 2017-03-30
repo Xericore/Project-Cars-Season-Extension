@@ -1,12 +1,12 @@
 ﻿<Page x:Class="ProjectCarsSeasonExtension.Views.HighscoreView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       xmlns:control="clr-namespace:ProjectCarsSeasonExtension.Controls"
       Title="HighscoreView">
-    <Grid Name="TrackContainer" Margin="10">
-        <control:HighscoreTrackControl></control:HighscoreTrackControl>
-    </Grid>
+    <Viewbox Name="TrackContainer" Margin="10" StretchDirection="Both">
+        <Grid Name="TrackGrid" />
+    </Viewbox>
 </Page>

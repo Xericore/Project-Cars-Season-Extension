@@ -1,8 +1,8 @@
-﻿using ProjectCarsSeasonExtension.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
@@ -17,8 +17,8 @@ namespace ProjectCarsSeasonExtension.ViewModels
         {
             // create some test data
             Random rand = new Random();
-            //var _tracks = new List<TrackModel>();
-            //int iRand = rand.Next(1, 6);
+//            var _tracks = new List<TrackModel>();
+//            int iRand = rand.Next(1, 6);
             //for (var i = 0; i < iRand; i++)
             //{
             //TrackModel trackModel = new TrackModel
@@ -33,9 +33,9 @@ namespace ProjectCarsSeasonExtension.ViewModels
                 PlayerModel playerModel = new PlayerModel
                 {
                     Name = "Test Fahrer " + j,
-                    Time = new DateTime()
+//                    Time = new DateTime()
                 };
-                //trackModel.PlayerList.Add(playerModel);
+                //trackModel.Player.Add(playerModel);
                 _player.Add(playerModel);
             }
             Player = CollectionViewSource.GetDefaultView(_player);

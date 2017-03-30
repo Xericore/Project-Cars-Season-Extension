@@ -1,27 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ProjectCarsSeasonExtension.Models
 {
-    public class TrackModel : BaseModel
+    public class SeasonModel : BaseModel
     {
         // ----------------------------------------------------------------------------------------
 
-        public string TrackName;
+        public int Id;
+        public DateTime StartDate;
+        public DateTime EndDate;
+        public string Name;
         public string Description;
 
-        private List<PlayerModel> _playerList;
+        private List<TrackModel> _trackList;
 
         // ----------------------------------------------------------------------------------------
         // getter and setter
         // ----------------------------------------------------------------------------------------
 
-        public List<PlayerModel> PlayerList
+        public List<TrackModel> TrackList
         {
-            get { return _playerList; }
+            get { return _trackList; }
             set
             {
-                _playerList = value;
-                NotifyPropertyChanged("Player");
+                _trackList = value;
+                NotifyPropertyChanged("TrackList");
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace ProjectCarsSeasonExtension.Models
 {
-    abstract public class ModelBase : INotifyPropertyChanged
+    public abstract class BaseModel : INotifyPropertyChanged
     {
         // ----------------------------------------------------------------------------------------
 
@@ -12,10 +12,7 @@ namespace ProjectCarsSeasonExtension.Models
 
         protected void NotifyPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         // ----------------------------------------------------------------------------------------

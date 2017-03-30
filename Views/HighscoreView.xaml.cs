@@ -1,6 +1,7 @@
-﻿using ProjectCarsSeasonExtension.ViewModels;
-using System;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -11,9 +12,8 @@ namespace ProjectCarsSeasonExtension.Views
     {
         // ----------------------------------------------------------------------------------------
 
-        public HighscoreView(HighscoreViewModel _viewModel)
+        public HighscoreView(ObservableCollection<TrackViewModel> trackViewModels)
         {
-            DataContext = _viewModel;
             InitializeComponent();
         }
 
@@ -22,6 +22,8 @@ namespace ProjectCarsSeasonExtension.Views
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+
+            
         }
 
         // ----------------------------------------------------------------------------------------

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ProjectCarsSeasonExtension.Controls
@@ -9,23 +8,32 @@ namespace ProjectCarsSeasonExtension.Controls
     /// </summary>
     public partial class HighscoreTrackControl : UserControl
     {
+        // ----------------------------------------------------------------------------------------
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
-                "Title", typeof(String),
+                "Title", typeof(string),
                 typeof(HighscoreTrackControl),
                 new PropertyMetadata("Track Name")
-                );
+            );
 
-        public String Title
-        {
-            get { return (String)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
-        }
+        // ----------------------------------------------------------------------------------------
 
         public HighscoreTrackControl()
         {
             InitializeComponent();
         }
+
+        // ----------------------------------------------------------------------------------------
+        // getter and setter
+        // ----------------------------------------------------------------------------------------
+
+        public string Title
+        {
+            get { return (string) GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        // ----------------------------------------------------------------------------------------
     }
 }

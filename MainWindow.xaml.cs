@@ -1,9 +1,11 @@
-﻿using ProjectCarsSeasonExtension.Controller;
-using ProjectCarsSeasonExtension.Views;
-using System;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using ProjectCarsSeasonExtension.Controller;
+using ProjectCarsSeasonExtension.Views;
+using Application = System.Windows.Application;
 
 namespace ProjectCarsSeasonExtension
 {
@@ -16,22 +18,22 @@ namespace ProjectCarsSeasonExtension
 
         private OverlayWindow _overlayWindow;
         private Screen _mainScreen;
-        private RoutedCommand closeApplicationCommand = new RoutedCommand();
+        private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
 
         // ----------------------------------------------------------------------------------------
 
         public MainWindow()
         {
             InitializeComponent();
-            closeApplicationCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(closeApplicationCommand, CloseApplication_Executed));
+            _closeApplicationCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(_closeApplicationCommand, CloseApplication_Executed));
         }
 
         // ----------------------------------------------------------------------------------------
 
         private Screen GetMainScreen()
         {
-            foreach (Screen screen in Screen.AllScreens)
+            foreach (var screen in Screen.AllScreens)
             {
                 if (screen.Primary)
                     return screen;
@@ -59,7 +61,7 @@ namespace ProjectCarsSeasonExtension
 
         // ----------------------------------------------------------------------------------------
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             HotkeyController.Clear();
         }
@@ -72,13 +74,13 @@ namespace ProjectCarsSeasonExtension
             {
                 _overlayWindow = Injector.Get<OverlayWindow>();
                 _overlayWindow.Topmost = true;
-                _overlayWindow.Loaded += new RoutedEventHandler((object sender, RoutedEventArgs e) =>
+                _overlayWindow.Loaded += (sender, e) =>
                 {
-                    _overlayWindow.WindowState = System.Windows.WindowState.Normal;
+                    _overlayWindow.WindowState = WindowState.Normal;
                     _overlayWindow.Left = _mainScreen.WorkingArea.Left;
                     _overlayWindow.Top = _mainScreen.WorkingArea.Top;
-                    _overlayWindow.WindowState = System.Windows.WindowState.Maximized;
-                });
+                    _overlayWindow.WindowState = WindowState.Maximized;
+                };
                 _overlayWindow.Show();
             }
             else
@@ -92,7 +94,7 @@ namespace ProjectCarsSeasonExtension
 
         private void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            App.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         // ----------------------------------------------------------------------------------------
