@@ -21,7 +21,6 @@
                         <DataGridTextColumn Header="Time" Binding="{Binding Time}" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <CheckBox x:Name="checkBox" Content="CheckBox" />
             </StackPanel>
         </GroupBox>
     </Viewbox>
