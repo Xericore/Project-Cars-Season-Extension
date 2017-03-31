@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCarsSeasonExtension", "ProjectCarsSeasonExtension.csproj", "{DAA13CFF-B789-4587-84FB-4611F7C50226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pCarsAPI-Demo", "pCarsAPI-Demo\pCarsAPI-Demo.csproj", "{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DAA13CFF-B789-4587-84FB-4611F7C50226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAA13CFF-B789-4587-84FB-4611F7C50226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAA13CFF-B789-4587-84FB-4611F7C50226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
