@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 using ProjectCarsSeasonExtension.Models;
@@ -10,38 +11,43 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
     public class HighscoreViewModel
     {
-        public ICollectionView Tracks { get; set; }
-        public ICollectionView Player { get; set; }
+        // ----------------------------------------------------------------------------------------
+
+        public ObservableCollection<TrackViewModel> TrackViewModels { get; set; } =
+            new ObservableCollection<TrackViewModel>();
+
+        // ----------------------------------------------------------------------------------------
 
         public HighscoreViewModel()
         {
-            // create some test data
-            Random rand = new Random();
-//            var _tracks = new List<TrackModel>();
-//            int iRand = rand.Next(1, 6);
-            //for (var i = 0; i < iRand; i++)
-            //{
-            //TrackModel trackModel = new TrackModel
-            //{
-            //TrackName = "Track " + iRand
-            //};
+            // just generating some dummy data to test
+            var trackRand = new Random();
+            var playerRand = new Random();
 
-            var _player = new List<PlayerModel>();
-            int jRand = rand.Next(0, 10);
+            var jRand = trackRand.Next(1, 12);
             for (var j = 0; j < jRand; j++)
             {
-                PlayerModel playerModel = new PlayerModel
+                var trackModel = new TrackViewModel
                 {
-                    Name = "Test Fahrer " + j,
-//                    Time = new DateTime()
+                    Name = $"Track {j}",
+                    Description = $"Description for Track {j}"
                 };
-                //trackModel.Player.Add(playerModel);
-                _player.Add(playerModel);
+
+                // add some player
+                var pRand = playerRand.Next(0, 6);
+                for (var i = 0; i < pRand; i++)
+                {
+                    var player = new PlayerTimeListItemModel
+                    {
+                        Position = i + 1,
+                        Name = $"Player {i}",
+                        Time = new DateTime().AddMinutes(1).AddSeconds(i * 10).AddMilliseconds(123)
+                    };
+                    trackModel.Player.Add(player);
+                }
+
+                TrackViewModels.Add(trackModel);
             }
-            Player = CollectionViewSource.GetDefaultView(_player);
-            //_tracks.Add(trackModel);
-            //}
-            //Tracks = CollectionViewSource.GetDefaultView(_tracks);
         }
     }
 

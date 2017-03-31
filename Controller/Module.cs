@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Controller
 {
@@ -8,6 +9,7 @@ namespace ProjectCarsSeasonExtension.Controller
 
         public override void Load()
         {
+            Bind<HighscoreViewModel>().To<HighscoreViewModel>().InSingletonScope();
         }
 
         // ----------------------------------------------------------------------------------------

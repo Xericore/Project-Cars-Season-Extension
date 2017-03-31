@@ -6,10 +6,10 @@ namespace ProjectCarsSeasonExtension.ViewModels
     {
         // ----------------------------------------------------------------------------------------
 
-        public int Position;
-        public string Name;
-        public DateTime Time;
-        public DateTime Lap;
+        public int Position { get; set; }
+        public string Name { get; set; }
+        public DateTime Time { get; set; }
+        public DateTime Lap { get; set; }
 
         // ----------------------------------------------------------------------------------------
     }
