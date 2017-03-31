@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.ObjectModel;
+using System.Drawing;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.ViewModels
@@ -15,6 +16,9 @@ namespace ProjectCarsSeasonExtension.ViewModels
         public string Description { get; set; }
         public Image TrackImage { get; set; }
         public Image CarImage { get; set; }
+
+        public ObservableCollection<PlayerTimeListItemModel> Player { get; set; } =
+            new ObservableCollection<PlayerTimeListItemModel>();
 
         // ----------------------------------------------------------------------------------------
     }

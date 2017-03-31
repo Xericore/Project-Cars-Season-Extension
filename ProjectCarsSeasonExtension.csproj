@@ -76,6 +76,8 @@
     <Compile Include="OverlayWindow.xaml.cs">
       <DependentUpon>OverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
+    <Compile Include="ViewModels\TrackViewModel.cs" />
     <Compile Include="Views\CurrentTrackView.xaml.cs">
       <DependentUpon>CurrentTrackView.xaml</DependentUpon>
     </Compile>
@@ -85,9 +87,7 @@
     <Compile Include="Views\PlayerSelectionView.xaml.cs">
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CurrentTrackViewModel.cs" />
     <Compile Include="ViewModels\HighscoreViewModel.cs" />
-    <Compile Include="ViewModels\PlayerSelectionViewModel.cs" />
     <Page Include="Controls\HighscoreTrackControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

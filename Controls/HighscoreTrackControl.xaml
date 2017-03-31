@@ -3,18 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" Name="TrackControl">
+             mc:Ignorable="d">
     <Grid>
-        <GroupBox Header="{Binding ElementName=TrackControl, Path=Title}">
+        <GroupBox Header="{Binding Path=Title}">
             <StackPanel>
                 <DockPanel Height="150" Margin="10,10,10,10">
                     <Image Source="/Assets/Track.png" Name="TrackImage" DockPanel.Dock="Left" />
-                    <TextBlock Width="400" Name="Description" />
+                    <TextBlock Width="400" Text="{Binding Description}" />
                     <Image Source="/Assets/Car.png" Name="CarImage" DockPanel.Dock="Right" />
                 </DockPanel>
-                <DataGrid ItemsSource="{Binding ElementName=TrackControl, Path=Player}" ColumnWidth="*" RowHeight="25"
+                <DataGrid ItemsSource="{Binding Player}" ColumnWidth="*" RowHeight="25"
                           CanUserAddRows="False"
-                          IsReadOnly="True" />
+                          IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Position" Width="*" />
+                        <DataGridTextColumn Header="Name" Width="*" />
+                        <DataGridTextColumn Header="Time" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </GroupBox>
     </Grid>
