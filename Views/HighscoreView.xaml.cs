@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using Ninject;
 using ProjectCarsSeasonExtension.Controls;
@@ -31,8 +31,8 @@ namespace ProjectCarsSeasonExtension.Views
             base.OnInitialized(e);
 
             // TODO STH: the whole thing needs to be in a separate method and also triggered when the list got changed.
-            var rowCount = 1;
-            var columnCount = 1;
+            int rowCount = 1;
+            int columnCount = 1;
 
             // TODO MPE: if you like you could create a nice formula which is doing the following row / column calculation.
             if (_viewModel.TrackViewModels.Count <= 2)
@@ -55,17 +55,18 @@ namespace ProjectCarsSeasonExtension.Views
                 throw new Exception("Such a big one does not fit in here! ;-)");
             }
 
-            for (var y = 0; y < rowCount; y++)
+            for (int y = 0; y < rowCount; y++)
                 TrackGrid.RowDefinitions.Add(new RowDefinition());
 
-            for (var x = 0; x < columnCount; x++)
+            for (int x = 0; x < columnCount; x++)
                 TrackGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
-            var currentRow = 0;
-            var currentColumn = 0;
-            foreach (var trackViewModel in _viewModel.TrackViewModels)
+            int currentRow = 0;
+            int currentColumn = 0;
+            foreach (TrackViewModel trackViewModel in _viewModel.TrackViewModels)
             {
-                var control = new HighscoreTrackControl(trackViewModel);
+                HighscoreTrackControl control =
+                    new HighscoreTrackControl(trackViewModel) {Margin = new Thickness(0, 0, 0, 0)};
                 Grid.SetRow(control, currentRow);
                 Grid.SetColumn(control, currentColumn);
                 TrackGrid.Children.Add(control);

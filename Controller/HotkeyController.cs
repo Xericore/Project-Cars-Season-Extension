@@ -103,7 +103,7 @@ namespace ProjectCarsSeasonExtension.Controller
             _source.RemoveHook(HwndHook);
             _source = null;
 
-            foreach (var entry in _keyHookMap)
+            foreach (KeyValuePair<int, KeyHook> entry in _keyHookMap)
             {
                 UnregisterHotKey(_helper.Handle, entry.Key);
             }

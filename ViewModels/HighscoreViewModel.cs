@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
-using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
@@ -21,23 +17,23 @@ namespace ProjectCarsSeasonExtension.ViewModels
         public HighscoreViewModel()
         {
             // just generating some dummy data to test
-            var trackRand = new Random();
-            var playerRand = new Random();
+            Random trackRand = new Random();
+            Random playerRand = new Random();
 
-            var jRand = trackRand.Next(1, 12);
-            for (var j = 0; j < jRand; j++)
+            int jRand = trackRand.Next(1, 12);
+            for (int j = 0; j < jRand; j++)
             {
-                var trackModel = new TrackViewModel
+                TrackViewModel trackModel = new TrackViewModel
                 {
                     Name = $"Track {j}",
                     Description = $"Description for Track {j}"
                 };
 
                 // add some player
-                var pRand = playerRand.Next(0, 6);
-                for (var i = 0; i < pRand; i++)
+                int pRand = playerRand.Next(0, 6);
+                for (int i = 0; i < pRand; i++)
                 {
-                    var player = new PlayerTimeListItemModel
+                    PlayerTimeListItemModel player = new PlayerTimeListItemModel
                     {
                         Position = i + 1,
                         Name = $"Player {i}",

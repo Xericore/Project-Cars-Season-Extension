@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using ProjectCarsSeasonExtension.Controller;
+using ProjectCarsSeasonExtension.Views;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using ProjectCarsSeasonExtension.Controller;
-using ProjectCarsSeasonExtension.ViewModels;
-using ProjectCarsSeasonExtension.Views;
 using Application = System.Windows.Application;
 
 namespace ProjectCarsSeasonExtension
@@ -35,7 +33,7 @@ namespace ProjectCarsSeasonExtension
 
         private Screen GetMainScreen()
         {
-            foreach (var screen in Screen.AllScreens)
+            foreach (Screen screen in Screen.AllScreens)
             {
                 if (screen.Primary)
                     return screen;

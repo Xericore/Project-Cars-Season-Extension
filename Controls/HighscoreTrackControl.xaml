@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <Viewbox StretchDirection="Both">
-        <GroupBox Header="{Binding Path=Name}">
+        <GroupBox Header="{Binding Name}">
             <StackPanel>
                 <DockPanel Height="150" Margin="10,10,10,10">
                     <Image MaxWidth="200" Source="/Assets/Track.png" x:Name="TrackImage" DockPanel.Dock="Left" />
