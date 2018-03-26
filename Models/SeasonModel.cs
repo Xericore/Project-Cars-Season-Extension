@@ -1,34 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ProjectCarsSeasonExtension.Models
 {
     public class SeasonModel : BaseModel
     {
-        // ----------------------------------------------------------------------------------------
-
         public int Id;
         public DateTime StartDate;
         public DateTime EndDate;
         public string Name;
         public string Description;
 
-        private List<TrackModel> _trackList;
-
-        // ----------------------------------------------------------------------------------------
-        // getter and setter
-        // ----------------------------------------------------------------------------------------
-
-        public List<TrackModel> TrackList
-        {
-            get { return _trackList; }
-            set
-            {
-                _trackList = value;
-                NotifyPropertyChanged("TrackList");
-            }
-        }
-
-        // ----------------------------------------------------------------------------------------
+        public ObservableCollection<TrackAndCar> TracksAndCars { get; set; }
     }
 }

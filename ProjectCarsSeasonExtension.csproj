@@ -67,13 +67,19 @@
     <Compile Include="Controller\Module.cs" />
     <Compile Include="Converters\PlayerIdToImageUriConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Difficulty.cs" />
     <Compile Include="Models\PlayerModel.cs" />
-    <Compile Include="Models\PlayerTimeModel.cs" />
+    <Compile Include="Models\PlayerResult.cs" />
     <Compile Include="Models\SeasonModel.cs" />
-    <Compile Include="Models\TrackModel.cs" />
+    <Compile Include="Models\TrackAndCar.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Serialization\DummySeasonReader.cs" />
+    <Compile Include="Serialization\ISeasonReader.cs" />
     <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
     <Compile Include="ViewModels\TrackViewModel.cs" />
+    <Compile Include="Views\ChampionshipView.xaml.cs">
+      <DependentUpon>ChampionshipView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CurrentTrackView.xaml.cs">
       <DependentUpon>CurrentTrackView.xaml</DependentUpon>
     </Compile>
@@ -99,6 +105,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ChampionshipView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CurrentTrackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

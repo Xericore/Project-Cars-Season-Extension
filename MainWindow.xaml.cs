@@ -1,10 +1,13 @@
 ﻿using ProjectCarsSeasonExtension.Controller;
 using ProjectCarsSeasonExtension.Views;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Serialization;
 using Application = System.Windows.Application;
 
 namespace ProjectCarsSeasonExtension
@@ -16,14 +19,27 @@ namespace ProjectCarsSeasonExtension
     {
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
 
+        public SeasonModel CurrentSeason { get; set; }
+        public ObservableCollection<PlayerResult> PlayerResults { get; set; }
+
         // ----------------------------------------------------------------------------------------
 
         public MainWindow()
         {
+            ReadSeasonData();
+
             InitializeComponent();
             _closeApplicationCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(_closeApplicationCommand, CloseApplication_Executed));
         }
+
+        private void ReadSeasonData()
+        {
+            ISeasonReader seasonReader = new DummySeasonReader();
+            CurrentSeason = seasonReader.GetCurrentSeason();
+            PlayerResults = seasonReader.GetPlayerResults();
+        }
+
 
         // ----------------------------------------------------------------------------------------
         // listener
@@ -32,6 +48,7 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
+            PlayerResultsFrame.Content = new ChampionshipView(PlayerResults);
         }
 
         // ----------------------------------------------------------------------------------------

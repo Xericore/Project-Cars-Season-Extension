@@ -19,7 +19,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
             Random trackRand = new Random();
             Random playerRand = new Random();
 
-            int jRand = trackRand.Next(11, 12);
+            int jRand = trackRand.Next(1, 12);
             for (int j = 0; j < jRand; j++)
             {
                 TrackViewModel trackModel = new TrackViewModel

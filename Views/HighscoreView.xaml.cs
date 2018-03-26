@@ -10,8 +10,7 @@ namespace ProjectCarsSeasonExtension.Views
     public partial class HighscoreView : Page
     {
         public HighscoreViewModel HighScoreViewModel { get; set; }
-
-        // ----------------------------------------------------------------------------------------
+        
         [Inject]
         public HighscoreView(HighscoreViewModel highscoreViewModel)
         {

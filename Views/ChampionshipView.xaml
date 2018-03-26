@@ -1,0 +1,21 @@
+﻿<Page x:Class="ProjectCarsSeasonExtension.Views.ChampionshipView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChampionshipView"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <DataGrid ItemsSource="{Binding PlayerResults}"
+              CanUserAddRows="False" AutoGenerateColumns="False"
+              IsReadOnly="True">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Player" Binding="{Binding PlayerId}" />
+            <DataGridTextColumn Header="Track and Car" Binding="{Binding TrackAndCarId}" />
+            <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLap}" />
+        </DataGrid.Columns>
+    </DataGrid>
+</Page>
