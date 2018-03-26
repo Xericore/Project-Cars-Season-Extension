@@ -3,24 +3,23 @@ using System.Collections.ObjectModel;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
-    // --------------------------------------------------------------------------------------------
-
     public class HighscoreViewModel
     {
-        // ----------------------------------------------------------------------------------------
-
         public ObservableCollection<TrackViewModel> TrackViewModels { get; set; } =
             new ObservableCollection<TrackViewModel>();
 
-        // ----------------------------------------------------------------------------------------
-
         public HighscoreViewModel()
+        {
+            GenerateRandomTestData();
+        }
+
+        private void GenerateRandomTestData()
         {
             // just generating some dummy data to test
             Random trackRand = new Random();
             Random playerRand = new Random();
 
-            int jRand = trackRand.Next(1, 12);
+            int jRand = trackRand.Next(11, 12);
             for (int j = 0; j < jRand; j++)
             {
                 TrackViewModel trackModel = new TrackViewModel
@@ -46,6 +45,4 @@ namespace ProjectCarsSeasonExtension.ViewModels
             }
         }
     }
-
-    // --------------------------------------------------------------------------------------------
 }

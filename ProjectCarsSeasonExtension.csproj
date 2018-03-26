@@ -65,9 +65,6 @@
     <Compile Include="Controller\Injector.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />
     <Compile Include="Controller\Module.cs" />
-    <Compile Include="Controls\HighscoreTrackControl.xaml.cs">
-      <DependentUpon>HighscoreTrackControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\PlayerIdToImageUriConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
@@ -90,10 +87,6 @@
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HighscoreViewModel.cs" />
-    <Page Include="Controls\HighscoreTrackControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
