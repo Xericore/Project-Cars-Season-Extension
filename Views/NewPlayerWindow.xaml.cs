@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -81,22 +82,11 @@ namespace ProjectCarsSeasonExtension.Views
                 if (string.IsNullOrEmpty(Name))
                     result = "Please enter a name.";
 
-                if (IsPlayerPresent())
+                if (_alreadyPresentPlayers.Any(p => p.Name == Name))
                     result = "Player is already present. Please choose a different name.";
 
                 return result;
             }
-        }
-
-        private bool IsPlayerPresent()
-        {
-            foreach (var alreadyPresentPlayer in _alreadyPresentPlayers)
-            {
-                if (alreadyPresentPlayer.Name == Name)
-                    return true;
-            }
-
-            return false;
         }
 
         public string Error
