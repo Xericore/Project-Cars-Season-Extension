@@ -14,7 +14,6 @@ namespace ProjectCarsSeasonExtension
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Screen _mainScreen;
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
 
         // ----------------------------------------------------------------------------------------
@@ -33,18 +32,6 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
-
-            _mainScreen = GetMainScreen();
-        }
-
-        private Screen GetMainScreen()
-        {
-            foreach (Screen screen in Screen.AllScreens)
-            {
-                if (screen.Primary)
-                    return screen;
-            }
-            throw new Exception("Where do you play the game on??? We do need a main screen!");
         }
 
         // ----------------------------------------------------------------------------------------
