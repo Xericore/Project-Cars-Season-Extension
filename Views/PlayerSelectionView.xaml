@@ -6,9 +6,30 @@
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="PlayerSelection">
+      Title="PlayerSelection" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Margin="5" Content="Add player" />
+        <WrapPanel Grid.Row="1">
+            <ListBox ItemsSource="{Binding Path=Players}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Image Height="64" Source="../Assets/helmet.png" Grid.Row="0"/>
+                            <TextBlock Grid.Row="1" Text="{Binding Path=Name}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
     </Grid>
+
 </Page>

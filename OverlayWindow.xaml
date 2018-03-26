@@ -7,5 +7,5 @@
         mc:Ignorable="d"
         Title="OverlayWindow" AllowsTransparency="True" Opacity="0.7"
         WindowStyle="None">
-    <Grid/>
+    <Frame Source="/Views/PlayerSelectionView.xaml"/>
 </Window>
