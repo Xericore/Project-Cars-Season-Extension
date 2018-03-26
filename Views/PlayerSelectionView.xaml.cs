@@ -29,7 +29,7 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        private PlayerModel _selectedPlayer = null;
+        private PlayerModel _selectedPlayer;
 
         public PlayerSelection()
         {

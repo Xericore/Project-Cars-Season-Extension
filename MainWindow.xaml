@@ -9,4 +9,18 @@
         Initialized="Window_Initialized"
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
-        Icon="./Assets/Project Cars.png"/>
+        Icon="./Assets/Project Cars.png" Topmost="True">
+    
+    <TabControl>
+
+        <TabItem Name="HighscoreTab" Header="Highscore">
+            <Frame Name="HighscoreViewFrame" Source="/Views/HighscoreView.xaml"/>
+        </TabItem>
+
+        <TabItem Name="PlayerSelectionTab" Header="Player Selection">
+            <Frame Source="/Views/PlayerSelectionView.xaml"/>
+        </TabItem>
+
+    </TabControl>
+
+</Window>

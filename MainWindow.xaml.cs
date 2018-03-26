@@ -14,9 +14,6 @@ namespace ProjectCarsSeasonExtension
     /// </summary>
     public partial class MainWindow : Window
     {
-        // ----------------------------------------------------------------------------------------
-
-        private OverlayWindow _overlayWindow;
         private Screen _mainScreen;
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
 
@@ -30,6 +27,15 @@ namespace ProjectCarsSeasonExtension
         }
 
         // ----------------------------------------------------------------------------------------
+        // listener
+        // ----------------------------------------------------------------------------------------
+
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
+
+            _mainScreen = GetMainScreen();
+        }
 
         private Screen GetMainScreen()
         {
@@ -42,21 +48,11 @@ namespace ProjectCarsSeasonExtension
         }
 
         // ----------------------------------------------------------------------------------------
-        // listener
-        // ----------------------------------------------------------------------------------------
-
-        private void Window_Initialized(object sender, EventArgs e)
-        {
-            Content = Injector.Get<HighscoreView>();
-            _mainScreen = GetMainScreen();
-        }
-
-        // ----------------------------------------------------------------------------------------
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
             HotkeyController.Init(this);
-            HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd, OpenOverlayWindow);
+            HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd, ToggleWindowState);
         }
 
         // ----------------------------------------------------------------------------------------
@@ -68,24 +64,9 @@ namespace ProjectCarsSeasonExtension
 
         // ----------------------------------------------------------------------------------------
 
-        private void OpenOverlayWindow()
+        private void ToggleWindowState()
         {
-            if (_overlayWindow == null)
-            {
-                _overlayWindow = Injector.Get<OverlayWindow>();
-                //_overlayWindow.Topmost = true;
-                _overlayWindow.Loaded += (sender, e) =>
-                {
-                    _overlayWindow.WindowState = WindowState.Normal;
-                    _overlayWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                };
-                _overlayWindow.Show();
-            }
-            else
-            {
-                _overlayWindow.Close();
-                _overlayWindow = null;
-            }
+            WindowState = WindowState == WindowState.Minimized ? WindowState.Normal : WindowState.Minimized;
         }
 
         // ----------------------------------------------------------------------------------------
