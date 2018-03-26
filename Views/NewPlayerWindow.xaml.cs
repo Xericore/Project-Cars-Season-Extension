@@ -12,6 +12,7 @@ namespace ProjectCarsSeasonExtension.Views
         public NewPlayerWindow()
         {
             InitializeComponent();
+            TextBoxNewPlayerName.Focus();
         }
 
         private void OK_OnClick(object sender, RoutedEventArgs e)

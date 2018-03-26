@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
         mc:Ignorable="d"
-        Title="Add new player" Height="200" Width="320">
+        Title="Add new player" Height="200" Width="320" Topmost="True" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,7 +19,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Name:" VerticalAlignment="Center"/>
-            <TextBox x:Name="TextBoxNewPlayerName" Margin="5" Grid.Column="1" ToolTip="Enter your player name here." />
+            <TextBox x:Name="TextBoxNewPlayerName" Margin="5" Grid.Column="1" ToolTip="Enter your player name here." TabIndex="0" />
         </Grid>
 
         <Image Grid.Row="0" Margin="5" Source="../Assets/helmet.png"/>
