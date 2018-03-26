@@ -77,9 +77,7 @@ namespace ProjectCarsSeasonExtension
                 _overlayWindow.Loaded += (sender, e) =>
                 {
                     _overlayWindow.WindowState = WindowState.Normal;
-                    _overlayWindow.Left = _mainScreen.WorkingArea.Left;
-                    _overlayWindow.Top = _mainScreen.WorkingArea.Top;
-                    _overlayWindow.WindowState = WindowState.Maximized;
+                    _overlayWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 };
                 _overlayWindow.Show();
             }
