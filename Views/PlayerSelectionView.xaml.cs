@@ -93,11 +93,10 @@ namespace ProjectCarsSeasonExtension.Views
         private void MoveAddPlayerToEnd()
         {
             PlayerModel addPlayer = Players.First(p => p.Id == -1);
-            if (addPlayer != null)
-            {
-                Players.Remove(addPlayer);
-            }
 
+            if (addPlayer == null) return;
+
+            Players.Remove(addPlayer);
             Players.Add(addPlayer);
         }
 
