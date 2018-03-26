@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
         mc:Ignorable="d"
-        Title="Add new player" Height="200" Width="320" Topmost="True" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow">
+        Title="Add new player" Height="200" Width="320" Topmost="True" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,7 +21,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Name:" VerticalAlignment="Center"/>
-            <TextBox x:Name="TextBoxNewPlayerName" Margin="5" Grid.Column="1" ToolTip="Enter your player name here." TabIndex="0" />
+            <TextBox x:Name="TextBoxNewPlayerName" Margin="5" Grid.Column="1" 
+                     ToolTip="Enter your player name here." TabIndex="0" 
+                     Validation.Error="Validation_Error"
+                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=NewPlayer.Name,
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" />
         </Grid>
 
         <Image Grid.Row="0" Margin="5" Source="../Assets/helmet.png"/>
@@ -29,7 +35,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Margin="5" IsDefault="True" Content="OK" Click="OK_OnClick"/>
+            <Button Margin="5" IsDefault="True" Content="OK" Click="OK_OnClick" IsEnabled="{Binding Path=IsValidationPassed, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Margin="5" Grid.Column="1" IsCancel="True" Content="Cancel"/>
         </Grid>
     </Grid>
