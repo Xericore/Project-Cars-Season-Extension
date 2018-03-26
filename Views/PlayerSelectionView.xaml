@@ -11,28 +11,27 @@
     <Page.Resources>
         <converters:PlayerIdToImageUriConverter x:Key="PlayerIdToImageSourceConverter" />
     </Page.Resources>
-    <WrapPanel>
-        <ItemsControl ItemsSource="{Binding Path=Players}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition Height="16"/>
-                            </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Height="64" Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
-                            <TextBlock Grid.Row="1" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
-                        </Grid>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </WrapPanel>
+
+    <ItemsControl ItemsSource="{Binding Path=Players}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="16"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Height="64" Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
+                        <TextBlock Grid.Row="1" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
+                    </Grid>
+                </Button>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 
 </Page>
