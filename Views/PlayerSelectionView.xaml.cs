@@ -70,7 +70,7 @@ namespace ProjectCarsSeasonExtension.Views
         private void ShowAndHandleNewPlayerWindow()
         {
             var newPlayerWindow = new NewPlayerWindow(Players);
-            
+
             var dialogResult = newPlayerWindow.ShowDialog();
 
             if (dialogResult != true || string.IsNullOrEmpty(newPlayerWindow.PlayerName)) return;
@@ -85,9 +85,21 @@ namespace ProjectCarsSeasonExtension.Views
 
             Players.Add(newPlayer);
 
+            MoveAddPlayerToEnd();
+
             SelectedPlayer = newPlayer;
         }
 
+        private void MoveAddPlayerToEnd()
+        {
+            PlayerModel addPlayer = Players.First(p => p.Id == -1);
+            if (addPlayer != null)
+            {
+                Players.Remove(addPlayer);
+            }
+
+            Players.Add(addPlayer);
+        }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

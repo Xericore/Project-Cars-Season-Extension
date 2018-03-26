@@ -73,7 +73,7 @@ namespace ProjectCarsSeasonExtension
             if (_overlayWindow == null)
             {
                 _overlayWindow = Injector.Get<OverlayWindow>();
-                _overlayWindow.Topmost = true;
+                //_overlayWindow.Topmost = true;
                 _overlayWindow.Loaded += (sender, e) =>
                 {
                     _overlayWindow.WindowState = WindowState.Normal;

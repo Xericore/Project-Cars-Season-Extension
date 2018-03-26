@@ -4,10 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PlayerSelection" DataContext="{Binding RelativeSource={RelativeSource Self}}">
-
+    <Page.Resources>
+        <converters:PlayerIdToImageUriConverter x:Key="PlayerIdToImageSourceConverter" />
+    </Page.Resources>
     <WrapPanel>
         <ItemsControl ItemsSource="{Binding Path=Players}">
             <ItemsControl.ItemsPanel>
@@ -23,7 +26,7 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="16"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Height="64" Source="../Assets/helmet.png" />
+                            <Image Grid.Row="0" Height="64" Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
                             <TextBlock Grid.Row="1" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
                         </Grid>
                     </Button>

@@ -68,6 +68,7 @@
     <Compile Include="Controls\HighscoreTrackControl.xaml.cs">
       <DependentUpon>HighscoreTrackControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\PlayerIdToImageUriConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\PlayerTimeModel.cs" />
@@ -166,6 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\helmet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AddPlayer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
