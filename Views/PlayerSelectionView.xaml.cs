@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -68,7 +69,8 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ShowAndHandleNewPlayerWindow()
         {
-            var newPlayerWindow = new NewPlayerWindow();
+            var newPlayerWindow = new NewPlayerWindow(Players);
+            
             var dialogResult = newPlayerWindow.ShowDialog();
 
             if (dialogResult != true || string.IsNullOrEmpty(newPlayerWindow.PlayerName)) return;

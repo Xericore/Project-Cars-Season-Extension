@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
+using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -14,10 +16,10 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public NewPlayer NewPlayer { get; set; } = new NewPlayer();
+        public NewPlayer NewPlayer { get; set; }
 
         public string PlayerName => NewPlayer.Name;
-
+        
         private bool _isValidationPassed;
 
         public bool IsValidationPassed
@@ -30,9 +32,12 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        public NewPlayerWindow()
+        public NewPlayerWindow(ObservableCollection<PlayerModel> alreadyPresentPlayers)
         {
+            NewPlayer = new NewPlayer(alreadyPresentPlayers);
+
             InitializeComponent();
+            
             TextBoxNewPlayerName.Focus();
         }
 
@@ -56,6 +61,13 @@ namespace ProjectCarsSeasonExtension.Views
 
     public class NewPlayer: IDataErrorInfo
     {
+        private readonly ObservableCollection<PlayerModel> _alreadyPresentPlayers;
+
+        public NewPlayer(ObservableCollection<PlayerModel> alreadyPresentPlayers)
+        {
+            _alreadyPresentPlayers = alreadyPresentPlayers;
+        }
+
         public string Name { get; set; }
 
         public string this[string columnName]
@@ -69,8 +81,22 @@ namespace ProjectCarsSeasonExtension.Views
                 if (string.IsNullOrEmpty(Name))
                     result = "Please enter a name.";
 
+                if (IsPlayerPresent())
+                    result = "Player is already present. Please choose a different name.";
+
                 return result;
             }
+        }
+
+        private bool IsPlayerPresent()
+        {
+            foreach (var alreadyPresentPlayer in _alreadyPresentPlayers)
+            {
+                if (alreadyPresentPlayer.Name == Name)
+                    return true;
+            }
+
+            return false;
         }
 
         public string Error
