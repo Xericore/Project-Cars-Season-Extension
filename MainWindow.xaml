@@ -9,7 +9,8 @@
         Initialized="Window_Initialized"
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
-        Icon="./Assets/Project Cars.png" Topmost="True">
+        Icon="./Assets/Project Cars.png" Topmost="True"
+        AllowsTransparency="True" Opacity="0.85" WindowStyle="None">
     
     <TabControl>
 
