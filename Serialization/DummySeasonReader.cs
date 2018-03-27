@@ -108,6 +108,12 @@ namespace ProjectCarsSeasonExtension.Serialization
                     PlayerId = 3,
                     TrackAndCarId = 1,
                     FastestLap = new TimeSpan(0,0,1,31,007)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 1,
+                    TrackAndCarId = 2,
+                    FastestLap = new TimeSpan(0,0,1,10,999)
                 }
             };
 

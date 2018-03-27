@@ -9,13 +9,12 @@
       Title="ChampionshipView"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <DataGrid ItemsSource="{Binding PlayerResults}"
+    <DataGrid ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" AutoGenerateColumns="False"
               IsReadOnly="True">
         <DataGrid.Columns>
-            <DataGridTextColumn Header="Player" Binding="{Binding PlayerId}" />
-            <DataGridTextColumn Header="Track and Car" Binding="{Binding TrackAndCarId}" />
-            <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLap}" />
+            <DataGridTextColumn Header="Player" Binding="{Binding PlayerName}" />
+            <DataGridTextColumn Header="Total Points" Binding="{Binding TotalPoints}" />
         </DataGrid.Columns>
     </DataGrid>
 </Page>

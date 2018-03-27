@@ -21,6 +21,7 @@ namespace ProjectCarsSeasonExtension
 
         public SeasonModel CurrentSeason { get; set; }
         public ObservableCollection<PlayerResult> PlayerResults { get; set; }
+        public ObservableCollection<PlayerModel> Players { get; set; }
 
         // ----------------------------------------------------------------------------------------
 
@@ -38,9 +39,9 @@ namespace ProjectCarsSeasonExtension
             ISeasonReader seasonReader = new DummySeasonReader();
             CurrentSeason = seasonReader.GetCurrentSeason();
             PlayerResults = seasonReader.GetPlayerResults();
+            Players = new ObservableCollection<PlayerModel>();
         }
-
-
+        
         // ----------------------------------------------------------------------------------------
         // listener
         // ----------------------------------------------------------------------------------------
@@ -48,7 +49,8 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
-            PlayerResultsFrame.Content = new ChampionshipView(PlayerResults);
+            PlayerSelectionFrame.Content = new PlayerSelection(Players);
+            PlayerResultsFrame.Content = new ChampionshipView(CurrentSeason, PlayerResults, Players);
         }
 
         // ----------------------------------------------------------------------------------------

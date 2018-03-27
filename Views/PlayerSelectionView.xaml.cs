@@ -17,7 +17,7 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<PlayerModel> Players { get; set; } = new ObservableCollection<PlayerModel>();
+        public ObservableCollection<PlayerModel> Players { get; set; }
 
         public PlayerModel SelectedPlayer
         {
@@ -31,11 +31,13 @@ namespace ProjectCarsSeasonExtension.Views
 
         private PlayerModel _selectedPlayer;
 
-        public PlayerSelection()
+        public PlayerSelection(ObservableCollection<PlayerModel> players)
         {
-            InitializeComponent();
+            Players = players;
 
             AddPlayerDummyData();
+
+            InitializeComponent();
         }
 
         private void AddPlayerDummyData()

@@ -23,7 +23,7 @@
         </TabItem>
 
         <TabItem Name="PlayerSelectionTab" Header="Player Selection">
-            <Frame Source="/Views/PlayerSelectionView.xaml"/>
+            <Frame Name="PlayerSelectionFrame" Source="/Views/PlayerSelectionView.xaml"/>
         </TabItem>
 
     </TabControl>
