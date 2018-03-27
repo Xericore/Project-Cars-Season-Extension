@@ -11,6 +11,6 @@ namespace ProjectCarsSeasonExtension.Models
         public string Name;
         public string Description;
 
-        public ObservableCollection<TrackAndCar> TracksAndCars { get; set; }
+        public ObservableCollection<Challenge> Challenges { get; set; }
     }
 }

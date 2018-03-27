@@ -6,7 +6,7 @@ namespace ProjectCarsSeasonExtension.Models
     {
         private int _playerId;
         private TimeSpan _fastestLap;
-        private int _trackAndCarId;
+        private int _challengeId;
 
         public int PlayerId
         {
@@ -28,12 +28,12 @@ namespace ProjectCarsSeasonExtension.Models
             }
         }
 
-        public int TrackAndCarId
+        public int ChallengeId
         {
-            get { return _trackAndCarId; }
+            get { return _challengeId; }
             set
             {
-                _trackAndCarId = value;
+                _challengeId = value;
                 OnPropertyChanged();
             }
         }

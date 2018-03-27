@@ -16,7 +16,7 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<PlayerModel> Players { get; set; }
 
-        public Dictionary<int, TrackAndCarStandings> TrackAndCarStandings { get; }
+        public Dictionary<int, ChallengeStandings> ChallengeStandings { get; }
         public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } = new ObservableCollection<ChampionshipStanding>();
 
         public ChampionshipView(SeasonModel currentSeason, ObservableCollection<PlayerResult> playerResults, ObservableCollection<PlayerModel> players)
@@ -25,18 +25,18 @@ namespace ProjectCarsSeasonExtension.Views
             PlayerResults = playerResults;
             Players = players;
 
-            TrackAndCarStandings = new Dictionary<int, TrackAndCarStandings>();
+            ChallengeStandings = new Dictionary<int, ChallengeStandings>();
             
             foreach (PlayerResult playerResult in PlayerResults)
             {
-                if (!TrackAndCarStandings.ContainsKey(playerResult.TrackAndCarId))
+                if (!ChallengeStandings.ContainsKey(playerResult.ChallengeId))
                 {
-                    TrackAndCarStandings trackAndCarStandings = new TrackAndCarStandings(playerResult.TrackAndCarId);
+                    ChallengeStandings challengeStandings = new ChallengeStandings(playerResult.ChallengeId);
                     
-                    TrackAndCarStandings.Add(playerResult.TrackAndCarId,trackAndCarStandings);
+                    ChallengeStandings.Add(playerResult.ChallengeId,challengeStandings);
                 }
 
-                TrackAndCarStandings[playerResult.TrackAndCarId].SortedPlayers.Add(playerResult.FastestLap, playerResult.PlayerId);
+                ChallengeStandings[playerResult.ChallengeId].SortedPlayers.Add(playerResult.FastestLap, playerResult.PlayerId);
             }
 
             foreach (var player in Players)
@@ -44,9 +44,9 @@ namespace ProjectCarsSeasonExtension.Views
                 if (player.Id < 0)
                     continue;
 
-                foreach (var trackAndCarStandings in TrackAndCarStandings)
+                foreach (var challengeStanding in ChallengeStandings)
                 {
-                    var playerPoints = trackAndCarStandings.Value.GetPlayerPoints(player.Id);
+                    var playerPoints = challengeStanding.Value.GetPlayerPoints(player.Id);
 
                     var foundPlayer = ChampionshipStandings.FirstOrDefault(p => p.PlayerName == player.Name);
 
@@ -87,14 +87,14 @@ namespace ProjectCarsSeasonExtension.Views
         }
     }
 
-    public class TrackAndCarStandings
+    public class ChallengeStandings
     {
-        public int TrackAndCarId { get; set; }
+        public int ChallengeId { get; set; }
         public SortedList<TimeSpan, int> SortedPlayers = new SortedList<TimeSpan, int>();
 
-        public TrackAndCarStandings(int trackAndCarId)
+        public ChallengeStandings(int challengeId)
         {
-            TrackAndCarId = trackAndCarId;
+            ChallengeId = challengeId;
         }
 
         public int GetPlayerPoints(int playerId)

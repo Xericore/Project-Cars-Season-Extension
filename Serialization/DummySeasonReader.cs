@@ -8,9 +8,9 @@ namespace ProjectCarsSeasonExtension.Serialization
     {
         public SeasonModel GetCurrentSeason()
         {
-            ObservableCollection<TrackAndCar> trackAndCars = new ObservableCollection<TrackAndCar>
+            ObservableCollection<Challenge> trackAndCars = new ObservableCollection<Challenge>
             {
-                new TrackAndCar()
+                new Challenge()
                 {
                     Id = 0,
                     CarName = "Formula A",
@@ -18,7 +18,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                     Difficulty = Difficulty.Medium,
                     Description = "A track where getting into the right rythm is key."
                 },
-                new TrackAndCar()
+                new Challenge()
                 {
                     Id = 1,
                     CarName = "250cc Superkart",
@@ -26,7 +26,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                     Difficulty = Difficulty.Hard,
                     Description = "Get as close to the walls as possible!"
                 },
-                new TrackAndCar()
+                new Challenge()
                 {
                     Id = 2,
                     CarName = "Formula Golf 1000",
@@ -34,7 +34,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                     Difficulty = Difficulty.Easy,
                     Description = "Ideal to begin your racing career!"
                 },
-                new TrackAndCar()
+                new Challenge()
                 {
                     Id = 3,
                     CarName = "Madza MX-5 Radbul",
@@ -51,7 +51,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                 Description = "Dummy test season for testing.",
                 StartDate = new DateTime(2018,03,01),
                 EndDate = new DateTime(2018,12,31),
-                TracksAndCars = trackAndCars
+                Challenges = trackAndCars
             };
 
             return seasonModel;
@@ -64,55 +64,55 @@ namespace ProjectCarsSeasonExtension.Serialization
                 new PlayerResult
                 {
                     PlayerId = 0,
-                    TrackAndCarId = 0,
+                    ChallengeId = 0,
                     FastestLap = new TimeSpan(0,0,1,22,567)
                 },
                 new PlayerResult
                 {
                     PlayerId = 1,
-                    TrackAndCarId = 0,
+                    ChallengeId = 0,
                     FastestLap = new TimeSpan(0,0,1,23,117)
                 },
                 new PlayerResult
                 {
                     PlayerId = 2,
-                    TrackAndCarId = 0,
+                    ChallengeId = 0,
                     FastestLap = new TimeSpan(0,0,1,21,892)
                 },
                 new PlayerResult
                 {
                     PlayerId = 3,
-                    TrackAndCarId = 0,
+                    ChallengeId = 0,
                     FastestLap = new TimeSpan(0,0,1,25,007)
                 },
                 new PlayerResult
                 {
                     PlayerId = 0,
-                    TrackAndCarId = 1,
+                    ChallengeId = 1,
                     FastestLap = new TimeSpan(0,0,1,32,567)
                 },
                 new PlayerResult
                 {
                     PlayerId = 1,
-                    TrackAndCarId = 1,
+                    ChallengeId = 1,
                     FastestLap = new TimeSpan(0,0,1,32,117)
                 },
                 new PlayerResult
                 {
                     PlayerId = 2,
-                    TrackAndCarId = 1,
+                    ChallengeId = 1,
                     FastestLap = new TimeSpan(0,0,1,34,892)
                 },
                 new PlayerResult
                 {
                     PlayerId = 3,
-                    TrackAndCarId = 1,
+                    ChallengeId = 1,
                     FastestLap = new TimeSpan(0,0,1,31,007)
                 },
                 new PlayerResult
                 {
                     PlayerId = 1,
-                    TrackAndCarId = 2,
+                    ChallengeId = 2,
                     FastestLap = new TimeSpan(0,0,1,10,999)
                 }
             };

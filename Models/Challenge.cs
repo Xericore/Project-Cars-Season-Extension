@@ -1,6 +1,6 @@
 ﻿namespace ProjectCarsSeasonExtension.Models
 {
-    public class TrackAndCar : BaseModel
+    public class Challenge : BaseModel
     {
         public int Id { get; set; }
         public string TrackName { get; set; }
