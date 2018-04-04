@@ -103,7 +103,7 @@ namespace ProjectCarsSeasonExtension.Views
             var totalPointsColumn = new DataGridTextColumn
             {
                 Header = "Total Points",
-                Binding = new Binding($"TotalPoints")
+                Binding = new Binding("TotalPoints")
             };
 
             ChampionshipDataGrid.Columns.Add(totalPointsColumn);
