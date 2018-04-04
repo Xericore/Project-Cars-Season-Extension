@@ -14,7 +14,6 @@
               IsReadOnly="True">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
-            <DataGridTextColumn Header="Total Points" Binding="{Binding TotalPoints}" />
         </DataGrid.Columns>
     </DataGrid>
 </Page>

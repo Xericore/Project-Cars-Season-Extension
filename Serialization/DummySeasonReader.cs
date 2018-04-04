@@ -14,7 +14,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                 {
                     Id = 0,
                     CarName = "Formula A",
-                    TrackName = "Circuit de Barcelone Catalunya GP",
+                    TrackName = "Circuit de Barcelona Catalunya GP",
                     Difficulty = Difficulty.Medium,
                     Description = "A track where getting into the right rythm is key."
                 },

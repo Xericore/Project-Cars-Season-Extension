@@ -94,6 +94,19 @@ namespace ProjectCarsSeasonExtension.Views
                 ChampionshipDataGrid.Columns.Add(column);
                 challengeCount++;
             }
+
+            GenerateTotalPointsColumn();
+        }
+
+        private void GenerateTotalPointsColumn()
+        {
+            var totalPointsColumn = new DataGridTextColumn
+            {
+                Header = "Total Points",
+                Binding = new Binding($"TotalPoints")
+            };
+
+            ChampionshipDataGrid.Columns.Add(totalPointsColumn);
         }
     }
 
