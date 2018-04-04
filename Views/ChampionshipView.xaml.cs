@@ -80,15 +80,17 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void GenerateChallengeColumns()
         {
+            int challengeCount = 0;
             foreach (var challengeStanding in ChallengeStandings.Values)
             {
                 var column = new DataGridTextColumn
                 {
                     Header = challengeStanding.ChallengeId,
-                    Binding = new Binding($"ChallengePoints[1]")
+                    Binding = new Binding($"ChallengePoints[{challengeCount}]")
                 };
 
                 ChampionshipDataGrid.Columns.Add(column);
+                challengeCount++;
             }
         }
     }
