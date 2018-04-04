@@ -21,7 +21,11 @@ namespace ProjectCarsSeasonExtension.Views
 
         public PlayerModel SelectedPlayer
         {
-            get => _selectedPlayer;
+            get
+            {
+                return _selectedPlayer;
+            }
+
             set
             {
                 _selectedPlayer = value;
