@@ -45,7 +45,9 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 if (!ChallengeStandings.ContainsKey(playerResult.ChallengeId))
                 {
-                    ChallengeStandings challengeStandings = new ChallengeStandings(playerResult.ChallengeId);
+                    Challenge challenge = CurrentSeason.GetChallengeById(playerResult.ChallengeId);
+
+                    ChallengeStandings challengeStandings = new ChallengeStandings(challenge);
 
                     ChallengeStandings.Add(playerResult.ChallengeId, challengeStandings);
                 }
@@ -85,7 +87,7 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 var column = new DataGridTextColumn
                 {
-                    Header = challengeStanding.ChallengeId,
+                    Header = challengeStanding.Challenge.Name,
                     Binding = new Binding($"ChallengePoints[{challengeCount}]")
                 };
 
@@ -113,12 +115,12 @@ namespace ProjectCarsSeasonExtension.Views
 
     public class ChallengeStandings
     {
-        public int ChallengeId { get; set; }
+        public Challenge Challenge { get; set; }
         public SortedList<TimeSpan, int> SortedPlayers = new SortedList<TimeSpan, int>();
 
-        public ChallengeStandings(int challengeId)
+        public ChallengeStandings(Challenge challenge)
         {
-            ChallengeId = challengeId;
+            Challenge = challenge;
         }
 
         public int GetPlayerPoints(int playerId)

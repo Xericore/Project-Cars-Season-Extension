@@ -7,5 +7,6 @@
         public string CarName { get; set; }
         public string Description { get; set; }
         public Difficulty Difficulty { get; set; }
+        public string Name => TrackName + " / " + CarName;
     }
 }
