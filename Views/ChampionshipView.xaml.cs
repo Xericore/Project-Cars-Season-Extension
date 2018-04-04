@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -16,10 +17,14 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<PlayerModel> Players { get; set; }
 
-        public Dictionary<int, ChallengeStandings> ChallengeStandings { get; } = new Dictionary<int, ChallengeStandings>();
-        public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } = new ObservableCollection<ChampionshipStanding>();
+        public Dictionary<int, ChallengeStandings> ChallengeStandings { get; } =
+            new Dictionary<int, ChallengeStandings>();
 
-        public ChampionshipView(SeasonModel currentSeason, ObservableCollection<PlayerResult> playerResults, ObservableCollection<PlayerModel> players)
+        public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } =
+            new ObservableCollection<ChampionshipStanding>();
+
+        public ChampionshipView(SeasonModel currentSeason, ObservableCollection<PlayerResult> playerResults,
+            ObservableCollection<PlayerModel> players)
         {
             CurrentSeason = currentSeason;
             PlayerResults = playerResults;
@@ -30,6 +35,8 @@ namespace ProjectCarsSeasonExtension.Views
             CreateChampionshipStandings();
 
             InitializeComponent();
+
+            GenerateChallengeColumns();
         }
 
         private void CreateChallengeStandings()
@@ -43,7 +50,8 @@ namespace ProjectCarsSeasonExtension.Views
                     ChallengeStandings.Add(playerResult.ChallengeId, challengeStandings);
                 }
 
-                ChallengeStandings[playerResult.ChallengeId].SortedPlayers.Add(playerResult.FastestLap, playerResult.PlayerId);
+                ChallengeStandings[playerResult.ChallengeId].SortedPlayers
+                    .Add(playerResult.FastestLap, playerResult.PlayerId);
             }
         }
 
@@ -56,26 +64,31 @@ namespace ProjectCarsSeasonExtension.Views
 
                 foreach (var challengeStanding in ChallengeStandings)
                 {
+                    var foundPlayerStanding = ChampionshipStandings.FirstOrDefault(p => p.Player.Id == player.Id);
+
+                    if (foundPlayerStanding == null)
+                    {
+                        foundPlayerStanding = new ChampionshipStanding(player);
+                        ChampionshipStandings.Add(foundPlayerStanding);
+                    }
+
                     var playerPoints = challengeStanding.Value.GetPlayerPoints(player.Id);
-
-                    var foundPlayer = ChampionshipStandings.FirstOrDefault(p => p.PlayerName == player.Name);
-
-                    if (foundPlayer == null)
-                    {
-                        ChampionshipStandings.Add
-                        (
-                            new ChampionshipStanding
-                            {
-                                PlayerName = player.Name,
-                                TotalPoints = playerPoints
-                            }
-                        );
-                    }
-                    else
-                    {
-                        foundPlayer.TotalPoints += playerPoints;
-                    }
+                    foundPlayerStanding.ChallengePoints.Add(playerPoints);
                 }
+            }
+        }
+
+        private void GenerateChallengeColumns()
+        {
+            foreach (var challengeStanding in ChallengeStandings.Values)
+            {
+                var column = new DataGridTextColumn
+                {
+                    Header = challengeStanding.ChallengeId,
+                    Binding = new Binding($"ChallengePoints[1]")
+                };
+
+                ChampionshipDataGrid.Columns.Add(column);
             }
         }
     }
@@ -84,7 +97,7 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public static int PositionToPoints(int position)
         {
-            int[] positionToPointsMapping = new[] { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1 };
+            int[] positionToPointsMapping = new[] {25, 18, 15, 12, 10, 8, 6, 4, 2, 1};
 
             if (position > positionToPointsMapping.Length)
                 return 0;
@@ -122,8 +135,15 @@ namespace ProjectCarsSeasonExtension.Views
 
     public class ChampionshipStanding
     {
-        public string PlayerName { get; set; }
+        public PlayerModel Player { get; set; }
 
-        public int TotalPoints { get; set; }
+        public ObservableCollection<int> ChallengePoints { get; } = new ObservableCollection<int>();
+
+        public int TotalPoints => ChallengePoints.Sum();
+
+        public ChampionshipStanding(PlayerModel playerName)
+        {
+            Player = playerName;
+        }
     }
 }

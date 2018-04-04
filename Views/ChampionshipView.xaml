@@ -9,11 +9,11 @@
       Title="ChampionshipView"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <DataGrid ItemsSource="{Binding ChampionshipStandings}"
+    <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" AutoGenerateColumns="False"
               IsReadOnly="True">
         <DataGrid.Columns>
-            <DataGridTextColumn Header="Player" Binding="{Binding PlayerName}" />
+            <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
             <DataGridTextColumn Header="Total Points" Binding="{Binding TotalPoints}" />
         </DataGrid.Columns>
     </DataGrid>
