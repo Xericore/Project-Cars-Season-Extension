@@ -77,9 +77,11 @@
     <Compile Include="Serialization\ISeasonReader.cs" />
     <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
     <Compile Include="ViewModels\TrackViewModel.cs" />
+    <Compile Include="ViewModels\ChallengeStanding.cs" />
     <Compile Include="Views\ChallengeView.xaml.cs">
       <DependentUpon>ChallengeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ChampionshipStanding.cs" />
     <Compile Include="Views\ChampionshipView.xaml.cs">
       <DependentUpon>ChampionshipView.xaml</DependentUpon>
     </Compile>

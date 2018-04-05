@@ -17,8 +17,8 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<PlayerModel> Players { get; set; }
 
-        public Dictionary<int, ChallengeStandings> ChallengeStandings { get; } =
-            new Dictionary<int, ChallengeStandings>();
+        public Dictionary<int, ChallengeStanding> ChallengeStandings { get; } =
+            new Dictionary<int, ChallengeStanding>();
 
         public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } =
             new ObservableCollection<ChampionshipStanding>();
@@ -47,13 +47,18 @@ namespace ProjectCarsSeasonExtension.Views
                 {
                     Challenge challenge = CurrentSeason.GetChallengeById(playerResult.ChallengeId);
 
-                    ChallengeStandings challengeStandings = new ChallengeStandings(challenge);
+                    ChallengeStanding challengeStanding = new ChallengeStanding(challenge);
 
-                    ChallengeStandings.Add(playerResult.ChallengeId, challengeStandings);
+                    ChallengeStandings.Add(playerResult.ChallengeId, challengeStanding);
                 }
 
-                ChallengeStandings[playerResult.ChallengeId].SortedPlayers
-                    .Add(playerResult.FastestLap, playerResult.PlayerId);
+                PlayerModel foundPlayer = Players.FirstOrDefault(p => p.Id == playerResult.PlayerId);
+
+                if(foundPlayer != null)
+                {
+                    ChallengeStandings[playerResult.ChallengeId].SortedPlayers
+                        .Add(playerResult.FastestLap, foundPlayer);
+                }
             }
         }
 
@@ -123,44 +128,6 @@ namespace ProjectCarsSeasonExtension.Views
                 throw new ArgumentOutOfRangeException("Provided position cannot be below zero.");
 
             return positionToPointsMapping[position - 1];
-        }
-    }
-
-    public class ChallengeStandings
-    {
-        public Challenge Challenge { get; set; }
-        public SortedList<TimeSpan, int> SortedPlayers = new SortedList<TimeSpan, int>();
-
-        public ChallengeStandings(Challenge challenge)
-        {
-            Challenge = challenge;
-        }
-
-        public int GetPlayerPoints(int playerId)
-        {
-            int position = 0;
-            foreach (var sortedPlayer in SortedPlayers)
-            {
-                position++;
-                if (sortedPlayer.Value == playerId)
-                    return PointsUtil.PositionToPoints(position);
-            }
-
-            return 0;
-        }
-    }
-
-    public class ChampionshipStanding
-    {
-        public PlayerModel Player { get; set; }
-
-        public ObservableCollection<int> ChallengePoints { get; } = new ObservableCollection<int>();
-
-        public int TotalPoints => ChallengePoints.Sum();
-
-        public ChampionshipStanding(PlayerModel playerName)
-        {
-            Player = playerName;
         }
     }
 }

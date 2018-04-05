@@ -8,11 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChallengeView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChampionshipView.ChallengeStandings}"
+    <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChampionshipView.ChallengeStandings.Values}"
               CanUserAddRows="False" AutoGenerateColumns="False"
               IsReadOnly="True">
         <DataGrid.Columns>
-            <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
+            <DataGridTextColumn Header="Player" Binding="{Binding Challenge.Name}" />
         </DataGrid.Columns>
         
     </DataGrid>
