@@ -77,6 +77,9 @@
     <Compile Include="Serialization\ISeasonReader.cs" />
     <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
     <Compile Include="ViewModels\TrackViewModel.cs" />
+    <Compile Include="Views\ChallengeView.xaml.cs">
+      <DependentUpon>ChallengeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChampionshipView.xaml.cs">
       <DependentUpon>ChampionshipView.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ChallengeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChampionshipView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -18,6 +18,10 @@
             <Frame Name="PlayerResultsFrame" Source="/Views/ChampionshipView.xaml"/>
         </TabItem>
 
+        <TabItem Name="ChallengeTab" Header="Challenges">
+            <Frame Name="ChallengeViewFrame" Source="/Views/ChallengeView.xaml"/>
+        </TabItem>
+
         <TabItem Name="HighscoreTab" Header="Highscore">
             <Frame Name="HighscoreViewFrame" Source="/Views/HighscoreView.xaml"/>
         </TabItem>
