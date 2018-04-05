@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.ViewModels
@@ -7,7 +7,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
     public class ChallengeStanding
     {
         public Challenge Challenge { get; set; }
-        public SortedList<TimeSpan, PlayerModel> SortedPlayers { get; set; } = new SortedList<TimeSpan, PlayerModel>();
+        public ObservableCollection<ChallengePlayerStanding> ChallengePlayerStandings { get; set; } = new ObservableCollection<ChallengePlayerStanding>();
 
         public ChallengeStanding(Challenge challenge)
         {
@@ -17,14 +17,26 @@ namespace ProjectCarsSeasonExtension.ViewModels
         public int GetPlayerPoints(int playerId)
         {
             int position = 0;
-            foreach (KeyValuePair<TimeSpan, PlayerModel> sortedPlayer in SortedPlayers)
+            foreach (var challengePlayerStanding in ChallengePlayerStandings)
             {
                 position++;
-                if (sortedPlayer.Value.Id == playerId)
+                if (challengePlayerStanding.Player.Id == playerId)
                     return PointsUtil.PositionToPoints(position);
             }
 
             return 0;
+        }
+    }
+
+    public class ChallengePlayerStanding
+    {
+        public PlayerModel Player { get; }
+        public TimeSpan FastestLap { get; }
+
+        public ChallengePlayerStanding(PlayerModel player, TimeSpan fastestLap)
+        {
+            Player = player;
+            FastestLap = fastestLap;
         }
     }
 }
