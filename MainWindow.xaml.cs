@@ -18,7 +18,7 @@ namespace ProjectCarsSeasonExtension
     public partial class MainWindow : Window
     {
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
-        private ChampionshipView _championshipView;
+        private ChampionshipView _challengeStanding;
 
         public SeasonModel CurrentSeason { get; set; }
         public ObservableCollection<PlayerResult> PlayerResults { get; set; }
@@ -51,10 +51,10 @@ namespace ProjectCarsSeasonExtension
         {
             HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
             PlayerSelectionFrame.Content = new PlayerSelection(Players);
-            _championshipView = new ChampionshipView(CurrentSeason, PlayerResults, Players);
-            PlayerResultsFrame.Content = _championshipView;
-                
-            ChallengeViewFrame.Content = new ChallengeView(_championshipView);
+            var championshipView = new ChampionshipView(CurrentSeason, PlayerResults, Players);
+            PlayerResultsFrame.Content = championshipView;
+
+            ChallengeViewFrame.Content = new ChallengeView(championshipView.ChallengeStandings[0]);
         }
 
         // ----------------------------------------------------------------------------------------

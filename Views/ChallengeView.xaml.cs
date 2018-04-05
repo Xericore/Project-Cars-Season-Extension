@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -7,11 +8,11 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class ChallengeView : Page
     {
-        public ChampionshipView ChampionshipView { get; set; }
+        public ChallengeStanding ChallengeStanding { get; set; }
 
-        public ChallengeView(ChampionshipView championshipView)
+        public ChallengeView(ChallengeStanding challengeStanding)
         {
-            ChampionshipView = championshipView;
+            ChallengeStanding = challengeStanding;
             InitializeComponent();
         }
     }
