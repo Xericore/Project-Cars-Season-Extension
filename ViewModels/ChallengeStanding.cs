@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ProjectCarsSeasonExtension.Models;
 
-namespace ProjectCarsSeasonExtension.Views
+namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class ChallengeStanding
     {

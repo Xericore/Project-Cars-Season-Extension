@@ -2,7 +2,7 @@
 using System.Linq;
 using ProjectCarsSeasonExtension.Models;
 
-namespace ProjectCarsSeasonExtension.Views
+namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class ChampionshipStanding
     {

@@ -98,6 +98,7 @@
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HighscoreViewModel.cs" />
+    <Compile Include="ViewModels\PointsUtil.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
