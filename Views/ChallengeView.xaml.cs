@@ -10,6 +10,11 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public ChallengeStanding ChallengeStanding { get; set; }
 
+        public ChallengeView()
+        {
+            InitializeComponent();
+        }
+
         public ChallengeView(ChallengeStanding challengeStanding)
         {
             ChallengeStanding = challengeStanding;

@@ -51,10 +51,12 @@ namespace ProjectCarsSeasonExtension
         {
             HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
             PlayerSelectionFrame.Content = new PlayerSelection(Players);
+
             var championshipView = new ChampionshipView(CurrentSeason, PlayerResults, Players);
             PlayerResultsFrame.Content = championshipView;
 
-            ChallengeViewFrame.Content = new ChallengeView(championshipView.ChallengeStandings[0]);
+            var seasonView = new SeasonView(championshipView.ChallengeStandings.Values);
+            SeasonViewFrame.Content = seasonView;
         }
 
         // ----------------------------------------------------------------------------------------

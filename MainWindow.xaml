@@ -9,7 +9,7 @@
         Initialized="Window_Initialized"
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
-        Icon="./Assets/Project Cars.png" Topmost="True"
+        Icon="./Assets/Project Cars.png"
         AllowsTransparency="True" Opacity="0.85" WindowStyle="None">
     
     <TabControl>
@@ -18,8 +18,8 @@
             <Frame Name="PlayerResultsFrame" Source="/Views/ChampionshipView.xaml"/>
         </TabItem>
 
-        <TabItem Name="ChallengeTab" Header="Challenges">
-            <Frame Name="ChallengeViewFrame" Source="/Views/ChallengeView.xaml"/>
+        <TabItem Name="SeasonTab" Header="Season">
+            <Frame Name="SeasonViewFrame" Source="/Views/SeasonView.xaml"/>
         </TabItem>
 
         <TabItem Name="HighscoreTab" Header="Highscore">
