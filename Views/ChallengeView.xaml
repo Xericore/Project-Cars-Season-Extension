@@ -10,7 +10,7 @@
 
     <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChallengeStanding.ChallengePlayerStandings}"
               CanUserAddRows="False" AutoGenerateColumns="False"
-              IsReadOnly="True">
+              IsReadOnly="True" CanUserSortColumns="False">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
             <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLap}" />

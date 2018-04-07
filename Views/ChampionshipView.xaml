@@ -11,7 +11,7 @@
 
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" AutoGenerateColumns="False"
-              IsReadOnly="True">
+              IsReadOnly="True" CanUserSortColumns="False">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
         </DataGrid.Columns>
