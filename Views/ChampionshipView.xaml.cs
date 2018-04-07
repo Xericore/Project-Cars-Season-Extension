@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -17,13 +18,11 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<PlayerModel> Players { get; set; }
 
-        public Dictionary<int, ChallengeStanding> ChallengeStandings { get; } =
-            new Dictionary<int, ChallengeStanding>();
+        public Dictionary<int, ChallengeStanding> ChallengeStandings { get; } = new Dictionary<int, ChallengeStanding>();
+        public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } = new ObservableCollection<ChampionshipStanding>();
 
-        public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } =
-            new ObservableCollection<ChampionshipStanding>();
-
-        public ChampionshipView(SeasonModel currentSeason, ObservableCollection<PlayerResult> playerResults,
+        public ChampionshipView(SeasonModel currentSeason, 
+            ObservableCollection<PlayerResult> playerResults,
             ObservableCollection<PlayerModel> players)
         {
             CurrentSeason = currentSeason;
@@ -72,18 +71,20 @@ namespace ProjectCarsSeasonExtension.Views
 
                 foreach (var challengeStanding in ChallengeStandings)
                 {
-                    var foundPlayerStanding = ChampionshipStandings.FirstOrDefault(p => p.Player.Id == player.Id);
+                    var championshipStanding = ChampionshipStandings.FirstOrDefault(p => p.Player.Id == player.Id);
 
-                    if (foundPlayerStanding == null)
+                    if (championshipStanding == null)
                     {
-                        foundPlayerStanding = new ChampionshipStanding(player);
-                        ChampionshipStandings.Add(foundPlayerStanding);
+                        championshipStanding = new ChampionshipStanding(player);
+                        ChampionshipStandings.Add(championshipStanding);
                     }
 
                     var playerPoints = challengeStanding.Value.GetPlayerPoints(player.Id);
-                    foundPlayerStanding.ChallengePoints.Add(playerPoints);
+                    championshipStanding.ChallengePoints.Add(playerPoints);
                 }
             }
+
+            ChampionshipStandings.Sort();
         }
 
         private void GenerateChallengeColumns()

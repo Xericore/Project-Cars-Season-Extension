@@ -75,6 +75,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Serialization\DummySeasonReader.cs" />
     <Compile Include="Serialization\ISeasonReader.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
     <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
     <Compile Include="ViewModels\TrackViewModel.cs" />
@@ -99,7 +100,7 @@
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HighscoreViewModel.cs" />
-    <Compile Include="ViewModels\PointsUtil.cs" />
+    <Compile Include="Utils\PointsUtil.cs" />
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
     </Compile>

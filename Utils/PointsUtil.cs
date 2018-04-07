@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectCarsSeasonExtension.ViewModels
+namespace ProjectCarsSeasonExtension.Utils
 {
     public static class PointsUtil
     {
