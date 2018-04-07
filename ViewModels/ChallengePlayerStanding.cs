@@ -5,8 +5,11 @@ namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class ChallengePlayerStanding : IComparable
     {
+        public uint Position { get; set; }
         public PlayerModel Player { get; }
         public TimeSpan FastestLap { get; }
+        public TimeSpan GapToPreviousPlayer { get; set; }
+        public TimeSpan GapToLeader { get; set; }
 
         public ChallengePlayerStanding(PlayerModel player, TimeSpan fastestLap)
         {

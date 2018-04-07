@@ -57,7 +57,7 @@ namespace ProjectCarsSeasonExtension.Views
                 {
                     var challengePlayerStanding = new ChallengePlayerStanding(foundPlayer, playerResult.FastestLap);
 
-                    ChallengeStandings[playerResult.ChallengeId].ChallengePlayerStandings.Add(challengePlayerStanding);
+                    ChallengeStandings[playerResult.ChallengeId].AddChallengePlayerStanding(challengePlayerStanding);
                 }
             }
         }
