@@ -87,16 +87,13 @@
     <Compile Include="Views\ChampionshipView.xaml.cs">
       <DependentUpon>ChampionshipView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CurrentTrackView.xaml.cs">
-      <DependentUpon>CurrentTrackView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\HighscoreView.xaml.cs">
       <DependentUpon>HighscoreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewPlayerWindow.xaml.cs">
+    <Compile Include="Views\Player\NewPlayerWindow.xaml.cs">
       <DependentUpon>NewPlayerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PlayerSelectionView.xaml.cs">
+    <Compile Include="Views\Player\PlayerSelectionView.xaml.cs">
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HighscoreViewModel.cs" />
@@ -124,19 +121,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CurrentTrackView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\HighscoreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewPlayerWindow.xaml">
+    <Page Include="Views\Player\NewPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PlayerSelectionView.xaml">
+    <Page Include="Views\Player\PlayerSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
