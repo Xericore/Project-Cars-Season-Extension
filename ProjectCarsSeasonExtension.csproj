@@ -75,6 +75,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Serialization\DummySeasonReader.cs" />
     <Compile Include="Serialization\ISeasonReader.cs" />
+    <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
     <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
     <Compile Include="ViewModels\TrackViewModel.cs" />
     <Compile Include="ViewModels\ChallengeStanding.cs" />

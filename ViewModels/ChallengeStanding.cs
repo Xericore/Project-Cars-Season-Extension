@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.ViewModels
@@ -7,7 +6,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
     public class ChallengeStanding
     {
         public Challenge Challenge { get; set; }
-        public ObservableCollection<ChallengePlayerStanding> ChallengePlayerStandings { get; set; } = new ObservableCollection<ChallengePlayerStanding>();
+        public SortedSet<ChallengePlayerStanding> ChallengePlayerStandings { get; set; } = new SortedSet<ChallengePlayerStanding>();
 
         public ChallengeStanding(Challenge challenge)
         {
@@ -25,18 +24,6 @@ namespace ProjectCarsSeasonExtension.ViewModels
             }
 
             return 0;
-        }
-    }
-
-    public class ChallengePlayerStanding
-    {
-        public PlayerModel Player { get; }
-        public TimeSpan FastestLap { get; }
-
-        public ChallengePlayerStanding(PlayerModel player, TimeSpan fastestLap)
-        {
-            Player = player;
-            FastestLap = fastestLap;
         }
     }
 }
