@@ -14,9 +14,9 @@
         <DataGrid.Columns>
             <DataGridTextColumn Header="Position" Binding="{Binding Position}" />
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
-            <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLap}" />
-            <DataGridTextColumn Header="Gap to previous" Binding="{Binding GapToPreviousPlayer}" />
-            <DataGridTextColumn Header="Gap to leader" Binding="{Binding GapToLeader}" />
+            <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLap,StringFormat={}{0:m\\:ss\\:fff}}" />
+            <DataGridTextColumn Header="Gap to previous" Binding="{Binding GapToPreviousPlayer,StringFormat={}{0:ss\\:fff}}" />
+            <DataGridTextColumn Header="Gap to leader" Binding="{Binding GapToLeader,StringFormat={}{0:ss\\:fff}}" />
         </DataGrid.Columns>
         
     </DataGrid>
