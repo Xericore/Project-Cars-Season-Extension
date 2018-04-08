@@ -77,8 +77,6 @@
     <Compile Include="Serialization\ISeasonReader.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
-    <Compile Include="ViewModels\PlayerTimeListItemModel.cs" />
-    <Compile Include="ViewModels\TrackViewModel.cs" />
     <Compile Include="ViewModels\ChallengeStanding.cs" />
     <Compile Include="Views\ChallengeView.xaml.cs">
       <DependentUpon>ChallengeView.xaml</DependentUpon>
@@ -87,16 +85,12 @@
     <Compile Include="Views\ChampionshipView.xaml.cs">
       <DependentUpon>ChampionshipView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HighscoreView.xaml.cs">
-      <DependentUpon>HighscoreView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Player\NewPlayerWindow.xaml.cs">
       <DependentUpon>NewPlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Player\PlayerSelectionView.xaml.cs">
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\HighscoreViewModel.cs" />
     <Compile Include="Utils\PointsUtil.cs" />
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
@@ -118,10 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChampionshipView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HighscoreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,7 +28,7 @@
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" />
         </Grid>
 
-        <Image Grid.Row="0" Margin="5" Source="../Assets/helmet.png"/>
+        <Image Grid.Row="0" Margin="5" Source="../../Assets/helmet.png"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

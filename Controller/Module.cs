@@ -9,7 +9,6 @@ namespace ProjectCarsSeasonExtension.Controller
 
         public override void Load()
         {
-            Bind<HighscoreViewModel>().To<HighscoreViewModel>().InSingletonScope();
         }
 
         // ----------------------------------------------------------------------------------------

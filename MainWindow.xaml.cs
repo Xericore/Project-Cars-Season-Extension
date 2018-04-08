@@ -4,7 +4,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Serialization;
@@ -18,7 +17,6 @@ namespace ProjectCarsSeasonExtension
     public partial class MainWindow : Window
     {
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
-        private ChampionshipView _challengeStanding;
 
         public SeasonModel CurrentSeason { get; set; }
         public ObservableCollection<PlayerResult> PlayerResults { get; set; }
@@ -42,14 +40,9 @@ namespace ProjectCarsSeasonExtension
             PlayerResults = seasonReader.GetPlayerResults();
             Players = new ObservableCollection<PlayerModel>();
         }
-        
-        // ----------------------------------------------------------------------------------------
-        // listener
-        // ----------------------------------------------------------------------------------------
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            HighscoreViewFrame.Content = Injector.Get<HighscoreView>();
             PlayerSelectionFrame.Content = new PlayerSelection(Players);
 
             var championshipView = new ChampionshipView(CurrentSeason, PlayerResults, Players);
