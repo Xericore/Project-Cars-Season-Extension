@@ -15,15 +15,15 @@
     <TabControl>
 
         <TabItem Name="ChampionshipTab" Header="Championship">
-            <Frame Name="PlayerResultsFrame" Source="/Views/ChampionshipView.xaml"/>
+            <Frame Name="PlayerResultsFrame"/>
         </TabItem>
 
         <TabItem Name="SeasonTab" Header="Season">
-            <Frame Name="SeasonViewFrame" Source="/Views/SeasonView.xaml"/>
+            <Frame Name="SeasonViewFrame"/>
         </TabItem>
 
         <TabItem Name="PlayerSelectionTab" Header="Player Selection">
-            <Frame Name="PlayerSelectionFrame" Source="/Views/PlayerSelectionView.xaml"/>
+            <Frame Name="PlayerSelectionFrame"/>
         </TabItem>
 
     </TabControl>
