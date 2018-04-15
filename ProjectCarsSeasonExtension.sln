@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCarsSeasonExtension", "ProjectCarsSeasonExtension.csproj", "{DAA13CFF-B789-4587-84FB-4611F7C50226}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pCarsAPI-Demo", "pCarsAPI-Demo\pCarsAPI-Demo.csproj", "{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCarsSeasonExtensionTests", "ProjectCarsSeasonExtensionTests\ProjectCarsSeasonExtensionTests.csproj", "{18EEC273-A152-4ED7-8EE4-3274DB9A20F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2624D43-50C0-49CF-96AC-9D3EE71EF1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18EEC273-A152-4ED7-8EE4-3274DB9A20F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18EEC273-A152-4ED7-8EE4-3274DB9A20F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18EEC273-A152-4ED7-8EE4-3274DB9A20F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18EEC273-A152-4ED7-8EE4-3274DB9A20F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF5D29AE-60A2-4A1C-8615-20086C6B783F}
 	EndGlobalSection
 EndGlobal
