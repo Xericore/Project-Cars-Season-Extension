@@ -13,7 +13,7 @@ namespace ProjectCarsSeasonExtensionTests
         [TestMethod]
         public void ChampionshipViewTest()
         {
-            ISeasonReader seasonReader = new TestSeasonReader();
+            ISeasonReader seasonReader = new SeasonReaderTest();
             var dataView = new DataView(seasonReader);
 
             var allChallengeStandings = new AllChallengeStandings(dataView);

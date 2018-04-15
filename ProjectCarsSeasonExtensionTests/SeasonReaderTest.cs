@@ -5,7 +5,7 @@ using ProjectCarsSeasonExtension.Serialization;
 
 namespace ProjectCarsSeasonExtensionTests
 {
-    public class TestSeasonReader: ISeasonReader
+    public class SeasonReaderTest: ISeasonReader
     {
         public SeasonModel GetCurrentSeason()
         {

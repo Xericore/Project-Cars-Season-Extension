@@ -48,9 +48,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestSeasonReader.cs" />
+    <Compile Include="SeasonReaderTest.cs" />
     <Compile Include="ChampionshipTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PlayersTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
