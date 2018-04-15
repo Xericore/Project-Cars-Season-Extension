@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectCarsSeasonExtension.Models
+namespace ProjectCarsSeasonExtension.Models.Player
 {
     public class PlayerHandicap
     {

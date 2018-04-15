@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -18,27 +19,11 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Player> Players { get; set; }
+        public PlayerController PlayerController { get; }
 
-        public Player SelectedPlayer
+        public PlayerSelection(PlayerController playerController)
         {
-            get
-            {
-                return _selectedPlayer;
-            }
-
-            set
-            {
-                _selectedPlayer = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Player _selectedPlayer;
-
-        public PlayerSelection(ObservableCollection<Player> players)
-        {
-            Players = players;
+            PlayerController = playerController;
             InitializeComponent();
         }
 
@@ -47,10 +32,10 @@ namespace ProjectCarsSeasonExtension.Views
             if (!(sender is Button button))
                 return;
 
-            if (!(button.DataContext is Player playerModel))
+            if (!(button.DataContext is Player player))
                 return;
 
-            bool isNewPlayerClicked = playerModel.Id == -1;
+            bool isNewPlayerClicked = player.Id == -1;
 
             if (isNewPlayerClicked)
             {
@@ -58,41 +43,25 @@ namespace ProjectCarsSeasonExtension.Views
             }
             else
             {
-                SelectedPlayer = playerModel;
+                PlayerController.SelectedPlayer = player;
             }
         }
 
         private void ShowAndHandleNewPlayerWindow()
         {
-            var newPlayerWindow = new NewPlayerWindow(Players);
+            var newPlayerWindow = new NewPlayerWindow(PlayerController);
 
             var dialogResult = newPlayerWindow.ShowDialog();
 
             if (dialogResult != true || string.IsNullOrEmpty(newPlayerWindow.PlayerName)) return;
 
-            var maxId = Players.Max(p => p.Id);
-
             Player newPlayer = new Player
             {
-                Id = ++maxId,
                 Name = newPlayerWindow.PlayerName
             };
 
-            Players.Add(newPlayer);
-
-            MoveAddPlayerToEnd();
-
-            SelectedPlayer = newPlayer;
-        }
-
-        private void MoveAddPlayerToEnd()
-        {
-            Player addPlayer = Players.First(p => p.Id == -1);
-
-            if (addPlayer == null) return;
-
-            Players.Remove(addPlayer);
-            Players.Add(addPlayer);
+            PlayerController.AddPlayer(newPlayer);
+            OnPropertyChanged(nameof(PlayerController));
         }
 
         [NotifyPropertyChangedInvocator]

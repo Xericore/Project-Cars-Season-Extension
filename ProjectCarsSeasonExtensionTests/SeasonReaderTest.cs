@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
 
 namespace ProjectCarsSeasonExtensionTests

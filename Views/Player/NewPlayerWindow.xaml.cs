@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -33,8 +34,9 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        public NewPlayerWindow(ObservableCollection<Player> alreadyPresentPlayers)
+        public NewPlayerWindow(PlayerController playerController)
         {
+            var alreadyPresentPlayers = playerController.Players;
             NewPlayer = new NewPlayer(alreadyPresentPlayers);
 
             InitializeComponent();

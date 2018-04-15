@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {

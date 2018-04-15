@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
 using ProjectCarsSeasonExtension.ViewModels;
 using Application = System.Windows.Application;
@@ -39,8 +40,9 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             var allChallengeStandings = new AllChallengeStandings(DataView);
+            var playerController = new PlayerController(DataView.Players);
 
-            PlayerSelectionFrame.Content = new PlayerSelection(DataView.Players);
+            PlayerSelectionFrame.Content = new PlayerSelection(playerController);
             PlayerResultsFrame.Content = new ChampionshipView(DataView, allChallengeStandings);
             SeasonViewFrame.Content = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
         }

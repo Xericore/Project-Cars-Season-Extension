@@ -1,5 +1,5 @@
 ﻿using System;
-using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
