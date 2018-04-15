@@ -7,14 +7,14 @@ namespace ProjectCarsSeasonExtension.ViewModels
     {
         public uint Position { get; set; }
         public PlayerModel Player { get; }
-        public TimeSpan FastestLap { get; }
+        public TimeSpan FastestLapWithHandicap { get; }
         public TimeSpan GapToPreviousPlayer { get; set; }
         public TimeSpan GapToLeader { get; set; }
 
-        public ChallengePlayerStanding(PlayerModel player, TimeSpan fastestLap)
+        public ChallengePlayerStanding(PlayerModel player, TimeSpan fastestLapWithHandicap)
         {
             Player = player;
-            FastestLap = fastestLap;
+            FastestLapWithHandicap = fastestLapWithHandicap;
         }
 
         public int CompareTo(object o)
@@ -22,10 +22,10 @@ namespace ProjectCarsSeasonExtension.ViewModels
             ChallengePlayerStanding a = this;
             ChallengePlayerStanding b = (ChallengePlayerStanding)o;
 
-            if(a.FastestLap < b.FastestLap)
+            if(a.FastestLapWithHandicap < b.FastestLapWithHandicap)
                 return -1;
 
-            if (a.FastestLap == b.FastestLap)
+            if (a.FastestLapWithHandicap == b.FastestLapWithHandicap)
                 return 0;
 
             return 1;

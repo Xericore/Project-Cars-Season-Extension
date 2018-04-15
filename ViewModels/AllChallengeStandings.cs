@@ -6,7 +6,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class AllChallengeStandings
     {
-        private DataView _dataView;
+        private readonly DataView _dataView;
         public Dictionary<int, ChallengeStanding> ChallengeStandings { get; } = new Dictionary<int, ChallengeStanding>();
 
         public AllChallengeStandings(DataView dataView)
@@ -21,10 +21,8 @@ namespace ProjectCarsSeasonExtension.ViewModels
             {
                 if (!ChallengeStandings.ContainsKey(playerResult.ChallengeId))
                 {
-                    Challenge challenge = _dataView.CurrentSeason.GetChallengeById(playerResult.ChallengeId);
-
+                    Challenge challenge = _dataView.GetChallengeById(playerResult.ChallengeId);
                     ChallengeStanding challengeStanding = new ChallengeStanding(challenge);
-
                     ChallengeStandings.Add(playerResult.ChallengeId, challengeStanding);
                 }
 
@@ -32,11 +30,18 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
                 if (foundPlayer != null)
                 {
-                    var challengePlayerStanding = new ChallengePlayerStanding(foundPlayer, playerResult.FastestLap);
-
-                    ChallengeStandings[playerResult.ChallengeId].AddChallengePlayerStanding(challengePlayerStanding);
+                    SetChallengeStanding(playerResult, foundPlayer);
                 }
             }
+        }
+
+        private void SetChallengeStanding(PlayerResult playerResult, PlayerModel foundPlayer)
+        {
+            var handicap = _dataView.GetPlayerHandicap(foundPlayer);
+            var fastestLapWithHandicap = playerResult.FastestLap + handicap;
+            var challengePlayerStanding = new ChallengePlayerStanding(foundPlayer, fastestLapWithHandicap);
+
+            ChallengeStandings[playerResult.ChallengeId].AddChallengePlayerStanding(challengePlayerStanding);
         }
     }
 }

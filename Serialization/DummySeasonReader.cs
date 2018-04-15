@@ -143,11 +143,10 @@ namespace ProjectCarsSeasonExtension.Serialization
         {
             var players = new ObservableCollection<PlayerHandicap>
             {
-                new PlayerHandicap(0, 0, new TimeSpan(0,0,0,1))
+                new PlayerHandicap(1, 0, new TimeSpan(0,0,0,1))
             };
 
             return players;
-
         }
     }
 }

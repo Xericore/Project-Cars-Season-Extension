@@ -33,12 +33,12 @@ namespace ProjectCarsSeasonExtension.ViewModels
                 if (previousChallengePlayerStanding != null)
                 {
                     TimeSpan deltaToPreviousPlayer =
-                        challengePlayerStanding.FastestLap - previousChallengePlayerStanding.FastestLap;
+                        challengePlayerStanding.FastestLapWithHandicap - previousChallengePlayerStanding.FastestLapWithHandicap;
 
                     challengePlayerStanding.GapToPreviousPlayer = deltaToPreviousPlayer;
                 }
 
-                challengePlayerStanding.GapToLeader = challengePlayerStanding.FastestLap - ChallengePlayerStandings.First().FastestLap;
+                challengePlayerStanding.GapToLeader = challengePlayerStanding.FastestLapWithHandicap - ChallengePlayerStandings.First().FastestLapWithHandicap;
 
                 challengePlayerStanding.Position = count;
                 count++;
