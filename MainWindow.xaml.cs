@@ -34,7 +34,7 @@ namespace ProjectCarsSeasonExtension
         {
             ISeasonReader seasonReader = new DummySeasonReader();
 
-            DataView = new DataView(seasonReader.GetCurrentSeason(), seasonReader.GetPlayerResults(), new ObservableCollection<PlayerModel>());
+            DataView = new DataView(seasonReader);
         }
 
         private void Window_Initialized(object sender, EventArgs e)
