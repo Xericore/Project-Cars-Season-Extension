@@ -67,6 +67,7 @@
     <Compile Include="Controller\Module.cs" />
     <Compile Include="Converters\PlayerIdToImageUriConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\DataView.cs" />
     <Compile Include="Models\Difficulty.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\PlayerResult.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
     <Compile Include="ViewModels\ChallengeStanding.cs" />
+    <Compile Include="ViewModels\AllChallengeStandings.cs" />
     <Compile Include="Views\ChallengeView.xaml.cs">
       <DependentUpon>ChallengeView.xaml</DependentUpon>
     </Compile>

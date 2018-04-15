@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Serialization;
+using ProjectCarsSeasonExtension.ViewModels;
 using Application = System.Windows.Application;
 
 namespace ProjectCarsSeasonExtension
@@ -18,11 +19,7 @@ namespace ProjectCarsSeasonExtension
     {
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
 
-        public SeasonModel CurrentSeason { get; set; }
-        public ObservableCollection<PlayerResult> PlayerResults { get; set; }
-        public ObservableCollection<PlayerModel> Players { get; set; }
-
-        // ----------------------------------------------------------------------------------------
+        public DataView DataView { get; private set; }
 
         public MainWindow()
         {
@@ -36,23 +33,22 @@ namespace ProjectCarsSeasonExtension
         private void ReadSeasonData()
         {
             ISeasonReader seasonReader = new DummySeasonReader();
-            CurrentSeason = seasonReader.GetCurrentSeason();
-            PlayerResults = seasonReader.GetPlayerResults();
-            Players = new ObservableCollection<PlayerModel>();
+
+            DataView = new DataView(seasonReader.GetCurrentSeason(), seasonReader.GetPlayerResults(), new ObservableCollection<PlayerModel>());
         }
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            PlayerSelectionFrame.Content = new PlayerSelection(Players);
+            PlayerSelectionFrame.Content = new PlayerSelection(DataView.Players);
 
-            var championshipView = new ChampionshipView(CurrentSeason, PlayerResults, Players);
+            var allChallengeStandings = new AllChallengeStandings(DataView);
+
+            var championshipView = new ChampionshipView(DataView, allChallengeStandings);
             PlayerResultsFrame.Content = championshipView;
 
-            var seasonView = new SeasonView(championshipView.ChallengeStandings.Values);
+            var seasonView = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
             SeasonViewFrame.Content = seasonView;
         }
-
-        // ----------------------------------------------------------------------------------------
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
@@ -60,27 +56,19 @@ namespace ProjectCarsSeasonExtension
             HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd, ToggleWindowState);
         }
 
-        // ----------------------------------------------------------------------------------------
-
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             HotkeyController.Clear();
         }
-
-        // ----------------------------------------------------------------------------------------
 
         private void ToggleWindowState()
         {
             WindowState = WindowState == WindowState.Minimized ? WindowState.Normal : WindowState.Minimized;
         }
 
-        // ----------------------------------------------------------------------------------------
-
         private void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
-        // ----------------------------------------------------------------------------------------
     }
 }
