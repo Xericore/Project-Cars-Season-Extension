@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -38,19 +39,7 @@ namespace ProjectCarsSeasonExtension.Views
         public PlayerSelection(ObservableCollection<PlayerModel> players)
         {
             Players = players;
-
-            AddPlayerDummyData();
-
             InitializeComponent();
-        }
-
-        private void AddPlayerDummyData()
-        {
-            Players.Add(new PlayerModel { Id = 0, Name = "Sascha" });
-            Players.Add(new PlayerModel { Id = 1, Name = "Mario" });
-            Players.Add(new PlayerModel { Id = 2, Name = "Schumacher" });
-
-            Players.Add(new PlayerModel { Id = -1, Name = "New player" });
         }
 
         private void PlayerSelected_OnClick(object sender, RoutedEventArgs e)

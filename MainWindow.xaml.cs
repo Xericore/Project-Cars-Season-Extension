@@ -33,7 +33,6 @@ namespace ProjectCarsSeasonExtension
         private void ReadSeasonData()
         {
             ISeasonReader seasonReader = new DummySeasonReader();
-
             DataView = new DataView(seasonReader);
         }
 
@@ -43,11 +42,8 @@ namespace ProjectCarsSeasonExtension
 
             var allChallengeStandings = new AllChallengeStandings(DataView);
 
-            var championshipView = new ChampionshipView(DataView, allChallengeStandings);
-            PlayerResultsFrame.Content = championshipView;
-
-            var seasonView = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
-            SeasonViewFrame.Content = seasonView;
+            PlayerResultsFrame.Content = new ChampionshipView(DataView, allChallengeStandings);
+            SeasonViewFrame.Content = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)

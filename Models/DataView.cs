@@ -13,7 +13,7 @@ namespace ProjectCarsSeasonExtension.Models
         {
             CurrentSeason = seasonReader.GetCurrentSeason();
             PlayerResults = seasonReader.GetPlayerResults();
-            Players = new ObservableCollection<PlayerModel>();
+            Players = seasonReader.GetPlayers();
         }
     }
 }

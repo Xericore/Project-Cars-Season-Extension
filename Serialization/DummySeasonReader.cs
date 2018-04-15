@@ -57,7 +57,20 @@ namespace ProjectCarsSeasonExtension.Serialization
             return seasonModel;
         }
 
-        public ObservableCollection<PlayerResult> GetPlayerResults()
+        public ObservableCollection<PlayerModel> GetPlayers()
+        {
+            var players = new ObservableCollection<PlayerModel>
+            {
+                new PlayerModel {Id = 0, Name = "Sascha"},
+                new PlayerModel {Id = 1, Name = "Mario"},
+                new PlayerModel {Id = 2, Name = "Schumacher"},
+                new PlayerModel {Id = -1, Name = "New player"}
+            };
+
+            return players;
+        }
+
+        ObservableCollection<PlayerResult> ISeasonReader.GetPlayerResults()
         {
             var playerResults = new ObservableCollection<PlayerResult>
             {
