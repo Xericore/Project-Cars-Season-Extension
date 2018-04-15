@@ -69,6 +69,7 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\DataView.cs" />
     <Compile Include="Models\Difficulty.cs" />
+    <Compile Include="Models\PlayerHandicap.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\PlayerResult.cs" />
     <Compile Include="Models\SeasonModel.cs" />

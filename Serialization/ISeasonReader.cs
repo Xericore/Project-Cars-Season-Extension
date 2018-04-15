@@ -8,5 +8,6 @@ namespace ProjectCarsSeasonExtension.Serialization
         SeasonModel GetCurrentSeason();
         ObservableCollection<PlayerModel> GetPlayers();
         ObservableCollection<PlayerResult> GetPlayerResults();
+        ObservableCollection<PlayerHandicap> GetPlayerHandicaps();
     }
 }

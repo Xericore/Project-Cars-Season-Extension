@@ -38,10 +38,9 @@ namespace ProjectCarsSeasonExtension
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            PlayerSelectionFrame.Content = new PlayerSelection(DataView.Players);
-
             var allChallengeStandings = new AllChallengeStandings(DataView);
 
+            PlayerSelectionFrame.Content = new PlayerSelection(DataView.Players);
             PlayerResultsFrame.Content = new ChampionshipView(DataView, allChallengeStandings);
             SeasonViewFrame.Content = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
         }
