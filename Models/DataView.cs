@@ -8,7 +8,7 @@ namespace ProjectCarsSeasonExtension.Models
     public class DataView
     {
         public ObservableCollection<PlayerResult> PlayerResults { get; }
-        public ObservableCollection<PlayerModel> Players { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
 
         private readonly SeasonModel _currentSeason;
         private readonly ObservableCollection<PlayerHandicap> _handicaps;
@@ -21,7 +21,7 @@ namespace ProjectCarsSeasonExtension.Models
             _handicaps = seasonReader.GetPlayerHandicaps();
         }
 
-        public TimeSpan GetPlayerHandicap(PlayerModel player)
+        public TimeSpan GetPlayerHandicap(Player player)
         {
             var foundPlayer = _handicaps.FirstOrDefault(p => p.PlayerId == player.Id);
 

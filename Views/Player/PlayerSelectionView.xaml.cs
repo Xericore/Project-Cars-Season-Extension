@@ -18,9 +18,9 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<PlayerModel> Players { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
 
-        public PlayerModel SelectedPlayer
+        public Player SelectedPlayer
         {
             get
             {
@@ -34,9 +34,9 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        private PlayerModel _selectedPlayer;
+        private Player _selectedPlayer;
 
-        public PlayerSelection(ObservableCollection<PlayerModel> players)
+        public PlayerSelection(ObservableCollection<Player> players)
         {
             Players = players;
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace ProjectCarsSeasonExtension.Views
             if (!(sender is Button button))
                 return;
 
-            if (!(button.DataContext is PlayerModel playerModel))
+            if (!(button.DataContext is Player playerModel))
                 return;
 
             bool isNewPlayerClicked = playerModel.Id == -1;
@@ -72,7 +72,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             var maxId = Players.Max(p => p.Id);
 
-            PlayerModel newPlayer = new PlayerModel
+            Player newPlayer = new Player
             {
                 Id = ++maxId,
                 Name = newPlayerWindow.PlayerName
@@ -87,7 +87,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void MoveAddPlayerToEnd()
         {
-            PlayerModel addPlayer = Players.First(p => p.Id == -1);
+            Player addPlayer = Players.First(p => p.Id == -1);
 
             if (addPlayer == null) return;
 

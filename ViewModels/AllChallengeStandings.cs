@@ -26,7 +26,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
                     ChallengeStandings.Add(playerResult.ChallengeId, challengeStanding);
                 }
 
-                PlayerModel foundPlayer = _dataView.Players.FirstOrDefault(p => p.Id == playerResult.PlayerId);
+                Player foundPlayer = _dataView.Players.FirstOrDefault(p => p.Id == playerResult.PlayerId);
 
                 if (foundPlayer != null)
                 {
@@ -35,7 +35,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
             }
         }
 
-        private void SetChallengeStanding(PlayerResult playerResult, PlayerModel foundPlayer)
+        private void SetChallengeStanding(PlayerResult playerResult, Player foundPlayer)
         {
             var handicap = _dataView.GetPlayerHandicap(foundPlayer);
             var fastestLapWithHandicap = playerResult.FastestLap + handicap;

@@ -7,13 +7,13 @@ namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class ChampionshipStanding : IComparable
     {
-        public PlayerModel Player { get; set; }
+        public Player Player { get; set; }
 
         public ObservableCollection<int> ChallengePoints { get; } = new ObservableCollection<int>();
 
         public int TotalPoints => ChallengePoints.Sum();
 
-        public ChampionshipStanding(PlayerModel playerName)
+        public ChampionshipStanding(Player playerName)
         {
             Player = playerName;
         }

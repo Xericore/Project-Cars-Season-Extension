@@ -33,7 +33,7 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        public NewPlayerWindow(ObservableCollection<PlayerModel> alreadyPresentPlayers)
+        public NewPlayerWindow(ObservableCollection<Player> alreadyPresentPlayers)
         {
             NewPlayer = new NewPlayer(alreadyPresentPlayers);
 
@@ -62,9 +62,9 @@ namespace ProjectCarsSeasonExtension.Views
 
     public class NewPlayer: IDataErrorInfo
     {
-        private readonly ObservableCollection<PlayerModel> _alreadyPresentPlayers;
+        private readonly ObservableCollection<Player> _alreadyPresentPlayers;
 
-        public NewPlayer(ObservableCollection<PlayerModel> alreadyPresentPlayers)
+        public NewPlayer(ObservableCollection<Player> alreadyPresentPlayers)
         {
             _alreadyPresentPlayers = alreadyPresentPlayers;
         }

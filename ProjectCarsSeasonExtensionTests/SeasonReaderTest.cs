@@ -58,14 +58,14 @@ namespace ProjectCarsSeasonExtensionTests
             return seasonModel;
         }
 
-        public ObservableCollection<PlayerModel> GetPlayers()
+        public ObservableCollection<Player> GetPlayers()
         {
-            var players = new ObservableCollection<PlayerModel>
+            var players = new ObservableCollection<Player>
             {
-                new PlayerModel {Id = 0, Name = "Sascha"},
-                new PlayerModel {Id = 1, Name = "Mario"},
-                new PlayerModel {Id = 2, Name = "Schumacher"},
-                new PlayerModel {Id = -1, Name = "New player"}
+                new Player {Id = 0, Name = "Sascha"},
+                new Player {Id = 1, Name = "Mario"},
+                new Player {Id = 2, Name = "Schumacher"},
+                new Player {Id = -1, Name = "New player"}
             };
 
             return players;

@@ -70,7 +70,7 @@
     <Compile Include="Models\DataView.cs" />
     <Compile Include="Models\Difficulty.cs" />
     <Compile Include="Models\PlayerHandicap.cs" />
-    <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerResult.cs" />
     <Compile Include="Models\SeasonModel.cs" />
     <Compile Include="Models\Challenge.cs" />
