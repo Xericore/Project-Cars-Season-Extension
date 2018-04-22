@@ -78,6 +78,8 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Serialization\DummySeasonReader.cs" />
     <Compile Include="Serialization\ISeasonReader.cs" />
+    <Compile Include="Serialization\ISeasonWriter.cs" />
+    <Compile Include="Serialization\XmlSeasonWriter.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
     <Compile Include="ViewModels\ChallengeStanding.cs" />

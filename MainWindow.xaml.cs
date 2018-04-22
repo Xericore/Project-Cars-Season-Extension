@@ -56,6 +56,9 @@ namespace ProjectCarsSeasonExtension
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             HotkeyController.Clear();
+
+            ISeasonWriter seasonWriter = new XmlSeasonWriter();
+            seasonWriter.SavePlayers(DataView.Players);
         }
 
         private void ToggleWindowState()
