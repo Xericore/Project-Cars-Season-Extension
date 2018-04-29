@@ -57,8 +57,14 @@ namespace ProjectCarsSeasonExtension
         {
             HotkeyController.Clear();
 
+            SaveData();
+        }
+
+        private void SaveData()
+        {
             ISeasonWriter seasonWriter = new XmlSeasonWriter();
             seasonWriter.SavePlayers(DataView.Players);
+            seasonWriter.SavePlayerResults(DataView.PlayerResults);
         }
 
         private void ToggleWindowState()

@@ -66,8 +66,6 @@ namespace ProjectCarsSeasonExtension.Serialization
         {
             var players = new ObservableCollection<Player>();
 
-            string fileName = FileLocations.PlayerFileUri;
-
             if (!File.Exists(FileLocations.PlayerFileUri))
                 return players;
 
@@ -75,7 +73,7 @@ namespace ProjectCarsSeasonExtension.Serialization
 
             List<Player> readPlayers;
 
-            using (var reader = new StreamReader(fileName))
+            using (var reader = new StreamReader(FileLocations.PlayerFileUri))
             {
                 readPlayers = xmlSerializer.Deserialize(reader) as List<Player>;
             }
@@ -93,69 +91,27 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         ObservableCollection<PlayerResult> ISeasonReader.GetPlayerResults()
         {
-            var playerResults = new ObservableCollection<PlayerResult>
+            var playerResults = new ObservableCollection<PlayerResult>();
+
+            if (!File.Exists(FileLocations.PlayerResultFileUri))
+                return playerResults;
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PlayerResult>));
+
+            List<PlayerResult> results;
+
+            using (var reader = new StreamReader(FileLocations.PlayerResultFileUri))
             {
-                new PlayerResult
+                results = xmlSerializer.Deserialize(reader) as List<PlayerResult>;
+            }
+
+            if (results != null)
+            {
+                foreach (var readPlayer in results)
                 {
-                    PlayerId = 0,
-                    ChallengeId = 0,
-                    FastestLap = new TimeSpan(0,0,1,22,567)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 1,
-                    ChallengeId = 0,
-                    FastestLap = new TimeSpan(0,0,1,23,117)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 2,
-                    ChallengeId = 0,
-                    FastestLap = new TimeSpan(0,0,1,21,892)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 3,
-                    ChallengeId = 0,
-                    FastestLap = new TimeSpan(0,0,1,25,007)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 0,
-                    ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,32,567)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 1,
-                    ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,32,117)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 2,
-                    ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,34,892)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 3,
-                    ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,31,007)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 1,
-                    ChallengeId = 2,
-                    FastestLap = new TimeSpan(0,0,1,10,999)
-                },
-                new PlayerResult
-                {
-                    PlayerId = 0,
-                    ChallengeId = 2,
-                    FastestLap = new TimeSpan(0,0,1,11,671)
+                    playerResults.Add(readPlayer);
                 }
-            };
+            }
 
             return playerResults;
         }

@@ -22,5 +22,20 @@ namespace ProjectCarsSeasonExtension.Serialization
                 writer.Flush();
             }
         }
+
+        public void SavePlayerResults(IEnumerable<PlayerResult> playerResults)
+        {
+            string fileName = FileLocations.PlayerResultFileUri;
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PlayerResult>));
+
+            using (var writer = new StreamWriter(fileName))
+            {
+                xmlSerializer.Serialize(writer, playerResults.ToList());
+
+                writer.Flush();
+            }
+
+        }
     }
 }

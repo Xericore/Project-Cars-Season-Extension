@@ -6,5 +6,6 @@ namespace ProjectCarsSeasonExtension.Serialization
     public interface ISeasonWriter
     {
         void SavePlayers(IEnumerable<Player> players);
+        void SavePlayerResults(IEnumerable<PlayerResult> playerResults);
     }
 }
