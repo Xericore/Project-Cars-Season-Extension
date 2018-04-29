@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Xml.Serialization;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 
@@ -60,14 +64,30 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public ObservableCollection<Player> GetPlayers()
         {
-            var players = new ObservableCollection<Player>
-            {
-                new Player {Id = 0, Name = "Sascha"},
-                new Player {Id = 1, Name = "Mario"},
-                new Player {Id = 2, Name = "Schumacher"},
-                new Player {Id = -1, Name = "New player"}
-            };
+            var players = new ObservableCollection<Player>();
 
+            string fileName = FileLocations.PlayerFileUri;
+
+            if (!File.Exists(FileLocations.PlayerFileUri))
+                return players;
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Player>));
+
+            List<Player> readPlayers;
+
+            using (var reader = new StreamReader(fileName))
+            {
+                readPlayers = xmlSerializer.Deserialize(reader) as List<Player>;
+            }
+
+            if (readPlayers != null)
+            {
+                foreach (var readPlayer in readPlayers)
+                {
+                    players.Add(readPlayer);
+                }
+            }
+            
             return players;
         }
 

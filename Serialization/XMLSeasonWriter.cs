@@ -11,7 +11,7 @@ namespace ProjectCarsSeasonExtension.Serialization
     {
         public void SavePlayers(IEnumerable<Player> players)
         {
-            string fileName = AppDomain.CurrentDomain.BaseDirectory + "/players.xml";
+            string fileName = FileLocations.PlayerFileUri;
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Player>));
 
