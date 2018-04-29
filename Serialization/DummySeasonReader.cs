@@ -64,56 +64,39 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public ObservableCollection<Player> GetPlayers()
         {
-            var players = new ObservableCollection<Player>();
-
-            if (!File.Exists(FileLocations.PlayerFileUri))
-                return players;
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Player>));
-
-            List<Player> readPlayers;
-
-            using (var reader = new StreamReader(FileLocations.PlayerFileUri))
-            {
-                readPlayers = xmlSerializer.Deserialize(reader) as List<Player>;
-            }
-
-            if (readPlayers != null)
-            {
-                foreach (var readPlayer in readPlayers)
-                {
-                    players.Add(readPlayer);
-                }
-            }
-            
-            return players;
+            return GetObservableCollectionFromFile<Player>(FileLocations.PlayerFileUri);
         }
 
         ObservableCollection<PlayerResult> ISeasonReader.GetPlayerResults()
         {
-            var playerResults = new ObservableCollection<PlayerResult>();
+            return GetObservableCollectionFromFile<PlayerResult>(FileLocations.PlayerResultFileUri);
+        }
 
-            if (!File.Exists(FileLocations.PlayerResultFileUri))
-                return playerResults;
+        internal static ObservableCollection<T> GetObservableCollectionFromFile<T>(string fileName)
+        {
+            var returnedCollection = new ObservableCollection<T>();
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PlayerResult>));
+            if (!File.Exists(fileName))
+                return returnedCollection;
 
-            List<PlayerResult> results;
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
 
-            using (var reader = new StreamReader(FileLocations.PlayerResultFileUri))
+            List<T> results;
+
+            using (var reader = new StreamReader(fileName))
             {
-                results = xmlSerializer.Deserialize(reader) as List<PlayerResult>;
+                results = xmlSerializer.Deserialize(reader) as List<T>;
             }
 
             if (results != null)
             {
-                foreach (var readPlayer in results)
+                foreach (var readResult in results)
                 {
-                    playerResults.Add(readPlayer);
+                    returnedCollection.Add(readResult);
                 }
             }
 
-            return playerResults;
+            return returnedCollection;
         }
 
         public ObservableCollection<PlayerHandicap> GetPlayerHandicaps()
