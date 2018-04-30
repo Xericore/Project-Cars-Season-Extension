@@ -15,15 +15,25 @@ namespace ProjectCarsSeasonExtension.Serialization
             ObservableCollection<Challenge> challenges =
                 GetObservableCollectionFromFile<Challenge>(FileLocations.ChallangeFileUri);
 
-            var seasonModel = new SeasonModel
+            var seasonModel = GetSeasonModelFromFile();
+            seasonModel.Challenges = challenges;
+
+            return seasonModel;
+        }
+
+        private static SeasonModel GetSeasonModelFromFile()
+        {
+            if (!File.Exists(FileLocations.SeasonFileUri))
+                throw new FileNotFoundException($"Couldn't find {FileLocations.SeasonFileUri}.");
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(SeasonModel));
+
+            SeasonModel seasonModel;
+
+            using (var reader = new StreamReader(FileLocations.SeasonFileUri))
             {
-                Id = 0,
-                Name = "Season III",
-                Description = "Dummy test season for testing.",
-                StartDate = new DateTime(2018, 03, 01),
-                EndDate = new DateTime(2018, 12, 31),
-                Challenges = challenges
-            };
+                seasonModel = xmlSerializer.Deserialize(reader) as SeasonModel;
+            }
 
             return seasonModel;
         }
