@@ -77,12 +77,7 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public ObservableCollection<PlayerHandicap> GetPlayerHandicaps()
         {
-            var players = new ObservableCollection<PlayerHandicap>
-            {
-                new PlayerHandicap(1, 0, new TimeSpan(0,0,0,1))
-            };
-
-            return players;
+            return GetObservableCollectionFromFile<PlayerHandicap>(FileLocations.HandicapsFileUri);
         }
     }
 }
