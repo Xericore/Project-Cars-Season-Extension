@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Xml.Serialization;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 
@@ -64,39 +60,84 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public ObservableCollection<Player> GetPlayers()
         {
-            return GetObservableCollectionFromFile<Player>(FileLocations.PlayerFileUri);
+            var players = new ObservableCollection<Player>
+            {
+                new Player {Id = 0, Name = "Sascha"},
+                new Player {Id = 1, Name = "Mario"},
+                new Player {Id = 2, Name = "Schumacher"},
+                new Player {Id = -1, Name = "New player"}
+            };
+
+            return players;
         }
 
         ObservableCollection<PlayerResult> ISeasonReader.GetPlayerResults()
         {
-            return GetObservableCollectionFromFile<PlayerResult>(FileLocations.PlayerResultFileUri);
-        }
-
-        internal static ObservableCollection<T> GetObservableCollectionFromFile<T>(string fileName)
-        {
-            var returnedCollection = new ObservableCollection<T>();
-
-            if (!File.Exists(fileName))
-                return returnedCollection;
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
-
-            List<T> results;
-
-            using (var reader = new StreamReader(fileName))
+            var playerResults = new ObservableCollection<PlayerResult>
             {
-                results = xmlSerializer.Deserialize(reader) as List<T>;
-            }
-
-            if (results != null)
-            {
-                foreach (var readResult in results)
+                new PlayerResult
                 {
-                    returnedCollection.Add(readResult);
+                    PlayerId = 0,
+                    ChallengeId = 0,
+                    FastestLap = new TimeSpan(0,0,1,22,567)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 1,
+                    ChallengeId = 0,
+                    FastestLap = new TimeSpan(0,0,1,23,117)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 2,
+                    ChallengeId = 0,
+                    FastestLap = new TimeSpan(0,0,1,21,892)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 3,
+                    ChallengeId = 0,
+                    FastestLap = new TimeSpan(0,0,1,25,007)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 0,
+                    ChallengeId = 1,
+                    FastestLap = new TimeSpan(0,0,1,32,567)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 1,
+                    ChallengeId = 1,
+                    FastestLap = new TimeSpan(0,0,1,32,117)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 2,
+                    ChallengeId = 1,
+                    FastestLap = new TimeSpan(0,0,1,34,892)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 3,
+                    ChallengeId = 1,
+                    FastestLap = new TimeSpan(0,0,1,31,007)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 1,
+                    ChallengeId = 2,
+                    FastestLap = new TimeSpan(0,0,1,10,999)
+                },
+                new PlayerResult
+                {
+                    PlayerId = 0,
+                    ChallengeId = 2,
+                    FastestLap = new TimeSpan(0,0,1,11,671)
                 }
-            }
+            };
 
-            return returnedCollection;
+            return playerResults;
         }
 
         public ObservableCollection<PlayerHandicap> GetPlayerHandicaps()
