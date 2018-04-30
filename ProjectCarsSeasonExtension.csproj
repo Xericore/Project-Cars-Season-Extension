@@ -80,6 +80,7 @@
     <Compile Include="Serialization\FileLocations.cs" />
     <Compile Include="Serialization\ISeasonReader.cs" />
     <Compile Include="Serialization\ISeasonWriter.cs" />
+    <Compile Include="Serialization\XmlSeasonReader.cs" />
     <Compile Include="Serialization\XmlSeasonWriter.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />

@@ -11,27 +11,27 @@ namespace ProjectCarsSeasonExtension.Models
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<Player.Player> Players { get; set; }
 
-        private readonly SeasonModel _currentSeason;
-        private readonly ObservableCollection<PlayerHandicap> _handicaps;
+        public SeasonModel CurrentSeason { get; }
+        public ObservableCollection<PlayerHandicap> Handicaps { get; }
 
         public DataView(ISeasonReader seasonReader)
         {
-            _currentSeason = seasonReader.GetCurrentSeason();
+            CurrentSeason = seasonReader.GetCurrentSeason();
             PlayerResults = seasonReader.GetPlayerResults();
             Players = seasonReader.GetPlayers();
-            _handicaps = seasonReader.GetPlayerHandicaps();
+            Handicaps = seasonReader.GetPlayerHandicaps();
         }
 
         public TimeSpan GetPlayerHandicap(Player.Player player)
         {
-            var foundPlayer = _handicaps.FirstOrDefault(p => p.PlayerId == player.Id);
+            var foundPlayer = Handicaps.FirstOrDefault(p => p.PlayerId == player.Id);
 
             return foundPlayer?.Handicap ?? new TimeSpan(0);
         }
 
         public Challenge GetChallengeById(int challengeId)
         {
-            return _currentSeason?.GetChallengeById(challengeId);
+            return CurrentSeason?.GetChallengeById(challengeId);
         }
     }
 }

@@ -56,7 +56,6 @@ namespace ProjectCarsSeasonExtension
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             HotkeyController.Clear();
-
             SaveData();
         }
 
@@ -64,6 +63,8 @@ namespace ProjectCarsSeasonExtension
         {
             ISeasonWriter seasonWriter = new XmlSeasonWriter();
             seasonWriter.SavePlayers(DataView.Players);
+            seasonWriter.SaveSeason(DataView.CurrentSeason);
+            seasonWriter.SaveChallenges(DataView.CurrentSeason.Challenges);
             seasonWriter.SavePlayerResults(DataView.PlayerResults);
         }
 
@@ -72,7 +73,7 @@ namespace ProjectCarsSeasonExtension
             WindowState = WindowState == WindowState.Minimized ? WindowState.Normal : WindowState.Minimized;
         }
 
-        private void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
+        private static void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.Serialization
@@ -11,31 +11,49 @@ namespace ProjectCarsSeasonExtension.Serialization
     {
         public void SavePlayers(IEnumerable<Player> players)
         {
-            string fileName = FileLocations.PlayerFileUri;
+            SerializeList(players, FileLocations.PlayerFileUri);
+        }
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Player>));
+        public void SaveChallenges(IEnumerable<Challenge> challenges)
+        {
+            SerializeList(challenges, FileLocations.ChallangeFileUri);
+        }
 
-            using (var writer = new StreamWriter(fileName))
+        public void SaveSeason(SeasonModel season)
+        {
+            var xmlSerializer = new XmlSerializer(typeof(SeasonModel));
+
+            using (var writer = new StreamWriter(FileLocations.SeasonFileUri))
             {
-                xmlSerializer.Serialize(writer, players.ToList());
-                
+                xmlSerializer.Serialize(writer, season);
                 writer.Flush();
             }
         }
 
         public void SavePlayerResults(IEnumerable<PlayerResult> playerResults)
         {
-            string fileName = FileLocations.PlayerResultFileUri;
+            SerializeList(playerResults, FileLocations.PlayerResultFileUri);
+        }
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PlayerResult>));
+        private static void SerializeList<T>(IEnumerable<T> enumerableToSerialize, string fileName)
+        {
+            var xmlSerializer = new XmlSerializer(typeof(List<T>));
+
+            CreateDirectoryIfMissing(fileName);
 
             using (var writer = new StreamWriter(fileName))
             {
-                xmlSerializer.Serialize(writer, playerResults.ToList());
-
+                xmlSerializer.Serialize(writer, enumerableToSerialize.ToList());
                 writer.Flush();
             }
+        }
 
+        private static void CreateDirectoryIfMissing(string fileName)
+        {
+            var directoryName = Path.GetDirectoryName(fileName);
+
+            if (!string.IsNullOrEmpty(directoryName) && !Directory.Exists(directoryName))
+                Directory.CreateDirectory(directoryName);
         }
     }
 }

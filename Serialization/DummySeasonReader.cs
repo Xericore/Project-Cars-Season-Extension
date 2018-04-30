@@ -9,7 +9,7 @@ namespace ProjectCarsSeasonExtension.Serialization
     {
         public SeasonModel GetCurrentSeason()
         {
-            ObservableCollection<Challenge> trackAndCars = new ObservableCollection<Challenge>
+            ObservableCollection<Challenge> challenges = new ObservableCollection<Challenge>
             {
                 new Challenge()
                 {
@@ -49,10 +49,10 @@ namespace ProjectCarsSeasonExtension.Serialization
             {
                 Id = 0,
                 Name = "Season III",
-                Description = "Dummy test season for testing.",
+                Description = "Dummy season for testing.",
                 StartDate = new DateTime(2018,03,01),
                 EndDate = new DateTime(2018,12,31),
-                Challenges = trackAndCars
+                Challenges = challenges
             };
 
             return seasonModel;
