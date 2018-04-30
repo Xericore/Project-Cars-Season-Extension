@@ -9,5 +9,6 @@ namespace ProjectCarsSeasonExtension.Serialization
         public static string PlayerResultFileUri = BaseFolder + "/playerResults.xml";
         public static string ChallangeFileUri = BaseFolder + "/challenges.xml";
         public static string SeasonFileUri =  BaseFolder + "/seasons.xml";
+        public static string HandicapsFileUri = BaseFolder + "/handicaps.xml";
     }
 }

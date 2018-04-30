@@ -35,6 +35,11 @@ namespace ProjectCarsSeasonExtension.Serialization
             SerializeList(playerResults, FileLocations.PlayerResultFileUri);
         }
 
+        public void SaveHandicaps(IEnumerable<PlayerHandicap> handicaps)
+        {
+            SerializeList(handicaps, FileLocations.HandicapsFileUri);
+        }
+
         private static void SerializeList<T>(IEnumerable<T> enumerableToSerialize, string fileName)
         {
             var xmlSerializer = new XmlSerializer(typeof(List<T>));

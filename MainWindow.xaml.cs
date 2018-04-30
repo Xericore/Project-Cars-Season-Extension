@@ -33,7 +33,7 @@ namespace ProjectCarsSeasonExtension
 
         private void ReadSeasonData()
         {
-            ISeasonReader seasonReader = new DummySeasonReader();
+            ISeasonReader seasonReader = new XmlSeasonReader();
             DataView = new DataView(seasonReader);
         }
 
@@ -66,6 +66,7 @@ namespace ProjectCarsSeasonExtension
             seasonWriter.SaveSeason(DataView.CurrentSeason);
             seasonWriter.SaveChallenges(DataView.CurrentSeason.Challenges);
             seasonWriter.SavePlayerResults(DataView.PlayerResults);
+            seasonWriter.SaveHandicaps(DataView.Handicaps);
         }
 
         private void ToggleWindowState()
