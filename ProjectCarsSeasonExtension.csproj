@@ -184,6 +184,12 @@
   <ItemGroup>
     <Resource Include="Assets\AddPlayer.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="pCarsAPI-Demo\pCarsAPI-Demo.csproj">
+      <Project>{f2624d43-50c0-49cf-96ac-9d3ee71ef1db}</Project>
+      <Name>pCarsAPI-Demo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

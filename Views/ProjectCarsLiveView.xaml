@@ -6,9 +6,26 @@
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProjectCarsLiveView">
+      Title="ProjectCarsLiveView" Unloaded="ProjectCarsLiveView_OnUnloaded">
 
     <Grid>
-        
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Track Location:" />
+                <TextBlock Text="{Binding TrackLocation}" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Track Variant:" />
+                <TextBlock Text="{Binding TrackVariant}" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Car Name:" />
+                <TextBlock Text="{Binding CarName}" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Car Class:" />
+                <TextBlock Text="{Binding CarClassName}" Margin="5,0,0,0" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
