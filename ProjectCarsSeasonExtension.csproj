@@ -100,6 +100,9 @@
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\PointsUtil.cs" />
+    <Compile Include="Views\ProjectCarsLiveView.xaml.cs">
+      <DependentUpon>ProjectCarsLiveView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Player\PlayerSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectCarsLiveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

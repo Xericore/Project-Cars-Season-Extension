@@ -26,6 +26,10 @@
             <Frame Name="PlayerSelectionFrame"/>
         </TabItem>
 
+        <TabItem Name="ProjectCarsLiveTab" Header="Project Cars Live">
+            <Frame Name="ProjectCarsLiveFrame"/>
+        </TabItem>
+
     </TabControl>
 
 </Window>
