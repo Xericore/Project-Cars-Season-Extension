@@ -23,17 +23,14 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class ProjectCarsLiveView : Page
     {
-        public static int StringLengthMax = 64;
+        public pCarsDataClass ProjectCarsData { get; set; } = new pCarsDataClass();
 
         private readonly DispatcherTimer _dispatchTimer;
-        public pCarsDataClass ProjectCarsData = new pCarsDataClass();
 
         public ProjectCarsLiveView()
         {
             InitializeComponent();
-
-            DataContext = ProjectCarsData;
-
+            
             _dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
             _dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
             _dispatchTimer.Start();
