@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using pCarsAPI_Demo;
@@ -16,8 +15,6 @@ namespace ProjectCarsSeasonExtension.Views
 
         public pCarsDataClass ProjectCarsData { get; set; } = new pCarsDataClass();
 
-        private readonly DispatcherTimer _dispatchTimer;
-
         private float _lastFiredLapTime;
         private bool _wasLastLapValid = true;
 
@@ -25,9 +22,9 @@ namespace ProjectCarsSeasonExtension.Views
         {
             InitializeComponent();
             
-            _dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
-            _dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
-            _dispatchTimer.Start();
+            var dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
+            dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
+            dispatchTimer.Start();
         }
 
         private void ProjectCarsCarsDataGetterLoop(object sender, EventArgs e)
@@ -62,7 +59,7 @@ namespace ProjectCarsSeasonExtension.Views
             try
             {
                 ChallengeResultEvent?.Invoke(challengeResult);
-            }
+            } 
             catch (Exception)
             {
                 // ignored
