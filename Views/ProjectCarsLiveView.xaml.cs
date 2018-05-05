@@ -18,7 +18,8 @@ namespace ProjectCarsSeasonExtension.Views
 
         private readonly DispatcherTimer _dispatchTimer;
 
-        private float _lastStoredLapTime;
+        private float _lastFiredLapTime;
+        private bool _wasLastLapValid = true;
 
         public ProjectCarsLiveView()
         {
@@ -45,28 +46,44 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void CheckAndFireChallengeResultEvent()
         {
-            if (IsLapInvalid())
+            if (!IsResultValid())
                 return;
 
-            _lastStoredLapTime = ProjectCarsData.LastLapTime;
+            _lastFiredLapTime = ProjectCarsData.LastLapTime;
+
+            if (!_wasLastLapValid)
+            {
+                _wasLastLapValid = true;
+                return;
+            }
 
             var challengeResult = new ChallengeResult(ProjectCarsData);
 
-            ChallengeResultEvent?.Invoke(challengeResult);
+            try
+            {
+                ChallengeResultEvent?.Invoke(challengeResult);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
-        private bool IsLapInvalid()
+        private bool IsResultValid()
         {
-            return ProjectCarsData.LapInvalidated ||
-                   Math.Abs(_lastStoredLapTime - ProjectCarsData.LastLapTime) < 0.001 ||
-                   string.IsNullOrEmpty(ProjectCarsData.CarName) || 
-                   string.IsNullOrEmpty(ProjectCarsData.TrackLocation) ||
-                   ProjectCarsData.LastLapTime < 0;
-        }
+            if (ProjectCarsData.LapInvalidated)
+            {
+                _wasLastLapValid = false;
+                return false;
+            }
 
-        private void ProjectCarsLiveView_OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            _dispatchTimer.Stop();
+            var isLapFinished = Math.Abs(_lastFiredLapTime - ProjectCarsData.LastLapTime) > 0.0001;
+
+            var isDataOk = !string.IsNullOrEmpty(ProjectCarsData.CarName) &&
+                           !string.IsNullOrEmpty(ProjectCarsData.TrackLocation) &&
+                           ProjectCarsData.LastLapTime > 0;
+
+            return isLapFinished && isDataOk;
         }
     }
 }
