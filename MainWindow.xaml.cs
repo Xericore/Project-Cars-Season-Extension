@@ -1,7 +1,6 @@
 ﻿using ProjectCarsSeasonExtension.Controller;
 using ProjectCarsSeasonExtension.Views;
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -19,6 +18,8 @@ namespace ProjectCarsSeasonExtension
     public partial class MainWindow : Window
     {
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
+        private ProjectCarsLiveView _projectCarsLiveView;
+        private PlayerController _playerController;
 
         public DataView DataView { get; private set; }
 
@@ -40,18 +41,29 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             var allChallengeStandings = new AllChallengeStandings(DataView);
-            var playerController = new PlayerController(DataView.Players);
+            _playerController = new PlayerController(DataView.Players);
 
-            PlayerSelectionFrame.Content = new PlayerSelection(playerController);
+            PlayerSelectionFrame.Content = new PlayerSelection(_playerController);
             PlayerResultsFrame.Content = new ChampionshipView(DataView, allChallengeStandings);
             SeasonViewFrame.Content = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
-            ProjectCarsLiveFrame.Content = new ProjectCarsLiveView();
+
+            _projectCarsLiveView = new ProjectCarsLiveView();
+            _projectCarsLiveView.ChallengeResultEvent += OnChallengeResultEvent;
+            ProjectCarsLiveFrame.Content = _projectCarsLiveView;
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
             HotkeyController.Init(this);
             HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd, ToggleWindowState);
+        }
+
+        private void OnChallengeResultEvent(ChallengeResult challengeResult)
+        {
+            if (_playerController?.SelectedPlayer == null)
+                return;
+
+            DataView?.AddChallengeResult(_playerController.SelectedPlayer.Id, challengeResult);
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)

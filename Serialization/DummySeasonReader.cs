@@ -14,9 +14,9 @@ namespace ProjectCarsSeasonExtension.Serialization
                 new Challenge()
                 {
                     Id = 0,
-                    CarName = "Formula A",
-                    TrackName = "Circuit de Barcelona Catalunya GP",
-                    Difficulty = Difficulty.Medium,
+                    CarName = "Formula C",
+                    TrackName = "Circuit de Barcelona-Catalunya Club",
+                    Difficulty = Difficulty.Easy,
                     Description = "A track where getting into the right rythm is key."
                 },
                 new Challenge()
@@ -48,7 +48,7 @@ namespace ProjectCarsSeasonExtension.Serialization
             var seasonModel = new SeasonModel
             {
                 Id = 0,
-                Name = "Season III",
+                Name = "Season Dummy",
                 Description = "Dummy season for testing.",
                 StartDate = new DateTime(2018,03,01),
                 EndDate = new DateTime(2018,12,31),
@@ -85,7 +85,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                 {
                     PlayerId = 1,
                     ChallengeId = 0,
-                    FastestLap = new TimeSpan(0,0,1,23,117)
+                    FastestLap = new TimeSpan(0,0,1,59,117)
                 },
                 new PlayerResult
                 {

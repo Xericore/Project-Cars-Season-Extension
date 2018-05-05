@@ -33,5 +33,37 @@ namespace ProjectCarsSeasonExtension.Models
         {
             return CurrentSeason?.GetChallengeById(challengeId);
         }
+
+        public void AddChallengeResult(int playerId, ChallengeResult challengeResult)
+        {
+            if (DateTime.Now > CurrentSeason.EndDate)
+                return;
+
+            Challenge foundChallenge = CurrentSeason.Challenges.FirstOrDefault
+            (
+                c => c.TrackName == challengeResult.TrackLocationAndVariant &&
+                     c.CarName == challengeResult.CarName
+            );
+
+            if (foundChallenge == null)
+                return;
+
+            PlayerResult foundPlayerResult = PlayerResults.FirstOrDefault(p => p.ChallengeId == foundChallenge.Id && p.PlayerId == playerId);
+
+            if (foundPlayerResult == null)
+            {
+                PlayerResults.Add(new PlayerResult
+                {
+                    PlayerId = playerId,
+                    ChallengeId = foundChallenge.Id,
+                    FastestLap = challengeResult.LastValidLapTime
+                });
+            }
+            else
+            {
+                if (challengeResult.LastValidLapTime < foundPlayerResult.FastestLap)
+                    foundPlayerResult.FastestLap = challengeResult.LastValidLapTime;
+            }
+        }
     }
 }
