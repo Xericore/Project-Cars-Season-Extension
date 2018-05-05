@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using pCarsAPI_Demo;
+using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -23,9 +12,13 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class ProjectCarsLiveView : Page
     {
+        public event Action<ChallengeResult> ChallengeResultEvent;
+
         public pCarsDataClass ProjectCarsData { get; set; } = new pCarsDataClass();
 
         private readonly DispatcherTimer _dispatchTimer;
+
+        private float _lastStoredLapTime;
 
         public ProjectCarsLiveView()
         {
@@ -38,13 +31,37 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ProjectCarsCarsDataGetterLoop(object sender, EventArgs e)
         {
-            var returnTuple = pCarsAPI_GetData.ReadSharedMemoryData();
+            Tuple<bool, pCarsAPIStruct> returnTuple = pCarsAPI_GetData.ReadSharedMemoryData();
 
-            //item1 is the true/false indicating a good read or not
-            if (returnTuple.Item1)
+            bool isDataValid = returnTuple.Item1;
+
+            if (isDataValid)
             {
                 ProjectCarsData = ProjectCarsData.MapStructToClass(returnTuple.Item2, ProjectCarsData);
+
+                CheckAndFireChallengeResultEvent();
             }
+        }
+
+        private void CheckAndFireChallengeResultEvent()
+        {
+            if (IsLapInvalid())
+                return;
+
+            _lastStoredLapTime = ProjectCarsData.LastLapTime;
+
+            var challengeResult = new ChallengeResult(ProjectCarsData);
+
+            ChallengeResultEvent?.Invoke(challengeResult);
+        }
+
+        private bool IsLapInvalid()
+        {
+            return ProjectCarsData.LapInvalidated ||
+                   Math.Abs(_lastStoredLapTime - ProjectCarsData.LastLapTime) < 0.001 ||
+                   string.IsNullOrEmpty(ProjectCarsData.CarName) || 
+                   string.IsNullOrEmpty(ProjectCarsData.TrackLocation) ||
+                   ProjectCarsData.LastLapTime < 0;
         }
 
         private void ProjectCarsLiveView_OnUnloaded(object sender, RoutedEventArgs e)

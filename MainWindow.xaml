@@ -9,9 +9,8 @@
         Initialized="Window_Initialized"
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
-        Icon="./Assets/Project Cars.png"
-        AllowsTransparency="True" Opacity="0.85" WindowStyle="None">
-    
+        Icon="./Assets/Project Cars.png" Opacity="0.85">
+
     <TabControl>
 
         <TabItem Name="ChampionshipTab" Header="Championship">

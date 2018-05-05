@@ -67,6 +67,7 @@
     <Compile Include="Controller\Module.cs" />
     <Compile Include="Converters\PlayerIdToImageUriConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\ChallengeResult.cs" />
     <Compile Include="Models\DataView.cs" />
     <Compile Include="Models\Difficulty.cs" />
     <Compile Include="Models\Player\PlayerController.cs" />
