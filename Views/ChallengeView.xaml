@@ -9,7 +9,7 @@
       Title="ChallengeView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChallengeStanding.ChallengePlayerStandings}"
-              CanUserAddRows="False" AutoGenerateColumns="False"
+              CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Position" Binding="{Binding Position}" />

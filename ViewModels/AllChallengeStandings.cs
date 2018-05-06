@@ -42,7 +42,12 @@ namespace ProjectCarsSeasonExtension.ViewModels
             var fastestLapWithHandicap = playerResult.FastestLap + handicap;
             var challengePlayerStanding = new ChallengePlayerStanding(foundPlayer, fastestLapWithHandicap);
 
-            ChallengeStandings[playerResult.ChallengeId].AddChallengePlayerStanding(challengePlayerStanding);
+            ChallengeStandings[playerResult.ChallengeId].SetChallengePlayerStanding(challengePlayerStanding);
+        }
+
+        public void UpdateUI()
+        {
+            CreateChallengeStandings();
         }
     }
 }

@@ -20,6 +20,8 @@ namespace ProjectCarsSeasonExtension
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
         private ProjectCarsLiveView _projectCarsLiveView;
         private PlayerController _playerController;
+        private SeasonView _seasonView;
+        private AllChallengeStandings _allChallengeStandings;
 
         public DataView DataView { get; private set; }
 
@@ -40,12 +42,13 @@ namespace ProjectCarsSeasonExtension
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            var allChallengeStandings = new AllChallengeStandings(DataView);
+            _allChallengeStandings = new AllChallengeStandings(DataView);
             _playerController = new PlayerController(DataView.Players);
 
             PlayerSelectionFrame.Content = new PlayerSelection(_playerController);
-            PlayerResultsFrame.Content = new ChampionshipView(DataView, allChallengeStandings);
-            SeasonViewFrame.Content = new SeasonView(allChallengeStandings.ChallengeStandings.Values);
+            PlayerResultsFrame.Content = new ChampionshipView(DataView, _allChallengeStandings);
+            _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings.Values);
+            SeasonViewFrame.Content = _seasonView;
 
             _projectCarsLiveView = new ProjectCarsLiveView();
             _projectCarsLiveView.ChallengeResultEvent += OnChallengeResultEvent;
@@ -64,6 +67,9 @@ namespace ProjectCarsSeasonExtension
                 return;
 
             DataView?.AddChallengeResult(_playerController.SelectedPlayer.Id, challengeResult);
+
+            _allChallengeStandings.UpdateUI();
+            _seasonView.UpdateUI();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)

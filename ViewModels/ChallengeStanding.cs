@@ -17,9 +17,18 @@ namespace ProjectCarsSeasonExtension.ViewModels
             Challenge = challenge;
         }
 
-        public void AddChallengePlayerStanding(ChallengePlayerStanding challengePlayerStanding)
+        public void SetChallengePlayerStanding(ChallengePlayerStanding challengePlayerStanding)
         {
+            var foundChallengePlayerStanding =
+                ChallengePlayerStandings.FirstOrDefault(cps => cps.Player.Id == challengePlayerStanding.Player.Id);
+
+            if (foundChallengePlayerStanding != null)
+            {
+                ChallengePlayerStandings.Remove(foundChallengePlayerStanding);
+            }
+
             ChallengePlayerStandings.Add(challengePlayerStanding);
+
             SetPositionAndTimeGapProperties();
             OnPropertyChanged(nameof(ChallengePlayerStandings));
         }
