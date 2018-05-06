@@ -1,7 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Data;
+using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
@@ -11,8 +14,10 @@ namespace ProjectCarsSeasonExtension.Views
     /// <summary>
     /// Interaction logic for ChampionshipView.xaml
     /// </summary>
-    public partial class ChampionshipView : Page
+    public partial class ChampionshipView : Page, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private readonly DataView _dataView;
         private readonly AllChallengeStandings _allChallengeStandings;
      
@@ -82,6 +87,18 @@ namespace ProjectCarsSeasonExtension.Views
             };
 
             ChampionshipDataGrid.Columns.Add(totalPointsColumn);
+        }
+
+        public void UpdateUI()
+        {
+            CreateChampionshipStandings();
+            OnPropertyChanged(nameof(ChampionshipStandings));
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

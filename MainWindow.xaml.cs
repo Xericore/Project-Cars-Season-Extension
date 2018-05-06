@@ -22,6 +22,7 @@ namespace ProjectCarsSeasonExtension
         private PlayerController _playerController;
         private SeasonView _seasonView;
         private AllChallengeStandings _allChallengeStandings;
+        private ChampionshipView _championshipView;
 
         public DataView DataView { get; private set; }
 
@@ -46,7 +47,10 @@ namespace ProjectCarsSeasonExtension
             _playerController = new PlayerController(DataView.Players);
 
             PlayerSelectionFrame.Content = new PlayerSelection(_playerController);
-            PlayerResultsFrame.Content = new ChampionshipView(DataView, _allChallengeStandings);
+
+            _championshipView = new ChampionshipView(DataView, _allChallengeStandings);
+            PlayerResultsFrame.Content = _championshipView;
+            
             _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings.Values);
             SeasonViewFrame.Content = _seasonView;
 
@@ -70,6 +74,7 @@ namespace ProjectCarsSeasonExtension
 
             _allChallengeStandings.UpdateUI();
             _seasonView.UpdateUI();
+            _championshipView.UpdateUI();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
