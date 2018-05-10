@@ -29,6 +29,10 @@
             <Frame Name="ProjectCarsLiveFrame"/>
         </TabItem>
 
+        <TabItem Name="SeasonEditorTab" Header="Season Editor">
+            <Frame Name="SeasonEditorFrame"/>
+        </TabItem>
+
     </TabControl>
 
 </Window>

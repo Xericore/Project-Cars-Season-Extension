@@ -23,6 +23,7 @@ namespace ProjectCarsSeasonExtension
         private SeasonView _seasonView;
         private AllChallengeStandings _allChallengeStandings;
         private ChampionshipView _championshipView;
+        private SeasonEditor _seasonEditor;
 
         public DataView DataView { get; private set; }
 
@@ -57,6 +58,9 @@ namespace ProjectCarsSeasonExtension
             _projectCarsLiveView = new ProjectCarsLiveView();
             _projectCarsLiveView.ChallengeResultEvent += OnChallengeResultEvent;
             ProjectCarsLiveFrame.Content = _projectCarsLiveView;
+
+            _seasonEditor = new SeasonEditor(DataView);
+            SeasonEditorFrame.Content = _seasonEditor;
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
