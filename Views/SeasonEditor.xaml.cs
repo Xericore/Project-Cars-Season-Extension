@@ -20,6 +20,7 @@ namespace ProjectCarsSeasonExtension.Views
         public Challenge SelectedChallenge { get; set; }
 
         public ObservableCollection<Season> Seasons => _dataView.Seasons;
+        public Season SelectedSeason { get; set; }
 
         private readonly DataView _dataView;
         
@@ -30,12 +31,21 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
 
             ChallengesComboBox.SelectedIndex = 0;
+            SeasonComboBox.SelectedIndex = 0;
         }
 
         private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            try
+            {
+                SelectedSeason = e.AddedItems[0] as Season;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
 
-
+            OnPropertyChanged(nameof(SelectedSeason));
         }
 
         private void ChallengeSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,10 +62,25 @@ namespace ProjectCarsSeasonExtension.Views
             OnPropertyChanged(nameof(SelectedChallenge));
         }
 
+
+        private void SeasonChallenges_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var listBox = sender as ListBox;
+                var selectedItems = listBox?.SelectedItems;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

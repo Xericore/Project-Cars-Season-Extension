@@ -22,7 +22,7 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="16"/>
-            <RowDefinition Height="32"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <ComboBox Name="ChallengesComboBox"  ItemsSource="{Binding Challenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
@@ -35,7 +35,9 @@
 
         <Separator Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Top"/>
 
-        <ComboBox Grid.Row="6" Grid.Column="0" Name="SeasonComboBox" ItemsSource="{Binding Seasons}" SelectionChanged="SeasonSelector_OnSelectionChanged"/>
+        <ComboBox Grid.Row="6" Grid.Column="0" VerticalAlignment="Top" Height="32" Name="SeasonComboBox" ItemsSource="{Binding Seasons}" SelectionChanged="SeasonSelector_OnSelectionChanged"/>
+        
+        <ListBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding SelectedSeason.Challenges}" SelectionMode="Multiple" SelectionChanged="SeasonChallenges_OnSelectionChanged"/>
 
     </Grid>
 </Page>
