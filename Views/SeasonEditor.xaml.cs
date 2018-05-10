@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -8,12 +9,14 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class SeasonEditor : Page
     {
-        private DataView _dataView;
+        private readonly DataView _dataView;
 
         public SeasonEditor(DataView dataView)
         {
             _dataView = dataView;
             InitializeComponent();
         }
+
+        public ObservableCollection<Challenge> Challenges => _dataView.CurrentSeason.Challenges;
     }
 }

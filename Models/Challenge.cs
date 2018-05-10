@@ -8,5 +8,10 @@
         public string Description { get; set; }
         public Difficulty Difficulty { get; set; }
         public string Name => TrackName + " / " + CarName;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
