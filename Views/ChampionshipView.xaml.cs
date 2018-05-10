@@ -37,21 +37,18 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void CreateChampionshipStandings()
         {
+            ChampionshipStandings.Clear();
+
             foreach (var player in _dataView.Players)
             {
                 if (player.Id < 0)
                     continue;
 
+                var championshipStanding = new ChampionshipStanding(player);
+                ChampionshipStandings.Add(championshipStanding);                
+
                 foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings)
                 {
-                    var championshipStanding = ChampionshipStandings.FirstOrDefault(p => p.Player.Id == player.Id);
-
-                    if (championshipStanding == null)
-                    {
-                        championshipStanding = new ChampionshipStanding(player);
-                        ChampionshipStandings.Add(championshipStanding);
-                    }
-
                     var playerPoints = challengeStanding.Value.GetPlayerPoints(player.Id);
                     championshipStanding.ChallengePoints.Add(playerPoints);
                 }

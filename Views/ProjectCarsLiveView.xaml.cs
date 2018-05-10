@@ -68,7 +68,9 @@ namespace ProjectCarsSeasonExtension.Views
 
         private bool IsResultValid()
         {
-            if (ProjectCarsData.LapInvalidated)
+            var isWarmupLap = ProjectCarsData.LastLapTime < 0;
+
+            if (ProjectCarsData.LapInvalidated && !isWarmupLap)
             {
                 _wasLastLapValid = false;
                 return false;
@@ -78,7 +80,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             var isDataOk = !string.IsNullOrEmpty(ProjectCarsData.CarName) &&
                            !string.IsNullOrEmpty(ProjectCarsData.TrackLocation) &&
-                           ProjectCarsData.LastLapTime > 0;
+                           !isWarmupLap;
 
             return isLapFinished && isDataOk;
         }
