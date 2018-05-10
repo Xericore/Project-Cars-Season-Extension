@@ -23,9 +23,11 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="16"/>
             <RowDefinition/>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ComboBox Name="ChallengesComboBox"  ItemsSource="{Binding Challenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
+        <ComboBox Name="ChallengesComboBox"  ItemsSource="{Binding CurrentSeasonChallenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
         
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedChallenge.Id, Mode=OneWay}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedChallenge.TrackName, Mode=TwoWay}"/>
@@ -37,7 +39,14 @@
 
         <ComboBox Grid.Row="6" Grid.Column="0" VerticalAlignment="Top" Height="32" Name="SeasonComboBox" ItemsSource="{Binding Seasons}" SelectionChanged="SeasonSelector_OnSelectionChanged"/>
         
-        <ListBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding SelectedSeason.Challenges}" SelectionMode="Multiple" SelectionChanged="SeasonChallenges_OnSelectionChanged"/>
+        <ListBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding SelectedSeason.Challenges}" Name="SeasonChallengesListBox" SelectionMode="Single" SelectionChanged="SeasonChallenges_OnSelectionChanged"/>
+
+        <StackPanel Grid.Row="7" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="^ Add" Width="64" Click="ButtonAdd_OnClick"/>
+            <Button Content="v Remove" Width="64" Click="ButtonRemove_OnClick"/>
+        </StackPanel>
+
+        <ListBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding AllChallenges}" Name="AllChallengesListBox" SelectionMode="Single" SelectionChanged="AllChallenges_OnSelectionChanged"/>
 
     </Grid>
 </Page>

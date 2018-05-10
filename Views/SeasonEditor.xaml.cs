@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
@@ -16,14 +16,17 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Challenge> Challenges => _dataView.CurrentSeason.Challenges;
+        public ObservableCollection<Challenge> CurrentSeasonChallenges => _dataView.CurrentSeason.Challenges;
+        public ObservableCollection<Challenge> AllChallenges => _dataView.AllChallenges;
         public Challenge SelectedChallenge { get; set; }
 
         public ObservableCollection<Season> Seasons => _dataView.Seasons;
         public Season SelectedSeason { get; set; }
 
         private readonly DataView _dataView;
-        
+        private Challenge _selectedSeasonChallenge;
+        private Challenge _selectedFromAllChallenge;
+
         public SeasonEditor(DataView dataView)
         {
             _dataView = dataView;
@@ -50,30 +53,39 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ChallengeSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                SelectedChallenge = e.AddedItems[0] as Challenge;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-            
+            SelectedChallenge = e.AddedItems[0] as Challenge;
             OnPropertyChanged(nameof(SelectedChallenge));
         }
 
-
         private void SeasonChallenges_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                var listBox = sender as ListBox;
-                var selectedItems = listBox?.SelectedItems;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
+            if (e.AddedItems.Count > 0)
+                _selectedSeasonChallenge = e.AddedItems[0] as Challenge;
+        }
+
+        private void AllChallenges_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.AddedItems.Count > 0)
+                _selectedFromAllChallenge = e.AddedItems[0] as Challenge;
+        }
+
+        private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_selectedFromAllChallenge == null || SelectedSeason.ContainsChallenge(_selectedFromAllChallenge.Id))
+                return;
+
+            SelectedSeason.Challenges.Add(_selectedFromAllChallenge);
+
+            OnPropertyChanged(nameof(SelectedSeason));
+            OnPropertyChanged(nameof(CurrentSeasonChallenges));
+        }
+
+        private void ButtonRemove_OnClick(object sender, RoutedEventArgs e)
+        {
+            SelectedSeason.Challenges.Remove(_selectedSeasonChallenge);
+
+            OnPropertyChanged(nameof(SelectedSeason));
+            OnPropertyChanged(nameof(CurrentSeasonChallenges));
         }
 
         [NotifyPropertyChangedInvocator]
@@ -81,6 +93,5 @@ namespace ProjectCarsSeasonExtension.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

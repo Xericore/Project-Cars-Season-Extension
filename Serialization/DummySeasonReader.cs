@@ -9,6 +9,30 @@ namespace ProjectCarsSeasonExtension.Serialization
     {
         private Season GetCurrentSeason()
         {
+            var seasonModel = new Season
+            {
+                Id = 0,
+                Name = "Season Dummy",
+                Description = "Dummy season for testing.",
+                StartDate = new DateTime(2018,03,01),
+                EndDate = new DateTime(2018,12,31),
+                Challenges = GetChallenges()
+            };
+
+            return seasonModel;
+        }
+
+        public ObservableCollection<Season> GetSeasons()
+        {
+            var seasons = new ObservableCollection<Season>();
+
+            seasons.Add(GetCurrentSeason());
+
+            return seasons;
+        }
+
+        public ObservableCollection<Challenge> GetChallenges()
+        {
             ObservableCollection<Challenge> challenges = new ObservableCollection<Challenge>
             {
                 new Challenge()
@@ -42,29 +66,10 @@ namespace ProjectCarsSeasonExtension.Serialization
                     TrackName = "Willow Springs",
                     Difficulty = Difficulty.Insane,
                     Description = "You think you're a champion? Try bringing this beast to it's limit!"
-                },
+                }
             };
 
-            var seasonModel = new Season
-            {
-                Id = 0,
-                Name = "Season Dummy",
-                Description = "Dummy season for testing.",
-                StartDate = new DateTime(2018,03,01),
-                EndDate = new DateTime(2018,12,31),
-                Challenges = challenges
-            };
-
-            return seasonModel;
-        }
-
-        public ObservableCollection<Season> GetSeasons()
-        {
-            var seasons = new ObservableCollection<Season>();
-
-            seasons.Add(GetCurrentSeason());
-
-            return seasons;
+            return challenges;
         }
 
         public ObservableCollection<Player> GetPlayers()

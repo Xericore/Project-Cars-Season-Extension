@@ -1,4 +1,6 @@
-﻿namespace ProjectCarsSeasonExtension.Models
+﻿using System.Collections;
+
+namespace ProjectCarsSeasonExtension.Models
 {
     public class Challenge : BaseModel
     {

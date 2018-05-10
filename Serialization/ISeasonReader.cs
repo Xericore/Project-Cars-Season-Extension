@@ -7,6 +7,7 @@ namespace ProjectCarsSeasonExtension.Serialization
     public interface ISeasonReader
     {
         ObservableCollection<Season> GetSeasons();
+        ObservableCollection<Challenge> GetChallenges();
         ObservableCollection<Player> GetPlayers();
         ObservableCollection<PlayerResult> GetPlayerResults();
         ObservableCollection<PlayerHandicap> GetPlayerHandicaps();

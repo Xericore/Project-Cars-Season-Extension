@@ -27,6 +27,11 @@ namespace ProjectCarsSeasonExtension.Serialization
             return seasons;
         }
 
+        public ObservableCollection<Challenge> GetChallenges()
+        {
+            return GetObservableCollectionFromFile<Challenge>(FileLocations.ChallangeFileUri);
+        }
+
         public ObservableCollection<Player> GetPlayers()
         {
             return GetObservableCollectionFromFile<Player>(FileLocations.PlayerFileUri);

@@ -15,12 +15,13 @@ namespace ProjectCarsSeasonExtension.Models
         public Season CurrentSeason { get; }
         public ObservableCollection<PlayerHandicap> Handicaps { get; }
         public ObservableCollection<Season> Seasons { get; set; }
+        public ObservableCollection<Challenge> AllChallenges { get; set; }
 
         public DataView(ISeasonReader seasonReader)
         {            
             Seasons = seasonReader.GetSeasons();
             CurrentSeason = Seasons.First();
-
+            AllChallenges = seasonReader.GetChallenges();
             PlayerResults = seasonReader.GetPlayerResults();
             Players = seasonReader.GetPlayers();
             Handicaps = seasonReader.GetPlayerHandicaps();

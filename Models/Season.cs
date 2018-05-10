@@ -42,6 +42,11 @@ namespace ProjectCarsSeasonExtension.Models
             return Challenges.FirstOrDefault(c => c.Id == challengeId);
         }
 
+        public bool ContainsChallenge(int challengeId)
+        {
+            return GetChallengeById(challengeId) != null;
+        }
+
         public override string ToString()
         {
             return Name;
