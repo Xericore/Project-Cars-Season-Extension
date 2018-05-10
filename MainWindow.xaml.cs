@@ -75,6 +75,8 @@ namespace ProjectCarsSeasonExtension
             _allChallengeStandings.UpdateUI();
             _seasonView.UpdateUI();
             _championshipView.UpdateUI();
+
+            SaveData();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
