@@ -19,6 +19,8 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<Challenge> Challenges => _dataView.CurrentSeason.Challenges;
         public Challenge SelectedChallenge { get; set; }
 
+        public ObservableCollection<Season> Seasons => _dataView.Seasons;
+
         private readonly DataView _dataView;
         
         public SeasonEditor(DataView dataView)
@@ -28,6 +30,12 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
 
             ChallengesComboBox.SelectedIndex = 0;
+        }
+
+        private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
         }
 
         private void ChallengeSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
