@@ -23,7 +23,7 @@
             <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
 
-        <ComboBox ItemsSource="{Binding Challenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
+        <ComboBox Name="ChallengesComboBox"  ItemsSource="{Binding Challenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
         
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedChallenge.Id, Mode=OneWay}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedChallenge.TrackName, Mode=TwoWay}"/>

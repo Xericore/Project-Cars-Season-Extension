@@ -24,9 +24,10 @@ namespace ProjectCarsSeasonExtension.Views
         public SeasonEditor(DataView dataView)
         {
             _dataView = dataView;
-            SelectedChallenge = Challenges.First();
 
             InitializeComponent();
+
+            ChallengesComboBox.SelectedIndex = 0;
         }
 
         private void ChallengeSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
