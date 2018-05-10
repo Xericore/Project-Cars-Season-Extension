@@ -16,12 +16,20 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
 
-        <ComboBox Margin="10" Height="32" ItemsSource="{Binding Challenges}"/>
+        <ComboBox ItemsSource="{Binding Challenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
+        
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedChallenge.Id, Mode=OneWay}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedChallenge.TrackName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedChallenge.CarName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedChallenge.Description, Mode=TwoWay}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedChallenge.Difficulty, Mode=TwoWay}"/>
 
     </Grid>
 </Page>
