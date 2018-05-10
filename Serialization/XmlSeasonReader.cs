@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Serialization;
@@ -10,32 +9,22 @@ namespace ProjectCarsSeasonExtension.Serialization
 {
     public class XmlSeasonReader : ISeasonReader
     {
-        public SeasonModel GetCurrentSeason()
+        public ObservableCollection<Season> GetSeasons()
         {
-            ObservableCollection<Challenge> challenges =
-                GetObservableCollectionFromFile<Challenge>(FileLocations.ChallangeFileUri);
+            var seasons = GetObservableCollectionFromFile<Season>(FileLocations.SeasonFileUri);
 
-            var seasonModel = GetSeasonModelFromFile();
-            seasonModel.Challenges = challenges;
+            var challenges = GetObservableCollectionFromFile<Challenge>(FileLocations.ChallangeFileUri);
 
-            return seasonModel;
-        }
-
-        private static SeasonModel GetSeasonModelFromFile()
-        {
-            if (!File.Exists(FileLocations.SeasonFileUri))
-                throw new FileNotFoundException($"Couldn't find {FileLocations.SeasonFileUri}.");
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(SeasonModel));
-
-            SeasonModel seasonModel;
-
-            using (var reader = new StreamReader(FileLocations.SeasonFileUri))
+            foreach (var season in seasons)
             {
-                seasonModel = xmlSerializer.Deserialize(reader) as SeasonModel;
+                foreach (var challenge in challenges)
+                {
+                    if(season.ChallengeIds.Contains(challenge.Id))
+                        season.Challenges.Add(challenge);
+                }
             }
 
-            return seasonModel;
+            return seasons;
         }
 
         public ObservableCollection<Player> GetPlayers()

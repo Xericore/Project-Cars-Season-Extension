@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ProjectCarsSeasonExtension.Models.Player;
@@ -11,12 +12,15 @@ namespace ProjectCarsSeasonExtension.Models
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<Player.Player> Players { get; set; }
 
-        public SeasonModel CurrentSeason { get; }
+        public Season CurrentSeason { get; }
         public ObservableCollection<PlayerHandicap> Handicaps { get; }
+        public ObservableCollection<Season> Seasons { get; set; }
 
         public DataView(ISeasonReader seasonReader)
-        {
-            CurrentSeason = seasonReader.GetCurrentSeason();
+        {            
+            Seasons = seasonReader.GetSeasons();
+            CurrentSeason = Seasons.First();
+
             PlayerResults = seasonReader.GetPlayerResults();
             Players = seasonReader.GetPlayers();
             Handicaps = seasonReader.GetPlayerHandicaps();

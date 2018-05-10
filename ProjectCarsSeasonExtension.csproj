@@ -74,7 +74,7 @@
     <Compile Include="Models\Player\PlayerHandicap.cs" />
     <Compile Include="Models\Player\Player.cs" />
     <Compile Include="Models\Player\PlayerResult.cs" />
-    <Compile Include="Models\SeasonModel.cs" />
+    <Compile Include="Models\Season.cs" />
     <Compile Include="Models\Challenge.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Serialization\DummySeasonReader.cs" />

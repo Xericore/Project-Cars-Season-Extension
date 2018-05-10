@@ -7,7 +7,7 @@ namespace ProjectCarsSeasonExtension.Serialization
 {
     public class DummySeasonReader: ISeasonReader
     {
-        public SeasonModel GetCurrentSeason()
+        private Season GetCurrentSeason()
         {
             ObservableCollection<Challenge> challenges = new ObservableCollection<Challenge>
             {
@@ -45,7 +45,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                 },
             };
 
-            var seasonModel = new SeasonModel
+            var seasonModel = new Season
             {
                 Id = 0,
                 Name = "Season Dummy",
@@ -56,6 +56,15 @@ namespace ProjectCarsSeasonExtension.Serialization
             };
 
             return seasonModel;
+        }
+
+        public ObservableCollection<Season> GetSeasons()
+        {
+            var seasons = new ObservableCollection<Season>();
+
+            seasons.Add(GetCurrentSeason());
+
+            return seasons;
         }
 
         public ObservableCollection<Player> GetPlayers()

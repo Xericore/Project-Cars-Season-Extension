@@ -8,7 +8,7 @@ namespace ProjectCarsSeasonExtension.Serialization
     {
         void SavePlayers(IEnumerable<Player> players);
         void SaveChallenges(IEnumerable<Challenge> challenges);
-        void SaveSeason(SeasonModel season);
+        void SaveSeasons(IEnumerable<Season> seasons);
         void SavePlayerResults(IEnumerable<PlayerResult> playerResults);
         void SaveHandicaps(IEnumerable<PlayerHandicap> handicaps);
     }

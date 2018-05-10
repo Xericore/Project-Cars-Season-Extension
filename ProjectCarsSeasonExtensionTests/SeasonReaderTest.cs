@@ -8,7 +8,7 @@ namespace ProjectCarsSeasonExtensionTests
 {
     public class SeasonReaderTest: ISeasonReader
     {
-        public SeasonModel GetCurrentSeason()
+        public Season GetCurrentSeason()
         {
             ObservableCollection<Challenge> trackAndCars = new ObservableCollection<Challenge>
             {
@@ -46,7 +46,7 @@ namespace ProjectCarsSeasonExtensionTests
                 },
             };
 
-            var seasonModel = new SeasonModel
+            var seasonModel = new Season
             {
                 Id = 0,
                 Name = "Season III",

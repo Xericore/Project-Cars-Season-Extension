@@ -19,15 +19,10 @@ namespace ProjectCarsSeasonExtension.Serialization
             SerializeList(challenges, FileLocations.ChallangeFileUri);
         }
 
-        public void SaveSeason(SeasonModel season)
+        public void SaveSeasons(IEnumerable<Season> seasons)
         {
-            var xmlSerializer = new XmlSerializer(typeof(SeasonModel));
+            SerializeList(seasons, FileLocations.SeasonFileUri);
 
-            using (var writer = new StreamWriter(FileLocations.SeasonFileUri))
-            {
-                xmlSerializer.Serialize(writer, season);
-                writer.Flush();
-            }
         }
 
         public void SavePlayerResults(IEnumerable<PlayerResult> playerResults)
