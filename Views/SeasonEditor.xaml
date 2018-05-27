@@ -46,7 +46,7 @@
             <Button Content="v Remove" Width="64" Click="ButtonRemove_OnClick"/>
         </StackPanel>
 
-        <ListBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding AllChallenges}" Name="AllChallengesListBox" SelectionMode="Single" SelectionChanged="AllChallenges_OnSelectionChanged"/>
+        <ListBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding FilteredChallenges}" Name="AllChallengesListBox" SelectionMode="Single" SelectionChanged="AllChallenges_OnSelectionChanged"/>
 
     </Grid>
 </Page>

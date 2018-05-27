@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,9 @@ namespace ProjectCarsSeasonExtension.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Challenge> CurrentSeasonChallenges => _dataView.CurrentSeason.Challenges;
-        public ObservableCollection<Challenge> AllChallenges => _dataView.AllChallenges;
+
+        public ObservableCollection<Challenge> FilteredChallenges { get; set; } = new ObservableCollection<Challenge>();
+
         public Challenge SelectedChallenge { get; set; }
 
         public ObservableCollection<Season> Seasons => _dataView.Seasons;
@@ -26,15 +29,31 @@ namespace ProjectCarsSeasonExtension.Views
         private readonly DataView _dataView;
         private Challenge _selectedSeasonChallenge;
         private Challenge _selectedFromAllChallenge;
+        
 
         public SeasonEditor(DataView dataView)
         {
             _dataView = dataView;
 
+            UpdateFilteredChallenges();
+
             InitializeComponent();
 
             ChallengesComboBox.SelectedIndex = 0;
             SeasonComboBox.SelectedIndex = 0;
+        }
+
+        private void UpdateFilteredChallenges()
+        {
+            FilteredChallenges.Clear();
+            foreach (var challenge in _dataView.AllChallenges)
+            {
+                if (!CurrentSeasonChallenges.Contains(challenge))                        
+                    FilteredChallenges.Add(challenge);
+            }
+
+            OnPropertyChanged(nameof(SelectedSeason));
+            OnPropertyChanged(nameof(CurrentSeasonChallenges));
         }
 
         private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,16 +95,14 @@ namespace ProjectCarsSeasonExtension.Views
 
             SelectedSeason.Challenges.Add(_selectedFromAllChallenge);
 
-            OnPropertyChanged(nameof(SelectedSeason));
-            OnPropertyChanged(nameof(CurrentSeasonChallenges));
+            UpdateFilteredChallenges();
         }
 
         private void ButtonRemove_OnClick(object sender, RoutedEventArgs e)
         {
             SelectedSeason.Challenges.Remove(_selectedSeasonChallenge);
 
-            OnPropertyChanged(nameof(SelectedSeason));
-            OnPropertyChanged(nameof(CurrentSeasonChallenges));
+            UpdateFilteredChallenges();
         }
 
         [NotifyPropertyChangedInvocator]

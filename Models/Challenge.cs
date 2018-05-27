@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace ProjectCarsSeasonExtension.Models
+﻿namespace ProjectCarsSeasonExtension.Models
 {
     public class Challenge : BaseModel
     {
@@ -10,6 +8,18 @@ namespace ProjectCarsSeasonExtension.Models
         public string Description { get; set; }
         public Difficulty Difficulty { get; set; }
         public string Name => TrackName + " / " + CarName;
+
+        public override bool Equals(object obj)
+        {
+            var challenge = obj as Challenge;
+            return challenge != null &&
+                   Id == challenge.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2108858624 + Id.GetHashCode();
+        }
 
         public override string ToString()
         {
