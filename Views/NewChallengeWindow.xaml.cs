@@ -45,8 +45,6 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
         {
-            NewChallenge.TrackName = TextBoxNewTrackName.Text;
-            NewChallenge.CarName = TextBoxNewCarName.Text;
             DialogResult = true;
         }
 
