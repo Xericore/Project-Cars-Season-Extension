@@ -50,7 +50,9 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void Validation_Error(object sender, ValidationErrorEventArgs e)
         {
-            IsValidationPassed = e.Action != ValidationErrorEventAction.Added;
+            IsValidationPassed = e.Action != ValidationErrorEventAction.Added 
+                                 && !string.IsNullOrEmpty(NewChallenge.TrackName) 
+                                 && !string.IsNullOrEmpty(NewChallenge.CarName);
         }
 
         [NotifyPropertyChangedInvocator]
@@ -78,7 +80,7 @@ namespace ProjectCarsSeasonExtension.Views
         public string TrackName { get; set; }
         public string CarName { get; set; }
         public string Description { get; set; }
-        public Difficulty Difficulty { get; set; } = Difficulty.Medium;
+        public Difficulty Difficulty { get; set; } = Difficulty.Easy;
 
         public string this[string columnName]
         {
