@@ -62,6 +62,12 @@ namespace ProjectCarsSeasonExtension.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void DifficultySelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItem = e.AddedItems[0];
+            NewChallenge.Difficulty = (Difficulty) selectedItem;
+        }
     }
 
     public class NewChallenge : IDataErrorInfo
@@ -75,6 +81,8 @@ namespace ProjectCarsSeasonExtension.Views
 
         public string TrackName { get; set; }
         public string CarName { get; set; }
+        public string Description { get; set; }
+        public Difficulty Difficulty { get; set; } = Difficulty.Medium;
 
         public string this[string columnName]
         {
@@ -84,10 +92,10 @@ namespace ProjectCarsSeasonExtension.Views
 
                 if (columnName != "TrackName" && columnName != "CarName") return null;
 
-                if (string.IsNullOrEmpty(TrackName))
+                if (columnName == "TrackName" && string.IsNullOrEmpty(TrackName))
                     result = "Please enter a track name.";
 
-                if (string.IsNullOrEmpty(CarName))
+                if (columnName == "CarName" && string.IsNullOrEmpty(CarName))
                     result = "Please enter a car name.";
 
                 if (_alreadyPresentChallenges.Any(p => p.TrackName == TrackName && p.CarName == CarName))

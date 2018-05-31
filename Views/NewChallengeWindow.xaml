@@ -4,12 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:models="clr-namespace:ProjectCarsSeasonExtension.Models"
         mc:Ignorable="d"
-        Title="Add new challenge" Height="140" Width="320" Topmost="True" 
+        Title="Add new challenge" Height="280" Width="320" Topmost="True" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Difficulty"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -42,6 +56,26 @@
         </Grid>
 
         <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="5" Text="Description:" VerticalAlignment="Center"/>
+            <TextBox Margin="5" Grid.Column="1" 
+                     ToolTip="Enter your track description here." TabIndex="0" 
+                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=NewChallenge.Description, Mode=TwoWay}" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="5" Text="Difficulty:" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Margin="5" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectionChanged="DifficultySelector_OnSelectionChanged"/>
+        </Grid>
+
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
