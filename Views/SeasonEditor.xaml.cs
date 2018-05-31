@@ -17,7 +17,7 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Challenge> CurrentSeasonChallenges => _dataView.CurrentSeason.Challenges;
+        public ObservableCollection<Challenge> AllChallenges => _dataView.AllChallenges;
 
         public ObservableCollection<Challenge> FilteredChallenges { get; set; } = new ObservableCollection<Challenge>();
 
@@ -48,12 +48,12 @@ namespace ProjectCarsSeasonExtension.Views
             FilteredChallenges.Clear();
             foreach (var challenge in _dataView.AllChallenges)
             {
-                if (!CurrentSeasonChallenges.Contains(challenge))                        
+                if (!AllChallenges.Contains(challenge))                        
                     FilteredChallenges.Add(challenge);
             }
 
             OnPropertyChanged(nameof(SelectedSeason));
-            OnPropertyChanged(nameof(CurrentSeasonChallenges));
+            OnPropertyChanged(nameof(AllChallenges));
         }
 
         private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -118,6 +118,16 @@ namespace ProjectCarsSeasonExtension.Views
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void ButtonAddChallenge_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ButtonRemoveChallenge_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
