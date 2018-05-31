@@ -74,7 +74,7 @@ namespace ProjectCarsSeasonExtension.Views
         {
             if (e.AddedItems.Count <= 0)
             {
-                SelectedChallenge = SelectedSeason.Challenges.FirstOrDefault();
+                SelectedChallenge = AllChallenges.FirstOrDefault();
                 ChallengesComboBox.SelectedIndex = 0;
             }
             else
@@ -127,7 +127,19 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ButtonRemoveChallenge_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            string messageBoxText = $"Do you really want to delete {ChallengesComboBox.SelectedItem}? This might affect seasons.";
+            const string caption = "Season Editor";
+
+            var messageBoxResult = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            switch (messageBoxResult)
+            {
+                case MessageBoxResult.Yes:
+                    AllChallenges.Remove(SelectedChallenge);
+                    SelectedChallenge = AllChallenges.FirstOrDefault();
+                    OnPropertyChanged(nameof(SelectedChallenge));
+                    break;
+            }
         }
     }
 }
