@@ -20,9 +20,6 @@ namespace ProjectCarsSeasonExtension.Views
 
         public NewChallenge NewChallenge { get; set; }
 
-        public string TrackName => NewChallenge.TrackName;
-        public string CarName => NewChallenge.CarName;
-        
         private bool _isValidationPassed;
 
         public bool IsValidationPassed
@@ -41,7 +38,8 @@ namespace ProjectCarsSeasonExtension.Views
             NewChallenge = new NewChallenge(alreadyPresentChallenges);
 
             InitializeComponent();
-            
+
+            DifficultySelector.SelectedIndex = 0;
             TextBoxNewTrackName.Focus();
         }
 

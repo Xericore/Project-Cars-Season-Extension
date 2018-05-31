@@ -72,7 +72,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Difficulty:" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" Margin="5" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectionChanged="DifficultySelector_OnSelectionChanged"/>
+            <ComboBox Name="DifficultySelector" Grid.Column="1" Margin="5" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectionChanged="DifficultySelector_OnSelectionChanged"/>
         </Grid>
 
         <Grid Grid.Row="4">

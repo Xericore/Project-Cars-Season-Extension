@@ -126,16 +126,20 @@ namespace ProjectCarsSeasonExtension.Views
 
             var dialogResult = newChallengeWindow.ShowDialog();
 
-            if (dialogResult != true || string.IsNullOrEmpty(newChallengeWindow.TrackName) || string.IsNullOrEmpty(newChallengeWindow.CarName)) return;
+            if (dialogResult != true) return;
 
             Challenge newChallenge = new Challenge
             {
                 Id = _dataView.AllChallenges.Max(c => c.Id) + 1,
-                TrackName = newChallengeWindow.TrackName,
-                CarName = newChallengeWindow.CarName
+                TrackName = newChallengeWindow.NewChallenge.TrackName,
+                CarName = newChallengeWindow.NewChallenge.CarName,
+                Description = newChallengeWindow.NewChallenge.Description,
+                Difficulty = newChallengeWindow.NewChallenge.Difficulty
             };
 
             _dataView.AddChallenge(newChallenge);
+
+            ChallengesComboBox.SelectedIndex = ChallengesComboBox.Items.Count-1;
 
             OnPropertyChanged(nameof(AllChallenges));
         }
