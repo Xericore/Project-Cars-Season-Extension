@@ -122,7 +122,22 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ButtonAddChallenge_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            var newChallengeWindow = new NewChallengeWindow(_dataView);
+
+            var dialogResult = newChallengeWindow.ShowDialog();
+
+            if (dialogResult != true || string.IsNullOrEmpty(newChallengeWindow.TrackName) || string.IsNullOrEmpty(newChallengeWindow.CarName)) return;
+
+            Challenge newChallenge = new Challenge
+            {
+                Id = _dataView.AllChallenges.Max(c => c.Id) + 1,
+                TrackName = newChallengeWindow.TrackName,
+                CarName = newChallengeWindow.CarName
+            };
+
+            _dataView.AddChallenge(newChallenge);
+
+            OnPropertyChanged(nameof(AllChallenges));
         }
 
         private void ButtonRemoveChallenge_OnClick(object sender, RoutedEventArgs e)
