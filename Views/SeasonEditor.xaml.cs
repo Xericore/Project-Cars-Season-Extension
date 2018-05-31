@@ -54,10 +54,6 @@ namespace ProjectCarsSeasonExtension.Views
                 if (!SelectedSeason.ContainsChallenge(challenge.Id))                        
                     FilteredChallenges.Add(challenge);
             }
-
-            OnPropertyChanged(nameof(FilteredChallenges));
-            OnPropertyChanged(nameof(SelectedSeason));
-            OnPropertyChanged(nameof(AllChallenges));
         }
 
         private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
