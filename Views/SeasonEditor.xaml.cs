@@ -45,13 +45,17 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void UpdateFilteredChallenges()
         {
+            if (SelectedSeason == null)
+                return;
+
             FilteredChallenges.Clear();
             foreach (var challenge in _dataView.AllChallenges)
             {
-                if (!AllChallenges.Contains(challenge))                        
+                if (!SelectedSeason.ContainsChallenge(challenge.Id))                        
                     FilteredChallenges.Add(challenge);
             }
 
+            OnPropertyChanged(nameof(FilteredChallenges));
             OnPropertyChanged(nameof(SelectedSeason));
             OnPropertyChanged(nameof(AllChallenges));
         }
@@ -141,7 +145,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             ChallengesComboBox.SelectedIndex = ChallengesComboBox.Items.Count-1;
 
-            OnPropertyChanged(nameof(AllChallenges));
+            UpdateFilteredChallenges();
         }
 
         private void ButtonRemoveChallenge_OnClick(object sender, RoutedEventArgs e)
