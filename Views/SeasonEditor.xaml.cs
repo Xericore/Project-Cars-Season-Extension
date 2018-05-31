@@ -72,7 +72,16 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ChallengeSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedChallenge = e.AddedItems[0] as Challenge;
+            if (e.AddedItems.Count <= 0)
+            {
+                SelectedChallenge = SelectedSeason.Challenges.FirstOrDefault();
+                ChallengesComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                SelectedChallenge = e.AddedItems[0] as Challenge;
+            }
+            
             OnPropertyChanged(nameof(SelectedChallenge));
         }
 
