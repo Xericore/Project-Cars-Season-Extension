@@ -19,8 +19,6 @@ namespace ProjectCarsSeasonExtension.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         public NewPlayer NewPlayer { get; set; }
-
-        public string PlayerName => NewPlayer.Name;
         
         private bool _isValidationPassed;
 
@@ -46,7 +44,6 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
         {
-            NewPlayer.Name = TextBoxNewPlayerName.Text;
             DialogResult = true;
         }
 

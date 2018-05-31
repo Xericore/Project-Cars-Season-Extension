@@ -53,11 +53,11 @@ namespace ProjectCarsSeasonExtension.Views
 
             var dialogResult = newPlayerWindow.ShowDialog();
 
-            if (dialogResult != true || string.IsNullOrEmpty(newPlayerWindow.PlayerName)) return;
+            if (dialogResult != true || string.IsNullOrEmpty(newPlayerWindow.NewPlayer.Name)) return;
 
             Player newPlayer = new Player
             {
-                Name = newPlayerWindow.PlayerName
+                Name = newPlayerWindow.NewPlayer.Name
             };
 
             PlayerController.AddPlayer(newPlayer);
