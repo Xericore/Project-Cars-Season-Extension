@@ -18,6 +18,7 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<ChallengeView> ChallengeViews { get; set; } = new ObservableCollection<ChallengeView>();
 
         private readonly IEnumerable<ChallengeStanding> _challengeStandings;
+        private int _lastSelectedTabIndex;
 
         public SeasonView(IEnumerable<ChallengeStanding> challengeStandings)
         {
@@ -51,16 +52,35 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        public void UpdateUI()
+        public void UpdateUI(string challengeToString = null)
         {
+            _lastSelectedTabIndex = ChallengesTabControl.SelectedIndex;
+
             ChallengesTabControl.Items.Clear();
             ChallengeViews.Clear();
 
             CreateTabs();
 
+            if (challengeToString == null)
+                ChallengesTabControl.SelectedIndex = _lastSelectedTabIndex;
+            else
+                SelectTabFromChallenge(challengeToString);
+
             OnPropertyChanged(nameof(ChallengeViews));
         }
-        
+
+        private void SelectTabFromChallenge(string challengeToString)
+        {
+            foreach (TabItem item in ChallengesTabControl.Items)
+            {
+                if (Equals(item.Header, challengeToString))
+                {
+                    ChallengesTabControl.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

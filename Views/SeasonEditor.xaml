@@ -31,7 +31,7 @@
         
         <Button Grid.Row="1" Grid.Column="0" Content="Add Challenge" Click="ButtonAddChallenge_OnClick"/>
         <Button Grid.Row="2" Grid.Column="0" Content="Remove Challenge" Click="ButtonRemoveChallenge_OnClick"/>
-        
+
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedChallenge.Id, Mode=OneWay}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedChallenge.TrackName, Mode=TwoWay}"/>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedChallenge.CarName, Mode=TwoWay}"/>

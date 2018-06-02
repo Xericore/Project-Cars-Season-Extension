@@ -16,5 +16,9 @@ namespace ProjectCarsSeasonExtension.Models
             LastValidLapTime = TimeSpan.FromSeconds(projectCarsData.LastLapTime); ;
         }
 
+        public override string ToString()
+        {
+            return TrackLocationAndVariant + " / " + CarName;
+        }
     }
 }

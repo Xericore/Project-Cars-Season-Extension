@@ -60,7 +60,7 @@ namespace ProjectCarsSeasonExtension
             ProjectCarsLiveFrame.Content = _projectCarsLiveView;
 
             _seasonEditor = new SeasonEditor(DataView);
-            _seasonEditor.SeasonChanged += UpdateAllUIs;
+            _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
         }
 
@@ -80,15 +80,15 @@ namespace ProjectCarsSeasonExtension
             if (!wasDataAdded)
                 return;
 
-            UpdateAllUIs();
+            UpdateAllUIs(challengeResult.ToString());
 
             SaveData();
         }
 
-        private void UpdateAllUIs()
+        private void UpdateAllUIs(string challengeResultTrackLocationAndVariant = null)
         {
             _allChallengeStandings.UpdateUI();
-            _seasonView.UpdateUI();
+            _seasonView.UpdateUI(challengeResultTrackLocationAndVariant);
             _championshipView.UpdateUI();
         }
 

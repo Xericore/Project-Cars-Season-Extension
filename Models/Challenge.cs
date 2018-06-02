@@ -11,9 +11,7 @@
 
         public override bool Equals(object obj)
         {
-            var challenge = obj as Challenge;
-            return challenge != null &&
-                   Id == challenge.Id;
+            return obj is Challenge challenge && Id == challenge.Id;
         }
 
         public override int GetHashCode()
