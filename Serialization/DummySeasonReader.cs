@@ -47,7 +47,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                 {
                     Id = 1,
                     CarName = "250cc Superkart",
-                    TrackName = "Azure Circuit",
+                    TrackName = "Azure Circuit Grand Prix",
                     Difficulty = Difficulty.Hard,
                     Description = "Get as close to the walls as possible!"
                 },
@@ -55,7 +55,7 @@ namespace ProjectCarsSeasonExtension.Serialization
                 {
                     Id = 2,
                     CarName = "Formula Golf 1000",
-                    TrackName = "Dubai National",
+                    TrackName = "Dubai Autodrome National",
                     Difficulty = Difficulty.Easy,
                     Description = "Ideal to begin your racing career!"
                 },
@@ -117,25 +117,25 @@ namespace ProjectCarsSeasonExtension.Serialization
                 {
                     PlayerId = 0,
                     ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,32,567)
+                    FastestLap = new TimeSpan(0,0,1,42,567)
                 },
                 new PlayerResult
                 {
                     PlayerId = 1,
                     ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,32,117)
+                    FastestLap = new TimeSpan(0,0,1,42,117)
                 },
                 new PlayerResult
                 {
                     PlayerId = 2,
                     ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,34,892)
+                    FastestLap = new TimeSpan(0,0,1,44,892)
                 },
                 new PlayerResult
                 {
                     PlayerId = 3,
                     ChallengeId = 1,
-                    FastestLap = new TimeSpan(0,0,1,31,007)
+                    FastestLap = new TimeSpan(0,0,1,41,007)
                 },
                 new PlayerResult
                 {

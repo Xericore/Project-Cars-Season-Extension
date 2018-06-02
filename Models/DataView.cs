@@ -48,10 +48,10 @@ namespace ProjectCarsSeasonExtension.Models
             AllChallenges.Remove(challenge);
         }
 
-        public void AddChallengeResult(int playerId, ChallengeResult challengeResult)
+        public bool AddChallengeResult(int playerId, ChallengeResult challengeResult)
         {
             if (DateTime.Now > CurrentSeason.EndDate)
-                return;
+                return false;
 
             Challenge foundChallenge = CurrentSeason.Challenges.FirstOrDefault
             (
@@ -60,7 +60,7 @@ namespace ProjectCarsSeasonExtension.Models
             );
 
             if (foundChallenge == null)
-                return;
+                return false;
 
             PlayerResult foundPlayerResult = PlayerResults.FirstOrDefault(p => p.ChallengeId == foundChallenge.Id && p.PlayerId == playerId);
 
@@ -78,6 +78,8 @@ namespace ProjectCarsSeasonExtension.Models
                 if (challengeResult.LastValidLapTime < foundPlayerResult.FastestLap)
                     foundPlayerResult.FastestLap = challengeResult.LastValidLapTime;
             }
+
+            return true;
         }
     }
 }

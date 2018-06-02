@@ -75,7 +75,10 @@ namespace ProjectCarsSeasonExtension
             if (_playerController?.SelectedPlayer == null)
                 return;
 
-            DataView?.AddChallengeResult(_playerController.SelectedPlayer.Id, challengeResult);
+            var wasDataAdded = DataView.AddChallengeResult(_playerController.SelectedPlayer.Id, challengeResult);
+
+            if (!wasDataAdded)
+                return;
 
             UpdateAllUIs();
 
