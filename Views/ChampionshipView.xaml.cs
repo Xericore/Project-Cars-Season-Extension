@@ -59,9 +59,22 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void GenerateChallengeColumns()
         {
+            ChampionshipDataGrid.Columns.Clear();
+
+            var playerColumn = new DataGridTextColumn
+            {
+                Header = "Player",
+                Binding = new Binding($"Player.Name")
+            };
+
+            ChampionshipDataGrid.Columns.Add(playerColumn);
+
             int challengeCount = 0;
             foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings.Values)
             {
+                if (!_dataView.CurrentSeason.ContainsChallenge(challengeStanding.Challenge.Id))
+                    continue;
+
                 var column = new DataGridTextColumn
                 {
                     Header = challengeStanding.Challenge.Name,
@@ -89,6 +102,7 @@ namespace ProjectCarsSeasonExtension.Views
         public void UpdateUI()
         {
             CreateChampionshipStandings();
+            GenerateChallengeColumns();
             OnPropertyChanged(nameof(ChampionshipStandings));
         }
 

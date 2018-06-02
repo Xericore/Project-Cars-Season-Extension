@@ -18,8 +18,13 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
         private void CreateChallengeStandings()
         {
+            ChallengeStandings.Clear();
+
             foreach (PlayerResult playerResult in _dataView.PlayerResults)
             {
+                if (!_dataView.CurrentSeason.ContainsChallenge(playerResult.ChallengeId))
+                    continue;
+
                 if (!ChallengeStandings.ContainsKey(playerResult.ChallengeId))
                 {
                     Challenge challenge = _dataView.GetChallengeById(playerResult.ChallengeId);

@@ -17,6 +17,8 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event Action SeasonChanged;
+
         public ObservableCollection<Challenge> AllChallenges => _dataView.AllChallenges;
 
         public ObservableCollection<Challenge> FilteredChallenges { get; set; } = new ObservableCollection<Challenge>();
@@ -54,6 +56,8 @@ namespace ProjectCarsSeasonExtension.Views
                 if (!SelectedSeason.ContainsChallenge(challenge.Id))                        
                     FilteredChallenges.Add(challenge);
             }
+
+            SeasonChanged?.Invoke();
         }
 
         private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -154,7 +158,7 @@ namespace ProjectCarsSeasonExtension.Views
             switch (messageBoxResult)
             {
                 case MessageBoxResult.Yes:
-                    AllChallenges.Remove(SelectedChallenge);
+                    _dataView.RemoveChallenge(SelectedChallenge);
                     SelectedChallenge = AllChallenges.FirstOrDefault();
                     OnPropertyChanged(nameof(SelectedChallenge));
                     break;

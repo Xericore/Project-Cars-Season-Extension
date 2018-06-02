@@ -43,6 +43,11 @@ namespace ProjectCarsSeasonExtension.Models
             AllChallenges.Add(challenge);
         }
 
+        public void RemoveChallenge(Challenge challenge)
+        {
+            AllChallenges.Remove(challenge);
+        }
+
         public void AddChallengeResult(int playerId, ChallengeResult challengeResult)
         {
             if (DateTime.Now > CurrentSeason.EndDate)

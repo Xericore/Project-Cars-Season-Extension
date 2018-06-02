@@ -60,6 +60,7 @@ namespace ProjectCarsSeasonExtension
             ProjectCarsLiveFrame.Content = _projectCarsLiveView;
 
             _seasonEditor = new SeasonEditor(DataView);
+            _seasonEditor.SeasonChanged += UpdateAllUIs;
             SeasonEditorFrame.Content = _seasonEditor;
         }
 
@@ -76,11 +77,16 @@ namespace ProjectCarsSeasonExtension
 
             DataView?.AddChallengeResult(_playerController.SelectedPlayer.Id, challengeResult);
 
+            UpdateAllUIs();
+
+            SaveData();
+        }
+
+        private void UpdateAllUIs()
+        {
             _allChallengeStandings.UpdateUI();
             _seasonView.UpdateUI();
             _championshipView.UpdateUI();
-
-            SaveData();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
