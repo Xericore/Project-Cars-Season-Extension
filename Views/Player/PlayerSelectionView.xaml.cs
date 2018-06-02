@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
-using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -32,7 +27,7 @@ namespace ProjectCarsSeasonExtension.Views
             if (!(sender is Button button))
                 return;
 
-            if (!(button.DataContext is Player player))
+            if (!(button.DataContext is Models.Player.Player player))
                 return;
 
             bool isNewPlayerClicked = player.Id == -1;
@@ -55,9 +50,11 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (dialogResult != true || string.IsNullOrEmpty(newPlayerWindow.NewPlayer.Name)) return;
 
-            Player newPlayer = new Player
+            var newPlayer = new Models.Player.Player()
             {
-                Name = newPlayerWindow.NewPlayer.Name
+                Name = newPlayerWindow.NewPlayer.Name,
+                PasswordHash = newPlayerWindow.NewPlayer.PasswordHash,
+                PasswordSalt = newPlayerWindow.NewPlayer.PasswordSalt
             };
 
             PlayerController.AddPlayer(newPlayer);
