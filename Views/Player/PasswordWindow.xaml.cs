@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Windows;
+using System.Windows.Media;
 using ProjectCarsSeasonExtension.Annotations;
 
 namespace ProjectCarsSeasonExtension.Views.Player
@@ -29,10 +30,15 @@ namespace ProjectCarsSeasonExtension.Views.Player
         private readonly Models.Player.Player _player;
         private bool _isValidationPassed;
 
+        private readonly Brush _originalPasswordBackground;
+        private readonly Brush _validationErrorBackground = Brushes.Salmon;
+
         public PasswordWindow(Models.Player.Player player)
         {
             _player = player;
             InitializeComponent();
+
+            _originalPasswordBackground = PasswordBox.Background;
 
             PasswordBox.Focus();
             IsValidationPassed = false;
@@ -41,6 +47,8 @@ namespace ProjectCarsSeasonExtension.Views.Player
         private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             IsValidationPassed = !string.IsNullOrEmpty(PasswordBox.Password);
+
+            PasswordBox.Background = _isValidationPassed ? _originalPasswordBackground : _validationErrorBackground;
         }
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
@@ -58,7 +66,9 @@ namespace ProjectCarsSeasonExtension.Views.Player
             {
                 if (hashBytes[i + 16] != hash[i])
                 {
-                    DialogResult = false;
+                    PasswordBox.Focus();
+                    PasswordBox.SelectAll();
+                    PasswordBox.Background = _validationErrorBackground;
                     return;
                 }
             }
