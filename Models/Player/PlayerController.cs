@@ -1,10 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace ProjectCarsSeasonExtension.Models.Player
 {
     public class PlayerController : BaseModel
     {
+        public event Action PlayerSelectionChanged; 
+
         public ObservableCollection<Player> Players { get; set; }
 
         public Player SelectedPlayer
@@ -18,6 +21,7 @@ namespace ProjectCarsSeasonExtension.Models.Player
             {
                 _selectedPlayer = value;
                 OnPropertyChanged();
+                PlayerSelectionChanged?.Invoke();
             }
         }
 

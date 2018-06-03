@@ -70,6 +70,7 @@
     <Compile Include="Models\ChallengeResult.cs" />
     <Compile Include="Models\DataView.cs" />
     <Compile Include="Models\Difficulty.cs" />
+    <Compile Include="Models\Player\AuthenticationGroup.cs" />
     <Compile Include="Models\Player\PlayerController.cs" />
     <Compile Include="Models\Player\PlayerHandicap.cs" />
     <Compile Include="Models\Player\Player.cs" />

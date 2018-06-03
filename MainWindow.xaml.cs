@@ -17,6 +17,8 @@ namespace ProjectCarsSeasonExtension
     /// </summary>
     public partial class MainWindow : Window
     {
+        public DataView DataView { get; private set; }
+
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
         private ProjectCarsLiveView _projectCarsLiveView;
         private PlayerController _playerController;
@@ -24,8 +26,6 @@ namespace ProjectCarsSeasonExtension
         private AllChallengeStandings _allChallengeStandings;
         private ChampionshipView _championshipView;
         private SeasonEditor _seasonEditor;
-
-        public DataView DataView { get; private set; }
 
         public MainWindow()
         {
@@ -46,6 +46,7 @@ namespace ProjectCarsSeasonExtension
         {
             _allChallengeStandings = new AllChallengeStandings(DataView);
             _playerController = new PlayerController(DataView.Players);
+            _playerController.PlayerSelectionChanged += ShowOrHideTabs;
 
             PlayerSelectionFrame.Content = new PlayerSelection(_playerController);
 
@@ -62,6 +63,18 @@ namespace ProjectCarsSeasonExtension
             _seasonEditor = new SeasonEditor(DataView);
             _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
+        }
+
+        public void ShowOrHideTabs()
+        {
+            if (_playerController.SelectedPlayer?.Group < AuthenticationGroup.Moderator)
+            {
+                SeasonEditorTab.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                SeasonEditorTab.Visibility = Visibility.Visible;
+            }
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
