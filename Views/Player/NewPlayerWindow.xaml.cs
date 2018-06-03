@@ -4,8 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using ProjectCarsSeasonExtension.Annotations;
-using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Views.Player;
 
@@ -19,18 +19,50 @@ namespace ProjectCarsSeasonExtension.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         public NewPlayer NewPlayer { get; set; }
-        
-        private bool _isValidationPassed;
 
-        public bool IsValidationPassed
+        public bool IsNameValidationPassed
         {
-            get => _isValidationPassed;
+            get => _isNameValidationPassed;
             set
             {
-                _isValidationPassed = value;
+                _isNameValidationPassed = value;
                 OnPropertyChanged();
             }
         }
+
+        public bool IsPasswordValidationPassed
+        {
+            get => _isPasswordValidationPassed;
+            set
+            {
+                _isPasswordValidationPassed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool AreAllValidationsPassed => IsNameValidationPassed && IsPasswordValidationPassed;
+
+        public bool UsePassword
+        {
+            get => _usePassword;
+            set
+            {
+                _usePassword = value;
+                if (!_usePassword)
+                {
+                    PasswordBoxFirst.Clear();
+                    PasswordBoxRepeated.Clear();
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        private readonly Brush _passwordWrongBackground = Brushes.Salmon;
+        private readonly Brush _passwordOriginalBackground;
+
+        private bool _isNameValidationPassed;
+        private bool _isPasswordValidationPassed = true;
+        private bool _usePassword;
 
         public NewPlayerWindow(PlayerController playerController)
         {
@@ -38,13 +70,15 @@ namespace ProjectCarsSeasonExtension.Views
             NewPlayer = new NewPlayer(alreadyPresentPlayers);
 
             InitializeComponent();
-            
+
+            _passwordOriginalBackground = PasswordBoxFirst.Background;
+
             TextBoxNewPlayerName.Focus();
         }
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TextBoxPassword.Text))
+            if (!string.IsNullOrEmpty(PasswordBoxFirst.Password))
             {
                 SetPasswordSaltAndHash();
             }
@@ -57,7 +91,7 @@ namespace ProjectCarsSeasonExtension.Views
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(TextBoxPassword.Text, salt, 10000);
+            var pbkdf2 = new Rfc2898DeriveBytes(PasswordBoxFirst.Password, salt, 10000);
             byte[] hash = pbkdf2.GetBytes(20);
 
             byte[] hashBytes = new byte[36];
@@ -68,9 +102,19 @@ namespace ProjectCarsSeasonExtension.Views
             NewPlayer.PasswordHash = Convert.ToBase64String(hashBytes);            
         }
 
-        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        private void NameValidation_Error(object sender, ValidationErrorEventArgs e)
         {
-            IsValidationPassed = e.Action != ValidationErrorEventAction.Added;
+            IsNameValidationPassed = e.Action != ValidationErrorEventAction.Added;
+            OnPropertyChanged(nameof(AreAllValidationsPassed));
+        }
+
+        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            IsPasswordValidationPassed = PasswordBoxFirst.Password == PasswordBoxRepeated.Password;
+
+            PasswordBoxRepeated.Background = !IsPasswordValidationPassed ? _passwordWrongBackground : _passwordOriginalBackground;
+
+            OnPropertyChanged(nameof(AreAllValidationsPassed));
         }
 
         [NotifyPropertyChangedInvocator]

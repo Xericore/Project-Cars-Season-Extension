@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
         mc:Ignorable="d"
-        Title="Add new player" Height="232" Width="320" Topmost="True" 
+        Title="Add new player" Height="280" Width="320" Topmost="True" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
@@ -13,40 +13,54 @@
             <RowDefinition/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
-            <RowDefinition Height="48"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Margin="5" Source="../../Assets/helmet.png"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="64"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Name:" VerticalAlignment="Center"/>
             <TextBox x:Name="TextBoxNewPlayerName" Margin="5" Grid.Column="1" 
                      ToolTip="Enter your player name here." TabIndex="0" 
-                     Validation.Error="Validation_Error"
+                     Validation.Error="NameValidation_Error"
                      Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=NewPlayer.Name,
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" />
         </Grid>
 
-        <Grid Grid.Row="2">
+        <CheckBox Grid.Row="2" Margin="5" Content="Use Password:" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+
+        <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="64"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Password:" VerticalAlignment="Center"/>
-            <TextBox x:Name="TextBoxPassword" Margin="5" Grid.Column="1" 
-                     ToolTip="Enter your password here." TabIndex="1" />
+            <PasswordBox x:Name="PasswordBoxFirst" Margin="5" Grid.Column="1" 
+                     ToolTip="Enter your password here." TabIndex="1" PasswordChanged="PasswordBox_OnPasswordChanged" />
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="5" Text="Repeat Password:" VerticalAlignment="Center"/>
+            <PasswordBox x:Name="PasswordBoxRepeated" Margin="5" Grid.Column="1" 
+                     ToolTip="Repeat your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" />
+        </Grid>
+
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Margin="5" IsDefault="True" Content="OK" Click="OK_OnClick" IsEnabled="{Binding Path=IsValidationPassed, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Margin="5" IsDefault="True" Content="OK" Click="OK_OnClick" IsEnabled="{Binding Path=AreAllValidationsPassed, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Margin="5" Grid.Column="1" IsCancel="True" Content="Cancel"/>
         </Grid>
     </Grid>
