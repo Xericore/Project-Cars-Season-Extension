@@ -67,14 +67,9 @@ namespace ProjectCarsSeasonExtension
 
         public void ShowOrHideTabs()
         {
-            if (_playerController.SelectedPlayer?.Group < AuthenticationGroup.Moderator)
-            {
-                SeasonEditorTab.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                SeasonEditorTab.Visibility = Visibility.Visible;
-            }
+            AuthenticationGroup? group = _playerController.SelectedPlayer?.Group;
+            SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Hidden : Visibility.Visible;
+            ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Hidden : Visibility.Visible;
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)

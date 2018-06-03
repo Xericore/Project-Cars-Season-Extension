@@ -33,7 +33,7 @@
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" />
         </Grid>
 
-        <CheckBox Grid.Row="2" Margin="5" Content="Use Password:" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+        <CheckBox Grid.Row="2" Margin="5" Content="Enable optional password:" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
 
         <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Password:" VerticalAlignment="Center"/>
             <PasswordBox x:Name="PasswordBoxFirst" Margin="5" Grid.Column="1" 
-                     ToolTip="Enter your password here." TabIndex="1" PasswordChanged="PasswordBox_OnPasswordChanged" />
+                     ToolTip="Enter your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" />
         </Grid>
 
         <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
@@ -50,9 +50,9 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="5" Text="Repeat Password:" VerticalAlignment="Center"/>
+            <TextBlock Margin="5" Text="Repeat password:" VerticalAlignment="Center"/>
             <PasswordBox x:Name="PasswordBoxRepeated" Margin="5" Grid.Column="1" 
-                     ToolTip="Repeat your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" />
+                     ToolTip="Repeat your password here." TabIndex="3" PasswordChanged="PasswordBox_OnPasswordChanged" />
         </Grid>
 
         <Grid Grid.Row="5">
@@ -60,7 +60,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Margin="5" IsDefault="True" Content="OK" Click="OK_OnClick" IsEnabled="{Binding Path=AreAllValidationsPassed, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Margin="5" IsDefault="True" Content="OK"  TabIndex="4" Click="OK_OnClick" IsEnabled="{Binding Path=AreAllValidationsPassed, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Margin="5" Grid.Column="1" IsCancel="True" Content="Cancel"/>
         </Grid>
     </Grid>
