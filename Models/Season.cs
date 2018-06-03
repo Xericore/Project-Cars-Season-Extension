@@ -18,7 +18,7 @@ namespace ProjectCarsSeasonExtension.Models
         public List<int> ChallengeIds = new List<int>();
 
         [XmlIgnore]
-        private ObservableCollection<Challenge> _challenges;
+        private ObservableCollection<Challenge> _challenges = new ObservableCollection<Challenge>();
 
         [XmlIgnore]
         public ObservableCollection<Challenge> Challenges

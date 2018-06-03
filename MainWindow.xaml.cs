@@ -38,7 +38,7 @@ namespace ProjectCarsSeasonExtension
 
         private void ReadSeasonData()
         {
-            ISeasonReader seasonReader = new DummySeasonReader();
+            ISeasonReader seasonReader = new XmlSeasonReader();
             DataView = new DataView(seasonReader);
         }
 

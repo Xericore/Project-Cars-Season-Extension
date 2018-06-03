@@ -101,6 +101,9 @@
     <Compile Include="Views\Player\NewPlayerWindow.xaml.cs">
       <DependentUpon>NewPlayerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Player\PasswordWindow.xaml.cs">
+      <DependentUpon>PasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Player\PlayerSelectionView.xaml.cs">
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Player\NewPlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Player\PasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

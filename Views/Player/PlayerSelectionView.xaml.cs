@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
+using ProjectCarsSeasonExtension.Views.Player;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -31,10 +32,15 @@ namespace ProjectCarsSeasonExtension.Views
                 return;
 
             bool isNewPlayerClicked = player.Id == -1;
+            bool doesPlayerHavePassword = !string.IsNullOrEmpty(player.PasswordHash);
 
             if (isNewPlayerClicked)
             {
                 ShowAndHandleNewPlayerWindow();
+            }
+            else if (doesPlayerHavePassword)
+            {
+                ShowAndHandlePlayerPassword(player);
             }
             else
             {
@@ -59,6 +65,15 @@ namespace ProjectCarsSeasonExtension.Views
 
             PlayerController.AddPlayer(newPlayer);
             OnPropertyChanged(nameof(PlayerController));
+        }
+
+        private void ShowAndHandlePlayerPassword(Models.Player.Player player)
+        {
+            var passwordWindow = new PasswordWindow(player);
+
+            var dialogResult = passwordWindow.ShowDialog();
+
+            PlayerController.SelectedPlayer = dialogResult == true ? player : null;
         }
 
         [NotifyPropertyChangedInvocator]
