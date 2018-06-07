@@ -2,8 +2,10 @@
 using ProjectCarsSeasonExtension.Views;
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
@@ -15,9 +17,30 @@ namespace ProjectCarsSeasonExtension
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public DataView DataView { get; private set; }
+
+        public string CurrentlyLoggedInPlayerName
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_playerController?.SelectedPlayer?.Name))
+                    return _playerController.SelectedPlayer.Name;
+
+                return _currentlyLoggedInPlayerName;
+            }
+            set
+            {
+                _currentlyLoggedInPlayerName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private const string NoPlayerText = "No player";
+        private string _currentlyLoggedInPlayerName = NoPlayerText;
 
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
         private ProjectCarsLiveView _projectCarsLiveView;
@@ -26,6 +49,7 @@ namespace ProjectCarsSeasonExtension
         private AllChallengeStandings _allChallengeStandings;
         private ChampionshipView _championshipView;
         private SeasonEditor _seasonEditor;
+        
 
         public MainWindow()
         {
@@ -47,7 +71,7 @@ namespace ProjectCarsSeasonExtension
         {
             _allChallengeStandings = new AllChallengeStandings(DataView);
             _playerController = new PlayerController(DataView.Players);
-            _playerController.PlayerSelectionChanged += ShowOrHideTabs;
+            _playerController.PlayerSelectionChanged += OnPlayerSelectionChanged;
 
             PlayerSelectionFrame.Content = new PlayerSelection(_playerController);
 
@@ -64,6 +88,20 @@ namespace ProjectCarsSeasonExtension
             _seasonEditor = new SeasonEditor(DataView);
             _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
+        }
+
+        private void OnPlayerSelectionChanged()
+        {
+            UpdateCurrentlySelectedPlayerForTabHeader();
+            ShowOrHideTabs();
+        }
+
+        private void UpdateCurrentlySelectedPlayerForTabHeader()
+        {
+            if (_playerController.SelectedPlayer == null)
+                CurrentlyLoggedInPlayerName = NoPlayerText;
+            else
+                CurrentlyLoggedInPlayerName = _playerController.SelectedPlayer.Name;
         }
 
         public void ShowOrHideTabs()
@@ -125,6 +163,12 @@ namespace ProjectCarsSeasonExtension
         private static void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

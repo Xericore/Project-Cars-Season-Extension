@@ -11,8 +11,9 @@
         Icon="./Assets/Project Cars.png" Opacity="0.85"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
+        TextElement.FontSize="16"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
 
     <TabControl x:Name="MainTabControl" BorderThickness="0" Background="Transparent">
@@ -33,7 +34,6 @@
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
                                     <Setter TargetName="Panel" Property="Background" Value="Transparent" />
-                                    
                                 </Trigger>
                                 <Trigger Property="IsSelected" Value="False">
                                     <Setter TargetName="Panel" Property="Background" Value="LightGray" />
@@ -48,7 +48,7 @@
             </Style>
         </TabControl.Resources>
 
-        <TabItem Name="PlayerSelectionTab" Header="Player Selection">
+        <TabItem Name="PlayerSelectionTab" Header="{Binding Path=CurrentlyLoggedInPlayerName}">
             <Frame Name="PlayerSelectionFrame"/>
         </TabItem>
 
