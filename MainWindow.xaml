@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectCarsSeasonExtension"
         mc:Ignorable="d"
         Title="Project Cars Season Extension" Height="800" Width="1280"
         Initialized="Window_Initialized"
@@ -16,33 +15,40 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
 
-    <TabControl BorderThickness="0" Background="Transparent" >
+    <TabControl x:Name="MainTabControl" BorderThickness="0" Background="Transparent">
 
-            <TabControl.Resources>
-                <Style TargetType="TabItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                                <Grid Name="Panel">
-                                    <ContentPresenter x:Name="ContentSite" 
-                                                      VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                      ContentSource="Header" Margin="20"/>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Panel" Property="Background" Value="Transparent" />
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="Panel" Property="Background" Value="LightGray" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.Resources>
+        <TabControl.Resources>
 
-            <TabItem Name="PlayerSelectionTab" Header="Player Selection">
+            <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+
+            <Style TargetType="TabItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Grid Name="Panel">
+                                <ContentPresenter x:Name="ContentSite" 
+                                                  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                  ContentSource="Header"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Panel" Property="Background" Value="Transparent" />
+                                    
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter TargetName="Panel" Property="Background" Value="LightGray" />
+                                    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="MinWidth" Value="200"/>
+                <Setter Property="Height" Value="64"/>
+            </Style>
+        </TabControl.Resources>
+
+        <TabItem Name="PlayerSelectionTab" Header="Player Selection">
             <Frame Name="PlayerSelectionFrame"/>
         </TabItem>
 
