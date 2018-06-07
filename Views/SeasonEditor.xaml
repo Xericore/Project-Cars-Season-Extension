@@ -27,7 +27,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ComboBox Name="ChallengesComboBox"  ItemsSource="{Binding AllChallenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
+        <ComboBox Name="ChallengesComboBox" ItemsSource="{Binding AllChallenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
         
         <Button Grid.Row="1" Grid.Column="0" Content="Add Challenge" Click="ButtonAddChallenge_OnClick"/>
         <Button Grid.Row="2" Grid.Column="0" Content="Remove Challenge" Click="ButtonRemoveChallenge_OnClick"/>

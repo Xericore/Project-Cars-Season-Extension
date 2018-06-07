@@ -32,6 +32,7 @@ namespace ProjectCarsSeasonExtension
             ReadSeasonData();
 
             InitializeComponent();
+
             _closeApplicationCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(_closeApplicationCommand, CloseApplication_Executed));
         }
