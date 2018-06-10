@@ -17,7 +17,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600">
 
-    <TabControl x:Name="MainTabControl" BorderThickness="0" Background="Transparent">
+    <TabControl x:Name="MainTabControl" BorderThickness="0" Background="Transparent" HorizontalAlignment="Center">
 
         <TabControl.Resources>
 

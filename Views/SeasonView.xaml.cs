@@ -43,13 +43,28 @@ namespace ProjectCarsSeasonExtension.Views
         {
             foreach(var challengeView in ChallengeViews)
             {
-                TabItem tabItem = new TabItem { Header = challengeView.ChallengeStanding.Challenge.Name };
+                string headerText = CreateChallengeTabHeader(challengeView);
+
+                TabItem tabItem = new TabItem { Header = headerText };
 
                 Frame contentFrame = new Frame { Content = challengeView };
                 tabItem.Content = contentFrame;
 
                 ChallengesTabControl.Items.Add(tabItem);
             }
+        }
+
+        private static string CreateChallengeTabHeader(ChallengeView challengeView)
+        {
+            string headerText = challengeView.ChallengeStanding.Challenge.Name;
+            string[] split = headerText.Split('/');
+
+            if (split.Length >= 2)
+            {
+                headerText = split[0].Trim() + "\r\n" + split[1].Trim();
+            }
+
+            return headerText;
         }
 
         public void UpdateUI(string challengeToString = null)
