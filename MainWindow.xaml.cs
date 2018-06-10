@@ -51,7 +51,8 @@ namespace ProjectCarsSeasonExtension
         private AllChallengeStandings _allChallengeStandings;
         private ChampionshipView _championshipView;
         private SeasonEditor _seasonEditor;
-        
+        private int _visibleTabItemsCount;
+
 
         public MainWindow()
         {
@@ -91,19 +92,22 @@ namespace ProjectCarsSeasonExtension
             _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
 
+            _visibleTabItemsCount = MainTabControl.Items.Cast<TabItem>().Count(item => item.Visibility == Visibility.Visible);
+        }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
             UpdateTabWidths();
         }
 
         private void UpdateTabWidths()
         {
-            float visibleTabItemsCount = MainTabControl.Items.Cast<TabItem>().Count(item => item.Visibility == Visibility.Visible);
-
-            if (visibleTabItemsCount <= 0)
+            if (_visibleTabItemsCount <= 0)
                 return;
 
-            var extraMargin = CalculateExtraMargin(visibleTabItemsCount);
+            var extraMargin = CalculateExtraMargin(_visibleTabItemsCount);
 
-            var newWidth = (Width / visibleTabItemsCount) - extraMargin;
+            var newWidth = (ActualWidth / _visibleTabItemsCount) - extraMargin;
 
             foreach (TabItem tabItem in MainTabControl.Items)
             {
@@ -113,8 +117,9 @@ namespace ProjectCarsSeasonExtension
 
         private static float CalculateExtraMargin(float visibleTabItemsCount)
         {
+            // The fewer tabs are visible, the more margin we need. I also don't know why.
             if(visibleTabItemsCount > 0)
-                return (1/visibleTabItemsCount) * 20;
+                return (1/visibleTabItemsCount) * 19;
 
             return 0;
         }
@@ -139,6 +144,8 @@ namespace ProjectCarsSeasonExtension
             AuthenticationGroup? group = _playerController.SelectedPlayer?.Group;
             SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Collapsed : Visibility.Visible;
             ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Collapsed : Visibility.Visible;
+
+            _visibleTabItemsCount = MainTabControl.Items.Cast<TabItem>().Count(item => item.Visibility == Visibility.Visible);
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
