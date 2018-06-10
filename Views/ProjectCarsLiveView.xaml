@@ -9,17 +9,17 @@
       Title="ProjectCarsLiveView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid>
-        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5,0,0,0" >
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5" >
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Track Location:" />
+                <TextBlock Text="Track Location: " />
                 <TextBlock Text="{Binding ProjectCarsData.TrackLocation}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Track Variant:" />
+                <TextBlock Text="Track Variant: " />
                 <TextBlock Text="{Binding ProjectCarsData.TrackVariant}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Car Name:" />
+                <TextBlock Text="Car Name: " />
                 <TextBlock Text="{Binding ProjectCarsData.CarName}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -27,11 +27,11 @@
                 <TextBlock Text="{Binding ProjectCarsData.CarClassName}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Last Lap Time:" />
+                <TextBlock Text="Last Lap Time: " />
                 <TextBlock Text="{Binding ProjectCarsData.LastLapTime}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Lap Invalidated:" />
+                <TextBlock Text="Lap Invalidated: " />
                 <TextBlock Text="{Binding ProjectCarsData.LapInvalidated}" />
             </StackPanel>
         </StackPanel>

@@ -22,7 +22,6 @@ namespace ProjectCarsSeasonExtension.Serialization
         public void SaveSeasons(IEnumerable<Season> seasons)
         {
             SerializeList(seasons, FileLocations.SeasonFileUri);
-
         }
 
         public void SavePlayerResults(IEnumerable<PlayerResult> playerResults)
@@ -37,6 +36,9 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         private static void SerializeList<T>(IEnumerable<T> enumerableToSerialize, string fileName)
         {
+            if (enumerableToSerialize == null)
+                return;
+
             var xmlSerializer = new XmlSerializer(typeof(List<T>));
 
             CreateDirectoryIfMissing(fileName);

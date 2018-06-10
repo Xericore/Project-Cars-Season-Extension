@@ -29,6 +29,9 @@ namespace ProjectCarsSeasonExtension.Models.Player
 
         public PlayerController(ObservableCollection<Player> players)
         {
+            if(players.Count <= 0)
+                players.Add(new Player { Id = -1, Name = "New player" });
+
             Players = players;
         }
 

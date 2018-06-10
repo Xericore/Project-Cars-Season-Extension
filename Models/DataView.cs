@@ -19,7 +19,8 @@ namespace ProjectCarsSeasonExtension.Models
         public DataView(ISeasonReader seasonReader)
         {            
             Seasons = seasonReader.GetSeasons();
-            CurrentSeason = Seasons.First();
+            if(Seasons.Count > 0)
+                CurrentSeason = Seasons.First();
             AllChallenges = seasonReader.GetChallenges();
             PlayerResults = seasonReader.GetPlayerResults();
             Players = seasonReader.GetPlayers();
