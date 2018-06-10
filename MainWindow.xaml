@@ -51,19 +51,43 @@
             </Style>
         </TabControl.Resources>
 
-        <TabItem Name="ChampionshipTab" Header="Championship">
+        <TabItem Name="ChampionshipTab">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="36" Width="auto" Source="Assets/Track.png" />
+                    <TextBlock Text="Championship" Margin="5,0,0,0" VerticalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
             <Frame Name="PlayerResultsFrame"/>
         </TabItem>
 
-        <TabItem Name="SeasonTab" Header="Season">
+        <TabItem Name="SeasonTab">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="36" Width="auto" Source="Assets/Track.png" />
+                    <TextBlock Text="Season" Margin="5,0,0,0" VerticalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
             <Frame Name="SeasonViewFrame"/>
         </TabItem>
 
-        <TabItem Name="ProjectCarsLiveTab" Header="Project Cars Live">
+        <TabItem Name="ProjectCarsLiveTab">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="36" Width="auto" Source="Assets/Project Cars.png" />
+                    <TextBlock Text="Project Cars Live" Margin="5,0,0,0" VerticalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
             <Frame Name="ProjectCarsLiveFrame"/>
         </TabItem>
 
-        <TabItem Name="SeasonEditorTab" Header="Season Editor">
+        <TabItem Name="SeasonEditorTab">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="36" Width="auto" Source="Assets/Car.png" />
+                    <TextBlock Text="Season Editor" Margin="5,0,0,0" VerticalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
             <Frame Name="SeasonEditorFrame"/>
         </TabItem>
 
