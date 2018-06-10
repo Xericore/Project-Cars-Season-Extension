@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace ProjectCarsSeasonExtension.Converters
 {
-    public class RowToPositionConverter : MarkupExtension, IValueConverter
+    public class RowToPositionConverter : IValueConverter
     {
-        static RowToPositionConverter converter;
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is DataGridRow row)
@@ -20,12 +17,6 @@ namespace ProjectCarsSeasonExtension.Converters
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            if (converter == null) converter = new RowToPositionConverter();
-            return converter;
         }
     }
 }
