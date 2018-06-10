@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Data;
 using ProjectCarsSeasonExtension.Annotations;
+using ProjectCarsSeasonExtension.Converters;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
@@ -61,13 +62,8 @@ namespace ProjectCarsSeasonExtension.Views
         {
             ChampionshipDataGrid.Columns.Clear();
 
-            var playerColumn = new DataGridTextColumn
-            {
-                Header = "Player",
-                Binding = new Binding("Player.Name")
-            };
-
-            ChampionshipDataGrid.Columns.Add(playerColumn);
+            CreatePositionColumn();
+            CreatePlayerColumn();
 
             int challengeCount = 0;
             foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings.Values)
@@ -86,6 +82,32 @@ namespace ProjectCarsSeasonExtension.Views
             }
 
             GenerateTotalPointsColumn();
+        }
+        
+        private void CreatePositionColumn()
+        {
+            DataGridTextColumn column0 = new DataGridTextColumn {Header = "Pos."};
+
+            Binding bindingColumn0 = new Binding
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(DataGridRow), 1),
+                Converter = new RowToPositionConverter()
+            };
+
+            column0.Binding = bindingColumn0;
+            
+            ChampionshipDataGrid.Columns.Add(column0);
+        }
+
+        private void CreatePlayerColumn()
+        {
+            var playerColumn = new DataGridTextColumn
+            {
+                Header = "Player",
+                Binding = new Binding("Player.Name")
+            };
+
+            ChampionshipDataGrid.Columns.Add(playerColumn);
         }
 
         private void GenerateTotalPointsColumn()
