@@ -77,7 +77,7 @@ namespace ProjectCarsSeasonExtension.Views
 
                 var column = new DataGridTextColumn
                 {
-                    Header = challengeStanding.Challenge.Name,
+                    Header = UiUtils.CreateChallengeTabHeaderText(challengeStanding.Challenge.Name),
                     Binding = new Binding($"ChallengePoints[{challengeCount}]")
                 };
 

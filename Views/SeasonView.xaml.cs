@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
+using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -43,7 +44,7 @@ namespace ProjectCarsSeasonExtension.Views
         {
             foreach(var challengeView in ChallengeViews)
             {
-                string headerText = CreateChallengeTabHeader(challengeView);
+                string headerText = UiUtils.CreateChallengeTabHeaderText(challengeView.ChallengeStanding.Challenge.Name);
 
                 TabItem tabItem = new TabItem { Header = headerText };
 
@@ -52,19 +53,6 @@ namespace ProjectCarsSeasonExtension.Views
 
                 ChallengesTabControl.Items.Add(tabItem);
             }
-        }
-
-        private static string CreateChallengeTabHeader(ChallengeView challengeView)
-        {
-            string headerText = challengeView.ChallengeStanding.Challenge.Name;
-            string[] split = headerText.Split('/');
-
-            if (split.Length >= 2)
-            {
-                headerText = split[0].Trim() + "\r\n" + split[1].Trim();
-            }
-
-            return headerText;
         }
 
         public void UpdateUI(string challengeToString = null)
