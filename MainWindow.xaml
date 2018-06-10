@@ -67,7 +67,13 @@
             <Frame Name="SeasonEditorFrame"/>
         </TabItem>
 
-        <TabItem Name="PlayerSelectionTab" Header="{Binding Path=CurrentlyLoggedInPlayerName}" IsSelected="True">
+        <TabItem Name="PlayerSelectionTab" IsSelected="True">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="36" Width="auto" Source="Assets/helmet.png" />
+                    <TextBlock Text="{Binding Path=CurrentlyLoggedInPlayerName}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                </StackPanel>
+            </TabItem.Header>
             <Frame Name="PlayerSelectionFrame"/>
         </TabItem>
 
