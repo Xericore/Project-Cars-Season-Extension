@@ -109,8 +109,9 @@ namespace ProjectCarsSeasonExtension
 
             var newWidth = (ActualWidth / _visibleTabItemsCount) - extraMargin;
 
-            foreach (TabItem tabItem in MainTabControl.Items)
+            for (var i = 0; i < MainTabControl.Items.Count; i++)
             {
+                var tabItem = (TabItem) MainTabControl.Items[i];
                 tabItem.Width = newWidth;
             }
         }
@@ -206,6 +207,11 @@ namespace ProjectCarsSeasonExtension
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateTabWidths();
         }
     }
 }

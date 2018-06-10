@@ -15,7 +15,7 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Window.Loaded="MainWindow_OnLoaded">
+        Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600">
 
     <TabControl x:Name="MainTabControl" BorderThickness="0" Background="Transparent">
 
@@ -51,10 +51,6 @@
             </Style>
         </TabControl.Resources>
 
-        <TabItem Name="PlayerSelectionTab" Header="{Binding Path=CurrentlyLoggedInPlayerName}">
-            <Frame Name="PlayerSelectionFrame"/>
-        </TabItem>
-
         <TabItem Name="ChampionshipTab" Header="Championship">
             <Frame Name="PlayerResultsFrame"/>
         </TabItem>
@@ -69,6 +65,10 @@
 
         <TabItem Name="SeasonEditorTab" Header="Season Editor">
             <Frame Name="SeasonEditorFrame"/>
+        </TabItem>
+
+        <TabItem Name="PlayerSelectionTab" Header="{Binding Path=CurrentlyLoggedInPlayerName}" IsSelected="True">
+            <Frame Name="PlayerSelectionFrame"/>
         </TabItem>
 
     </TabControl>
