@@ -39,6 +39,19 @@ namespace ProjectCarsSeasonExtension.ViewModels
                     SetChallengeStanding(playerResult, foundPlayer);
                 }
             }
+
+            AddChallengeStandingsWithoutPlayerResults();
+        }
+
+        private void AddChallengeStandingsWithoutPlayerResults()
+        {
+            foreach (var currentSeasonChallengeId in _dataView.CurrentSeason.ChallengeIds)
+            {
+                if (!ChallengeStandings.ContainsKey(currentSeasonChallengeId))
+                {
+                    ChallengeStandings.Add(currentSeasonChallengeId, new ChallengeStanding(_dataView.CurrentSeason.GetChallengeById(currentSeasonChallengeId)));
+                }
+            }
         }
 
         private void SetChallengeStanding(PlayerResult playerResult, Player foundPlayer)
