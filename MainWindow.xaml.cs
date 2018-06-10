@@ -2,8 +2,10 @@
 using ProjectCarsSeasonExtension.Views;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
@@ -88,12 +90,40 @@ namespace ProjectCarsSeasonExtension
             _seasonEditor = new SeasonEditor(DataView);
             _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
+
+            UpdateTabWidths();
+        }
+
+        private void UpdateTabWidths()
+        {
+            float visibleTabItemsCount = MainTabControl.Items.Cast<TabItem>().Count(item => item.Visibility == Visibility.Visible);
+
+            if (visibleTabItemsCount <= 0)
+                return;
+
+            var extraMargin = CalculateExtraMargin(visibleTabItemsCount);
+
+            var newWidth = (Width / visibleTabItemsCount) - extraMargin;
+
+            foreach (TabItem tabItem in MainTabControl.Items)
+            {
+                tabItem.Width = newWidth;
+            }
+        }
+
+        private static float CalculateExtraMargin(float visibleTabItemsCount)
+        {
+            if(visibleTabItemsCount > 0)
+                return (1/visibleTabItemsCount) * 20;
+
+            return 0;
         }
 
         private void OnPlayerSelectionChanged()
         {
             UpdateCurrentlySelectedPlayerForTabHeader();
             ShowOrHideTabs();
+            UpdateTabWidths();
         }
 
         private void UpdateCurrentlySelectedPlayerForTabHeader()
@@ -107,8 +137,8 @@ namespace ProjectCarsSeasonExtension
         public void ShowOrHideTabs()
         {
             AuthenticationGroup? group = _playerController.SelectedPlayer?.Group;
-            SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Hidden : Visibility.Visible;
-            ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Hidden : Visibility.Visible;
+            SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Collapsed : Visibility.Visible;
+            ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
