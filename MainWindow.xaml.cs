@@ -97,7 +97,7 @@ namespace ProjectCarsSeasonExtension
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateTabWidths();
+            OnPlayerSelectionChanged();
         }
 
         private void UpdateTabWidths()
@@ -143,6 +143,10 @@ namespace ProjectCarsSeasonExtension
         public void ShowOrHideTabs()
         {
             AuthenticationGroup? group = _playerController.SelectedPlayer?.Group;
+
+            if (_playerController.SelectedPlayer == null)
+                group = AuthenticationGroup.User;
+
             SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Collapsed : Visibility.Visible;
             ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Collapsed : Visibility.Visible;
 
