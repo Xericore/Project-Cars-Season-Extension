@@ -58,7 +58,7 @@
                     <TextBlock Text="Championship" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <Frame Name="PlayerResultsFrame"/>
+            <Frame Name="ChampionshipFrame" HorizontalAlignment="Center"/>
         </TabItem>
 
         <TabItem Name="SeasonTab">
@@ -68,7 +68,7 @@
                     <TextBlock Text="Season" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
-            <Frame Name="SeasonViewFrame"/>
+            <Frame Name="SeasonViewFrame" HorizontalAlignment="Center"/>
         </TabItem>
 
         <TabItem Name="ProjectCarsLiveTab">

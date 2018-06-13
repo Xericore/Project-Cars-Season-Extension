@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Utils;
@@ -48,7 +49,12 @@ namespace ProjectCarsSeasonExtension.Views
 
                 TabItem tabItem = new TabItem { Header = headerText };
 
-                Frame contentFrame = new Frame { Content = challengeView };
+                Frame contentFrame = new Frame
+                {
+                    Content = challengeView,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Width = 640
+                };
                 tabItem.Content = contentFrame;
 
                 ChallengesTabControl.Items.Add(tabItem);

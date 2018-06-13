@@ -7,12 +7,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChampionshipView"
-      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="16"
+      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
 
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
               CanUserResizeColumns="False" SelectionMode="Single" IsHitTestVisible="False">
+
+        <DataGrid.Resources>
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Padding" Value="10,20"/>
+            </Style>            
+            <Style TargetType="DataGridRow">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Height" Value="64"/>
+            </Style>
+        </DataGrid.Resources>
+
         <DataGrid.Columns>
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
         </DataGrid.Columns>
