@@ -120,7 +120,7 @@ namespace ProjectCarsSeasonExtension
         {
             // The fewer tabs are visible, the more margin we need. I also don't know why.
             if(visibleTabItemsCount > 0)
-                return (1/visibleTabItemsCount) * 19;
+                return (1/visibleTabItemsCount) * 22;
 
             return 0;
         }
