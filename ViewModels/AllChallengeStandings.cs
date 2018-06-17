@@ -45,6 +45,9 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
         private void AddChallengeStandingsWithoutPlayerResults()
         {
+            if (_dataView.CurrentSeason == null)
+                return;
+
             foreach (var currentSeasonChallengeId in _dataView.CurrentSeason.ChallengeIds)
             {
                 if (!ChallengeStandings.ContainsKey(currentSeasonChallengeId))
