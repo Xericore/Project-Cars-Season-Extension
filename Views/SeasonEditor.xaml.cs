@@ -170,11 +170,37 @@ namespace ProjectCarsSeasonExtension.Views
             var newSeasonWindow = new NewSeasonWindow();
             var dialogResult = newSeasonWindow.ShowDialog();
             if (dialogResult != true) return;
+
+            var newSeason = new Season
+            {
+                Name = newSeasonWindow.NewSeason.Name,
+                Description = newSeasonWindow.NewSeason.Description,
+                StartDate = newSeasonWindow.NewSeason.StartDate,
+                EndDate = newSeasonWindow.NewSeason.EndDate
+            };
+
+            _dataView.AddSeason(newSeason);
+            SelectedSeason = Seasons.FirstOrDefault(s => s.Name == newSeason.Name);
+            OnPropertyChanged(nameof(SelectedSeason));
+            SeasonComboBox.SelectedItem = SelectedSeason;
         }
 
         private void ButtonRemoveSeason_OnClick(object sender, RoutedEventArgs e)
         {
+            string messageBoxText = $"Do you really want to delete {SeasonComboBox.SelectedItem}?";
+            const string caption = "Season Editor";
 
+            var messageBoxResult = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            switch (messageBoxResult)
+            {
+                case MessageBoxResult.Yes:
+                    _dataView.RemoveSeason(SelectedSeason);
+                    SelectedSeason = Seasons.FirstOrDefault();
+                    OnPropertyChanged(nameof(SelectedSeason));
+                    SeasonComboBox.SelectedItem = SelectedSeason;
+                    break;
+            }
         }
     }
 }

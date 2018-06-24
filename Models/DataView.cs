@@ -36,16 +36,18 @@ namespace ProjectCarsSeasonExtension.Models
 
         public void AddSeason(Season newSeason)
         {
-            int maxSeasonId = Seasons.Max(s => s.Id);
-            newSeason.Id = maxSeasonId + 1;
+            int maxSeasonId = 0;
+            if (Seasons.Count > 0)
+            {
+                maxSeasonId = Seasons.Max(s => s.Id) + 1;
+            }
+            newSeason.Id = maxSeasonId;
             Seasons?.Add(newSeason);
         }
 
-        public void RemoveSeason(int seasonId)
+        public void RemoveSeason(Season season)
         {
-            Season foundSeason = Seasons.FirstOrDefault(s => s.Id == seasonId);
-            if(foundSeason != null)
-                Seasons?.Remove(foundSeason);
+            Seasons?.Remove(season);
         }
 
         public Challenge GetChallengeById(int challengeId)
