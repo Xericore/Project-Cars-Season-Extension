@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
         mc:Ignorable="d"
-        Title="Add new player" Height="280" Width="320" Topmost="True" 
+        Title="Add new player" Height="280" Width="340" Topmost="True" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -27,7 +27,7 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Name:" VerticalAlignment="Center"/>
@@ -42,7 +42,7 @@
 
         <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Password:" VerticalAlignment="Center"/>
@@ -52,7 +52,7 @@
 
         <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Repeat password:" VerticalAlignment="Center"/>
