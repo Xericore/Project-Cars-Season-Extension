@@ -150,7 +150,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ButtonRemoveChallenge_OnClick(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = $"Do you really want to delete {ChallengesComboBox.SelectedItem}? This might affect seasons.";
+            string messageBoxText = $"Do you really want to delete \"{ChallengesComboBox.SelectedItem}\"? This might affect current seasons and results.";
             const string caption = "Season Editor";
 
             var messageBoxResult = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -187,7 +187,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ButtonRemoveSeason_OnClick(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = $"Do you really want to delete {SeasonComboBox.SelectedItem}?";
+            string messageBoxText = $"Do you really want to delete season \"{SeasonComboBox.SelectedItem}\"?";
             const string caption = "Season Editor";
 
             var messageBoxResult = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);

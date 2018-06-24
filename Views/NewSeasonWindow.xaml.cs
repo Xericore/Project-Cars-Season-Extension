@@ -32,9 +32,9 @@ namespace ProjectCarsSeasonExtension.Views
         public NewSeasonWindow()
         {
             InitializeComponent();
-
+            
             StartDatePicker.SelectedDate = DateTime.Today;
-            EndDatePicker.SelectedDate = DateTime.Today + new TimeSpan(1, 0, 0, 0);
+            EndDatePicker.SelectedDate = DateTime.Today + new TimeSpan(7, 0, 0, 0);
 
             TextBoxNewSeasonName.Focus();
         }
@@ -57,8 +57,19 @@ namespace ProjectCarsSeasonExtension.Views
             DialogResult = true;
         }
 
-        private void DatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void StartDatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (StartDatePicker?.SelectedDate > EndDatePicker?.SelectedDate)
+                EndDatePicker.SelectedDate = StartDatePicker.SelectedDate + new TimeSpan(1, 0, 0, 0);
+
+            UpdateValidation();
+        }
+
+        private void EndDatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (StartDatePicker?.SelectedDate > EndDatePicker?.SelectedDate)
+                StartDatePicker.SelectedDate = EndDatePicker.SelectedDate - new TimeSpan(1, 0, 0, 0);
+
             UpdateValidation();
         }
 
@@ -72,5 +83,7 @@ namespace ProjectCarsSeasonExtension.Views
         {
             UpdateValidation();
         }
+
+
     }
 }

@@ -56,7 +56,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="Start Date:" VerticalAlignment="Center"/>
-            <DatePicker Name="StartDatePicker" Grid.Column="1" Margin="5" SelectedDate="{Binding NewSeason.StartDate}" SelectedDateChanged="DatePicker_OnSelectedDateChanged"/>
+            <DatePicker Name="StartDatePicker" Grid.Column="1" Margin="5" SelectedDate="{Binding NewSeason.StartDate}" SelectedDateChanged="StartDatePicker_OnSelectedDateChanged"/>
         </Grid>
 
         <Grid Grid.Row="3">
@@ -65,7 +65,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Margin="5" Text="End Date:" VerticalAlignment="Center"/>
-            <DatePicker Name="EndDatePicker" Grid.Column="1" Margin="5" SelectedDate="{Binding NewSeason.EndDate}" SelectedDateChanged="DatePicker_OnSelectedDateChanged"/>
+            <DatePicker Name="EndDatePicker" Grid.Column="1" Margin="5" SelectedDate="{Binding NewSeason.EndDate}" SelectedDateChanged="EndDatePicker_OnSelectedDateChanged"/>
         </Grid>
 
         <Grid Grid.Row="4">
