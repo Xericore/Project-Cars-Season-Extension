@@ -14,7 +14,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600">
 
     <TabControl x:Name="MainTabControl" BorderThickness="0" Background="Transparent" HorizontalAlignment="Center">
