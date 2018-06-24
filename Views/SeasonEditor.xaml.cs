@@ -164,5 +164,17 @@ namespace ProjectCarsSeasonExtension.Views
                     break;
             }
         }
+
+        private void ButtonAddSeason_OnClick(object sender, RoutedEventArgs e)
+        {
+            var newSeasonWindow = new NewSeasonWindow();
+            var dialogResult = newSeasonWindow.ShowDialog();
+            if (dialogResult != true) return;
+        }
+
+        private void ButtonRemoveSeason_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

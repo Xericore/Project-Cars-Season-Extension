@@ -111,6 +111,9 @@
     <Compile Include="Views\NewChallengeWindow.xaml.cs">
       <DependentUpon>NewChallengeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewSeasonWindow.xaml.cs">
+      <DependentUpon>NewSeasonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Player\NewPlayer.cs" />
     <Compile Include="Views\Player\NewPlayerWindow.xaml.cs">
       <DependentUpon>NewPlayerWindow.xaml</DependentUpon>
@@ -154,6 +157,10 @@
     <Page Include="Views\NewChallengeWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewSeasonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Player\NewPlayerWindow.xaml">
       <SubType>Designer</SubType>

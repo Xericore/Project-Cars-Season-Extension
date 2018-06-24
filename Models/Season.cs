@@ -9,11 +9,11 @@ namespace ProjectCarsSeasonExtension.Models
     [Serializable]
     public class Season : BaseModel
     {
-        public int Id;
-        public DateTime StartDate;
-        public DateTime EndDate;
-        public string Name;
-        public string Description;
+        public int Id { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
         public List<int> ChallengeIds = new List<int>();
 
