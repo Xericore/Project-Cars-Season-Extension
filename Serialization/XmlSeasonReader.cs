@@ -13,7 +13,7 @@ namespace ProjectCarsSeasonExtension.Serialization
         {
             var seasons = GetObservableCollectionFromFile<Season>(FileLocations.SeasonFileUri);
 
-            var challenges = GetObservableCollectionFromFile<Challenge>(FileLocations.ChallangeFileUri);
+            var challenges = GetObservableCollectionFromFile<Challenge>(FileLocations.ChallengeFileUri);
 
             foreach (var season in seasons)
             {
@@ -29,7 +29,7 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public ObservableCollection<Challenge> GetChallenges()
         {
-            return GetObservableCollectionFromFile<Challenge>(FileLocations.ChallangeFileUri);
+            return GetObservableCollectionFromFile<Challenge>(FileLocations.ChallengeFileUri);
         }
 
         public ObservableCollection<Player> GetPlayers()

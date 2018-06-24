@@ -24,17 +24,40 @@ namespace ProjectCarsSeasonExtension.Models
         public ObservableCollection<Challenge> Challenges
         {
             get => _challenges;
-            set
+            set => _challenges = value;
+        }
+
+        public void AddChallenge(Challenge challenge)
+        {
+            if (Challenges.Contains(challenge))
+                return;
+
+            Challenge newChallenge = new Challenge
             {
-                _challenges = value;
+                Id = challenge.Id,
+                TrackName = challenge.TrackName,
+                CarName = challenge.CarName,
+                Description = challenge.Description,
+                Difficulty = challenge.Difficulty
+            };
+            Challenges.Add(newChallenge);
+            UpdateChallengeIds();
+        }
 
-                ChallengeIds.Clear();
+        private void UpdateChallengeIds()
+        {
+            ChallengeIds.Clear();
 
-                foreach (var challenge in _challenges)
-                {
-                    ChallengeIds.Add(challenge.Id);
-                }
+            foreach (var challenge in _challenges)
+            {
+                ChallengeIds.Add(challenge.Id);
             }
+        }
+
+        public void RemoveChallenge(Challenge selectedSeasonChallenge)
+        {
+            Challenges.Remove(selectedSeasonChallenge);
+            UpdateChallengeIds();
         }
 
         public Challenge GetChallengeById(int challengeId)

@@ -16,7 +16,7 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public void SaveChallenges(IEnumerable<Challenge> challenges)
         {
-            SerializeList(challenges, FileLocations.ChallangeFileUri);
+            SerializeList(challenges, FileLocations.ChallengeFileUri);
         }
 
         public void SaveSeasons(IEnumerable<Season> seasons)

@@ -37,12 +37,12 @@ namespace ProjectCarsSeasonExtension.Views
         {
             _dataView = dataView;
 
-            UpdateFilteredChallenges();
-
             InitializeComponent();
 
             ChallengesComboBox.SelectedIndex = 0;
             SeasonComboBox.SelectedIndex = 0;
+
+            UpdateFilteredChallenges();
         }
 
         private void UpdateFilteredChallenges()
@@ -106,14 +106,14 @@ namespace ProjectCarsSeasonExtension.Views
             if (_selectedFromAllChallenge == null || SelectedSeason.ContainsChallenge(_selectedFromAllChallenge.Id))
                 return;
 
-            SelectedSeason.Challenges.Add(_selectedFromAllChallenge);
+            SelectedSeason.AddChallenge(_selectedFromAllChallenge);
 
             UpdateFilteredChallenges();
         }
 
         private void ButtonRemove_OnClick(object sender, RoutedEventArgs e)
         {
-            SelectedSeason.Challenges.Remove(_selectedSeasonChallenge);
+            SelectedSeason.RemoveChallenge(_selectedSeasonChallenge);
 
             UpdateFilteredChallenges();
         }

@@ -192,7 +192,7 @@ namespace ProjectCarsSeasonExtension
             ISeasonWriter seasonWriter = new XmlSeasonWriter();
             seasonWriter.SavePlayers(DataView.Players);
             seasonWriter.SaveSeasons(DataView.Seasons);
-            seasonWriter.SaveChallenges(DataView.CurrentSeason?.Challenges);
+            seasonWriter.SaveChallenges(DataView.AllChallenges);
             seasonWriter.SavePlayerResults(DataView.PlayerResults);
             seasonWriter.SaveHandicaps(DataView.Handicaps);
         }
