@@ -132,9 +132,14 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (dialogResult != true) return;
 
+            int maxChallengeId = 0;
+
+            if(_dataView.AllChallenges.Count > 0)
+                maxChallengeId = _dataView.AllChallenges.Max(c => c.Id) + 1;
+
             Challenge newChallenge = new Challenge
             {
-                Id = _dataView.AllChallenges.Max(c => c.Id) + 1,
+                Id = maxChallengeId,
                 TrackName = newChallengeWindow.NewChallenge.TrackName,
                 CarName = newChallengeWindow.NewChallenge.CarName,
                 Description = newChallengeWindow.NewChallenge.Description,
