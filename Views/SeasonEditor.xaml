@@ -14,6 +14,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
             <RowDefinition/>
             <RowDefinition Height="10"/>
             <RowDefinition/>
@@ -24,8 +25,18 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Text="Currently active Season"/>
+            <ComboBox Name="CurrentlyActiveSeasonSelector" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Width="180"
+                      Margin="10" ItemsSource="{Binding Seasons}" SelectionChanged="CurrentlyActiveSeasonSelector_OnSelectionChanged"/>
+        </Grid>
 
-        <Grid Margin="5">
+        <Grid Grid.Row="1" Grid.Column="0" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -65,7 +76,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2" Margin="0,0,5,0">
+        <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,5,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="5*"/>
@@ -109,9 +120,9 @@
 
         </Grid>
         
-        <Separator Grid.Row="1" Grid.ColumnSpan="3"/>
+        <Separator Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" />
 
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Properties;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -40,7 +41,9 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
 
             ChallengesComboBox.SelectedIndex = 0;
-            SeasonComboBox.SelectedIndex = 0;
+            
+            CurrentlyActiveSeasonSelector.SelectedItem = _dataView.CurrentSeason;
+            SeasonComboBox.SelectedItem = _dataView.CurrentSeason;
 
             UpdateFilteredChallenges();
         }
@@ -206,6 +209,18 @@ namespace ProjectCarsSeasonExtension.Views
                     SeasonComboBox.SelectedItem = SelectedSeason;
                     break;
             }
+        }
+
+        private void CurrentlyActiveSeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count < 0)
+                return;
+
+            if (!(e.AddedItems[0] is Season selectedSeason))
+                return;
+
+            Settings.Default.CurrentSeasonId = selectedSeason.Id;
+            Settings.Default.Save();
         }
     }
 }

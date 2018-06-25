@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using ProjectCarsSeasonExtension.Models.Player;
+using ProjectCarsSeasonExtension.Properties;
 using ProjectCarsSeasonExtension.Serialization;
 
 namespace ProjectCarsSeasonExtension.Models
@@ -19,8 +20,8 @@ namespace ProjectCarsSeasonExtension.Models
         public DataView(ISeasonReader seasonReader)
         {            
             Seasons = seasonReader.GetSeasons();
-            if(Seasons.Count > 0)
-                CurrentSeason = Seasons.First();
+            if (Seasons.Count > Settings.Default.CurrentSeasonId)
+                CurrentSeason = Seasons[Settings.Default.CurrentSeasonId];
             AllChallenges = seasonReader.GetChallenges();
             PlayerResults = seasonReader.GetPlayerResults();
             Players = seasonReader.GetPlayers();
