@@ -21,15 +21,15 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick">
+                        <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick" >
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
-                                    <RowDefinition Height="16" />
+                                    <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
-                                <Image Grid.Row="0" Height="64"
+                                <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom"
                                        Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
-                                <TextBlock Grid.Row="1" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Button>
                     </DataTemplate>
