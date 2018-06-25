@@ -65,7 +65,7 @@
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <Image Height="36" Width="auto" Source="Assets/Track.png" />
-                    <TextBlock Text="Season" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    <TextBlock Text="Races" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
             <Frame Name="SeasonViewFrame" HorizontalAlignment="Center"/>
