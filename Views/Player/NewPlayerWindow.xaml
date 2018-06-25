@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
         mc:Ignorable="d"
-        Title="Add new player" Height="280" Width="340" Topmost="True" 
+        Title="Add new player" Height="320" Width="320" Topmost="True" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -13,41 +13,42 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Margin="5" Source="../../Assets/helmet.png"/>
+        <Image Grid.Row="0" Margin="10" Source="../../Assets/helmet.png"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="5" Text="Name:" VerticalAlignment="Center"/>
-            <TextBox x:Name="TextBoxNewPlayerName" Margin="5" Grid.Column="1" 
+            <TextBlock Text="Name" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="TextBoxNewPlayerName" Grid.Column="1" 
                      ToolTip="Enter your player name here." TabIndex="0" 
                      Validation.Error="NameValidation_Error"
                      Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=NewPlayer.Name,
-                ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" />
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" VerticalAlignment="Bottom" />
         </Grid>
 
-        <CheckBox Grid.Row="2" Margin="5" Content="Enable optional password:" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+        <CheckBox Grid.Row="2" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
 
         <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="5" Text="Password:" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="PasswordBoxFirst" Margin="5" Grid.Column="1" 
-                     ToolTip="Enter your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" />
+            <TextBlock Text="Password" VerticalAlignment="Bottom" />
+            <PasswordBox x:Name="PasswordBoxFirst" Grid.Column="1" 
+                     ToolTip="Enter your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" VerticalAlignment="Bottom" />
         </Grid>
 
         <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
@@ -55,18 +56,19 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="5" Text="Repeat password:" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="PasswordBoxRepeated" Margin="5" Grid.Column="1" 
-                     ToolTip="Repeat your password here." TabIndex="3" PasswordChanged="PasswordBox_OnPasswordChanged" />
+            <TextBlock Text="Repeat password" VerticalAlignment="Bottom" />
+            <PasswordBox x:Name="PasswordBoxRepeated" Grid.Column="1" 
+                     ToolTip="Repeat your password here." TabIndex="3" PasswordChanged="PasswordBox_OnPasswordChanged" VerticalAlignment="Bottom" />
         </Grid>
 
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Margin="5" IsDefault="True" Content="OK"  TabIndex="4" Click="OK_OnClick" IsEnabled="{Binding Path=AreAllValidationsPassed, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Margin="5" Grid.Column="1" IsCancel="True" Content="Cancel"/>
+            <Button IsDefault="True" Content="OK"  TabIndex="4" Click="OK_OnClick" IsEnabled="{Binding Path=AreAllValidationsPassed, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="2" IsCancel="True" Content="Cancel"/>
         </Grid>
     </Grid>
 </Window>
