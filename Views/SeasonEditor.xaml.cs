@@ -41,7 +41,8 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
 
             ChallengesComboBox.SelectedIndex = 0;
-            
+            DifficultySelector.SelectedItem = SelectedChallenge?.Difficulty;
+
             CurrentlyActiveSeasonSelector.SelectedItem = _dataView.CurrentSeason;
             SeasonComboBox.SelectedItem = _dataView.CurrentSeason;
 
@@ -88,7 +89,8 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 SelectedChallenge = e.AddedItems[0] as Challenge;
             }
-            
+
+            DifficultySelector.SelectedItem = SelectedChallenge?.Difficulty;
             OnPropertyChanged(nameof(SelectedChallenge));
         }
 
@@ -221,6 +223,12 @@ namespace ProjectCarsSeasonExtension.Views
 
             Settings.Default.CurrentSeasonId = selectedSeason.Id;
             Settings.Default.Save();
+        }
+
+        private void DifficultySelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItem = e.AddedItems[0];
+            SelectedChallenge.Difficulty = (Difficulty)selectedItem;
         }
     }
 }

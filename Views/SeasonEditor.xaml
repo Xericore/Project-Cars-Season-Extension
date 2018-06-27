@@ -5,12 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:models="clr-namespace:ProjectCarsSeasonExtension.Models"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SeasonEditor" DataContext="{Binding RelativeSource={RelativeSource Self}}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="16"
       FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Page.Resources>
+        <ObjectDataProvider x:Key="DataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Difficulty"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -116,7 +127,7 @@
             <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedChallenge.Description, Mode=TwoWay}" VerticalAlignment="Center"/>
 
             <TextBlock Grid.Row="5" Grid.Column="0" Text="Difficulty" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedChallenge.Difficulty, Mode=TwoWay}" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" Name="DifficultySelector" ItemsSource="{Binding Source={StaticResource DataFromEnum}}" SelectionChanged="DifficultySelector_OnSelectionChanged"/>
 
         </Grid>
         

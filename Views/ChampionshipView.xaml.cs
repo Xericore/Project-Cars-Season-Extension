@@ -75,10 +75,9 @@ namespace ProjectCarsSeasonExtension.Views
                 var column = new DataGridTextColumn
                 {
                     Header = UiUtils.GetTrackImage(challengeStanding.Challenge),
-                    Width = 64,
+                    Width = 128,
                     Binding = new Binding($"ChallengePoints[{challengeCount}]")
                 };
-
 
                 ChampionshipDataGrid.Columns.Add(column);
                 challengeCount++;
