@@ -3,11 +3,13 @@ using pCarsAPI_Demo;
 
 namespace ProjectCarsSeasonExtension.Models
 {
-    public struct ChallengeResult
+    public class ChallengeResult
     {
         public string TrackLocationAndVariant { get; set; }
         public string CarName { get; set; }
         public TimeSpan LastValidLapTime { get; set; }
+
+        public ChallengeResult() { }
 
         public ChallengeResult(pCarsDataClass projectCarsData)
         {

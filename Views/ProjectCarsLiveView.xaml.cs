@@ -1,8 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using pCarsAPI_Demo;
+using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -10,8 +13,10 @@ namespace ProjectCarsSeasonExtension.Views
     /// <summary>
     /// Interaction logic for ProjectCarsLiveView.xaml
     /// </summary>
-    public partial class ProjectCarsLiveView : Page
+    public partial class ProjectCarsLiveView : Page, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public event Action<ChallengeResult> ChallengeResultEvent;
 
         public pCarsDataClass ProjectCarsData { get; set; } = new pCarsDataClass();
@@ -25,14 +30,19 @@ namespace ProjectCarsSeasonExtension.Views
         {
             InitializeComponent();
 
+            var dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
+            dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
+            dispatchTimer.Start();
+        }
+
+        private void ProjectCarsLiveView_OnLoaded(object sender, RoutedEventArgs e)
+        {
             FakeChallengeResult = new ChallengeResult
             {
                 LastValidLapTime = new TimeSpan(0, 0, 1, 10, 123)
             };
 
-            var dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
-            dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
-            dispatchTimer.Start();
+            OnPropertyChanged(nameof(FakeChallengeResult));
         }
 
         private void ProjectCarsCarsDataGetterLoop(object sender, EventArgs e)
@@ -95,15 +105,13 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void SimulateResult_OnClick(object sender, RoutedEventArgs e)
         {
-            var challengeResult = new ChallengeResult
-            {
-                CarName = "Formula A",
-                TrackLocationAndVariant = "Barcelona",
-                LastValidLapTime = new TimeSpan(0, 0, 10, 0)
-            };
+            ChallengeResultEvent?.Invoke(FakeChallengeResult);
+        }
 
-            ChallengeResultEvent?.Invoke(challengeResult);
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }

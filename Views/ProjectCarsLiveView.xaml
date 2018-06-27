@@ -7,7 +7,8 @@
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProjectCarsLiveView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+      Title="ProjectCarsLiveView" DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      Loaded="ProjectCarsLiveView_OnLoaded">
 
 <Page.Resources>
     <GridLength x:Key="RowHeight">64</GridLength>
