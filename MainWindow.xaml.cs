@@ -84,7 +84,7 @@ namespace ProjectCarsSeasonExtension
             _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings.Values);
             SeasonViewFrame.Content = _seasonView;
 
-            _projectCarsLiveView = new ProjectCarsLiveView();
+            _projectCarsLiveView = new ProjectCarsLiveView(DataView);
             _projectCarsLiveView.ChallengeResultEvent += OnChallengeResultEvent;
             ProjectCarsLiveFrame.Content = _projectCarsLiveView;
 

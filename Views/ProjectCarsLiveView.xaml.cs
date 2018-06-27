@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -23,12 +24,18 @@ namespace ProjectCarsSeasonExtension.Views
 
         public ChallengeResult FakeChallengeResult { get; set; }
 
+        public ObservableCollection<string> AllRaceNames { get; set; } = new ObservableCollection<string>();
+
         private float _lastFiredLapTime;
         private bool _wasLastLapValid = true;
 
-        public ProjectCarsLiveView()
+        private readonly DataView _dataView;
+
+        public ProjectCarsLiveView(DataView dataView)
         {
             InitializeComponent();
+
+            _dataView = dataView;
 
             var dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
             dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
@@ -37,12 +44,28 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ProjectCarsLiveView_OnLoaded(object sender, RoutedEventArgs e)
         {
+            InitializeAllRaceNames();
+            InitializeFakeChallengeResult();
+        }
+
+        private void InitializeAllRaceNames()
+        {
+            foreach (var challenge in _dataView.AllChallenges)
+            {
+                AllRaceNames.Add(challenge.Name);
+            }
+        }
+
+        private void InitializeFakeChallengeResult()
+        {
             FakeChallengeResult = new ChallengeResult
             {
                 LastValidLapTime = new TimeSpan(0, 0, 1, 10, 123)
             };
-
+            
             OnPropertyChanged(nameof(FakeChallengeResult));
+
+            RaceNameSelector.SelectedIndex = 0;
         }
 
         private void ProjectCarsCarsDataGetterLoop(object sender, EventArgs e)
@@ -105,7 +128,18 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void SimulateResult_OnClick(object sender, RoutedEventArgs e)
         {
-            ChallengeResultEvent?.Invoke(FakeChallengeResult);
+            try
+            {
+                string[] split = RaceNameSelector.Text.Split('/');
+                FakeChallengeResult.TrackLocationAndVariant = split[0].Trim();
+                FakeChallengeResult.CarName = split[1].Trim();
+
+                ChallengeResultEvent?.Invoke(FakeChallengeResult);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         [NotifyPropertyChangedInvocator]

@@ -50,10 +50,9 @@
 
         <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Width="480">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
@@ -61,15 +60,12 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Track Location and Variant" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FakeChallengeResult.TrackLocationAndVariant}" VerticalAlignment="Center"/>
+            <ComboBox Name="RaceNameSelector" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AllRaceNames}" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Car name" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FakeChallengeResult.CarName}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Time" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FakeChallengeResult.LastValidLapTime}" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Time" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FakeChallengeResult.LastValidLapTime}" VerticalAlignment="Center"/>
-
-            <Button Grid.Row="3" Grid.Column="1" Content="Simulate result" Click="SimulateResult_OnClick" VerticalAlignment="Center"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="Simulate result" Click="SimulateResult_OnClick" VerticalAlignment="Center"/>
 
         </Grid>
     </Grid>
