@@ -1,8 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Converters;
 using ProjectCarsSeasonExtension.Models;
@@ -72,9 +74,11 @@ namespace ProjectCarsSeasonExtension.Views
 
                 var column = new DataGridTextColumn
                 {
-                    Header = UiUtils.CreateChallengeTabHeaderText(challengeStanding.Challenge.Name),
+                    Header = UiUtils.GetTrackImage(challengeStanding.Challenge),
+                    Width = 64,
                     Binding = new Binding($"ChallengePoints[{challengeCount}]")
                 };
+
 
                 ChampionshipDataGrid.Columns.Add(column);
                 challengeCount++;
