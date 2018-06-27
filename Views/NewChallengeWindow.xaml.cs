@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
-using ProjectCarsSeasonExtension.Models.Player;
 
 namespace ProjectCarsSeasonExtension.Views
 {

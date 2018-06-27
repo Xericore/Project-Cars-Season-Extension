@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media.Imaging;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Converters;
 using ProjectCarsSeasonExtension.Models;

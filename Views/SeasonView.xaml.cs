@@ -79,8 +79,11 @@ namespace ProjectCarsSeasonExtension.Views
             headerGrid.Children.Add(trackImage);
 
             string headerText = UiUtils.CreateChallengeTabHeaderText(challengeStandingChallenge.Name);
-            var textBlock = new TextBlock{Text = headerText};
-            textBlock.VerticalAlignment = VerticalAlignment.Center;
+            var textBlock = new TextBlock
+            {
+                Text = headerText,
+                VerticalAlignment = VerticalAlignment.Center
+            };
             Grid.SetColumn(textBlock, 1);
 
             headerGrid.Children.Add(textBlock);

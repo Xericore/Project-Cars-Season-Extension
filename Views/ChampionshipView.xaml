@@ -15,15 +15,15 @@
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
-              CanUserResizeColumns="False" SelectionMode="Single" IsHitTestVisible="False">
+              CanUserResizeColumns="False" SelectionMode="Single" IsHitTestVisible="False" Background="{StaticResource MainBackgroundColor}">
 
         <DataGrid.Resources>
             <Style TargetType="DataGridColumnHeader">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
                 <Setter Property="Padding" Value="10,20"/>
             </Style>            
             <Style TargetType="DataGridRow">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Height" Value="64"/>

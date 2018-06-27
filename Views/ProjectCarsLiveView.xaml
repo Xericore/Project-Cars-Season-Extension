@@ -4,36 +4,72 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProjectCarsLiveView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid>
-        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5" >
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Track Location: " />
-                <TextBlock Text="{Binding ProjectCarsData.TrackLocation}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Track Variant: " />
-                <TextBlock Text="{Binding ProjectCarsData.TrackVariant}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Car Name: " />
-                <TextBlock Text="{Binding ProjectCarsData.CarName}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Car Class:" />
-                <TextBlock Text="{Binding ProjectCarsData.CarClassName}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Last Lap Time: " />
-                <TextBlock Text="{Binding ProjectCarsData.LastLapTime}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Lap Invalidated: " />
-                <TextBlock Text="{Binding ProjectCarsData.LapInvalidated}" />
-            </StackPanel>
-        </StackPanel>
+<Page.Resources>
+    <GridLength x:Key="RowHeight">64</GridLength>
+    </Page.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition Height="{DynamicResource RowHeight}"/>
+            <RowDefinition MinHeight="240"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Track Location: " />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProjectCarsData.TrackLocation}" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Variant: " />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProjectCarsData.TrackVariant}" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Name: " />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProjectCarsData.CarName}" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Car Class:" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProjectCarsData.CarClassName}" />
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Last Lap Time: " />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LastLapTime}" />
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Lap Invalidated: " />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
+
+        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Width="480">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Track Location and Variant" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FakeChallengeResult.TrackLocationAndVariant}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Car name" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FakeChallengeResult.CarName}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Time" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FakeChallengeResult.LastValidLapTime}" VerticalAlignment="Center"/>
+
+            <Button Grid.Row="3" Grid.Column="1" Content="Simulate result" Click="SimulateResult_OnClick" VerticalAlignment="Center"/>
+
+        </Grid>
     </Grid>
 </Page>

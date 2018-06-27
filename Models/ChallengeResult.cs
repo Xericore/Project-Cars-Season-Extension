@@ -5,9 +5,9 @@ namespace ProjectCarsSeasonExtension.Models
 {
     public struct ChallengeResult
     {
-        public string TrackLocationAndVariant;
-        public string CarName;
-        public TimeSpan LastValidLapTime;
+        public string TrackLocationAndVariant { get; set; }
+        public string CarName { get; set; }
+        public TimeSpan LastValidLapTime { get; set; }
 
         public ChallengeResult(pCarsDataClass projectCarsData)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using pCarsAPI_Demo;
@@ -15,13 +16,20 @@ namespace ProjectCarsSeasonExtension.Views
 
         public pCarsDataClass ProjectCarsData { get; set; } = new pCarsDataClass();
 
+        public ChallengeResult FakeChallengeResult { get; set; }
+
         private float _lastFiredLapTime;
         private bool _wasLastLapValid = true;
 
         public ProjectCarsLiveView()
         {
             InitializeComponent();
-            
+
+            FakeChallengeResult = new ChallengeResult
+            {
+                LastValidLapTime = new TimeSpan(0, 0, 1, 10, 123)
+            };
+
             var dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
             dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
             dispatchTimer.Start();
@@ -84,5 +92,18 @@ namespace ProjectCarsSeasonExtension.Views
 
             return isLapFinished && isDataOk;
         }
+
+        private void SimulateResult_OnClick(object sender, RoutedEventArgs e)
+        {
+            var challengeResult = new ChallengeResult
+            {
+                CarName = "Formula A",
+                TrackLocationAndVariant = "Barcelona",
+                LastValidLapTime = new TimeSpan(0, 0, 10, 0)
+            };
+
+            ChallengeResultEvent?.Invoke(challengeResult);
+        }
     }
+
 }

@@ -1,5 +1,4 @@
 ﻿using Ninject.Modules;
-using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Controller
 {
