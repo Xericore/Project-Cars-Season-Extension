@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
+using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
 
@@ -45,9 +46,14 @@ namespace ProjectCarsSeasonExtension.Views
         {
             foreach(var challengeView in ChallengeViews)
             {
-                string headerText = UiUtils.CreateChallengeTabHeaderText(challengeView.ChallengeStanding.Challenge.Name);
+                
 
-                TabItem tabItem = new TabItem { Header = headerText };
+                var headerGrid = GetHeaderGrid(challengeView.ChallengeStanding.Challenge);
+
+                TabItem tabItem = new TabItem
+                {
+                    Header = headerGrid
+                };
 
                 Frame contentFrame = new Frame
                 {
@@ -59,6 +65,27 @@ namespace ProjectCarsSeasonExtension.Views
 
                 ChallengesTabControl.Items.Add(tabItem);
             }
+        }
+
+        private static Grid GetHeaderGrid(Challenge challengeStandingChallenge)
+        {
+            Grid headerGrid = new Grid();
+            headerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            headerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+            Image trackImage = UiUtils.GetTrackImage(challengeStandingChallenge);
+            trackImage.Margin = new Thickness(5);
+
+            headerGrid.Children.Add(trackImage);
+
+            string headerText = UiUtils.CreateChallengeTabHeaderText(challengeStandingChallenge.Name);
+            var textBlock = new TextBlock{Text = headerText};
+            textBlock.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetColumn(textBlock, 1);
+
+            headerGrid.Children.Add(textBlock);
+
+            return headerGrid;
         }
 
         public void UpdateUI(string challengeToString = null)
