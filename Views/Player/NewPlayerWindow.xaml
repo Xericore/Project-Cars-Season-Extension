@@ -34,7 +34,7 @@
             <TextBlock Text="Name" VerticalAlignment="Bottom"/>
             <TextBox x:Name="TextBoxNewPlayerName" Grid.Column="1" 
                      ToolTip="Enter your player name here." TabIndex="0" 
-                     Validation.Error="NameValidation_Error"
+                     Validation.Error="NameValidation_Error" MaxLength="26" MaxLines="1"
                      Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=NewPlayer.Name,
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" VerticalAlignment="Bottom" />
         </Grid>
