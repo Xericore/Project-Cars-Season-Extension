@@ -50,17 +50,24 @@ namespace ProjectCarsSeasonExtension.Views
                 return;
             _wasInitialized = true;
 
-            InitializeAllRaceAndPlayerNameProperties();
+            SetAllRaceNames();
+            SetAllPlayerNames();
             InitializeFakeChallengeResult();
         }
 
-        private void InitializeAllRaceAndPlayerNameProperties()
+        private void SetAllRaceNames()
         {
             foreach (Challenge challenge in _dataView.AllChallenges)
                 AllRaceNames.Add(challenge.Name);
+        }
 
+        private void SetAllPlayerNames()
+        {
             foreach (Models.Player.Player player in _dataView.Players)
-                AllPlayerNames.Add(player.Name);
+            {
+                if (player.Id >= 0)
+                    AllPlayerNames.Add(player.Name);
+            }
         }
 
         private void InitializeFakeChallengeResult()
