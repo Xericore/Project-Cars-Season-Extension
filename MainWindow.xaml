@@ -9,12 +9,17 @@
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
         Icon="./Assets/Project Cars.png"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{StaticResource MainBackgroundColor}"
+        
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="16"
+
+        Background="{StaticResource MainBackgroundColor}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="{StaticResource MainFontWeight}"
+        TextElement.FontSize="{StaticResource MainFontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
+
         Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600" SnapsToDevicePixels="True">
 
     <TabControl x:Name="MainTabControl" BorderThickness="0" HorizontalAlignment="Center">

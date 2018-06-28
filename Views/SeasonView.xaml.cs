@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
@@ -46,8 +47,6 @@ namespace ProjectCarsSeasonExtension.Views
         {
             foreach(var challengeView in ChallengeViews)
             {
-                
-
                 var headerGrid = GetHeaderGrid(challengeView.ChallengeStanding.Challenge);
 
                 TabItem tabItem = new TabItem
