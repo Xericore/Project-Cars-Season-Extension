@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views.Player"
         mc:Ignorable="d"
-        Title="ImageSelectionWindow" Height="480" Width="640" Topmost="True"
+        Title="Choose your player avatar" Height="480" Width="640" Topmost="True"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Background="{StaticResource MainBackgroundColor}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <DockPanel LastChildFill="False">
+    <DockPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Path=Images}">
                 <ItemsControl.ItemsPanel>
