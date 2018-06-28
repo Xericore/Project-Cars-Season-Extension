@@ -86,6 +86,10 @@ namespace ProjectCarsSeasonExtension.Views
         {
             var editPlayerWindow = new PlayerWindow(PlayerController, true);
             var dialogResult = editPlayerWindow.ShowDialog();
+
+            if (dialogResult != true || editPlayerWindow.NewPlayer == null) return;
+
+            PlayerController.SelectedPlayer.AvatarFileName = editPlayerWindow.NewPlayer.AvatarFileName;
         }
     }
 }

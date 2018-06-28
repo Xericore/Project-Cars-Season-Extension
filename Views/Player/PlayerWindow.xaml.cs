@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Windows;
@@ -18,14 +19,26 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public NewPlayer NewPlayer { get; set; }
+        public bool IsInEditMode
+        {
+            get => _isInEditMode;
+            set
+            {
+                _isInEditMode = value;
+                if(TextBoxNewPlayerName != null)
+                    TextBoxNewPlayerName.Visibility = _isInEditMode ? Visibility.Collapsed : Visibility.Visible;
+                OnPropertyChanged();
+            }
+        }
 
+        public NewPlayer NewPlayer { get; set; }
+        
         public bool IsNameValidationPassed
         {
             get => _isNameValidationPassed;
             set
             {
-                _isNameValidationPassed = value;
+                _isNameValidationPassed = value || IsInEditMode;
                 OnPropertyChanged();
             }
         }
@@ -63,17 +76,30 @@ namespace ProjectCarsSeasonExtension.Views
         private bool _isNameValidationPassed;
         private bool _isPasswordValidationPassed = true;
         private bool _usePassword;
+        private bool _isInEditMode;
+
 
         public PlayerWindow(PlayerController playerController, bool isInEditMode = false)
         {
             var alreadyPresentPlayers = playerController.Players;
             NewPlayer = new NewPlayer(alreadyPresentPlayers);
 
+            IsInEditMode = isInEditMode;
+
             InitializeComponent();
 
             _passwordOriginalBackground = PasswordBoxFirst.Background;
 
-            TextBoxNewPlayerName.Focus();
+            if (IsInEditMode)
+            {
+                TextBoxNewPlayerName.IsEnabled = false;
+                ChangeImageButton.Focus();
+                Title = "Edit player";
+            }
+            else
+            {
+                TextBoxNewPlayerName.Focus();
+            }
         }
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
@@ -126,7 +152,12 @@ namespace ProjectCarsSeasonExtension.Views
         private void ChangeImage_OnClick(object sender, RoutedEventArgs e)
         {
             var imageSelectionWindow = new ImageSelectionWindow();
-            imageSelectionWindow.Show();
+            var dialogResult = imageSelectionWindow.ShowDialog();
+
+            if (dialogResult == false || imageSelectionWindow.SelectedImage == null)
+                return;
+
+            NewPlayer.AvatarFileName = Path.GetFileName(imageSelectionWindow.SelectedImage.Source.ToString());
         }
     }
 }

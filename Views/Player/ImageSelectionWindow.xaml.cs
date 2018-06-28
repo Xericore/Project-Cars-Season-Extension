@@ -14,6 +14,8 @@ namespace ProjectCarsSeasonExtension.Views.Player
     {
         public ObservableCollection<SelectableImage> Images { get; set; } = new ObservableCollection<SelectableImage>();
 
+        public Image SelectedImage { get; set; }
+
         private string[] _playerImagePaths;
 
         public ImageSelectionWindow()
@@ -44,12 +46,13 @@ namespace ProjectCarsSeasonExtension.Views.Player
                     Name = Path.GetFileNameWithoutExtension(playerImagePath)
                 });
             }
-
         }
 
         private void ImageSelected_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            var dataContext = (sender as Button)?.DataContext;
+            SelectedImage = (dataContext as SelectableImage)?.Image;
+            DialogResult = true;
         }
     }
 
