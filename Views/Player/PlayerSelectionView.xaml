@@ -11,30 +11,40 @@
         <converters:PlayerIdToImageUriConverter x:Key="PlayerIdToImageSourceConverter" />
     </Page.Resources>
 
-    <DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=PlayerController.Players}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick" >
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition Height="40" />
-                                </Grid.RowDefinitions>
-                                <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom"
-                                       Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
-                                <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button Content="Edit player" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" 
+                IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}" Click="EditPlayer_OnClick"/>
+
+        <DockPanel Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Path=PlayerController.Players}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom"
+                                           Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
+                                    <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
 </Page>

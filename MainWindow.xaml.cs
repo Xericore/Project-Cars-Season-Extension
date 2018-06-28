@@ -45,12 +45,14 @@ namespace ProjectCarsSeasonExtension
         private string _currentlyLoggedInPlayerName = NoPlayerText;
 
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
+
         private ProjectCarsLiveView _projectCarsLiveView;
         private PlayerController _playerController;
         private SeasonView _seasonView;
         private AllChallengeStandings _allChallengeStandings;
         private ChampionshipView _championshipView;
         private SeasonEditor _seasonEditor;
+
         private int _visibleTabItemsCount;
         private bool _wasInitialized;
 

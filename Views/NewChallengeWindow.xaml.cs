@@ -11,7 +11,7 @@ using ProjectCarsSeasonExtension.Models;
 namespace ProjectCarsSeasonExtension.Views
 {
     /// <summary>
-    /// Interaction logic for NewPlayerWindow.xaml
+    /// Interaction logic for PlayerWindow.xaml
     /// </summary>
     public partial class NewChallengeWindow : Window, INotifyPropertyChanged
     {

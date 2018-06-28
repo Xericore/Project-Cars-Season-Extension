@@ -8,7 +8,7 @@
         Initialized="Window_Initialized"
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
-        Icon="./Assets/Project Cars.png"
+        Icon="/Assets/Project Cars.png"
         
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
 

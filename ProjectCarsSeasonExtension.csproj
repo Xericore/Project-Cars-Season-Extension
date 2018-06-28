@@ -120,8 +120,8 @@
       <DependentUpon>NewSeasonWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Player\NewPlayer.cs" />
-    <Compile Include="Views\Player\NewPlayerWindow.xaml.cs">
-      <DependentUpon>NewPlayerWindow.xaml</DependentUpon>
+    <Compile Include="Views\Player\PlayerWindow.xaml.cs">
+      <DependentUpon>PlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Player\PasswordWindow.xaml.cs">
       <DependentUpon>PasswordWindow.xaml</DependentUpon>
@@ -171,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Player\NewPlayerWindow.xaml">
+    <Page Include="Views\Player\PlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

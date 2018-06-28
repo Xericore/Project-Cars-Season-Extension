@@ -50,7 +50,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ShowAndHandleNewPlayerWindow()
         {
-            var newPlayerWindow = new NewPlayerWindow(PlayerController);
+            var newPlayerWindow = new PlayerWindow(PlayerController);
 
             var dialogResult = newPlayerWindow.ShowDialog();
 
@@ -80,6 +80,12 @@ namespace ProjectCarsSeasonExtension.Views
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void EditPlayer_OnClick(object sender, RoutedEventArgs e)
+        {
+            var editPlayerWindow = new PlayerWindow(PlayerController, true);
+            var dialogResult = editPlayerWindow.ShowDialog();
         }
     }
 }

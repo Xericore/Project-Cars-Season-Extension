@@ -10,6 +10,8 @@ namespace ProjectCarsSeasonExtension.Models.Player
 
         public ObservableCollection<Player> Players { get; set; }
 
+        public bool IsAnyPlayerSelected => SelectedPlayer != null;
+
         public Player SelectedPlayer
         {
             get
@@ -21,6 +23,7 @@ namespace ProjectCarsSeasonExtension.Models.Player
             {
                 _selectedPlayer = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsAnyPlayerSelected));
                 PlayerSelectionChanged?.Invoke();
             }
         }

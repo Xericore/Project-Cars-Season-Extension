@@ -12,9 +12,9 @@ using ProjectCarsSeasonExtension.Views.Player;
 namespace ProjectCarsSeasonExtension.Views
 {
     /// <summary>
-    /// Interaction logic for NewPlayerWindow.xaml
+    /// Interaction logic for PlayerWindow.xaml
     /// </summary>
-    public partial class NewPlayerWindow : Window, INotifyPropertyChanged
+    public partial class PlayerWindow : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -64,7 +64,7 @@ namespace ProjectCarsSeasonExtension.Views
         private bool _isPasswordValidationPassed = true;
         private bool _usePassword;
 
-        public NewPlayerWindow(PlayerController playerController)
+        public PlayerWindow(PlayerController playerController, bool isInEditMode = false)
         {
             var alreadyPresentPlayers = playerController.Players;
             NewPlayer = new NewPlayer(alreadyPresentPlayers);
