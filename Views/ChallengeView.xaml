@@ -6,6 +6,13 @@
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      
+      Background="{StaticResource MainBackgroundColor}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="{StaticResource MainFontWeight}"
+      TextElement.FontSize="{StaticResource MainFontSize}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+
       Title="ChallengeView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChallengeStanding.ChallengePlayerStandings}"
