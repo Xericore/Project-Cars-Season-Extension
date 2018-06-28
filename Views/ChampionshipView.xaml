@@ -8,25 +8,46 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChampionshipView"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
-      TextElement.FontWeight="Medium"
-      TextElement.FontSize="16"
-      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+      Background="{StaticResource MainBackgroundColor}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="{StaticResource MainFontWeight}"
+      TextElement.FontSize="{StaticResource MainFontSize}"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+<Page.Resources>
+    <!--body content datagrid cell vertical centering-->
+    <Style x:Key="BodyContentDataGridCentering"
+           TargetType="{x:Type DataGridCell}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    </Page.Resources>
 
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
-              CanUserResizeColumns="False" SelectionMode="Single" IsHitTestVisible="False" Background="{StaticResource MainBackgroundColor}">
+              CanUserResizeColumns="False" SelectionMode="Single" IsHitTestVisible="False" Background="{StaticResource MainBackgroundColor}"
+              CellStyle="{StaticResource BodyContentDataGridCentering}">
 
         <DataGrid.Resources>
             <Style TargetType="DataGridColumnHeader">
                 <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
                 <Setter Property="Padding" Value="10,20"/>
-            </Style>            
+                <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
+            </Style>
             <Style TargetType="DataGridRow">
                 <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Height" Value="64"/>
+                <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
             </Style>
         </DataGrid.Resources>
 

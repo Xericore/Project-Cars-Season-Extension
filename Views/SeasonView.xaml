@@ -15,7 +15,7 @@
 
       Title="SeasonView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid>
+    <Grid Margin="0,10,0,0">
         <TabControl Name="ChallengesTabControl" HorizontalAlignment="Center" BorderThickness="0">
 
             <TabControl.Resources>
