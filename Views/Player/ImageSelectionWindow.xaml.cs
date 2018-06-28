@@ -12,7 +12,7 @@ namespace ProjectCarsSeasonExtension.Views.Player
     /// </summary>
     public partial class ImageSelectionWindow : Window
     {
-        public ObservableCollection<Image> Images { get; set; } = new ObservableCollection<Image>();
+        public ObservableCollection<SelectableImage> Images { get; set; } = new ObservableCollection<SelectableImage>();
 
         private string[] _playerImagePaths;
 
@@ -38,7 +38,11 @@ namespace ProjectCarsSeasonExtension.Views.Player
                 {
                     Source = new BitmapImage(new Uri(playerImagePath, UriKind.Absolute))
                 };
-                Images.Add(image);
+                Images.Add(new SelectableImage
+                {
+                    Image = image,
+                    Name = Path.GetFileNameWithoutExtension(playerImagePath)
+                });
             }
 
         }
@@ -51,7 +55,7 @@ namespace ProjectCarsSeasonExtension.Views.Player
 
     public class SelectableImage
     {
-        public string Uri { get; set; }
+        public Image Image { get; set; }
         public string Name { get; set; }
     }
 }

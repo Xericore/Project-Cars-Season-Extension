@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views.Player"
         mc:Ignorable="d"
-        Title="ImageSelectionWindow" Height="480" Width="640"
+        Title="ImageSelectionWindow" Height="480" Width="640" Topmost="True"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Background="{StaticResource MainBackgroundColor}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <DockPanel>
+    <DockPanel LastChildFill="False">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Path=Images}">
                 <ItemsControl.ItemsPanel>
@@ -33,7 +33,7 @@
                                 </Grid.RowDefinitions>
                                 
                                 <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom"
-                                       Source="{Binding Path=Source}" />
+                                       Source="{Binding Path=Image.Source}" />
 
                                 <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
