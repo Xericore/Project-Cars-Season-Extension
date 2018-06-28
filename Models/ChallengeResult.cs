@@ -23,4 +23,9 @@ namespace ProjectCarsSeasonExtension.Models
             return TrackLocationAndVariant + " / " + CarName;
         }
     }
+
+    public class SimulatedChallengeResult : ChallengeResult
+    {
+        public string PlayerName { get; set; }
+    }
 }

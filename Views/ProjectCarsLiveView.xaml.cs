@@ -22,14 +22,16 @@ namespace ProjectCarsSeasonExtension.Views
 
         public pCarsDataClass ProjectCarsData { get; set; } = new pCarsDataClass();
 
-        public ChallengeResult FakeChallengeResult { get; set; }
+        public SimulatedChallengeResult SimulatedChallengeResult { get; set; }
 
         public ObservableCollection<string> AllRaceNames { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> AllPlayerNames { get; set; } = new ObservableCollection<string>();
 
         private float _lastFiredLapTime;
         private bool _wasLastLapValid = true;
 
         private readonly DataView _dataView;
+        private bool _wasInitialized;
 
         public ProjectCarsLiveView(DataView dataView)
         {
@@ -42,29 +44,35 @@ namespace ProjectCarsSeasonExtension.Views
             dispatchTimer.Start();
         }
 
-        private void ProjectCarsLiveView_OnLoaded(object sender, RoutedEventArgs e)
+        private void ProjectCarsLiveView_OnLoaded(object sender, EventArgs eventArgs)
         {
-            InitializeAllRaceNames();
+            if (_wasInitialized == true)
+                return;
+            _wasInitialized = true;
+
+            InitializeAllRaceAndPlayerNameProperties();
             InitializeFakeChallengeResult();
         }
 
-        private void InitializeAllRaceNames()
+        private void InitializeAllRaceAndPlayerNameProperties()
         {
-            foreach (var challenge in _dataView.AllChallenges)
-            {
+            foreach (Challenge challenge in _dataView.AllChallenges)
                 AllRaceNames.Add(challenge.Name);
-            }
+
+            foreach (Models.Player.Player player in _dataView.Players)
+                AllPlayerNames.Add(player.Name);
         }
 
         private void InitializeFakeChallengeResult()
         {
-            FakeChallengeResult = new ChallengeResult
+            SimulatedChallengeResult = new SimulatedChallengeResult
             {
                 LastValidLapTime = new TimeSpan(0, 0, 1, 10, 123)
             };
             
-            OnPropertyChanged(nameof(FakeChallengeResult));
+            OnPropertyChanged(nameof(SimulatedChallengeResult));
 
+            PlayerNameSelector.SelectedIndex = 0;
             RaceNameSelector.SelectedIndex = 0;
         }
 
@@ -131,10 +139,12 @@ namespace ProjectCarsSeasonExtension.Views
             try
             {
                 string[] split = RaceNameSelector.Text.Split('/');
-                FakeChallengeResult.TrackLocationAndVariant = split[0].Trim();
-                FakeChallengeResult.CarName = split[1].Trim();
+                SimulatedChallengeResult.TrackLocationAndVariant = split[0].Trim();
+                SimulatedChallengeResult.CarName = split[1].Trim();
 
-                ChallengeResultEvent?.Invoke(FakeChallengeResult);
+                SimulatedChallengeResult.PlayerName = PlayerNameSelector.SelectedItem as string;
+
+                ChallengeResultEvent?.Invoke(SimulatedChallengeResult);
             }
             catch (Exception)
             {

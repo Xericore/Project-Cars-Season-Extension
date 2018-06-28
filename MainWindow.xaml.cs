@@ -52,6 +52,7 @@ namespace ProjectCarsSeasonExtension
         private ChampionshipView _championshipView;
         private SeasonEditor _seasonEditor;
         private int _visibleTabItemsCount;
+        private bool _wasInitialized;
 
 
         public MainWindow()
@@ -97,6 +98,11 @@ namespace ProjectCarsSeasonExtension
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
+            if (_wasInitialized == true)
+                return;
+
+            _wasInitialized = true;
+
             OnPlayerSelectionChanged();
         }
 
@@ -161,10 +167,12 @@ namespace ProjectCarsSeasonExtension
 
         private void OnChallengeResultEvent(ChallengeResult challengeResult)
         {
-            if (_playerController?.SelectedPlayer == null)
+            Player selectedPlayer = GetSelectedPlayer(challengeResult);
+
+            if (selectedPlayer == null)
                 return;
 
-            var wasDataAdded = DataView.AddChallengeResult(_playerController.SelectedPlayer.Id, challengeResult);
+            var wasDataAdded = DataView.AddChallengeResult(selectedPlayer.Id, challengeResult);
 
             if (!wasDataAdded)
                 return;
@@ -172,6 +180,22 @@ namespace ProjectCarsSeasonExtension
             UpdateAllUIs(challengeResult.ToString());
 
             SaveData();
+        }
+
+        private Player GetSelectedPlayer(ChallengeResult challengeResult)
+        {
+            if (_playerController == null)
+                return null;
+
+            Player selectedPlayer = _playerController?.SelectedPlayer;
+
+            if (challengeResult is SimulatedChallengeResult result)
+            {
+                var name = result.PlayerName;
+                selectedPlayer = _playerController.Players.FirstOrDefault(p => p.Name == name);
+            }
+
+            return selectedPlayer;
         }
 
         private void UpdateAllUIs(string challengeResultTrackLocationAndVariant = null)
