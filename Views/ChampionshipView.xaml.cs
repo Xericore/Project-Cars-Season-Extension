@@ -104,7 +104,8 @@ namespace ProjectCarsSeasonExtension.Views
             var playerColumn = new DataGridTextColumn
             {
                 Header = "Player",
-                Binding = new Binding("Player.Name")
+                Binding = new Binding("Player.Name"),
+                Width = 160
             };
 
             ChampionshipDataGrid.Columns.Add(playerColumn);
