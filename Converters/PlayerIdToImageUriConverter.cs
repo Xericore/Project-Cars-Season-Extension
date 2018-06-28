@@ -15,10 +15,10 @@ namespace ProjectCarsSeasonExtension.Converters
 
             if (playerId < 0)
             {
-                return "../../Assets/AddPlayer.png";
+                return "/Assets/AddPlayer.png";
             }
 
-            return "../../Assets/helmet.png";
+            return "/Assets/helmet.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
