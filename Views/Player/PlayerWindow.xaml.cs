@@ -122,5 +122,11 @@ namespace ProjectCarsSeasonExtension.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void ChangeImage_OnClick(object sender, RoutedEventArgs e)
+        {
+            var imageSelectionWindow = new ImageSelectionWindow();
+            imageSelectionWindow.Show();
+        }
     }
 }
