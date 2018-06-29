@@ -60,7 +60,8 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 Name = newPlayerWindow.NewPlayer.Name,
                 PasswordHash = newPlayerWindow.NewPlayer.PasswordHash,
-                PasswordSalt = newPlayerWindow.NewPlayer.PasswordSalt
+                PasswordSalt = newPlayerWindow.NewPlayer.PasswordSalt,
+                AvatarFileName = newPlayerWindow.NewPlayer.AvatarFileName
             };
 
             PlayerController.AddPlayer(newPlayer);
