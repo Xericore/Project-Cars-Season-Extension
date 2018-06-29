@@ -146,12 +146,6 @@ namespace ProjectCarsSeasonExtension.Views
             OnPropertyChanged(nameof(AreAllValidationsPassed));
         }
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private void ChangeImage_OnClick(object sender, RoutedEventArgs e)
         {
             var imageSelectionWindow = new ImageSelectionWindow();
@@ -162,6 +156,13 @@ namespace ProjectCarsSeasonExtension.Views
 
             NewPlayer.AvatarFileName = Path.GetFileName(imageSelectionWindow.SelectedImage.Source.ToString());
             NewPlayer.AvatarFileName = "/Assets/Players/" + NewPlayer.AvatarFileName;
+            OnPropertyChanged(nameof(NewPlayer));
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

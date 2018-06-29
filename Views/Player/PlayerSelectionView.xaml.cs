@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -90,6 +91,7 @@ namespace ProjectCarsSeasonExtension.Views
             if (dialogResult != true || editPlayerWindow.NewPlayer == null) return;
 
             PlayerController.SelectedPlayer.AvatarFileName = editPlayerWindow.NewPlayer.AvatarFileName;
+            OnPropertyChanged(nameof(PlayerController.Players));
         }
     }
 }
