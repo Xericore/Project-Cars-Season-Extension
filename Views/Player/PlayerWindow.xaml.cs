@@ -82,8 +82,8 @@ namespace ProjectCarsSeasonExtension.Views
         public PlayerWindow(PlayerController playerController, bool isInEditMode = false)
         {
             var alreadyPresentPlayers = playerController.Players;
-            NewPlayer = new NewPlayer(alreadyPresentPlayers);
-            
+            NewPlayer = new NewPlayer(alreadyPresentPlayers) {AvatarFileName = "/Assets/Players/Default.png"};
+
             IsInEditMode = isInEditMode;
 
             InitializeComponent();

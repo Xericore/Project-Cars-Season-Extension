@@ -30,7 +30,7 @@ namespace ProjectCarsSeasonExtension.Views.Player
             var allPlayerImagesPath = Environment.CurrentDirectory + @"\Assets\Players\";
 
             if (Directory.Exists(allPlayerImagesPath))
-                _playerImagePaths = Directory.GetFiles(allPlayerImagesPath, "*.png");
+                _playerImagePaths = Directory.GetFiles(allPlayerImagesPath, "*.png", SearchOption.AllDirectories);
             else
                 return;
 
