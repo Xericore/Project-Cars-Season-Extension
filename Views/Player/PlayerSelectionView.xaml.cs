@@ -65,7 +65,6 @@ namespace ProjectCarsSeasonExtension.Views
             };
 
             PlayerController.AddPlayer(newPlayer);
-            OnPropertyChanged(nameof(PlayerController));
         }
 
         private void ShowAndHandlePlayerPassword(Models.Player.Player player)
@@ -90,8 +89,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (dialogResult != true || editPlayerWindow.NewPlayer == null) return;
 
-            PlayerController.SelectedPlayer.AvatarFileName = editPlayerWindow.NewPlayer.AvatarFileName;
-            OnPropertyChanged(nameof(PlayerController.Players));
+            PlayerController.SetSelectedPlayerAvatar(editPlayerWindow.NewPlayer.AvatarFileName);
         }
     }
 }

@@ -25,12 +25,12 @@ namespace ProjectCarsSeasonExtension
 
         public DataView DataView { get; private set; }
 
-        public string CurrentlyLoggedInPlayerName
+        public Player CurrentlyLoggedInPlayer
         {
             get
             {
-                if (!string.IsNullOrEmpty(_playerController?.SelectedPlayer?.Name))
-                    return _playerController.SelectedPlayer.Name;
+                if (_playerController?.SelectedPlayer != null)
+                    return _playerController.SelectedPlayer;
 
                 return _currentlyLoggedInPlayerName;
             }
@@ -41,8 +41,8 @@ namespace ProjectCarsSeasonExtension
             }
         }
 
-        private const string NoPlayerText = "No player";
-        private string _currentlyLoggedInPlayerName = NoPlayerText;
+        private readonly Player NoPlayer = new Player {Name = "No player", AvatarFileName = "/Assets/helmet.png"};
+        private Player _currentlyLoggedInPlayerName = null;
 
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
 
@@ -142,10 +142,7 @@ namespace ProjectCarsSeasonExtension
 
         private void UpdateCurrentlySelectedPlayerForTabHeader()
         {
-            if (_playerController.SelectedPlayer == null)
-                CurrentlyLoggedInPlayerName = NoPlayerText;
-            else
-                CurrentlyLoggedInPlayerName = _playerController.SelectedPlayer.Name;
+            CurrentlyLoggedInPlayer = _playerController.SelectedPlayer ?? NoPlayer;
         }
 
         public void ShowOrHideTabs()
