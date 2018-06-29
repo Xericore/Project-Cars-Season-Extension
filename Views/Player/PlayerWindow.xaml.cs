@@ -83,7 +83,7 @@ namespace ProjectCarsSeasonExtension.Views
         {
             var alreadyPresentPlayers = playerController.Players;
             NewPlayer = new NewPlayer(alreadyPresentPlayers);
-
+            
             IsInEditMode = isInEditMode;
 
             InitializeComponent();
@@ -95,6 +95,9 @@ namespace ProjectCarsSeasonExtension.Views
                 TextBoxNewPlayerName.IsEnabled = false;
                 ChangeImageButton.Focus();
                 Title = "Edit player";
+
+                NewPlayer.AvatarFileName = "/Assets/Players/" + playerController.SelectedPlayer.AvatarFileName;
+                OnPropertyChanged(nameof(NewPlayer));
             }
             else
             {

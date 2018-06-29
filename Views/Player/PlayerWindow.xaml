@@ -38,7 +38,7 @@
                 <RowDefinition Height="32"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Margin="10" Source="/Assets/helmet.png"/>
+            <Image Grid.Row="0" Margin="10" Source="{Binding NewPlayer.AvatarFileName}"/>
             <Button Name="ChangeImageButton" Grid.Row="1" Content="Change image" Click="ChangeImage_OnClick"/>
 
         </Grid>
