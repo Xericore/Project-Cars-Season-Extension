@@ -36,8 +36,7 @@
                                         <RowDefinition />
                                         <RowDefinition Height="40" />
                                     </Grid.RowDefinitions>
-                                    <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom"
-                                           Source="{Binding Path=Id, Converter={StaticResource PlayerIdToImageSourceConverter}}" />
+                                    <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom" Source="{Binding Path=AvatarFileName}" />
                                     <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Grid>
                             </Button>

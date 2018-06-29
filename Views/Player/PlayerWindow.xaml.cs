@@ -96,7 +96,7 @@ namespace ProjectCarsSeasonExtension.Views
                 ChangeImageButton.Focus();
                 Title = "Edit player";
 
-                NewPlayer.AvatarFileName = "/Assets/Players/" + playerController.SelectedPlayer.AvatarFileName;
+                NewPlayer.AvatarFileName = playerController.SelectedPlayer.AvatarFileName;
                 OnPropertyChanged(nameof(NewPlayer));
             }
             else
@@ -161,6 +161,7 @@ namespace ProjectCarsSeasonExtension.Views
                 return;
 
             NewPlayer.AvatarFileName = Path.GetFileName(imageSelectionWindow.SelectedImage.Source.ToString());
+            NewPlayer.AvatarFileName = "/Assets/Players/" + NewPlayer.AvatarFileName;
         }
     }
 }
