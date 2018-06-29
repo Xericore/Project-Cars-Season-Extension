@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Views.Player;
@@ -90,6 +91,11 @@ namespace ProjectCarsSeasonExtension.Views
             if (dialogResult != true || editPlayerWindow.NewPlayer == null) return;
 
             PlayerController.SetSelectedPlayerAvatar(editPlayerWindow.NewPlayer.AvatarFileName);
+
+            // Calling OnPropertyChanged() doesn't work for any of the property (PlayerController, etc.).
+            // Thus I had to resort to this workaround.
+            PlayersItemsControl.ItemsSource = null;
+            PlayersItemsControl.ItemsSource = PlayerController.Players;
         }
     }
 }

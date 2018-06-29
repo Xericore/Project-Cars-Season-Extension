@@ -22,7 +22,7 @@
 
         <DockPanel Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Path=PlayerController.Players}">
+                <ItemsControl Name="PlayersItemsControl" ItemsSource="{Binding Path=PlayerController.Players}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />

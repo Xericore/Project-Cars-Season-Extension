@@ -41,7 +41,7 @@ namespace ProjectCarsSeasonExtension
             }
         }
 
-        private readonly Player NoPlayer = new Player {Name = "No player", AvatarFileName = "/Assets/helmet.png"};
+        private readonly Player _noPlayer = new Player {Name = "No player", AvatarFileName = "/Assets/helmet.png"};
         private Player _currentlyLoggedInPlayerName = null;
 
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
@@ -142,7 +142,7 @@ namespace ProjectCarsSeasonExtension
 
         private void UpdateCurrentlySelectedPlayerForTabHeader()
         {
-            CurrentlyLoggedInPlayer = _playerController.SelectedPlayer ?? NoPlayer;
+            CurrentlyLoggedInPlayer = _playerController.SelectedPlayer ?? _noPlayer;
         }
 
         public void ShowOrHideTabs()

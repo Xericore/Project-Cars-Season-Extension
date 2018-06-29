@@ -63,8 +63,6 @@ namespace ProjectCarsSeasonExtension.Models.Player
         public void SetSelectedPlayerAvatar(string newPlayerAvatarFileName)
         {
             SelectedPlayer.AvatarFileName = newPlayerAvatarFileName;
-            OnPropertyChanged(nameof(IsAnyPlayerSelected));
-            PlayerSelectionChanged?.Invoke();
         }
     }
 }
