@@ -30,7 +30,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Width="128" Height="128" Margin="16" Click="PlayerSelected_OnClick" >
+                            <RadioButton Width="128" Height="128" Margin="16" Checked="PlayerSelected_OnClick" GroupName="Players">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
@@ -39,7 +39,7 @@
                                     <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom" Source="{Binding Path=AvatarFileName}" />
                                     <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Grid>
-                            </Button>
+                            </RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

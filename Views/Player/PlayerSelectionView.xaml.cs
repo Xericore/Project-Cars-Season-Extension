@@ -25,7 +25,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void PlayerSelected_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button))
+            if (!(sender is RadioButton button))
                 return;
 
             if (!(button.DataContext is Models.Player.Player player))

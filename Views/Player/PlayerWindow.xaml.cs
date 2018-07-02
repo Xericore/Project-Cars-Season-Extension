@@ -154,9 +154,22 @@ namespace ProjectCarsSeasonExtension.Views
             if (dialogResult == false || imageSelectionWindow.SelectedImage == null)
                 return;
 
-            NewPlayer.AvatarFileName = Path.GetFileName(imageSelectionWindow.SelectedImage.Source.ToString());
-            NewPlayer.AvatarFileName = "/Assets/Players/" + NewPlayer.AvatarFileName;
-            OnPropertyChanged(nameof(NewPlayer));
+            try
+            {
+                var x = imageSelectionWindow.SelectedImage.Source.ToString();
+
+                var env = Environment.CurrentDirectory;
+                env = env.Replace("\\", "/");
+
+                x = x.Remove(0, x.LastIndexOf(env) + env.Length);
+
+                NewPlayer.AvatarFileName = x;
+                OnPropertyChanged(nameof(NewPlayer));
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         [NotifyPropertyChangedInvocator]
