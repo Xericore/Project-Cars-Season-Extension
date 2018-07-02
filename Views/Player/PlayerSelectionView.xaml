@@ -14,6 +14,7 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}">
+
     <Page.Resources>
 
         <Style TargetType="{x:Type RadioButton}">
@@ -23,15 +24,24 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <BulletDecorator Background="Transparent">
-                            <BulletDecorator.Bullet>
-                                <Grid Width="64" Height="64" >
-                                    <Ellipse x:Name="Border" Fill="Brown" StrokeThickness="2" Stroke="DarkBlue" />
-                                    <Ellipse x:Name="CheckMark" Margin="4" Fill="Red" />
-                                </Grid>
-                            </BulletDecorator.Bullet>
-                            <ContentPresenter Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" RecognizesAccessKey="True"/>
-                        </BulletDecorator>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <BulletDecorator Background="Transparent">
+                                <BulletDecorator.Bullet>
+                                    <Grid Width="128" Height="128" >
+                                        <Ellipse x:Name="Border" Fill="Brown" StrokeThickness="2" Stroke="DarkBlue" />
+                                        <Ellipse x:Name="CheckMark" Margin="4" Fill="Red" />
+                                    </Grid>
+                                </BulletDecorator.Bullet>
+                                <ContentPresenter Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" RecognizesAccessKey="True"/>
+                            </BulletDecorator>
+                            <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom" Source="{Binding Path=AvatarFileName}" />
+                            <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                        
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="False">
                                 <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
@@ -75,14 +85,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <RadioButton Width="128" Height="128" Margin="16" Checked="PlayerSelected_OnClick" GroupName="Players">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="40" />
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom" Source="{Binding Path=AvatarFileName}" />
-                                    <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Grid>
+
                             </RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
