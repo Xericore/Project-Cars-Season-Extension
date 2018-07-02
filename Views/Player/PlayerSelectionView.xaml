@@ -29,17 +29,19 @@
                                 <RowDefinition />
                                 <RowDefinition Height="40" />
                             </Grid.RowDefinitions>
-                            <BulletDecorator Background="Transparent">
+                            <BulletDecorator Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <BulletDecorator.Bullet>
-                                    <Grid Width="128" Height="128" >
+                                    <Grid Width="96" Height="96" >
                                         <Ellipse x:Name="Border" Fill="Brown" StrokeThickness="2" Stroke="DarkBlue" />
                                         <Ellipse x:Name="CheckMark" Margin="4" Fill="Red" />
+                                        <Image Grid.Row="0" Height="64" VerticalAlignment="Center" Source="{Binding Path=AvatarFileName}" />
                                     </Grid>
                                 </BulletDecorator.Bullet>
                                 <ContentPresenter Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" RecognizesAccessKey="True"/>
                             </BulletDecorator>
-                            <Image Grid.Row="0" Height="64" VerticalAlignment="Bottom" Source="{Binding Path=AvatarFileName}" />
-                            <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            
+                            <TextBlock Grid.Row="1" Margin="5" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Background="Transparent"/>
                         </Grid>
                         
                         <ControlTemplate.Triggers>
