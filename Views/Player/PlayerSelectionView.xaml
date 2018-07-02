@@ -15,7 +15,44 @@
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}">
     <Page.Resources>
-        
+
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Grid Width="64" Height="64" >
+                                    <Ellipse x:Name="Border" Fill="Brown" StrokeThickness="2" Stroke="DarkBlue" />
+                                    <Ellipse x:Name="CheckMark" Margin="4" Fill="Red" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Fill" Value="Yellow" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Fill" Value="Green" />
+                                <Setter TargetName="Border" Property="Stroke" Value="Red" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Fill" Value="Magenta" />
+                                <Setter TargetName="Border" Property="Stroke" Value="#40000000" />
+                                <Setter Property="Foreground" Value="#80000000"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -23,7 +60,7 @@
             <RowDefinition Height="48"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
+        
         <Button Content="Edit player" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" 
                 IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}" Click="EditPlayer_OnClick"/>
 
