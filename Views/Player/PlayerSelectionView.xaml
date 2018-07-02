@@ -32,8 +32,8 @@
                             <BulletDecorator Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <BulletDecorator.Bullet>
                                     <Grid Width="96" Height="96" >
-                                        <Ellipse x:Name="Border" Fill="Brown" StrokeThickness="2" Stroke="DarkBlue" />
-                                        <Ellipse x:Name="CheckMark" Margin="4" Fill="Red" />
+                                        <Ellipse x:Name="Border" Fill="{StaticResource MaterialDesignBackground}" StrokeThickness="2" Stroke="{DynamicResource PrimaryHueMidBrush}" />
+                                        <Ellipse x:Name="CheckMark" Margin="4" Fill="{DynamicResource PrimaryHueMidBrush}" />
                                         <Image Grid.Row="0" Height="64" VerticalAlignment="Center" Source="{Binding Path=AvatarFileName}" />
                                     </Grid>
                                 </BulletDecorator.Bullet>
@@ -48,7 +48,7 @@
                                 <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Fill" Value="Yellow" />
+                                <Setter TargetName="Border" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="Border" Property="Fill" Value="Green" />
