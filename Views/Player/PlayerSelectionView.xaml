@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PlayerSelection" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Page.Resources>
-        <converters:PlayerIdToImageUriConverter x:Key="PlayerIdToImageSourceConverter" />
+        
     </Page.Resources>
 
     <Grid>

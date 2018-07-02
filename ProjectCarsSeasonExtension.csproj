@@ -76,7 +76,6 @@
     <Compile Include="Controller\Injector.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />
     <Compile Include="Controller\Module.cs" />
-    <Compile Include="Converters\PlayerIdToImageUriConverter.cs" />
     <Compile Include="Converters\RowToPositionConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ChallengeResult.cs" />
