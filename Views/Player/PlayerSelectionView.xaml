@@ -17,14 +17,14 @@
 
     <Page.Resources>
 
-        <Style TargetType="{x:Type RadioButton}">
+        <Style TargetType="{x:Type ListBoxItem}">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="OverridesDefaultStyle" Value="True"/>
-            
+
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <Grid>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid Margin="16,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition Height="32" />
@@ -37,27 +37,23 @@
                                         <Image Grid.Row="0" Height="64" VerticalAlignment="Center" Source="{Binding Path=AvatarFileName}" />
                                     </Grid>
                                 </BulletDecorator.Bullet>
-                                <ContentPresenter Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" RecognizesAccessKey="True"/>
                             </BulletDecorator>
-                            
-                            <TextBlock Grid.Row="1" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Row="1" Content="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
-                        
+
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="False">
+                            <Trigger Property="IsSelected" Value="False">
                                 <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Border" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
                             </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Fill" Value="{DynamicResource PrimaryHueDarkBrush}" />
-                                <Setter TargetName="Border" Property="Stroke" Value="{DynamicResource PrimaryHueMidBrush}" />
-                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
+
         </Style>
     </Page.Resources>
 
@@ -108,18 +104,13 @@
 
         <DockPanel Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl Name="PlayersItemsControl" ItemsSource="{Binding Path=PlayerController.Players}">
+                <ListBox Name="PlayersItemsControl" ItemsSource="{Binding Path=PlayerController.Players}" SelectionChanged="PlayerSelected_OnClick" SelectedItem="{Binding PlayerController.SelectedPlayer}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <RadioButton Width="128" Height="128" Margin="16" Checked="PlayerSelected_OnClick" GroupName="Players" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                </ListBox>
             </ScrollViewer>
         </DockPanel>
     </Grid>

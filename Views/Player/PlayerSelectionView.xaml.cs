@@ -23,12 +23,12 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
         }
 
-        private void PlayerSelected_OnClick(object sender, RoutedEventArgs e)
+        private void PlayerSelected_OnClick(object sender, SelectionChangedEventArgs e)
         {
-            if (!(sender is RadioButton button))
+            if (e.AddedItems.Count <= 0)
                 return;
 
-            if (!(button.DataContext is Models.Player.Player player))
+            if (!(e.AddedItems[0] is Models.Player.Player player))
                 return;
 
             bool isNewPlayerClicked = player.Id == -1;
@@ -109,5 +109,6 @@ namespace ProjectCarsSeasonExtension.Views
         {
             PlayerController.LogoutCurrentPlayer();
         }
+
     }
 }
