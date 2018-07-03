@@ -32,19 +32,6 @@ namespace ProjectCarsSeasonExtension.Models.Player
 
         public PlayerController(ObservableCollection<Player> players)
         {
-            const string addPlayerImagePath = "/Assets/AddPlayer.png";
-
-            if (players.Count <= 0)
-            {
-                players.Add(new Player { Id = -1, Name = "New player", AvatarFileName = addPlayerImagePath });
-            }
-            else
-            {
-                var addPlayer = players.FirstOrDefault(p => p.Id == -1);
-                if (addPlayer != null)
-                    addPlayer.AvatarFileName = addPlayerImagePath;
-            }
-            
             Players = players;
         }
 
@@ -54,20 +41,8 @@ namespace ProjectCarsSeasonExtension.Models.Player
             newPlayer.Id = ++maxId;
 
             Players.Add(newPlayer);
-
-            MoveAddPlayerToEnd();
-
+            
             SelectedPlayer = newPlayer;
-        }
-
-        private void MoveAddPlayerToEnd()
-        {
-            Player addPlayer = Players.First(p => p.Id == -1);
-
-            if (addPlayer == null) return;
-
-            Players.Remove(addPlayer);
-            Players.Add(addPlayer);
         }
 
         public void SetSelectedPlayerAvatar(string newPlayerAvatarFileName)

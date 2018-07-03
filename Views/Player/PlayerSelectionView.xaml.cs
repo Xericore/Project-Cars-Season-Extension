@@ -30,15 +30,10 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (!(e.AddedItems[0] is Models.Player.Player player))
                 return;
-
-            bool isNewPlayerClicked = player.Id == -1;
+            
             bool doesPlayerHavePassword = !string.IsNullOrEmpty(player.PasswordHash);
 
-            if (isNewPlayerClicked)
-            {
-                ShowAndHandleNewPlayerWindow();
-            }
-            else if (doesPlayerHavePassword)
+            if (doesPlayerHavePassword)
             {
                 ShowAndHandlePlayerPassword(player);
             }
@@ -74,14 +69,9 @@ namespace ProjectCarsSeasonExtension.Views
             var dialogResult = passwordWindow.ShowDialog();
 
             if (dialogResult == true)
-            {
                 PlayerController.SelectedPlayer = player;
-            }
             else
-            {
                 PlayerController.LogoutCurrentPlayer();
-            }
-                
         }
 
         [NotifyPropertyChangedInvocator]
@@ -110,5 +100,9 @@ namespace ProjectCarsSeasonExtension.Views
             PlayerController.LogoutCurrentPlayer();
         }
 
+        private void NewPlayer_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowAndHandleNewPlayerWindow();
+        }
     }
 }
