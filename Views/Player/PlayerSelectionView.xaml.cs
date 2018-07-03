@@ -89,10 +89,14 @@ namespace ProjectCarsSeasonExtension.Views
 
             PlayerController.SetSelectedPlayerAvatar(editPlayerWindow.NewPlayer.AvatarFileName);
 
+            var lastSelectedPlayer = PlayerController.SelectedPlayer;
+
             // Calling OnPropertyChanged() doesn't work for any of the property (PlayerController, etc.).
             // Thus I had to resort to this workaround.
             PlayersItemsControl.ItemsSource = null;
             PlayersItemsControl.ItemsSource = PlayerController.Players;
+
+            PlayerController.SelectedPlayer = lastSelectedPlayer;
         }
 
         private void LogoutPlayer_OnClick(object sender, RoutedEventArgs e)

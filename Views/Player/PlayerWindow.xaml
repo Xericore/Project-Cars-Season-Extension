@@ -56,7 +56,7 @@
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" VerticalAlignment="Bottom" />
         </Grid>
 
-        <CheckBox Grid.Row="2" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
+        <CheckBox Name="EnablePasswordCheckBox" Grid.Row="2" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
 
         <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>

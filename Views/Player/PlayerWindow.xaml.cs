@@ -61,15 +61,20 @@ namespace ProjectCarsSeasonExtension.Views
             set
             {
                 _usePassword = value;
-                if (!_usePassword)
+                if (!_usePassword || IsInEditMode)
                 {
                     PasswordBoxFirst.Clear();
                     PasswordBoxRepeated.Clear();
                 }
+                
+                if(_usePassword)
+                    PasswordBoxFirst.Focus();
+
                 OnPropertyChanged();
             }
         }
 
+        private const string DummyPassword = "$DummyPassword$";
         private readonly Brush _passwordWrongBackground = Brushes.Salmon;
         private readonly Brush _passwordOriginalBackground;
 
@@ -97,6 +102,13 @@ namespace ProjectCarsSeasonExtension.Views
                 ChangeImageButton.Focus();
                 Title = "Edit player";
 
+                if (!string.IsNullOrEmpty(playerController.SelectedPlayer.PasswordHash))
+                {
+                    EnablePasswordCheckBox.Content = "Change optional password";
+                    PasswordBoxFirst.Password = DummyPassword;
+                    PasswordBoxRepeated.Password = DummyPassword;
+                }
+
                 NewPlayer.AvatarFileName = playerController.SelectedPlayer.AvatarFileName;
                 OnPropertyChanged(nameof(NewPlayer));
             }
@@ -108,7 +120,8 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(PasswordBoxFirst.Password))
+            if (!string.IsNullOrEmpty(PasswordBoxFirst.Password) && 
+                !string.Equals(PasswordBoxFirst.Password, DummyPassword))
             {
                 SetPasswordSaltAndHash();
             }
