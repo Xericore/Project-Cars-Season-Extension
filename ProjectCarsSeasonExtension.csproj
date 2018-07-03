@@ -97,6 +97,7 @@
     <Compile Include="Serialization\XmlSeasonWriter.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\LevenshteinDistance.cs" />
+    <Compile Include="Utils\PlayerImageManager.cs" />
     <Compile Include="Utils\TrackImageManager.cs" />
     <Compile Include="Utils\UiUtils.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
