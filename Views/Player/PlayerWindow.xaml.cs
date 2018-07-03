@@ -92,7 +92,8 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (IsInEditMode)
             {
-                TextBoxNewPlayerName.IsEnabled = false;
+                PlayerNameGrid.IsEnabled = false;
+                PlayerNameGrid.Visibility = Visibility.Collapsed;
                 ChangeImageButton.Focus();
                 Title = "Edit player";
 

@@ -51,13 +51,8 @@
                                 <Setter TargetName="Border" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Fill" Value="Green" />
-                                <Setter TargetName="Border" Property="Stroke" Value="Red" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="Fill" Value="Magenta" />
-                                <Setter TargetName="Border" Property="Stroke" Value="#40000000" />
-                                <Setter Property="Foreground" Value="#80000000"/>
+                                <Setter TargetName="Border" Property="Fill" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                                <Setter TargetName="Border" Property="Stroke" Value="{DynamicResource PrimaryHueMidBrush}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
