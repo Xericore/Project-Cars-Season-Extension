@@ -12,6 +12,7 @@ using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
 using ProjectCarsSeasonExtension.ViewModels;
+using ProjectCarsSeasonExtension.Views.Player;
 using Application = System.Windows.Application;
 
 namespace ProjectCarsSeasonExtension
@@ -206,6 +207,7 @@ namespace ProjectCarsSeasonExtension
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            ImageSelectionWindow.Instance?.CloseForced();
             HotkeyController.Clear();
             SaveData();
         }

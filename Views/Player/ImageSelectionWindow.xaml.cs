@@ -22,6 +22,8 @@ namespace ProjectCarsSeasonExtension.Views.Player
 
         public static ImageSelectionWindow Instance => Lazy.Value;
 
+        private bool _forceClosing;
+
         public ImageSelectionWindow()
         {
             InitializeComponent();
@@ -36,8 +38,17 @@ namespace ProjectCarsSeasonExtension.Views.Player
 
         private void ImageSelectionWindow_OnClosing(object sender, CancelEventArgs e)
         {
+            if (_forceClosing)
+                return;
+
             e.Cancel = true;
             Hide();
+        }
+
+        public void CloseForced()
+        {
+            _forceClosing = true;
+            Close();
         }
     }
 
