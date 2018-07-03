@@ -9,7 +9,8 @@ namespace ProjectCarsSeasonExtension.Utils
 {
     internal sealed class PlayerImageManager
     {
-        public ObservableCollection<SelectableImage> Images { get; set; } = new ObservableCollection<SelectableImage>();
+        public ObservableCollection<SelectableImage> FilteredImages { get; set; } = new ObservableCollection<SelectableImage>();
+        public ObservableCollection<SelectableImage> AllImages { get; set; } = new ObservableCollection<SelectableImage>();
 
         private static readonly Lazy<PlayerImageManager> Lazy =
             new Lazy<PlayerImageManager>(() => new PlayerImageManager());
@@ -20,10 +21,12 @@ namespace ProjectCarsSeasonExtension.Utils
 
         public PlayerImageManager()
         {
-            LoadImages();
+            LoadAllImages();
+
+            FilterImages(PlayerImageFolders.Avatars);
         }
 
-        private void LoadImages()
+        private void LoadAllImages()
         {
             var allPlayerImagesPath = Environment.CurrentDirectory + @"\Assets\Players\";
 
@@ -39,11 +42,22 @@ namespace ProjectCarsSeasonExtension.Utils
                     Source = new BitmapImage(new Uri(playerImagePath, UriKind.Absolute))
                 };
 
-                Images.Add(new SelectableImage
+                AllImages.Add(new SelectableImage
                 {
                     Image = image,
-                    Name = Path.GetFileNameWithoutExtension(playerImagePath)
+                    Path = playerImagePath
                 });
+            }
+        }
+
+        public void FilterImages(PlayerImageFolders filter)
+        {
+            FilteredImages.Clear();
+
+            foreach (var selectableImage in AllImages)
+            {
+                if (selectableImage.Path.Contains(filter.ToString()))
+                 FilteredImages.Add(selectableImage);
             }
         }
     }

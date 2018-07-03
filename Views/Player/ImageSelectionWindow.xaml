@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views.Player"
+        xmlns:Utils="clr-namespace:ProjectCarsSeasonExtension.Utils"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Choose your player avatar" Height="480" Width="640" Topmost="True"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -14,24 +16,44 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}" Closing="ImageSelectionWindow_OnClosing">
+    
+    <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="MyEnumValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Utils:PlayerImageFolders" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
 
-    <DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=Images}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Width="128" Height="128" Margin="16" Click="ImageSelected_OnClick" >
-                            <Image Height="64" VerticalAlignment="Bottom" Source="{Binding Path=Image.Source}" />
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="240"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListBox SelectedIndex="0" Margin="5" ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectionChanged="ImageTypeSelector_OnSelectionChanged">
+        </ListBox>
+
+        <DockPanel Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Path=Images}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="128" Height="128" Margin="16" Click="ImageSelected_OnClick" >
+                                <Image Height="64" VerticalAlignment="Bottom" Source="{Binding Path=Image.Source}" />
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+    </Grid>
+
 </Window>
 

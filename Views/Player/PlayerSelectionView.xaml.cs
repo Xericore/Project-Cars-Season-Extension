@@ -25,17 +25,11 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (!(e.AddedItems[0] is Models.Player.Player player))
                 return;
-            
+
             bool doesPlayerHavePassword = !string.IsNullOrEmpty(player.PasswordHash);
 
             if (doesPlayerHavePassword)
-            {
                 ShowAndHandlePlayerPassword(player);
-            }
-            else
-            {
-                PlayerController.SelectedPlayer = player;
-            }
         }
 
         private void ShowAndHandleNewPlayerWindow()
@@ -63,9 +57,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             var dialogResult = passwordWindow.ShowDialog();
 
-            if (dialogResult == true)
-                PlayerController.SelectedPlayer = player;
-            else
+            if (dialogResult == false)
                 PlayerController.LogoutCurrentPlayer();
         }
 
@@ -74,14 +66,16 @@ namespace ProjectCarsSeasonExtension.Views
             var editPlayerWindow = new PlayerWindow(PlayerController, true);
             var dialogResult = editPlayerWindow.ShowDialog();
 
-            if (dialogResult != true || editPlayerWindow.NewPlayer == null) return;
+            NewPlayer editedPlayer = editPlayerWindow.NewPlayer;
 
-            PlayerController.SetSelectedPlayerAvatar(editPlayerWindow.NewPlayer.AvatarFileName);
+            if (dialogResult != true || editedPlayer == null) return;
 
-            if (!string.IsNullOrEmpty(editPlayerWindow.NewPlayer.PasswordHash))
+            PlayerController.SelectedPlayer.AvatarFileName = editedPlayer.AvatarFileName;
+
+            if (!string.IsNullOrEmpty(editedPlayer.PasswordHash))
             {
-                PlayerController.SelectedPlayer.PasswordHash = editPlayerWindow.NewPlayer.PasswordHash;
-                PlayerController.SelectedPlayer.PasswordSalt = editPlayerWindow.NewPlayer.PasswordSalt;
+                PlayerController.SelectedPlayer.PasswordHash = editedPlayer.PasswordHash;
+                PlayerController.SelectedPlayer.PasswordSalt = editedPlayer.PasswordSalt;
             }
 
             var lastSelectedPlayer = PlayerController.SelectedPlayer;

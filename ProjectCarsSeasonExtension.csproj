@@ -97,6 +97,7 @@
     <Compile Include="Serialization\XmlSeasonWriter.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\LevenshteinDistance.cs" />
+    <Compile Include="Utils\PlayerImageFolders.cs" />
     <Compile Include="Utils\PlayerImageManager.cs" />
     <Compile Include="Utils\TrackImageManager.cs" />
     <Compile Include="Utils\UiUtils.cs" />
@@ -133,6 +134,7 @@
       <DependentUpon>PlayerSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\PointsUtil.cs" />
+    <Compile Include="Views\Player\SelectableImage.cs" />
     <Compile Include="Views\ProjectCarsLiveView.xaml.cs">
       <DependentUpon>ProjectCarsLiveView.xaml</DependentUpon>
     </Compile>

@@ -13,7 +13,7 @@ namespace ProjectCarsSeasonExtension.Views.Player
     /// </summary>
     public partial class ImageSelectionWindow : Window
     {
-        public ObservableCollection<SelectableImage> Images => PlayerImageManager.Instance.Images;
+        public ObservableCollection<SelectableImage> Images => PlayerImageManager.Instance.FilteredImages;
 
         public Image SelectedImage { get; set; }
 
@@ -50,11 +50,17 @@ namespace ProjectCarsSeasonExtension.Views.Player
             _forceClosing = true;
             Close();
         }
-    }
 
-    public class SelectableImage
-    {
-        public Image Image { get; set; }
-        public string Name { get; set; }
+
+        private void ImageTypeSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count <= 0)
+                return;
+
+            if (!(e.AddedItems[0] is PlayerImageFolders selectedFolder))
+                return;
+
+            PlayerImageManager.Instance.FilterImages(selectedFolder);
+        }
     }
 }
