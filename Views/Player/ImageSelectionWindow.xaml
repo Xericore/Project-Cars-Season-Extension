@@ -31,8 +31,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ListBox SelectedIndex="0" Margin="5" ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectionChanged="ImageTypeSelector_OnSelectionChanged">
-        </ListBox>
+        <ListBox SelectionMode="Single" SelectedIndex="0" Margin="5"
+                 ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectionChanged="ImageTypeSelector_OnSelectionChanged" />
 
         <DockPanel Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
