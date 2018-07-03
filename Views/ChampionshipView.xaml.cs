@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using ProjectCarsSeasonExtension.Annotations;
@@ -77,7 +78,8 @@ namespace ProjectCarsSeasonExtension.Views
                 {
                     Header = UiUtils.GetTrackImage(challengeStanding.Challenge),
                     Width = 128,
-                    Binding = new Binding($"ChallengePoints[{challengeCount}]")
+                    Binding = new Binding($"ChallengePoints[{challengeCount}]"),
+                    FontWeight = FontWeights.Normal
                 };
 
                 ChampionshipDataGrid.Columns.Add(column);
