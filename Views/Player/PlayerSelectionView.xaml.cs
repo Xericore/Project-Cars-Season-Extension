@@ -1,8 +1,5 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Views.Player;
 
@@ -11,10 +8,8 @@ namespace ProjectCarsSeasonExtension.Views
     /// <summary>
     /// Interaction logic for PlayerSelection.xaml
     /// </summary>
-    public partial class PlayerSelection : Page, INotifyPropertyChanged
+    public partial class PlayerSelection : Page
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public PlayerController PlayerController { get; }
 
         public PlayerSelection(PlayerController playerController)
@@ -74,12 +69,6 @@ namespace ProjectCarsSeasonExtension.Views
                 PlayerController.LogoutCurrentPlayer();
         }
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private void EditPlayer_OnClick(object sender, RoutedEventArgs e)
         {
             var editPlayerWindow = new PlayerWindow(PlayerController, true);
@@ -88,6 +77,12 @@ namespace ProjectCarsSeasonExtension.Views
             if (dialogResult != true || editPlayerWindow.NewPlayer == null) return;
 
             PlayerController.SetSelectedPlayerAvatar(editPlayerWindow.NewPlayer.AvatarFileName);
+
+            if (!string.IsNullOrEmpty(editPlayerWindow.NewPlayer.PasswordHash))
+            {
+                PlayerController.SelectedPlayer.PasswordHash = editPlayerWindow.NewPlayer.PasswordHash;
+                PlayerController.SelectedPlayer.PasswordSalt = editPlayerWindow.NewPlayer.PasswordSalt;
+            }
 
             var lastSelectedPlayer = PlayerController.SelectedPlayer;
 
