@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
       mc:Ignorable="d"
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="640"
       Title="PlayerSelection" DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Background="{StaticResource MainBackgroundColor}"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -66,9 +66,45 @@
             <RowDefinition Height="48"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        
-        <Button Content="Edit player" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" 
-                IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}" Click="EditPlayer_OnClick"/>
+
+        <Grid Margin="5" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="160"/>
+            </Grid.ColumnDefinitions>
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" 
+                IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}" Click="EditPlayer_OnClick">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Width="24" Height="24" VerticalAlignment="Center">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M21.7,13.35L20.7,14.35L18.65,12.3L19.65,11.3C19.86,11.09 20.21,11.09 20.42,11.3L21.7,12.58C21.91,12.79 21.91,13.14 21.7,13.35M12,18.94L18.06,12.88L20.11,14.93L14.06,21H12V18.94M12,14C7.58,14 4,15.79 4,18V20H10V18.11L14,14.11C13.34,14.03 12.67,14 12,14M12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4Z" Fill="{DynamicResource MaterialDesignDarkForeground}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Margin="5,0,0,0"  Grid.Column="1" VerticalAlignment="Center">Edit Player</TextBlock>
+                </Grid>
+            </Button>
+
+            <Button Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}" Click="LogoutPlayer_OnClick">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" Fill="{DynamicResource MaterialDesignDarkForeground}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Margin="5,0,0,0"  Grid.Column="1" VerticalAlignment="Center">Logout</TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
 
         <DockPanel Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -80,9 +116,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Width="128" Height="128" Margin="16" Checked="PlayerSelected_OnClick" GroupName="Players">
-
-                            </RadioButton>
+                            <RadioButton Width="128" Height="128" Margin="16" Checked="PlayerSelected_OnClick" GroupName="Players" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

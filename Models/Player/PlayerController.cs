@@ -74,5 +74,10 @@ namespace ProjectCarsSeasonExtension.Models.Player
         {
             SelectedPlayer.AvatarFileName = newPlayerAvatarFileName;
         }
+
+        public void LogoutCurrentPlayer()
+        {
+            SelectedPlayer = null;
+        }
     }
 }

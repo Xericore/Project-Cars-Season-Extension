@@ -73,7 +73,15 @@ namespace ProjectCarsSeasonExtension.Views
 
             var dialogResult = passwordWindow.ShowDialog();
 
-            PlayerController.SelectedPlayer = dialogResult == true ? player : null;
+            if (dialogResult == true)
+            {
+                PlayerController.SelectedPlayer = player;
+            }
+            else
+            {
+                PlayerController.LogoutCurrentPlayer();
+            }
+                
         }
 
         [NotifyPropertyChangedInvocator]
@@ -95,6 +103,11 @@ namespace ProjectCarsSeasonExtension.Views
             // Thus I had to resort to this workaround.
             PlayersItemsControl.ItemsSource = null;
             PlayersItemsControl.ItemsSource = PlayerController.Players;
+        }
+
+        private void LogoutPlayer_OnClick(object sender, RoutedEventArgs e)
+        {
+            PlayerController.LogoutCurrentPlayer();
         }
     }
 }
