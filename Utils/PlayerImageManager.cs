@@ -16,10 +16,7 @@ namespace ProjectCarsSeasonExtension.Utils
 
         private string[] _playerImagePaths;
 
-        public static PlayerImageManager Instance
-        {
-            get { return Lazy.Value; }
-        }
+        public static PlayerImageManager Instance => Lazy.Value;
 
         public PlayerImageManager()
         {

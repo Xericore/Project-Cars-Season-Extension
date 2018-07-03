@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows;
@@ -15,7 +16,12 @@ namespace ProjectCarsSeasonExtension.Views.Player
         public ObservableCollection<SelectableImage> Images => PlayerImageManager.Instance.Images;
 
         public Image SelectedImage { get; set; }
-        
+
+        private static readonly Lazy<ImageSelectionWindow> Lazy =
+            new Lazy<ImageSelectionWindow>(() => new ImageSelectionWindow());
+
+        public static ImageSelectionWindow Instance => Lazy.Value;
+
         public ImageSelectionWindow()
         {
             InitializeComponent();
@@ -26,6 +32,12 @@ namespace ProjectCarsSeasonExtension.Views.Player
             var dataContext = (sender as Button)?.DataContext;
             SelectedImage = (dataContext as SelectableImage)?.Image;
             DialogResult = true;
+        }
+
+        private void ImageSelectionWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
         }
     }
 

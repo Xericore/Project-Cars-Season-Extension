@@ -162,7 +162,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void ChangeImage_OnClick(object sender, RoutedEventArgs e)
         {
-            var imageSelectionWindow = new ImageSelectionWindow();
+            var imageSelectionWindow = ImageSelectionWindow.Instance;
             var dialogResult = imageSelectionWindow.ShowDialog();
 
             if (dialogResult == false || imageSelectionWindow.SelectedImage == null)

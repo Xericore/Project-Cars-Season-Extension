@@ -13,7 +13,7 @@
         TextElement.FontSize="{StaticResource MainFontSize}"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}" Closing="ImageSelectionWindow_OnClosing">
 
     <DockPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
