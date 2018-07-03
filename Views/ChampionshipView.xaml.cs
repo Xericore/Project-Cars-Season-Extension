@@ -45,13 +45,16 @@ namespace ProjectCarsSeasonExtension.Views
                     continue;
 
                 var championshipStanding = new ChampionshipStanding(player);
-                ChampionshipStandings.Add(championshipStanding);                
+                             
 
                 foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings)
                 {
                     var playerPoints = challengeStanding.Value.GetPlayerPoints(player.Id);
                     championshipStanding.ChallengePoints.Add(playerPoints);
                 }
+
+                if(championshipStanding.TotalPoints > 0)
+                    ChampionshipStandings.Add(championshipStanding);
             }
 
             ChampionshipStandings.Sort();
