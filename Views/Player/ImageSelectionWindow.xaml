@@ -64,11 +64,11 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="64"/>
+            <RowDefinition Height="88"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ListBox SelectionMode="Single" SelectedIndex="0" Margin="5"
+        <ListBox SelectionMode="Single" Height="48" SelectedIndex="0" Margin="5"
                  ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectionChanged="ImageTypeSelector_OnSelectionChanged">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -76,6 +76,8 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ListBox>
+
+        <ProgressBar Grid.Row="0" Height="12" Minimum="0" Maximum="100" Value="{Binding LoadingProgress}" VerticalAlignment="Bottom" Background="Transparent"/>
 
         <DockPanel Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">

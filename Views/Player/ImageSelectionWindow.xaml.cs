@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows;
+using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Utils;
 
 namespace ProjectCarsSeasonExtension.Views.Player
@@ -11,7 +14,7 @@ namespace ProjectCarsSeasonExtension.Views.Player
     /// <summary>
     /// Interaction logic for ImageSelectionWindow.xaml
     /// </summary>
-    public partial class ImageSelectionWindow : Window
+    public partial class ImageSelectionWindow : Window, INotifyPropertyChanged
     {
         public ObservableCollection<SelectableImage> Images => PlayerImageManager.Instance.FilteredImages;
 
@@ -22,11 +25,21 @@ namespace ProjectCarsSeasonExtension.Views.Player
 
         public static ImageSelectionWindow Instance => Lazy.Value;
 
+        public float LoadingProgress { get; set; }
+
         private bool _forceClosing;
 
         public ImageSelectionWindow()
         {
             InitializeComponent();
+
+            PlayerImageManager.Instance.LoadingProgressChanged += PlayerImageManager_OnLoadingProgressChanged;
+        }
+
+        private void PlayerImageManager_OnLoadingProgressChanged(float progress)
+        {
+            LoadingProgress = progress;
+            OnPropertyChanged(nameof(LoadingProgress));
         }
 
         private void ImageSelected_OnClick(object sender, RoutedEventArgs e)
@@ -61,6 +74,14 @@ namespace ProjectCarsSeasonExtension.Views.Player
                 return;
 
             PlayerImageManager.Instance.FilterImages(selectedFolder);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
