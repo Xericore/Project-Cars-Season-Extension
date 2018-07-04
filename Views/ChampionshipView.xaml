@@ -57,9 +57,7 @@
         <DataGrid.Columns>
             <DataGridTextColumn Header="Pos." 
                 Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
-                Converter={StaticResource RowToPositionConverter}}">
-                
-            </DataGridTextColumn>
+                Converter={StaticResource RowToPositionConverter}}" />
             <DataGridTemplateColumn Header="Player">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
@@ -74,6 +72,7 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
+            <DataGridTextColumn Header="Total Points" Binding="{Binding TotalPoints}"/>
         </DataGrid.Columns>
     </DataGrid>
 </Page>

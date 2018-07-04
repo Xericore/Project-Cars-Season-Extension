@@ -64,18 +64,16 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void CreateAllColumns()
         {
-            DeleteAllColumnsExceptPositionAndPlayer();
+            DeleteAllColumnsExceptFirstThree();
             
-            GenerateTotalPointsColumn();
-
             CreateRaceColumns();
         }
 
-        private void DeleteAllColumnsExceptPositionAndPlayer()
+        private void DeleteAllColumnsExceptFirstThree()
         {
-            while (ChampionshipDataGrid.Columns.Count > 2)
+            while (ChampionshipDataGrid.Columns.Count > 3)
             {
-                ChampionshipDataGrid.Columns.RemoveAt(2);
+                ChampionshipDataGrid.Columns.RemoveAt(3);
             }
         }
 
@@ -98,17 +96,6 @@ namespace ProjectCarsSeasonExtension.Views
                 ChampionshipDataGrid.Columns.Add(column);
                 challengeCount++;
             }
-        }
-
-        private void GenerateTotalPointsColumn()
-        {
-            var totalPointsColumn = new DataGridTextColumn
-            {
-                Header = "Total Points",
-                Binding = new Binding("TotalPoints")
-            };
-
-            ChampionshipDataGrid.Columns.Add(totalPointsColumn);
         }
 
         public void UpdateUI()
