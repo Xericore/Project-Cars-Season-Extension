@@ -64,46 +64,19 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void CreateAllColumns()
         {
-            MovePlayersColumnToBeginning();
-
-            DeleteAllColumnsExceptFirst();
-
-            CreatePositionColumnAtBeginning();
-
+            DeleteAllColumnsExceptPositionAndPlayer();
+            
             GenerateTotalPointsColumn();
 
             CreateRaceColumns();
         }
 
-        private void DeleteAllColumnsExceptFirst()
+        private void DeleteAllColumnsExceptPositionAndPlayer()
         {
-            while (ChampionshipDataGrid.Columns.Count > 1)
+            while (ChampionshipDataGrid.Columns.Count > 2)
             {
-                ChampionshipDataGrid.Columns.RemoveAt(1);
+                ChampionshipDataGrid.Columns.RemoveAt(2);
             }
-        }
-
-        private void MovePlayersColumnToBeginning()
-        {
-            var playersColumn = ChampionshipDataGrid.Columns.FirstOrDefault(c => c.Header.ToString() == "Player");
-            var playersColumnIndex = ChampionshipDataGrid.Columns.IndexOf(playersColumn);
-            ChampionshipDataGrid.Columns.Move(playersColumnIndex, 0);
-        }
-
-        private void CreatePositionColumnAtBeginning()
-        {
-            DataGridTextColumn column0 = new DataGridTextColumn {Header = "Pos."};
-
-            Binding bindingColumn0 = new Binding
-            {
-                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(DataGridRow), 1),
-                Converter = new RowToPositionConverter()
-            };
-
-            column0.Binding = bindingColumn0;
-            
-            ChampionshipDataGrid.Columns.Add(column0);
-            ChampionshipDataGrid.Columns.Move(1,0);
         }
 
         private void CreateRaceColumns()

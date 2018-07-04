@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChampionshipView"
@@ -50,9 +51,15 @@
                 <Setter Property="Height" Value="64"/>
                 <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
             </Style>
+            <converters:RowToPositionConverter x:Key="RowToPositionConverter" />
         </DataGrid.Resources>
 
         <DataGrid.Columns>
+            <DataGridTextColumn Header="Pos." 
+                Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
+                Converter={StaticResource RowToPositionConverter}}">
+                
+            </DataGridTextColumn>
             <DataGridTemplateColumn Header="Player">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
