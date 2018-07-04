@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Converters;
 using ProjectCarsSeasonExtension.Models;
@@ -33,7 +35,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             InitializeComponent();
 
-            GenerateChallengeColumns();
+            CreateAllColumns();
         }
 
         private void CreateChampionshipStandings()
@@ -46,7 +48,6 @@ namespace ProjectCarsSeasonExtension.Views
                     continue;
 
                 var championshipStanding = new ChampionshipStanding(player);
-                             
 
                 foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings)
                 {
@@ -61,13 +62,52 @@ namespace ProjectCarsSeasonExtension.Views
             ChampionshipStandings.Sort();
         }
 
-        private void GenerateChallengeColumns()
+        private void CreateAllColumns()
         {
-            ChampionshipDataGrid.Columns.Clear();
+            MovePlayersColumnToBeginning();
 
-            CreatePositionColumn();
-            CreatePlayerColumn();
+            DeleteAllColumnsExceptFirst();
 
+            CreatePositionColumnAtBeginning();
+
+            GenerateTotalPointsColumn();
+
+            CreateRaceColumns();
+        }
+
+        private void DeleteAllColumnsExceptFirst()
+        {
+            while (ChampionshipDataGrid.Columns.Count > 1)
+            {
+                ChampionshipDataGrid.Columns.RemoveAt(1);
+            }
+        }
+
+        private void MovePlayersColumnToBeginning()
+        {
+            var playersColumn = ChampionshipDataGrid.Columns.FirstOrDefault(c => c.Header.ToString() == "Player");
+            var playersColumnIndex = ChampionshipDataGrid.Columns.IndexOf(playersColumn);
+            ChampionshipDataGrid.Columns.Move(playersColumnIndex, 0);
+        }
+
+        private void CreatePositionColumnAtBeginning()
+        {
+            DataGridTextColumn column0 = new DataGridTextColumn {Header = "Pos."};
+
+            Binding bindingColumn0 = new Binding
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(DataGridRow), 1),
+                Converter = new RowToPositionConverter()
+            };
+
+            column0.Binding = bindingColumn0;
+            
+            ChampionshipDataGrid.Columns.Add(column0);
+            ChampionshipDataGrid.Columns.Move(1,0);
+        }
+
+        private void CreateRaceColumns()
+        {
             int challengeCount = 0;
             foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings.Values)
             {
@@ -85,35 +125,6 @@ namespace ProjectCarsSeasonExtension.Views
                 ChampionshipDataGrid.Columns.Add(column);
                 challengeCount++;
             }
-
-            GenerateTotalPointsColumn();
-        }
-        
-        private void CreatePositionColumn()
-        {
-            DataGridTextColumn column0 = new DataGridTextColumn {Header = "Pos."};
-
-            Binding bindingColumn0 = new Binding
-            {
-                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(DataGridRow), 1),
-                Converter = new RowToPositionConverter()
-            };
-
-            column0.Binding = bindingColumn0;
-            
-            ChampionshipDataGrid.Columns.Add(column0);
-        }
-
-        private void CreatePlayerColumn()
-        {
-            var playerColumn = new DataGridTextColumn
-            {
-                Header = "Player",
-                Binding = new Binding("Player.Name"),
-                Width = 160
-            };
-
-            ChampionshipDataGrid.Columns.Add(playerColumn);
         }
 
         private void GenerateTotalPointsColumn()
@@ -130,7 +141,7 @@ namespace ProjectCarsSeasonExtension.Views
         public void UpdateUI()
         {
             CreateChampionshipStandings();
-            GenerateChallengeColumns();
+            CreateAllColumns();
             OnPropertyChanged(nameof(ChampionshipStandings));
         }
 
