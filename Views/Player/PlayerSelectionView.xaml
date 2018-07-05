@@ -129,7 +129,7 @@
             <TextBlock Grid.Row="3" Margin="5,0" Text="Player to remove" VerticalAlignment="Bottom"
                        Visibility="{Binding RemovePlayerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBox Grid.Row="4" Margin="5,0" Text="{Binding NameOfPlayerToRemove, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Grid.Row="4" Margin="5,0" Text="{Binding NameOfPlayerToRemove, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                      Visibility="{Binding RemovePlayerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="RemovePlayer_OnClick"

@@ -155,6 +155,7 @@ namespace ProjectCarsSeasonExtension.Views
                 return;
 
             PlayerController.RemovePlayerByName(NameOfPlayerToRemove);
+            NameOfPlayerToRemove = "";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

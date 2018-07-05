@@ -9,6 +9,8 @@ namespace ProjectCarsSeasonExtension.Models
 {
     public class DataView
     {
+        public event Action PlayerRemoved;
+
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<Player.Player> Players { get; set; }
 
@@ -118,6 +120,8 @@ namespace ProjectCarsSeasonExtension.Models
             {
                 Handicaps.Remove(handicap);
             }
+
+            PlayerRemoved?.Invoke();
         }
     }
 }

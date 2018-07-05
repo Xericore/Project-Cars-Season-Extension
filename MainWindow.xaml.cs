@@ -72,6 +72,8 @@ namespace ProjectCarsSeasonExtension
         {
             ISeasonReader seasonReader = new XmlSeasonReader();
             DataView = new DataView(seasonReader);
+
+            DataView.PlayerRemoved += () => UpdateAllUIs();
         }
 
         private void Window_Initialized(object sender, EventArgs e)
