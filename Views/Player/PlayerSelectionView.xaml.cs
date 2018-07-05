@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
+using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Views.Player;
 
@@ -8,14 +11,45 @@ namespace ProjectCarsSeasonExtension.Views
     /// <summary>
     /// Interaction logic for PlayerSelection.xaml
     /// </summary>
-    public partial class PlayerSelection : Page
+    public partial class PlayerSelection : Page, INotifyPropertyChanged
     {
         public PlayerController PlayerController { get; }
+
+        public Visibility RemovePlayerButtonVisibility
+        {
+            get => _removePlayerButtonVisibility;
+            set
+            {
+                _removePlayerButtonVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+        private Visibility _removePlayerButtonVisibility;
 
         public PlayerSelection(PlayerController playerController)
         {
             PlayerController = playerController;
+            PlayerController.PlayerSelectionChanged += PlayerControllerOnPlayerSelectionChanged;
             InitializeComponent();
+            SetRemovePlayerButtonVisibility();
+        }
+
+        private void PlayerControllerOnPlayerSelectionChanged()
+        {
+            SetRemovePlayerButtonVisibility();
+        }
+
+        private void SetRemovePlayerButtonVisibility()
+        {
+            if (PlayerController?.SelectedPlayer != null &&
+                PlayerController.SelectedPlayer.Group >= AuthenticationGroup.Moderator)
+            {
+                RemovePlayerButtonVisibility = Visibility.Visible;
+            }
+            else
+            {
+                RemovePlayerButtonVisibility = Visibility.Collapsed;
+            }
         }
 
         private void PlayerSelected_OnClick(object sender, SelectionChangedEventArgs e)
@@ -96,6 +130,19 @@ namespace ProjectCarsSeasonExtension.Views
         private void NewPlayer_OnClick(object sender, RoutedEventArgs e)
         {
             ShowAndHandleNewPlayerWindow();
+        }
+
+        private void RemovePlayer_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ProjectCarsSeasonExtension
             }
         }
 
-        private readonly Player _noPlayer = new Player {Name = "No player", AvatarFileName = "/Assets/helmet.png"};
+        private readonly Player _noPlayer = new Player {Name = "No player logged in", AvatarFileName = "/Assets/Players/NoPlayer.png"};
         private Player _currentlyLoggedInPlayerName = null;
 
         private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();

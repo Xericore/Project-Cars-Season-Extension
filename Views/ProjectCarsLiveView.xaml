@@ -10,45 +10,52 @@
       Title="ProjectCarsLiveView" DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Loaded="ProjectCarsLiveView_OnLoaded" >
 
-<Page.Resources>
-    <GridLength x:Key="RowHeight">64</GridLength>
+    <Page.Resources>
+        <GridLength x:Key="RowHeight">64</GridLength>
     </Page.Resources>
 
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="{DynamicResource RowHeight}"/>
-            <RowDefinition Height="{DynamicResource RowHeight}"/>
-            <RowDefinition Height="{DynamicResource RowHeight}"/>
-            <RowDefinition Height="{DynamicResource RowHeight}"/>
-            <RowDefinition Height="{DynamicResource RowHeight}"/>
-            <RowDefinition Height="{DynamicResource RowHeight}"/>
-            <RowDefinition MinHeight="240"/>
-        </Grid.RowDefinitions>
-        
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Track Location: " />
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProjectCarsData.TrackLocation}" />
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Variant: " />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProjectCarsData.TrackVariant}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Name: " />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProjectCarsData.CarName}" />
+            <TextBlock Text="Track Location: " />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProjectCarsData.TrackLocation}" />
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Car Class:" />
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProjectCarsData.CarClassName}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Variant: " />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProjectCarsData.TrackVariant}" />
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Last Lap Time: " />
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LastLapTime}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Name: " />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProjectCarsData.CarName}" />
 
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Lap Invalidated: " />
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Car Class:" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProjectCarsData.CarClassName}" />
 
-        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Width="480">
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Last Lap Time: " />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LastLapTime}" />
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lap Invalidated: " />
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
+
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
@@ -70,7 +77,6 @@
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SimulatedChallengeResult.LastValidLapTime}" VerticalAlignment="Center"/>
 
             <Button Grid.Row="3" Grid.Column="1" Content="Simulate result" Click="SimulateResult_OnClick" VerticalAlignment="Center"/>
-
         </Grid>
     </Grid>
 </Page>
