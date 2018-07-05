@@ -127,14 +127,14 @@
             </Button>
             
             <TextBlock Grid.Row="3" Margin="5,0" Text="Player to remove" VerticalAlignment="Bottom"
-                       Visibility="{Binding RemovePlayerButtonVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                       Visibility="{Binding RemovePlayerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBox Grid.Row="4" Margin="5,0" Text="{Binding NameOfPlayerToRemove, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
-                     Visibility="{Binding RemovePlayerButtonVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                     Visibility="{Binding RemovePlayerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="RemovePlayer_OnClick"
                     Height="{StaticResource RightButtonsHeight}" Margin="{StaticResource RightButtonsMargin}"
-                    Visibility="{Binding RemovePlayerButtonVisibility}"
+                    Visibility="{Binding RemovePlayerVisibility}"
                     IsEnabled="{Binding IsRemovePlayerButtonEnabled}">
                 <Grid>
                     <Grid.RowDefinitions>

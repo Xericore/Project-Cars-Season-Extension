@@ -29,10 +29,12 @@ namespace ProjectCarsSeasonExtension.Models.Player
         }
 
         private Player _selectedPlayer;
+        private DataView _dataView;
 
-        public PlayerController(ObservableCollection<Player> players)
+        public PlayerController(DataView dataView)
         {
-            Players = players;
+            Players = dataView.Players;
+            _dataView = dataView;
         }
 
         public void AddPlayer(Player newPlayer)
@@ -45,21 +47,19 @@ namespace ProjectCarsSeasonExtension.Models.Player
             SelectedPlayer = newPlayer;
         }
 
-        public void RemovePlayer(string playerName)
+        public void RemovePlayerByName(string playerName)
         {
-            var playerToRemove = Players.FirstOrDefault(p => p.Name.Equals(playerName, StringComparison.Ordinal));
-
-            if (playerToRemove == null)
-            {
-                return;
-            }
-
-            Players.Remove(playerToRemove);
+            _dataView.RemovePlayerByName(playerName);
         }
 
         public void LogoutCurrentPlayer()
         {
             SelectedPlayer = null;
+        }
+
+        public bool DoesPlayerExist(string nameOfPlayerToRemove)
+        {
+            return Players.Any(p => p.Name == nameOfPlayerToRemove);
         }
     }
 }

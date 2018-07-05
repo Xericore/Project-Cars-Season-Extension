@@ -15,17 +15,18 @@ namespace ProjectCarsSeasonExtension.Views
     {
         public PlayerController PlayerController { get; }
 
-        public Visibility RemovePlayerButtonVisibility
+        public Visibility RemovePlayerVisibility
         {
-            get => _removePlayerButtonVisibility;
+            get => _removePlayerVisibility;
             set
             {
-                _removePlayerButtonVisibility = value;
+                _removePlayerVisibility = value;
                 OnPropertyChanged();
             }
         }
 
-        public bool IsRemovePlayerButtonEnabled => !string.IsNullOrEmpty(NameOfPlayerToRemove);
+        public bool IsRemovePlayerButtonEnabled => !string.IsNullOrEmpty(NameOfPlayerToRemove) && 
+                                                   PlayerController != null && PlayerController.DoesPlayerExist(NameOfPlayerToRemove);
 
         public string NameOfPlayerToRemove
         {
@@ -39,7 +40,7 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        private Visibility _removePlayerButtonVisibility;
+        private Visibility _removePlayerVisibility;
         private string _nameOfPlayerToRemove;
 
         public PlayerSelection(PlayerController playerController)
@@ -60,11 +61,11 @@ namespace ProjectCarsSeasonExtension.Views
             if (PlayerController?.SelectedPlayer != null &&
                 PlayerController.SelectedPlayer.Group >= AuthenticationGroup.Moderator)
             {
-                RemovePlayerButtonVisibility = Visibility.Visible;
+                RemovePlayerVisibility = Visibility.Visible;
             }
             else
             {
-                RemovePlayerButtonVisibility = Visibility.Collapsed;
+                RemovePlayerVisibility = Visibility.Collapsed;
             }
         }
 
@@ -153,7 +154,7 @@ namespace ProjectCarsSeasonExtension.Views
             if (string.IsNullOrEmpty(NameOfPlayerToRemove))
                 return;
 
-
+            PlayerController.RemovePlayerByName(NameOfPlayerToRemove);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -77,7 +77,7 @@ namespace ProjectCarsSeasonExtension
         private void Window_Initialized(object sender, EventArgs e)
         {
             _allChallengeStandings = new AllChallengeStandings(DataView);
-            _playerController = new PlayerController(DataView.Players);
+            _playerController = new PlayerController(DataView);
             _playerController.PlayerSelectionChanged += OnPlayerSelectionChanged;
 
             PlayerSelectionFrame.Content = new PlayerSelection(_playerController);

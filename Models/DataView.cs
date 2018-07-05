@@ -99,5 +99,25 @@ namespace ProjectCarsSeasonExtension.Models
 
             return true;
         }
+
+        public void RemovePlayerByName(string playerName)
+        {
+            var playerToRemove = Players.FirstOrDefault(p => p.Name.Equals(playerName, StringComparison.Ordinal));
+
+            if (playerToRemove == null)
+                return;
+
+            Players.Remove(playerToRemove);
+
+            foreach (var playerResult in PlayerResults.Where(p => p.PlayerId == playerToRemove.Id).ToList())
+            {
+                PlayerResults.Remove(playerResult);
+            }
+
+            foreach (var handicap in Handicaps.Where(p => p.PlayerId == playerToRemove.Id).ToList())
+            {
+                Handicaps.Remove(handicap);
+            }
+        }
     }
 }
