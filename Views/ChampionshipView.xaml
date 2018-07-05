@@ -66,8 +66,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Image Height="48" Source="{Binding Player.AvatarFileName}" VerticalAlignment="Center" />
-                            <TextBlock Margin="5" Grid.Column="1" Text="{Binding Player.Name}" VerticalAlignment="Center" />
+                            <Image Width="48" Height="48" Source="{Binding Player.AvatarFileName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBlock Width="160" Margin="5" Grid.Column="1" Text="{Binding Player.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left"/>
                         </Grid>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
