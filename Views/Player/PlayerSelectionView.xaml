@@ -6,7 +6,7 @@
       xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
-      d:DesignHeight="480" d:DesignWidth="640"
+      d:DesignHeight="520" d:DesignWidth="640"
       Title="PlayerSelection" DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Background="{StaticResource MainBackgroundColor}"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -73,6 +73,8 @@
                 <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
                 <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
                 <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="32"/>
                 <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
             </Grid.RowDefinitions>
 
@@ -123,10 +125,17 @@
                     <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Add Player</TextBlock>
                 </Grid>
             </Button>
+            
+            <TextBlock Grid.Row="3" Margin="5,0" Text="Player to remove" VerticalAlignment="Bottom"
+                       Visibility="{Binding RemovePlayerButtonVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Button Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="RemovePlayer_OnClick"
+            <TextBox Grid.Row="4" Margin="5,0" Text="{Binding NameOfPlayerToRemove, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
+                     Visibility="{Binding RemovePlayerButtonVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="RemovePlayer_OnClick"
                     Height="{StaticResource RightButtonsHeight}" Margin="{StaticResource RightButtonsMargin}"
-                    Visibility="{Binding RemovePlayerButtonVisibility, UpdateSourceTrigger=PropertyChanged}">
+                    Visibility="{Binding RemovePlayerButtonVisibility}"
+                    IsEnabled="{Binding IsRemovePlayerButtonEnabled}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>

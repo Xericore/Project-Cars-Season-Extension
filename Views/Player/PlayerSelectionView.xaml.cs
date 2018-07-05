@@ -24,7 +24,23 @@ namespace ProjectCarsSeasonExtension.Views
                 OnPropertyChanged();
             }
         }
+
+        public bool IsRemovePlayerButtonEnabled => !string.IsNullOrEmpty(NameOfPlayerToRemove);
+
+        public string NameOfPlayerToRemove
+        {
+            get => _nameOfPlayerToRemove;
+            set
+            {
+                if (value == _nameOfPlayerToRemove) return;
+                _nameOfPlayerToRemove = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsRemovePlayerButtonEnabled));
+            }
+        }
+
         private Visibility _removePlayerButtonVisibility;
+        private string _nameOfPlayerToRemove;
 
         public PlayerSelection(PlayerController playerController)
         {
@@ -134,7 +150,10 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void RemovePlayer_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(NameOfPlayerToRemove))
+                return;
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -45,6 +45,18 @@ namespace ProjectCarsSeasonExtension.Models.Player
             SelectedPlayer = newPlayer;
         }
 
+        public void RemovePlayer(string playerName)
+        {
+            var playerToRemove = Players.FirstOrDefault(p => p.Name.Equals(playerName, StringComparison.Ordinal));
+
+            if (playerToRemove == null)
+            {
+                return;
+            }
+
+            Players.Remove(playerToRemove);
+        }
+
         public void LogoutCurrentPlayer()
         {
             SelectedPlayer = null;
