@@ -123,5 +123,10 @@ namespace ProjectCarsSeasonExtension.Models
 
             PlayerRemoved?.Invoke();
         }
+
+        public Player.Player GetPlayerById(int playerId)
+        {
+            return Players.FirstOrDefault(p => p.Id == playerId);
+        }
     }
 }

@@ -98,6 +98,8 @@ namespace ProjectCarsSeasonExtension
             _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
 
+            HandicapsFrame.Content = new HandicapView(DataView);
+
             _visibleTabItemsCount = MainTabControl.Items.Cast<TabItem>().Count(item => item.Visibility == Visibility.Visible);
         }
 
