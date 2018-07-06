@@ -31,9 +31,11 @@ namespace ProjectCarsSeasonExtension.Views
 
         public bool IsUserAuthenticated { get; set; }
 
+        public Visibility IsSetHandicapRowVisible => IsUserAuthenticated ? Visibility.Visible : Visibility.Collapsed;
+
         private static readonly Regex Regex = new Regex("[^0-9.-]+");
 
-        private PlayerController _playerController;
+        private readonly PlayerController _playerController;
 
         public HandicapView(DataView dataView, PlayerController playerController)
         {
@@ -66,6 +68,7 @@ namespace ProjectCarsSeasonExtension.Views
                 IsUserAuthenticated = false;
             }
             OnPropertyChanged(nameof(IsUserAuthenticated));
+            OnPropertyChanged(nameof(IsSetHandicapRowVisible));
         }
 
         private void PlayerController_OnPlayerSelectionChanged()

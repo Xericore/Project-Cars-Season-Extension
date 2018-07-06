@@ -36,7 +36,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" Width="660" IsEnabled="{Binding IsUserAuthenticated}">
+        <Grid Grid.Row="1" Width="660" IsEnabled="{Binding IsUserAuthenticated}" Visibility="{Binding IsSetHandicapRowVisible}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="200"/>
