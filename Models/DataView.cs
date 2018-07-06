@@ -10,6 +10,7 @@ namespace ProjectCarsSeasonExtension.Models
     public class DataView
     {
         public event Action PlayerRemoved;
+        public event Action HandicapChanged;
 
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<Player.Player> Players { get; set; }
@@ -127,6 +128,28 @@ namespace ProjectCarsSeasonExtension.Models
         public Player.Player GetPlayerById(int playerId)
         {
             return Players.FirstOrDefault(p => p.Id == playerId);
+        }
+
+        public void SetPlayerHandicap(Player.Player player, Season season, TimeSpan handicap)
+        {
+            var playerHandicap = new PlayerHandicap(player.Id, season.Id, handicap);
+
+            bool isHandicapAlreadyPresent = false;
+
+            foreach (var playerHandicap1 in Handicaps)
+            {
+                if (playerHandicap1.PlayerId == player.Id && playerHandicap1.SeasonId == season.Id)
+                {
+                    isHandicapAlreadyPresent = true;
+                    playerHandicap1.Handicap = handicap;
+                    break;
+                }
+            }
+
+            if(!isHandicapAlreadyPresent)
+                Handicaps.Add(playerHandicap);
+
+            HandicapChanged?.Invoke();
         }
     }
 }

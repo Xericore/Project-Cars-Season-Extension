@@ -21,9 +21,16 @@ namespace ProjectCarsSeasonExtension.Views
 
         public Season SelectedSeason { get; set; }
 
+        public ObservableCollection<Models.Player.Player> AllPlayers { get; set; } = new ObservableCollection<Models.Player.Player>();
+
+        public string SetPlayerHandicapInMs { get; set; }
+
+        public Models.Player.Player SelectedPlayer { get; set; }
+
         public HandicapView(DataView dataView)
         {
             DataView = dataView;
+            DataView.HandicapChanged += DataView_OnHandicapChanged;
 
             InitializeComponent();
 
@@ -31,32 +38,53 @@ namespace ProjectCarsSeasonExtension.Views
             OnPropertyChanged(nameof(SelectedSeason));
 
             SetPlayerSeasonHandicaps();
+            SetPlayersWithoutHandicaps();
+        }
+
+        private void DataView_OnHandicapChanged()
+        {
+            SetPlayerSeasonHandicaps();
         }
 
         private void SetPlayerSeasonHandicaps()
         {
+            PlayerSeasonHandicaps.Clear();
+
             foreach (var dataViewHandicap in DataView.Handicaps)
             {
-                if (dataViewHandicap.SeasonId == SelectedSeason.Id)
+                if (dataViewHandicap.SeasonId != SelectedSeason.Id) continue;
+
+                var player = DataView.GetPlayerById(dataViewHandicap.PlayerId);
+
+                PlayerSeasonHandicaps.Add(new PlayerSeasonHandicap
                 {
-                    var player = DataView.GetPlayerById(dataViewHandicap.PlayerId);
-                    PlayerSeasonHandicaps.Add(new PlayerSeasonHandicap
-                    {
-                        PlayerName = player.Name,
-                        HandicapInMs = dataViewHandicap.Handicap.TotalMilliseconds
-                    });
-                }
+                    PlayerName = player.Name,
+                    HandicapInMs = dataViewHandicap.Handicap.TotalMilliseconds
+                });
             }
         }
 
-        private void ButtonAddHandicap_OnClick(object sender, RoutedEventArgs e)
+        public void SetPlayersWithoutHandicaps()
         {
-            
+            AllPlayers.Clear();
+
+            foreach (var dataViewPlayer in DataView.Players)
+            {
+                AllPlayers.Add(dataViewPlayer);
+            }
+
+            if (AllPlayers.Count > 0)
+            {
+                SelectedPlayer = AllPlayers[0];
+                OnPropertyChanged(nameof(SelectedPlayer));
+            }
         }
 
-        private void DataGrid_OnCurrentCellChanged(object sender, EventArgs e)
+        private void ButtonSetHandicap_OnClick(object sender, RoutedEventArgs e)
         {
-
+            Int32.TryParse(SetPlayerHandicapInMs, out var handicapInMs);
+            TimeSpan handicapAsTimeSpan = new TimeSpan(0,0,0,0, handicapInMs);
+            DataView.SetPlayerHandicap(SelectedPlayer, SelectedSeason, handicapAsTimeSpan);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
