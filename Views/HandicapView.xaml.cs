@@ -29,12 +29,19 @@ namespace ProjectCarsSeasonExtension.Views
 
         public Models.Player.Player SelectedPlayer { get; set; }
 
+        public bool IsUserAuthenticated { get; set; }
+
         private static readonly Regex Regex = new Regex("[^0-9.-]+");
 
-        public HandicapView(DataView dataView)
+        private PlayerController _playerController;
+
+        public HandicapView(DataView dataView, PlayerController playerController)
         {
             DataView = dataView;
             DataView.HandicapChanged += DataView_OnHandicapChanged;
+
+            _playerController = playerController;
+            _playerController.PlayerSelectionChanged += PlayerController_OnPlayerSelectionChanged;
 
             InitializeComponent();
 
@@ -43,6 +50,27 @@ namespace ProjectCarsSeasonExtension.Views
 
             SetPlayerSeasonHandicaps();
             SetPlayersWithoutHandicaps();
+
+            UpdateUserAuthentication();
+        }
+
+        private void UpdateUserAuthentication()
+        {
+            if (_playerController.IsAnyPlayerSelected &&
+                _playerController.SelectedPlayer.Group >= AuthenticationGroup.Moderator)
+            {
+                IsUserAuthenticated = true;
+            }
+            else
+            {
+                IsUserAuthenticated = false;
+            }
+            OnPropertyChanged(nameof(IsUserAuthenticated));
+        }
+
+        private void PlayerController_OnPlayerSelectionChanged()
+        {
+            UpdateUserAuthentication();
         }
 
         private void DataView_OnHandicapChanged()
