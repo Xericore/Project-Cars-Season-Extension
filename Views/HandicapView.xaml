@@ -46,9 +46,15 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Player" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" Margin="5,0,10,0" ItemsSource="{Binding AllPlayers}" SelectedItem="{Binding SelectedPlayer}" VerticalAlignment="Center"/>
+            
+            <ComboBox Grid.Column="1" Margin="5,0,10,0" ItemsSource="{Binding AllPlayers}" 
+                      SelectedItem="{Binding SelectedPlayer}" VerticalAlignment="Center"/>
+            
             <TextBlock Grid.Column="2" Margin="5,0" Text="Handicap [ms]" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="3" Margin="5,0,10,0" Text="{Binding SetPlayerHandicapInMs}" VerticalAlignment="Center" PreviewTextInput="AllowOnlyNumbers" DataObject.Pasting="TextBoxPasting"/>
+
+            <TextBox Grid.Column="3" Margin="5,0,10,0" Text="{Binding SetPlayerHandicapInMs, UpdateSourceTrigger=PropertyChanged}" 
+                     TextAlignment="Center" VerticalAlignment="Center" PreviewTextInput="AllowOnlyNumbers" DataObject.Pasting="TextBoxPasting">
+            </TextBox>
             <Button Grid.Column="4" Click="ButtonSetHandicap_OnClick" VerticalAlignment="Center">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -65,9 +71,9 @@
             </Button>
         </Grid>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding PlayerSeasonHandicaps}" 
+        <DataGrid Grid.Row="2" ItemsSource="{Binding PlayerSeasonHandicaps}"
                   CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
-                  IsReadOnly="False" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="True"
+                  IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
                   CanUserResizeColumns="False" SelectionMode="Single" Background="{StaticResource MainBackgroundColor}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Player" Binding="{Binding PlayerName}"/>

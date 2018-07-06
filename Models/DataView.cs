@@ -142,6 +142,10 @@ namespace ProjectCarsSeasonExtension.Models
                 {
                     isHandicapAlreadyPresent = true;
                     playerHandicap1.Handicap = handicap;
+
+                    if (handicap.TotalMilliseconds <= 0)
+                        Handicaps.Remove(playerHandicap1);
+
                     break;
                 }
             }
