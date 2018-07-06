@@ -31,7 +31,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Season" Margin="5,0" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" Margin="5,0" ItemsSource="{Binding DataView.Seasons}" SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Margin="5,0" ItemsSource="{Binding DataView.Seasons}" VerticalAlignment="Center"
+                      SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" SelectionChanged="SeasonSelector_OnSelectionChanged"/>
 
         </Grid>
 

@@ -124,6 +124,12 @@ namespace ProjectCarsSeasonExtension.Views
                 e.CancelCommand();
             }
         }
+
+        private void SeasonSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SetPlayerSeasonHandicaps();
+            SetPlayersWithoutHandicaps();
+        }
     }
 
     public class PlayerSeasonHandicap
