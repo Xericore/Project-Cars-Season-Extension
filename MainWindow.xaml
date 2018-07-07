@@ -22,6 +22,11 @@
 
         Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600" SnapsToDevicePixels="True">
 
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding LogoutPlayerCommand}" Key="NumPad0"/>
+        <KeyBinding Command="{Binding CloseApplicationCommand}" Modifiers="Control" Key="Q"/>
+    </Window.InputBindings>
+
     <TabControl x:Name="MainTabControl" BorderThickness="0" HorizontalAlignment="Center">
 
         <TabControl.Resources>

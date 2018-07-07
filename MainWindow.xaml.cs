@@ -45,7 +45,8 @@ namespace ProjectCarsSeasonExtension
         private readonly Player _noPlayer = new Player {Name = "No player logged in", AvatarFileName = "/Assets/Players/NoPlayer.png"};
         private Player _currentlyLoggedInPlayerName = null;
 
-        private readonly RoutedCommand _closeApplicationCommand = new RoutedCommand();
+        public RoutedCommand CloseApplicationCommand { get; private set; }= new RoutedCommand();
+        public RoutedCommand LogoutPlayerCommand { get; private set; }= new RoutedCommand();
 
         private ProjectCarsLiveView _projectCarsLiveView;
         private PlayerController _playerController;
@@ -61,11 +62,14 @@ namespace ProjectCarsSeasonExtension
         public MainWindow()
         {
             ReadSeasonData();
-
             InitializeComponent();
+            BindKeyCommands();
+        }
 
-            _closeApplicationCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(_closeApplicationCommand, CloseApplication_Executed));
+        private void BindKeyCommands()
+        {
+            CommandBindings.Add(new CommandBinding(CloseApplicationCommand, CloseApplication_Executed));   
+            CommandBindings.Add(new CommandBinding(LogoutPlayerCommand, LogoutPlayer_Executed));
         }
 
         private void ReadSeasonData()
@@ -235,6 +239,11 @@ namespace ProjectCarsSeasonExtension
         private static void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void LogoutPlayer_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            _playerController?.LogoutCurrentPlayer();
         }
 
         [NotifyPropertyChangedInvocator]
