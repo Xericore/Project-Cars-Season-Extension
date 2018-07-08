@@ -45,14 +45,16 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void PlayerController_OnPlayerSelectionChanged()
         {
+            SelectedChampionshipStanding = null;
+
             foreach (var championshipStanding in ChampionshipStandings)
             {
                 if (championshipStanding.Player != _playerController.SelectedPlayer) continue;
 
                 SelectedChampionshipStanding = championshipStanding;
-                OnPropertyChanged(nameof(SelectedChampionshipStanding));
                 break;
             }
+            OnPropertyChanged(nameof(SelectedChampionshipStanding));
         }
 
         private void CreateChampionshipStandings()
