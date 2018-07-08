@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
 
@@ -20,19 +21,38 @@ namespace ProjectCarsSeasonExtension.Views
 
         private readonly DataView _dataView;
         private readonly AllChallengeStandings _allChallengeStandings;
-     
+        private readonly PlayerController _playerController;
+
         public ObservableCollection<ChampionshipStanding> ChampionshipStandings { get; set; } = new ObservableCollection<ChampionshipStanding>();
 
-        public ChampionshipView(DataView dataView, AllChallengeStandings allChallengeStandings)
+        public ChampionshipStanding SelectedChampionshipStanding { get; set; }
+
+        public ChampionshipView(DataView dataView, AllChallengeStandings allChallengeStandings, PlayerController playerController)
         {
             _dataView = dataView;
             _allChallengeStandings = allChallengeStandings;
+
+            _playerController = playerController;
+
+            _playerController.PlayerSelectionChanged += PlayerController_OnPlayerSelectionChanged;
 
             CreateChampionshipStandings();
 
             InitializeComponent();
 
             CreateAllColumns();
+        }
+
+        private void PlayerController_OnPlayerSelectionChanged()
+        {
+            foreach (var championshipStanding in ChampionshipStandings)
+            {
+                if (championshipStanding.Player != _playerController.SelectedPlayer) continue;
+
+                SelectedChampionshipStanding = championshipStanding;
+                OnPropertyChanged(nameof(SelectedChampionshipStanding));
+                break;
+            }
         }
 
         private void CreateChampionshipStandings()

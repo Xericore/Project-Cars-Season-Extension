@@ -89,7 +89,7 @@ namespace ProjectCarsSeasonExtension
 
             PlayerSelectionFrame.Content = new PlayerSelection(_playerController);
 
-            _championshipView = new ChampionshipView(DataView, _allChallengeStandings);
+            _championshipView = new ChampionshipView(DataView, _allChallengeStandings, _playerController);
             ChampionshipFrame.Content = _championshipView;
             
             _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings.Values);

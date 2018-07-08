@@ -37,7 +37,7 @@
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
               CanUserResizeColumns="False" SelectionMode="Single" Background="{StaticResource MainBackgroundColor}"
-              CellStyle="{StaticResource BodyContentDataGridCentering}">
+              CellStyle="{StaticResource BodyContentDataGridCentering}" SelectedItem="{Binding SelectedChampionshipStanding, Mode=OneWay}">
 
         <DataGrid.Resources>
             <Style TargetType="DataGridColumnHeader">
@@ -51,6 +51,8 @@
                 <Setter Property="Height" Value="64"/>
                 <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
             </Style>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                             Color="{DynamicResource Primary400Foreground}"/>
             <converters:RowToPositionConverter x:Key="RowToPositionConverter" />
         </DataGrid.Resources>
 
