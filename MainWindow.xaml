@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Project Cars Season Extension" Height="800" Width="1280"
         Initialized="Window_Initialized"
@@ -59,12 +60,20 @@
                 <Setter Property="Height" Value="64"/>
                 <Setter Property="Margin" Value="1"/>
             </Style>
+
+            <system:Double x:Key="TabIconSize">36</system:Double>
+            <Brush x:Key="TabIconColor">Black</Brush>
+
         </TabControl.Resources>
 
         <TabItem Name="ChampionshipTab">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Height="36" Width="auto" Source="Assets/Cup.png" />
+                    <Viewbox Width="{StaticResource TabIconSize}" Height="{StaticResource TabIconSize}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M20.2,2H19.5H18C17.1,2 16,3 16,4H8C8,3 6.9,2 6,2H4.5H3.8H2V11C2,12 3,13 4,13H6.2C6.6,15 7.9,16.7 11,17V19.1C8.8,19.3 8,20.4 8,21.7V22H16V21.7C16,20.4 15.2,19.3 13,19.1V17C16.1,16.7 17.4,15 17.8,13H20C21,13 22,12 22,11V2H20.2M4,11V4H6V6V11C5.1,11 4.3,11 4,11M20,11C19.7,11 18.9,11 18,11V6V4H20V11Z" Fill="{StaticResource TabIconColor}" />
+                        </Canvas>
+                    </Viewbox>
                     <TextBlock Text="Championship" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -74,7 +83,11 @@
         <TabItem Name="SeasonTab">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Height="36" Width="auto" Source="Assets/Flag.png" />
+                    <Viewbox Width="{StaticResource TabIconSize}" Height="{StaticResource TabIconSize}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M14.4,6H20V16H13L12.6,14H7V21H5V4H14L14.4,6M14,14H16V12H18V10H16V8H14V10L13,8V6H11V8H9V6H7V8H9V10H7V12H9V10H11V12H13V10L14,12V14M11,10V8H13V10H11M14,10H16V12H14V10Z" Fill="{StaticResource TabIconColor}" />
+                        </Canvas>
+                    </Viewbox>
                     <TextBlock Text="Races" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -84,9 +97,9 @@
         <TabItem Name="HandicapsTab">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Viewbox Width="36" Height="36">
+                    <Viewbox Width="{StaticResource TabIconSize}" Height="{StaticResource TabIconSize}">
                         <Canvas Width="24" Height="24">
-                            <Path Data="M21,10.12H14.22L16.96,7.3C14.23,4.6 9.81,4.5 7.08,7.2C4.35,9.91 4.35,14.28 7.08,17C9.81,19.7 14.23,19.7 16.96,17C18.32,15.65 19,14.08 19,12.1H21C21,14.08 20.12,16.65 18.36,18.39C14.85,21.87 9.15,21.87 5.64,18.39C2.14,14.92 2.11,9.28 5.62,5.81C9.13,2.34 14.76,2.34 18.27,5.81L21,3V10.12M12.5,8V12.25L16,14.33L15.28,15.54L11,13V8H12.5Z" Fill="{DynamicResource MaterialDesignLightForeground}" />
+                            <Path Data="M21,10.12H14.22L16.96,7.3C14.23,4.6 9.81,4.5 7.08,7.2C4.35,9.91 4.35,14.28 7.08,17C9.81,19.7 14.23,19.7 16.96,17C18.32,15.65 19,14.08 19,12.1H21C21,14.08 20.12,16.65 18.36,18.39C14.85,21.87 9.15,21.87 5.64,18.39C2.14,14.92 2.11,9.28 5.62,5.81C9.13,2.34 14.76,2.34 18.27,5.81L21,3V10.12M12.5,8V12.25L16,14.33L15.28,15.54L11,13V8H12.5Z" Fill="{StaticResource TabIconColor}" />
                         </Canvas>
                     </Viewbox>
                     <TextBlock Text="Handicaps" Margin="5,0,0,0" VerticalAlignment="Center" />
@@ -98,7 +111,11 @@
         <TabItem Name="ProjectCarsLiveTab">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Height="36" Width="auto" Source="Assets/Project Cars.png" />
+                    <Viewbox Width="{StaticResource TabIconSize}" Height="{StaticResource TabIconSize}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M5,14H19L17.5,9.5H6.5L5,14M17.5,19A1.5,1.5 0 0,0 19,17.5A1.5,1.5 0 0,0 17.5,16A1.5,1.5 0 0,0 16,17.5A1.5,1.5 0 0,0 17.5,19M6.5,19A1.5,1.5 0 0,0 8,17.5A1.5,1.5 0 0,0 6.5,16A1.5,1.5 0 0,0 5,17.5A1.5,1.5 0 0,0 6.5,19M18.92,9L21,15V23A1,1 0 0,1 20,24H19A1,1 0 0,1 18,23V22H6V23A1,1 0 0,1 5,24H4A1,1 0 0,1 3,23V15L5.08,9C5.28,8.42 5.85,8 6.5,8H17.5C18.15,8 18.72,8.42 18.92,9M12,0C14.12,0 16.15,0.86 17.65,2.35L16.23,3.77C15.11,2.65 13.58,2 12,2C10.42,2 8.89,2.65 7.77,3.77L6.36,2.35C7.85,0.86 9.88,0 12,0M12,4C13.06,4 14.07,4.44 14.82,5.18L13.4,6.6C13.03,6.23 12.53,6 12,6C11.5,6 10.97,6.23 10.6,6.6L9.18,5.18C9.93,4.44 10.94,4 12,4Z" Fill="{StaticResource TabIconColor}" />
+                        </Canvas>
+                    </Viewbox>
                     <TextBlock Text="Project Cars Live" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
@@ -108,9 +125,9 @@
         <TabItem Name="SeasonEditorTab">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Viewbox Width="36" Height="36">
+                    <Viewbox Width="{StaticResource TabIconSize}" Height="{StaticResource TabIconSize}">
                         <Canvas Width="24" Height="24">
-                            <Path Data="M2,6V8H14V6H2M2,10V12H14V10H2M20.04,10.13C19.9,10.13 19.76,10.19 19.65,10.3L18.65,11.3L20.7,13.35L21.7,12.35C21.92,12.14 21.92,11.79 21.7,11.58L20.42,10.3C20.31,10.19 20.18,10.13 20.04,10.13M18.07,11.88L12,17.94V20H14.06L20.12,13.93L18.07,11.88M2,14V16H10V14H2Z" Fill="{DynamicResource MaterialDesignLightForeground}" />
+                            <Path Data="M2,6V8H14V6H2M2,10V12H14V10H2M20.04,10.13C19.9,10.13 19.76,10.19 19.65,10.3L18.65,11.3L20.7,13.35L21.7,12.35C21.92,12.14 21.92,11.79 21.7,11.58L20.42,10.3C20.31,10.19 20.18,10.13 20.04,10.13M18.07,11.88L12,17.94V20H14.06L20.12,13.93L18.07,11.88M2,14V16H10V14H2Z" Fill="{StaticResource TabIconColor}" />
                         </Canvas>
                     </Viewbox>
                     <TextBlock Text="Season Editor" Margin="5,0,0,0" VerticalAlignment="Center" />
@@ -122,7 +139,7 @@
         <TabItem Name="PlayerSelectionTab" IsSelected="True">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Height="36" Width="auto" Source="{Binding Path=CurrentlyLoggedInPlayer.AvatarFileName}" />
+                    <Image Height="{StaticResource TabIconSize}" Width="{StaticResource TabIconSize}" Source="{Binding Path=CurrentlyLoggedInPlayer.AvatarFileName}" />
                     <TextBlock Text="{Binding Path=CurrentlyLoggedInPlayer.Name}" Margin="5,0,0,0" VerticalAlignment="Center" />
                 </StackPanel>
             </TabItem.Header>
