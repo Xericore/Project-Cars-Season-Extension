@@ -23,6 +23,13 @@
 
         <DataGrid.Resources>
 
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
+                <Setter Property="Padding" Value="10,20"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
+            </Style>
+
             <Style TargetType="DataGridRow">
                 <Setter Property="Height" Value="64"/>
                 <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
@@ -49,9 +56,9 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
 
-            <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLapWithHandicap,StringFormat={}{0:m\\:ss\\:fff}}" />
-            <DataGridTextColumn Header="Gap to previous" Binding="{Binding GapToPreviousPlayer,StringFormat={}{0:ss\\:fff}}" />
-            <DataGridTextColumn Header="Gap to leader" Binding="{Binding GapToLeader,StringFormat={}{0:ss\\:fff}}" />
+            <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLapWithHandicap,StringFormat={}{0:m\\:ss\\.fff}}" />
+            <DataGridTextColumn Header="Gap to previous" Binding="{Binding GapToPreviousPlayer,StringFormat={}{0:ss\\.fff}}" />
+            <DataGridTextColumn Header="Gap to leader" Binding="{Binding GapToLeader,StringFormat={}{0:ss\\.fff}}" />
         </DataGrid.Columns>
         
     </DataGrid>
