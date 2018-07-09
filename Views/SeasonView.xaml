@@ -44,7 +44,7 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="MinWidth" Value="260"/>
+                    <Setter Property="MinWidth" Value="280"/>
                     <Setter Property="Height" Value="64"/>
                     <Setter Property="Margin" Value="1,0"/>
                     <Setter Property="HorizontalAlignment" Value="Center"/>

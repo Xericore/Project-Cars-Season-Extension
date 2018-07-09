@@ -18,7 +18,7 @@
     <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChallengeStanding.ChallengePlayerStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" Background="{StaticResource MainBackgroundColor}"
-              FontSize="{StaticResource MainFontSize}">
+              FontSize="{StaticResource MainFontSize}" SelectionUnit="FullRow" SelectionMode="Single">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Position" Binding="{Binding Position}" />
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />

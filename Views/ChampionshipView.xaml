@@ -35,8 +35,8 @@
 
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
-              IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
-              CanUserResizeColumns="False" SelectionMode="Single" Background="{StaticResource MainBackgroundColor}"
+              IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" 
+              CanUserResizeColumns="False" SelectionMode="Single" Background="{StaticResource MainBackgroundColor}" SelectionUnit="FullRow"
               CellStyle="{StaticResource BodyContentDataGridCentering}" SelectedItem="{Binding SelectedChampionshipStanding, Mode=OneWay}">
 
         <DataGrid.Resources>

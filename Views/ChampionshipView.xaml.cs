@@ -54,6 +54,7 @@ namespace ProjectCarsSeasonExtension.Views
                 SelectedChampionshipStanding = championshipStanding;
                 break;
             }
+
             OnPropertyChanged(nameof(SelectedChampionshipStanding));
         }
 
