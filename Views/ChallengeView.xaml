@@ -15,18 +15,55 @@
 
       Title="ChallengeView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
+    <Page.Resources>
+        <Style x:Key="BodyContentDataGridCentering"
+               TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <DataGrid Name="ChallengeDataGrid" ItemsSource="{Binding ChallengeStanding.ChallengePlayerStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" Background="{StaticResource MainBackgroundColor}"
-              FontSize="{StaticResource MainFontSize}" SelectionUnit="FullRow" SelectionMode="Single">
+              FontSize="{StaticResource MainFontSize}" SelectionUnit="FullRow" SelectionMode="Single"
+              CellStyle="{StaticResource BodyContentDataGridCentering}">
 
         <DataGrid.Resources>
+
+            <Style TargetType="DataGridRow">
+                <Setter Property="Height" Value="64"/>
+                <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
+            </Style>
+
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Primary500}"/>
         </DataGrid.Resources>
 
         <DataGrid.Columns>
             <DataGridTextColumn Header="Position" Binding="{Binding Position}" />
-            <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
+
+            <DataGridTemplateColumn Header="Player">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Grid Height="64" Margin="5" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Image Width="48" Height="48" Source="{Binding Player.AvatarFileName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBlock Width="160" Margin="5" Grid.Column="1" Text="{Binding Player.Name}" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left"/>
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
             <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLapWithHandicap,StringFormat={}{0:m\\:ss\\:fff}}" />
             <DataGridTextColumn Header="Gap to previous" Binding="{Binding GapToPreviousPlayer,StringFormat={}{0:ss\\:fff}}" />
             <DataGridTextColumn Header="Gap to leader" Binding="{Binding GapToLeader,StringFormat={}{0:ss\\:fff}}" />
