@@ -19,6 +19,11 @@
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" Background="{StaticResource MainBackgroundColor}"
               FontSize="{StaticResource MainFontSize}" SelectionUnit="FullRow" SelectionMode="Single">
+
+        <DataGrid.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Primary500}"/>
+        </DataGrid.Resources>
+
         <DataGrid.Columns>
             <DataGridTextColumn Header="Position" Binding="{Binding Position}" />
             <DataGridTextColumn Header="Player" Binding="{Binding Player.Name}" />
