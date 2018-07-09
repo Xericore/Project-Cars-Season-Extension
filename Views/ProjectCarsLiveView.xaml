@@ -7,7 +7,14 @@
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProjectCarsLiveView" DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      Background="{StaticResource MainBackgroundColor}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="{StaticResource MainFontWeight}"
+      TextElement.FontSize="{StaticResource MainFontSize}"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}"
       Loaded="ProjectCarsLiveView_OnLoaded" >
 
     <Page.Resources>
@@ -16,11 +23,18 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+
         <Grid Margin="10">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
@@ -31,26 +45,26 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="130"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Track Location: " />
+            <TextBlock Text="Track Location" />
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProjectCarsData.TrackLocation}" />
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Variant: " />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Variant" />
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProjectCarsData.TrackVariant}" />
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Name: " />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Name" />
             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProjectCarsData.CarName}" />
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Car Class:" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Car Class" />
             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProjectCarsData.CarClassName}" />
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Last Lap Time: " />
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Last Lap Time" />
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LastLapTime}" />
 
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lap Invalidated: " />
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lap Invalidated" />
             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
 
         </Grid>
@@ -63,17 +77,17 @@
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="220"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Player" VerticalAlignment="Center"/>
+            <TextBlock Text="Player"/>
             <ComboBox Name="PlayerNameSelector" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AllPlayerNames}" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Location and Variant" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Location and Variant"/>
             <ComboBox Name="RaceNameSelector" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllRaceNames}" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Time" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Time"/>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SimulatedChallengeResult.LastValidLapTime}" VerticalAlignment="Center"/>
 
             <Button Grid.Row="3" Grid.Column="1" Content="Simulate result" Click="SimulateResult_OnClick" VerticalAlignment="Center"/>
