@@ -58,7 +58,7 @@ namespace ProjectCarsSeasonExtension.Views
                 {
                     Content = challengeView,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Width = 640
+                    Width = 680
                 };
                 tabItem.Content = contentFrame;
 
@@ -73,7 +73,7 @@ namespace ProjectCarsSeasonExtension.Views
             headerGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
             Image trackImage = UiUtils.GetTrackImage(challengeStandingChallenge);
-            trackImage.Margin = new Thickness(5);
+            trackImage.Margin = new Thickness(10,5,5,5);
 
             headerGrid.Children.Add(trackImage);
 
@@ -81,7 +81,8 @@ namespace ProjectCarsSeasonExtension.Views
             var textBlock = new TextBlock
             {
                 Text = headerText,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(10,0,10,0)
             };
             Grid.SetColumn(textBlock, 1);
 
