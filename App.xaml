@@ -17,6 +17,20 @@
             <SolidColorBrush x:Key="MainBackgroundColor">White</SolidColorBrush>
             <FontWeight x:Key="MainFontWeight">Medium</FontWeight>
             <system:Double x:Key="MainFontSize">16</system:Double>
+
+            <Style x:Key="BodyContentDataGridCentering"
+                   TargetType="{x:Type DataGridCell}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

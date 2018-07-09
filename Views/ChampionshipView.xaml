@@ -17,21 +17,6 @@
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <Page.Resources>
-        <Style x:Key="BodyContentDataGridCentering"
-               TargetType="{x:Type DataGridCell}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Grid Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" 
