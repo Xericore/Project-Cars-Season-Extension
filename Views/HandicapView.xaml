@@ -71,13 +71,28 @@
             </Button>
         </Grid>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding PlayerSeasonHandicaps}"
+        <DataGrid Grid.Row="2" ItemsSource="{Binding PlayerSeasonHandicaps}" HorizontalAlignment="Center"
                   CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
                   IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False"
                   CanUserResizeColumns="False" SelectionMode="Single" Background="{StaticResource MainBackgroundColor}">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
+                    <Setter Property="Padding" Value="10,20"/>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
+                </Style>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{StaticResource MainBackgroundColor}"/>
+                    <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
+                </Style>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Primary500}"/>
+            </DataGrid.Resources>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Player" Binding="{Binding PlayerName}"/>
-                <DataGridTextColumn Header="Handicap [ms]" Binding="{Binding HandicapInMs}"/>
+                <DataGridTextColumn Header="Handicap [ms]" Width="160" Binding="{Binding HandicapInMs}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
