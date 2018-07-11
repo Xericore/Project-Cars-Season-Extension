@@ -27,6 +27,11 @@
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            </Style>
+                        </Grid.Resources>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition />

@@ -186,7 +186,7 @@ namespace ProjectCarsSeasonExtension
             if (!wasDataAdded)
                 return;
 
-            UpdateAllUIs(challengeResult.ToString());
+            UpdateAllUIs();
 
             SaveData();
         }
@@ -207,10 +207,10 @@ namespace ProjectCarsSeasonExtension
             return selectedPlayer;
         }
 
-        private void UpdateAllUIs(string challengeResultTrackLocationAndVariant = null)
+        private void UpdateAllUIs()
         {
             _allChallengeStandings.UpdateUI();
-            _seasonView.UpdateUI(challengeResultTrackLocationAndVariant);
+            _seasonView.UpdateUI(_allChallengeStandings.ChallengeStandings.Values);
             _championshipView.UpdateUI();
         }
 
