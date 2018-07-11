@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
+using ProjectCarsSeasonExtension.Views;
 
 namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class ChallengeStanding : BaseModel
     {
         public Challenge Challenge { get; set; }
+        public ChallengeView ChallengeView { get; set; }
 
         public SortedSet<ChallengePlayerStanding> ChallengePlayerStandings { get; set; } = new SortedSet<ChallengePlayerStanding>();
 
         public ChallengeStanding(Challenge challenge)
         {
             Challenge = challenge;
+
+            ChallengeView = new ChallengeView(this);
         }
 
         public void SetChallengePlayerStanding(ChallengePlayerStanding challengePlayerStanding)

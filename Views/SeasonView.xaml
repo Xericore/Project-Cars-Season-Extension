@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       
@@ -14,43 +15,59 @@
       FontFamily="{DynamicResource MaterialDesignFont}"
 
       Title="SeasonView" DataContext="{Binding RelativeSource={RelativeSource Self}}">
-
+    
     <Grid Margin="0,10,0,0">
-        <TabControl Name="ChallengesTabControl" HorizontalAlignment="Center" BorderThickness="0">
+
+        <TabControl Name="ChallengesTabControl" HorizontalAlignment="Center" BorderThickness="0" ItemsSource="{Binding ChallengeStandings}">
 
             <TabControl.Resources>
-
-                <SolidColorBrush x:Key="DisabledForegroundBrush" Color="DimGray" />
-                <SolidColorBrush x:Key="DeselectedTabBrush" Color="LightGray" />
-
-                <Style TargetType="TabItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                                <Grid Name="Panel">
-                                    <ContentPresenter x:Name="ContentSite" 
-                                                      VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                      ContentSource="Header"/>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Panel" Property="Background" Value="{StaticResource PrimaryHueMidBrush}" />
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="Panel" Property="Background" Value="{StaticResource DeselectedTabBrush}" />
-                                        <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="MinWidth" Value="280"/>
-                    <Setter Property="Height" Value="64"/>
-                    <Setter Property="Margin" Value="1,0"/>
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                </Style>
+                <converters:TrackNameToImageSourceConverter x:Key="TrackNameToImageSourceConverter" />
             </TabControl.Resources>
+
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0"
+                               Source="{Binding Challenge.TrackName, Converter={StaticResource TrackNameToImageSourceConverter}}"
+                               Height="96" Width="96"/>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Track:"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Challenge.TrackName}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Car:"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Challenge.CarName}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Difficulty:"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Challenge.Difficulty}"/>
+
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <Frame Content="{Binding ChallengeView}" HorizontalAlignment="Center" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+
         </TabControl>
     </Grid>
 </Page>

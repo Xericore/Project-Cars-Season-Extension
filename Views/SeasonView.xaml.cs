@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
@@ -21,20 +20,22 @@ namespace ProjectCarsSeasonExtension.Views
 
         public ObservableCollection<ChallengeView> ChallengeViews { get; set; } = new ObservableCollection<ChallengeView>();
 
-        private readonly IEnumerable<ChallengeStanding> _challengeStandings;
+        public ObservableCollection<ChallengeStanding> ChallengeStandings { get; set; }
+
         private int _lastSelectedTabIndex;
 
         public SeasonView(IEnumerable<ChallengeStanding> challengeStandings)
         {
-            InitializeComponent();
-            _challengeStandings = challengeStandings;
+            ChallengeStandings = new ObservableCollection<ChallengeStanding>(challengeStandings);
 
-            CreateTabs();
+            InitializeComponent();
+
+//            CreateTabs();
         }
 
         private void CreateTabs()
         {
-            foreach (var challengeStanding in _challengeStandings)
+            foreach (var challengeStanding in ChallengeStandings)
             {
                 var challengeView = new ChallengeView(challengeStanding);
                 ChallengeViews.Add(challengeView);
@@ -131,6 +132,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         public void UpdateUI(string challengeToString = null)
         {
+            return;
             _lastSelectedTabIndex = ChallengesTabControl.SelectedIndex;
 
             ChallengesTabControl.Items.Clear();
