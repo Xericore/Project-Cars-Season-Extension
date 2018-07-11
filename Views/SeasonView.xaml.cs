@@ -52,7 +52,9 @@ namespace ProjectCarsSeasonExtension.Views
                 TabItem tabItem = new TabItem
                 {
                     Header = headerGrid,
-                    Height = 220
+                    Height = 120,
+                    Width = 460,
+                    HorizontalAlignment = HorizontalAlignment.Center
                 };
 
                 Frame contentFrame = new Frame
@@ -67,32 +69,64 @@ namespace ProjectCarsSeasonExtension.Views
             }
         }
 
-        private static Grid GetHeaderGrid(Challenge challengeStandingChallenge)
+        private static Grid GetHeaderGrid(Challenge challenge)
         {
-            Grid headerGrid = new Grid();
-            headerGrid.RowDefinitions.Add(new RowDefinition());
-            headerGrid.RowDefinitions.Add(new RowDefinition());
+            Grid headerGrid = new Grid
+            {
+                Margin = new Thickness(10, 0, 10, 0)
+            };
 
-            Image trackImage = UiUtils.GetTrackImage(challengeStandingChallenge);
+            headerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            headerGrid.ColumnDefinitions.Add(new ColumnDefinition{Width = new GridLength(320)});
+
+            Image trackImage = UiUtils.GetTrackImage(challenge);
             trackImage.Margin = new Thickness(5);
             trackImage.Width = 96;
             trackImage.Height = 96;
 
             headerGrid.Children.Add(trackImage);
+            
+            var textGrid = GetHeaderTextGrid(challenge);
+            Grid.SetColumn(textGrid, 1);
 
-            string headerText = UiUtils.CreateChallengeTabHeaderText(challengeStandingChallenge.Name);
-            var textBlock = new TextBlock
-            {
-                Text = headerText,
-                VerticalAlignment = VerticalAlignment.Center,
-                TextAlignment = TextAlignment.Center,
-                Margin = new Thickness(5)
-            };
-            Grid.SetRow(textBlock, 1);
-
-            headerGrid.Children.Add(textBlock);
+            headerGrid.Children.Add(textGrid);
 
             return headerGrid;
+        }
+
+        private static Grid GetHeaderTextGrid(Challenge challenge)
+        {
+            Grid textGrid = new Grid();
+            textGrid.RowDefinitions.Add(new RowDefinition());
+            textGrid.RowDefinitions.Add(new RowDefinition());
+            textGrid.RowDefinitions.Add(new RowDefinition());
+
+            textGrid.ColumnDefinitions.Add(new ColumnDefinition{ Width = new GridLength(80) });
+            textGrid.ColumnDefinitions.Add(new ColumnDefinition ());
+
+            AddTextBlockToGrid("Track:", 0, 0, textGrid);
+            AddTextBlockToGrid(challenge.TrackName, 0, 1, textGrid);
+
+            AddTextBlockToGrid("Car:", 1, 0, textGrid);
+            AddTextBlockToGrid(challenge.CarName, 1, 1, textGrid);
+
+            AddTextBlockToGrid("Difficulty:", 2, 0, textGrid);
+            AddTextBlockToGrid(challenge.Difficulty.ToString(), 2, 1, textGrid);
+
+            return textGrid;
+        }
+
+        private static void AddTextBlockToGrid(string textBlockText, int row, int column, Grid textGrid)
+        {
+            var textBlock = new TextBlock
+            {
+                Text = textBlockText,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextAlignment = TextAlignment.Left,
+            };
+            Grid.SetRow(textBlock, row);
+            Grid.SetColumn(textBlock, column);
+            textGrid.Children.Add(textBlock);
         }
 
         public void UpdateUI(string challengeToString = null)
