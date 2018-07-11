@@ -140,7 +140,7 @@
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <Image Height="{StaticResource TabIconSize}" Width="{StaticResource TabIconSize}" Source="{Binding Path=CurrentlyLoggedInPlayer.AvatarFileName}" />
-                    <TextBlock Text="{Binding Path=CurrentlyLoggedInPlayer.Name}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Path=CurrentlyLoggedInPlayer.Name}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="200"/>
                 </StackPanel>
             </TabItem.Header>
             <Frame Name="PlayerSelectionFrame"/>
