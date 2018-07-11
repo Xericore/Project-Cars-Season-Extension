@@ -71,7 +71,10 @@ namespace ProjectCarsSeasonExtension.Utils
             {
                 var playerImagePath = _playerImagePaths[i];
 
-                Application.Current?.Dispatcher.Invoke(delegate 
+                if(Application.Current == null || Application.Current.Dispatcher == null)
+                    return;
+
+                Application.Current.Dispatcher.Invoke(delegate 
                 {
                     var image = new Image
                     {

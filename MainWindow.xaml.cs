@@ -219,6 +219,7 @@ namespace ProjectCarsSeasonExtension
             ImageSelectionWindow.Instance?.CloseForced();
             HotkeyController.Clear();
             SaveData();
+            Environment.Exit(0);
         }
 
         private void SaveData()

@@ -108,7 +108,7 @@ namespace ProjectCarsSeasonExtension.Views
                 var column = new DataGridTextColumn
                 {
                     Header = UiUtils.GetTrackImage(challengeStanding.Challenge),
-                    Width = 128,
+                    Width = 96,
                     Binding = new Binding($"ChallengePoints[{challengeCount}]"),
                     FontWeight = FontWeights.Normal
                 };

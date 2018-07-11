@@ -51,7 +51,8 @@ namespace ProjectCarsSeasonExtension.Views
 
                 TabItem tabItem = new TabItem
                 {
-                    Header = headerGrid
+                    Header = headerGrid,
+                    Height = 220
                 };
 
                 Frame contentFrame = new Frame
@@ -69,11 +70,13 @@ namespace ProjectCarsSeasonExtension.Views
         private static Grid GetHeaderGrid(Challenge challengeStandingChallenge)
         {
             Grid headerGrid = new Grid();
-            headerGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            headerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            headerGrid.RowDefinitions.Add(new RowDefinition());
+            headerGrid.RowDefinitions.Add(new RowDefinition());
 
             Image trackImage = UiUtils.GetTrackImage(challengeStandingChallenge);
-            trackImage.Margin = new Thickness(10,5,5,5);
+            trackImage.Margin = new Thickness(5);
+            trackImage.Width = 96;
+            trackImage.Height = 96;
 
             headerGrid.Children.Add(trackImage);
 
@@ -82,9 +85,10 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 Text = headerText,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(10,0,10,0)
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(5)
             };
-            Grid.SetColumn(textBlock, 1);
+            Grid.SetRow(textBlock, 1);
 
             headerGrid.Children.Add(textBlock);
 
