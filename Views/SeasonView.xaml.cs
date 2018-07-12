@@ -35,9 +35,6 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 ChallengesTabControl.SelectedIndex = 0;
             }
-
-            OnPropertyChanged(nameof(ChallengeStandings));
-            OnPropertyChanged("ChallengeView");
         }
 
         private void SelectTabFromChallenge(ChallengeResult challengeResult)
