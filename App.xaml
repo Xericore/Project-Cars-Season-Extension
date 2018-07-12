@@ -18,6 +18,9 @@
             <FontWeight x:Key="MainFontWeight">Medium</FontWeight>
             <system:Double x:Key="MainFontSize">16</system:Double>
 
+            <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="DimGray" />
+            <SolidColorBrush x:Key="TabItemDeselectedTabBrush" Color="LightGray" />
+
             <Style x:Key="BodyContentDataGridCentering"
                    TargetType="{x:Type DataGridCell}">
                 <Setter Property="Template">
@@ -29,6 +32,31 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Grid Name="Panel">
+                                <ContentPresenter x:Name="ContentSite" ContentSource="Header"
+                                                  VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Panel" Property="Background" Value="{StaticResource PrimaryHueMidBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter TargetName="Panel" Property="Background" Value="{StaticResource TabItemDeselectedTabBrush}" />
+                                    <Setter Property="Foreground" Value="{StaticResource TabItemDisabledForegroundBrush}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="MinWidth" Value="180"/>
+                <Setter Property="Height" Value="64"/>
+                <Setter Property="Margin" Value="1"/>
             </Style>
 
         </ResourceDictionary>

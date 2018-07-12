@@ -32,35 +32,6 @@
 
         <TabControl.Resources>
 
-            <SolidColorBrush x:Key="DisabledForegroundBrush" Color="DimGray" />
-            <SolidColorBrush x:Key="DeselectedTabBrush" Color="LightGray" />
-
-            <Style TargetType="TabItem">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TabItem">
-                            <Grid Name="Panel">
-                                <ContentPresenter x:Name="ContentSite" 
-                                                  VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                  ContentSource="Header"/>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="Panel" Property="Background" Value="{StaticResource PrimaryHueMidBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsSelected" Value="False">
-                                    <Setter TargetName="Panel" Property="Background" Value="{StaticResource DeselectedTabBrush}" />
-                                    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="MinWidth" Value="180"/>
-                <Setter Property="Height" Value="64"/>
-                <Setter Property="Margin" Value="1"/>
-            </Style>
-
             <system:Double x:Key="TabIconSize">36</system:Double>
             <Brush x:Key="TabIconColor">Black</Brush>
 
