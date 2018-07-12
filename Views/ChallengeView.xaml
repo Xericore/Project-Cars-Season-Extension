@@ -53,7 +53,7 @@
                             <Image Width="48" Height="48" Source="{Binding Player.AvatarFileName}" 
                                    VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-                            <TextBlock Width="160" Margin="5" Grid.Column="1" Text="{Binding Player.Name}" 
+                            <TextBlock Width="160" Margin="20,0,0,0" Grid.Column="1" Text="{Binding Player.Name}" 
                                        VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left" TextWrapping="Wrap"/>
                         </Grid>
                     </DataTemplate>
