@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
+using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.ViewModels;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -24,22 +25,26 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
         }
 
-        public void UpdateUI()
+        public void UpdateUI(ChallengeResult challengeResult)
         {
-            //            SelectTabFromChallenge(challengeToString);
-            //            (ChallengesTabControl.SelectedItem as ChallengeStanding).UpdateView();
-
-            ChallengesTabControl.SelectedIndex = 0;
+            if (challengeResult != null)
+            {
+                SelectTabFromChallenge(challengeResult);
+            }
+            else
+            {
+                ChallengesTabControl.SelectedIndex = 0;
+            }
 
             OnPropertyChanged(nameof(ChallengeStandings));
             OnPropertyChanged("ChallengeView");
         }
 
-        private void SelectTabFromChallenge(string challengeToString)
+        private void SelectTabFromChallenge(ChallengeResult challengeResult)
         {
             foreach (ChallengeStanding challengeStanding in ChallengesTabControl.Items)
             {
-                if (Equals(challengeStanding.Challenge.Name, challengeToString))
+                if (Equals(challengeStanding.Challenge.Name, challengeResult.ToString()))
                 {
                     ChallengesTabControl.SelectedItem = challengeStanding;
                     break;

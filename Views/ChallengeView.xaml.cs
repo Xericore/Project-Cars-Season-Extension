@@ -26,11 +26,6 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
         }
 
-        public void UpdateUI()
-        {
-            OnPropertyChanged(nameof(ChallengeStanding));
-        }
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

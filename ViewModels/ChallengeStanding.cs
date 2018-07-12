@@ -71,12 +71,5 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
             return 0;
         }
-
-        public void UpdateView()
-        {
-            ChallengeView = null;
-            ChallengeView = new ChallengeView(this);
-            ChallengeView.UpdateUI();
-        }
     }
 }

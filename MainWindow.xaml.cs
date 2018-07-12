@@ -77,8 +77,8 @@ namespace ProjectCarsSeasonExtension
             ISeasonReader seasonReader = new XmlSeasonReader();
             DataView = new DataView(seasonReader);
 
-            DataView.PlayerRemoved += UpdateAllUIs;
-            DataView.HandicapChanged += UpdateAllUIs;
+            DataView.PlayerRemoved += () => UpdateAllUIs();
+            DataView.HandicapChanged += () => UpdateAllUIs();
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -100,7 +100,7 @@ namespace ProjectCarsSeasonExtension
             ProjectCarsLiveFrame.Content = _projectCarsLiveView;
 
             _seasonEditor = new SeasonEditor(DataView);
-            _seasonEditor.SeasonChanged += UpdateAllUIs;
+            _seasonEditor.SeasonChanged += () => UpdateAllUIs();
             SeasonEditorFrame.Content = _seasonEditor;
 
             HandicapsFrame.Content = new HandicapView(DataView, _playerController);
@@ -186,7 +186,7 @@ namespace ProjectCarsSeasonExtension
             if (!wasDataAdded)
                 return;
 
-            UpdateAllUIs();
+            UpdateAllUIs(challengeResult);
 
             SaveData();
         }
@@ -207,10 +207,10 @@ namespace ProjectCarsSeasonExtension
             return selectedPlayer;
         }
 
-        private void UpdateAllUIs()
+        private void UpdateAllUIs(ChallengeResult challengeResult = null)
         {
             _allChallengeStandings.UpdateDataAndUI();
-            _seasonView.UpdateUI();
+            _seasonView.UpdateUI(challengeResult);
             _championshipView.UpdateUI();
         }
 
