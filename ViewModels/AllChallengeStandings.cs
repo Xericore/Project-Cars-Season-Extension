@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
@@ -7,9 +8,11 @@ namespace ProjectCarsSeasonExtension.ViewModels
 {
     public class AllChallengeStandings
     {
-        private readonly DataView _dataView;
-        public Dictionary<int, ChallengeStanding> ChallengeStandings { get; } = new Dictionary<int, ChallengeStanding>();
+        public ObservableCollection<ChallengeStanding> ChallengeStandings { get; set; } = new ObservableCollection<ChallengeStanding>();
 
+        private readonly DataView _dataView;
+        private readonly Dictionary<int, ChallengeStanding> _challengeStandings = new Dictionary<int, ChallengeStanding>();
+        
         public AllChallengeStandings(DataView dataView)
         {
             _dataView = dataView;
@@ -18,18 +21,18 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
         private void CreateChallengeStandings()
         {
-            ChallengeStandings.Clear();
+            _challengeStandings.Clear();
 
             foreach (PlayerResult playerResult in _dataView.PlayerResults)
             {
                 if (!_dataView.CurrentSeason.ContainsChallenge(playerResult.ChallengeId))
                     continue;
 
-                if (!ChallengeStandings.ContainsKey(playerResult.ChallengeId))
+                if (!_challengeStandings.ContainsKey(playerResult.ChallengeId))
                 {
                     Challenge challenge = _dataView.GetChallengeById(playerResult.ChallengeId);
                     ChallengeStanding challengeStanding = new ChallengeStanding(challenge);
-                    ChallengeStandings.Add(playerResult.ChallengeId, challengeStanding);
+                    _challengeStandings.Add(playerResult.ChallengeId, challengeStanding);
                 }
 
                 Player foundPlayer = _dataView.Players.FirstOrDefault(p => p.Id == playerResult.PlayerId);
@@ -41,6 +44,12 @@ namespace ProjectCarsSeasonExtension.ViewModels
             }
 
             AddChallengeStandingsWithoutPlayerResults();
+
+            ChallengeStandings.Clear();
+            foreach (ChallengeStanding challengeStanding in _challengeStandings.Values)
+            {
+                ChallengeStandings.Add(challengeStanding);
+            }
         }
 
         private void AddChallengeStandingsWithoutPlayerResults()
@@ -50,9 +59,9 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
             foreach (var currentSeasonChallengeId in _dataView.CurrentSeason.ChallengeIds)
             {
-                if (!ChallengeStandings.ContainsKey(currentSeasonChallengeId))
+                if (!_challengeStandings.ContainsKey(currentSeasonChallengeId))
                 {
-                    ChallengeStandings.Add(currentSeasonChallengeId, new ChallengeStanding(_dataView.CurrentSeason.GetChallengeById(currentSeasonChallengeId)));
+                    _challengeStandings.Add(currentSeasonChallengeId, new ChallengeStanding(_dataView.CurrentSeason.GetChallengeById(currentSeasonChallengeId)));
                 }
             }
         }
@@ -63,10 +72,10 @@ namespace ProjectCarsSeasonExtension.ViewModels
             var fastestLapWithHandicap = playerResult.FastestLap + handicap;
             var challengePlayerStanding = new ChallengePlayerStanding(foundPlayer, fastestLapWithHandicap);
 
-            ChallengeStandings[playerResult.ChallengeId].SetChallengePlayerStanding(challengePlayerStanding);
+            _challengeStandings[playerResult.ChallengeId].SetChallengePlayerStanding(challengePlayerStanding);
         }
 
-        public void UpdateUI()
+        public void UpdateDataAndUI()
         {
             CreateChallengeStandings();
         }

@@ -69,9 +69,9 @@ namespace ProjectCarsSeasonExtension.Views
 
                 var championshipStanding = new ChampionshipStanding(player);
 
-                foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings)
+                foreach (ChallengeStanding challengeStanding in _allChallengeStandings.ChallengeStandings)
                 {
-                    var playerPoints = challengeStanding.Value.GetPlayerPoints(player.Id);
+                    var playerPoints = challengeStanding.GetPlayerPoints(player.Id);
                     championshipStanding.ChallengePoints.Add(playerPoints);
                 }
 
@@ -100,7 +100,7 @@ namespace ProjectCarsSeasonExtension.Views
         private void CreateRaceColumns()
         {
             int challengeCount = 0;
-            foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings.Values)
+            foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings)
             {
                 if (!_dataView.CurrentSeason.ContainsChallenge(challengeStanding.Challenge.Id))
                     continue;

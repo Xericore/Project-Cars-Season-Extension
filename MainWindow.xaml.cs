@@ -45,8 +45,8 @@ namespace ProjectCarsSeasonExtension
         private readonly Player _noPlayer = new Player {Name = "No player logged in", AvatarFileName = "/Assets/Players/NoPlayer.png"};
         private Player _currentlyLoggedInPlayerName = null;
 
-        public RoutedCommand CloseApplicationCommand { get; private set; }= new RoutedCommand();
-        public RoutedCommand LogoutPlayerCommand { get; private set; }= new RoutedCommand();
+        public RoutedCommand CloseApplicationCommand { get; private set; } = new RoutedCommand();
+        public RoutedCommand LogoutPlayerCommand { get; private set; } = new RoutedCommand();
 
         private ProjectCarsLiveView _projectCarsLiveView;
         private PlayerController _playerController;
@@ -77,8 +77,8 @@ namespace ProjectCarsSeasonExtension
             ISeasonReader seasonReader = new XmlSeasonReader();
             DataView = new DataView(seasonReader);
 
-            DataView.PlayerRemoved += () => UpdateAllUIs();
-            DataView.HandicapChanged += () => UpdateAllUIs();
+            DataView.PlayerRemoved += UpdateAllUIs;
+            DataView.HandicapChanged += UpdateAllUIs;
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace ProjectCarsSeasonExtension
             _championshipView = new ChampionshipView(DataView, _allChallengeStandings, _playerController);
             ChampionshipFrame.Content = _championshipView;
             
-            _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings.Values);
+            _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings);
             SeasonViewFrame.Content = _seasonView;
 
             _projectCarsLiveView = new ProjectCarsLiveView(DataView);
@@ -100,7 +100,7 @@ namespace ProjectCarsSeasonExtension
             ProjectCarsLiveFrame.Content = _projectCarsLiveView;
 
             _seasonEditor = new SeasonEditor(DataView);
-            _seasonEditor.SeasonChanged += () => UpdateAllUIs();
+            _seasonEditor.SeasonChanged += UpdateAllUIs;
             SeasonEditorFrame.Content = _seasonEditor;
 
             HandicapsFrame.Content = new HandicapView(DataView, _playerController);
@@ -110,7 +110,7 @@ namespace ProjectCarsSeasonExtension
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (_wasInitialized == true)
+            if (_wasInitialized)
                 return;
 
             _wasInitialized = true;
@@ -209,8 +209,8 @@ namespace ProjectCarsSeasonExtension
 
         private void UpdateAllUIs()
         {
-            _allChallengeStandings.UpdateUI();
-            _seasonView.UpdateUI(_allChallengeStandings.ChallengeStandings.Values);
+            _allChallengeStandings.UpdateDataAndUI();
+            _seasonView.UpdateUI();
             _championshipView.UpdateUI();
         }
 

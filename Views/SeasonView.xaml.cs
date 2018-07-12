@@ -17,17 +17,15 @@ namespace ProjectCarsSeasonExtension.Views
 
         public ObservableCollection<ChallengeStanding> ChallengeStandings { get; set; }
         
-        public SeasonView(IEnumerable<ChallengeStanding> challengeStandings)
+        public SeasonView(ObservableCollection<ChallengeStanding> challengeStandings)
         {
-            ChallengeStandings = new ObservableCollection<ChallengeStanding>(challengeStandings);
+            ChallengeStandings = challengeStandings;
 
             InitializeComponent();
         }
 
-        public void UpdateUI(IEnumerable<ChallengeStanding> challengeStandings)
+        public void UpdateUI()
         {
-            ChallengeStandings = new ObservableCollection<ChallengeStanding>(challengeStandings);
-
             //            SelectTabFromChallenge(challengeToString);
             //            (ChallengesTabControl.SelectedItem as ChallengeStanding).UpdateView();
 
