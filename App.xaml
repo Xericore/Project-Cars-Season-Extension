@@ -89,6 +89,11 @@
                 <Setter Property="MinWidth" Value="200"/>
                 <Setter Property="Height" Value="80"/>
             </Style>
+            
+            <Style TargetType="{x:Type Image}">
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"></Setter>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
