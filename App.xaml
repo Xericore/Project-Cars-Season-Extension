@@ -47,13 +47,6 @@
                 <Setter Property="BorderThickness" Value="2,2,2,0" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="SnapsToDevicePixels" Value="True" />
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect BlurRadius="4" Direction="90" ShadowDepth="1"
-                                          Color="{StaticResource TabItemDisabledForegroundColor}">
-                        </DropShadowEffect>
-                    </Setter.Value>
-                </Setter>
             </Style>
 
             <Style x:Key="DeselectedTabItem" TargetType="{x:Type Border}" BasedOn="{StaticResource SelectedTabItem}">
