@@ -16,9 +16,10 @@
 
             <SolidColorBrush x:Key="MainBackgroundColor">White</SolidColorBrush>
             <FontWeight x:Key="MainFontWeight">Medium</FontWeight>
-            <system:Double x:Key="MainFontSize">16</system:Double>
+            <system:Double x:Key="MainFontSize">20</system:Double>
 
-            <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="#aaaaaa" />
+            <Color x:Key="TabItemDisabledForegroundColor">#aaaaaa</Color>
+            <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="{StaticResource TabItemDisabledForegroundColor}" />
 
             <Style x:Key="BodyContentDataGridCentering"
                    TargetType="{x:Type DataGridCell}">
@@ -43,14 +44,21 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="BorderBrush" Value="{StaticResource PrimaryHueMidBrush}" />
-                <Setter Property="BorderThickness" Value="2,2,2,2" />
+                <Setter Property="BorderThickness" Value="2,2,2,0" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10" Direction="90"
+                                          Color="{StaticResource TabItemDisabledForegroundColor}" />
+                    </Setter.Value>
+                </Setter>
             </Style>
-            
+
             <Style x:Key="DeselectedTabItem" TargetType="{x:Type Border}" BasedOn="{StaticResource SelectedTabItem}">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="BorderBrush" Value="{StaticResource TabItemDisabledForegroundBrush}" />
+                <Setter Property="Effect" Value="{x:Null}" />
             </Style>
 
             <Style TargetType="{x:Type TabItem}">
@@ -58,8 +66,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TabItem}">
                             <Grid>
-                                <Border Name="Border" Margin="2" CornerRadius="10,0,10,0">
-
+                                <Border Name="Border" Margin="5,5,5,0" CornerRadius="10,10,0,0">
                                     <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                       ContentSource="Header" Margin="12,2,12,2" RecognizesAccessKey="True"/>
                                 </Border>
@@ -77,11 +84,9 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="MinWidth" Value="180"/>
-                <Setter Property="Height" Value="64"/>
-                <Setter Property="Margin" Value="1"/>
+                <Setter Property="MinWidth" Value="200"/>
+                <Setter Property="Height" Value="80"/>
             </Style>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

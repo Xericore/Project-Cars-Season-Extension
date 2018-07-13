@@ -28,7 +28,7 @@
         <KeyBinding Command="{Binding CloseApplicationCommand}" Modifiers="Control" Key="Q"/>
     </Window.InputBindings>
 
-    <TabControl x:Name="MainTabControl" BorderThickness="0" HorizontalAlignment="Center">
+    <TabControl x:Name="MainTabControl" BorderThickness="0,2,0,0" HorizontalAlignment="Center">
 
         <TabControl.Resources>
             <system:Double x:Key="TabIconSize">36</system:Double>
