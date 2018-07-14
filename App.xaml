@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProjectCarsSeasonExtension"
-             xmlns:system="clr-namespace:System;assembly=mscorlib">
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,7 +19,13 @@
             <FontWeight x:Key="MainFontWeight">Medium</FontWeight>
             <system:Double x:Key="MainFontSize">20</system:Double>
 
+            <system:Double x:Key="HeaderIconSize">36</system:Double>
             <system:Double x:Key="PlayerNameTextWidth">240</system:Double>
+
+            <system:Double x:Key="CircleStrokeThickness">0</system:Double>
+
+            <converters:RowToPositionConverter x:Key="RowToPositionConverter" />
+            <converters:RowToColorConverter x:Key="RowToColorConverter" />
 
             <Color x:Key="TabItemDisabledForegroundColor">#aaaaaa</Color>
             <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="{StaticResource TabItemDisabledForegroundColor}" />
