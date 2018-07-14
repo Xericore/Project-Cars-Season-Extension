@@ -59,39 +59,87 @@
                                Source="{Binding Challenge.TrackName, Converter={StaticResource TrackNameToImageSourceConverter}}"
                                Height="96" Width="96"/>
 
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="90"/>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Track:"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Challenge.TrackName}"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Car:"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Challenge.CarName}"/>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Difficulty:"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Challenge.Difficulty}"/>
-                        </Grid>
-
-                        <Image Grid.Column="2"
-                               Source="{Binding Challenge.CarName, Converter={StaticResource CarNameToImageSourceConverter}}"
-                               Height="96" Width="96"/>
-
                     </Grid>
                 </DataTemplate>
             </TabControl.ItemTemplate>
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <Frame Content="{Binding ChallengeView}" HorizontalAlignment="Center" NavigationUIVisibility="Hidden"/>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Margin="5" VerticalAlignment="Center">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </Grid.Resources>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0"
+                                       Source="{Binding Challenge.TrackName, Converter={StaticResource TrackNameToImageSourceConverter}}"
+                                       Height="256" Width="256"/>
+
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock Text="Track:"/>
+                                    <TextBlock Text="{Binding Challenge.TrackName}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="0" Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0"
+                                       Source="{Binding Challenge.CarName, Converter={StaticResource CarNameToImageSourceConverter}}"
+                                       Height="256" Width="256"/>
+
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock Text="Car:"/>
+                                    <TextBlock Text="{Binding Challenge.CarName}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0">
+                                    <TextBlock Text="Difficulty:"/>
+                                    <TextBlock Text="{Binding Challenge.Difficulty}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock Text="Description:"/>
+                                    <TextBlock Text="{Binding Challenge.Description}"/>
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+
+                        <Frame Grid.Row="0" Grid.Column="1" Content="{Binding ChallengeView}" HorizontalAlignment="Center" NavigationUIVisibility="Hidden"/>
+                    </Grid>
+                    
                 </DataTemplate>
             </TabControl.ContentTemplate>
 

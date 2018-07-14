@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChampionshipView"
@@ -16,7 +17,7 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}">
-
+    
     <DataGrid Name="ChampionshipDataGrid" ItemsSource="{Binding ChampionshipStandings}"
               CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False"
               IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" 
@@ -36,6 +37,7 @@
                 <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
             </Style>
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Primary500}"/>
+            <system:Double x:Key="CircleStrokeThickness">0</system:Double>
             <converters:RowToPositionConverter x:Key="RowToPositionConverter" />
             <converters:RowToColorConverter x:Key="RowToColorConverter" />
         </DataGrid.Resources>
@@ -46,7 +48,7 @@
                     <DataTemplate>
                         <Grid Height="64" Margin="5" VerticalAlignment="Center">
                             <Ellipse Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
-                                Converter={StaticResource RowToColorConverter}}" Stroke="{StaticResource PrimaryHueLightForegroundBrush}" Height="36" Width="36"/>
+                                Converter={StaticResource RowToColorConverter}}" Stroke="{StaticResource PrimaryHueLightForegroundBrush}" Height="36" Width="36" StrokeThickness="{StaticResource CircleStrokeThickness}"/>
                             <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
                                 Converter={StaticResource RowToPositionConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
@@ -67,7 +69,15 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTextColumn Header="Total Points" Binding="{Binding TotalPoints}"/>
+            <DataGridTemplateColumn Header="Total Points">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Grid Height="64" Margin="5" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding TotalPoints}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
         </DataGrid.Columns>
     </DataGrid>
 </Page>
