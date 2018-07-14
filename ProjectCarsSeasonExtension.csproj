@@ -76,6 +76,7 @@
     <Compile Include="Controller\Injector.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />
     <Compile Include="Controller\Module.cs" />
+    <Compile Include="Converters\TabSizeConverter.cs" />
     <Compile Include="Converters\TrackNameToImageSourceConverter.cs" />
     <Compile Include="Converters\RowToPositionConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />

@@ -66,7 +66,7 @@
                         <TextBlock Text="Races" Margin="5,0,0,0" VerticalAlignment="Center" />
                     </StackPanel>
                 </TabItem.Header>
-                <Frame Name="SeasonViewFrame" HorizontalAlignment="Center" NavigationUIVisibility="Hidden"/>
+                <Frame Name="SeasonViewFrame" NavigationUIVisibility="Hidden"/>
             </TabItem>
 
             <TabItem Name="HandicapsTab">
