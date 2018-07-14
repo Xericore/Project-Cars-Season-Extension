@@ -102,7 +102,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void CreateRaceColumns()
         {
-            int challengeCount = 0;
+            int challengeIndex = 0;
             foreach (var challengeStanding in _allChallengeStandings.ChallengeStandings)
             {
                 if (!_dataView.CurrentSeason.ContainsChallenge(challengeStanding.Challenge.Id))
@@ -118,38 +118,50 @@ namespace ProjectCarsSeasonExtension.Views
 
                 var gridFactory = new FrameworkElementFactory(typeof(Grid));
 
-                var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
-                textBlockFactory.SetValue(TextBlock.FontWeightProperty, FontWeights.Normal);
-                textBlockFactory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-                textBlockFactory.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
-
-                Binding challengePointsBinding = new Binding
-                {
-                    Path = new PropertyPath($"ChallengePoints[{challengeCount}]")
-                };
-
-                textBlockFactory.SetBinding(TextBlock.TextProperty, challengePointsBinding);
-
-                Binding pointsToColorBinding = new Binding
-                {
-                    Path = new PropertyPath($"ChallengePoints[{challengeCount}]"),
-                    Converter = new PointsToColorConverter()
-                };
-
-                var ellipseFactory = new FrameworkElementFactory(typeof(Ellipse));
-                ellipseFactory.SetValue(Shape.FillProperty, pointsToColorBinding);
-                ellipseFactory.SetValue(HeightProperty, 36d);
-                ellipseFactory.SetValue(WidthProperty, 36d);
+                FrameworkElementFactory textBlockFactory = CreateTextBlock(challengeIndex);
+                FrameworkElementFactory ellipseFactory = CreateEllipse(challengeIndex);
 
                 gridFactory.AppendChild(ellipseFactory);
                 gridFactory.AppendChild(textBlockFactory);
+
                 dataTemplate.VisualTree = gridFactory;
 
                 column.CellTemplate = dataTemplate;
 
                 ChampionshipDataGrid.Columns.Add(column);
-                challengeCount++;
+                challengeIndex++;
             }
+        }
+
+        private static FrameworkElementFactory CreateTextBlock(int challengeIndex)
+        {
+            var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+            textBlockFactory.SetValue(TextBlock.FontWeightProperty, FontWeights.Normal);
+            textBlockFactory.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            textBlockFactory.SetValue(VerticalAlignmentProperty, VerticalAlignment.Center);
+
+            Binding challengePointsBinding = new Binding
+            {
+                Path = new PropertyPath($"ChallengePoints[{challengeIndex}]")
+            };
+
+            textBlockFactory.SetBinding(TextBlock.TextProperty, challengePointsBinding);
+            return textBlockFactory;
+        }
+
+        private static FrameworkElementFactory CreateEllipse(int challengeCount)
+        {
+            Binding pointsToColorBinding = new Binding
+            {
+                Path = new PropertyPath($"ChallengePoints[{challengeCount}]"),
+                Converter = new PointsToColorConverter()
+            };
+
+            var ellipseFactory = new FrameworkElementFactory(typeof(Ellipse));
+            ellipseFactory.SetValue(Shape.FillProperty, pointsToColorBinding);
+            ellipseFactory.SetValue(HeightProperty, 36d);
+            ellipseFactory.SetValue(WidthProperty, 36d);
+            return ellipseFactory;
         }
 
         public void UpdateUI()
