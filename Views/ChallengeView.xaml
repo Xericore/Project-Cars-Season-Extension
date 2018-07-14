@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       
@@ -36,6 +37,9 @@
             </Style>
 
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Primary500}"/>
+
+            <converters:RowToPointsConverter x:Key="RowToPointsConverter" />
+            <converters:RowToColorConverter x:Key="RowToColorConverter" />
         </DataGrid.Resources>
 
         <DataGrid.Columns>
@@ -63,6 +67,20 @@
             <DataGridTextColumn Header="Fastest Lap" Binding="{Binding FastestLapWithHandicap,StringFormat={}{0:m\\:ss\\.fff}}" />
             <DataGridTextColumn Header="Gap to previous" Binding="{Binding GapToPreviousPlayer,StringFormat={}{0:ss\\.fff}}" />
             <DataGridTextColumn Header="Gap to leader" Binding="{Binding GapToLeader,StringFormat={}{0:ss\\.fff}}" />
+
+            <DataGridTemplateColumn Header="Points">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Grid Height="64" Margin="5" VerticalAlignment="Center">
+                            <Ellipse Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
+                                Converter={StaticResource RowToColorConverter}}" Stroke="{StaticResource PrimaryHueLightForegroundBrush}" Height="36" Width="36" StrokeThickness="0"/>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
+                                Converter={StaticResource RowToPointsConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
         </DataGrid.Columns>
         
     </DataGrid>

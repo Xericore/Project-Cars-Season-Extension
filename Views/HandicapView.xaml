@@ -36,11 +36,11 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" Width="660" IsEnabled="{Binding IsUserAuthenticated}" Visibility="{Binding IsSetHandicapRowVisible}">
+        <Grid Grid.Row="1" Width="680" IsEnabled="{Binding IsUserAuthenticated}" Visibility="{Binding IsSetHandicapRowVisible}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>

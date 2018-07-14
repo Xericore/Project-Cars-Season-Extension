@@ -79,6 +79,7 @@
     <Compile Include="Converters\CarNameToImageSourceConverter.cs" />
     <Compile Include="Converters\PointsToColorConverter.cs" />
     <Compile Include="Converters\RowToColorConverter.cs" />
+    <Compile Include="Converters\RowToPointsConverter.cs" />
     <Compile Include="Converters\TabSizeConverter.cs" />
     <Compile Include="Converters\TrackNameToImageSourceConverter.cs" />
     <Compile Include="Converters\RowToPositionConverter.cs" />
