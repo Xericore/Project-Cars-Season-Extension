@@ -18,6 +18,8 @@
             <FontWeight x:Key="MainFontWeight">Medium</FontWeight>
             <system:Double x:Key="MainFontSize">20</system:Double>
 
+            <system:Double x:Key="PlayerNameTextWidth">240</system:Double>
+
             <Color x:Key="TabItemDisabledForegroundColor">#aaaaaa</Color>
             <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="{StaticResource TabItemDisabledForegroundColor}" />
 

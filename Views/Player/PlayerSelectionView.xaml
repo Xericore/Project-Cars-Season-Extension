@@ -28,7 +28,7 @@
                         <Grid Margin="10,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
-                                <RowDefinition Height="48" />
+                                <RowDefinition Height="64" />
                             </Grid.RowDefinitions>
                             <BulletDecorator Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <BulletDecorator.Bullet>
@@ -40,7 +40,7 @@
                                 </BulletDecorator.Bullet>
                             </BulletDecorator>
 
-                            <TextBlock Grid.Row="1" Margin="0,5" Text="{Binding Path=Name}" TextWrapping="Wrap" Width="140"
+                            <TextBlock Grid.Row="1" Margin="0,5" Text="{Binding Path=Name}" TextWrapping="Wrap" Width="200"
                                        HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" />
                         </Grid>
 
