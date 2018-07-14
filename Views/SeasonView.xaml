@@ -23,6 +23,7 @@
             <TabControl.Resources>
 
                 <converters:TrackNameToImageSourceConverter x:Key="TrackNameToImageSourceConverter" />
+                <converters:CarNameToImageSourceConverter x:Key="CarNameToImageSourceConverter" />
                 <converters:TabSizeConverter x:Key="TabSizeConverter" />
 
                 <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
@@ -51,6 +52,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition />
+                            <ColumnDefinition Width="120"/>
                         </Grid.ColumnDefinitions>
 
                         <Image Grid.Column="0"
@@ -77,8 +79,12 @@
 
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="Difficulty:"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Challenge.Difficulty}"/>
-
                         </Grid>
+
+                        <Image Grid.Column="2"
+                               Source="{Binding Challenge.CarName, Converter={StaticResource CarNameToImageSourceConverter}}"
+                               Height="96" Width="96"/>
+
                     </Grid>
                 </DataTemplate>
             </TabControl.ItemTemplate>

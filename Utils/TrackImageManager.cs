@@ -7,14 +7,15 @@ namespace ProjectCarsSeasonExtension.Utils
 {
     internal sealed class TrackImageManager
     {
+        public static TrackImageManager Instance => Lazy.Value;
+
         private static readonly Lazy<TrackImageManager> Lazy = new Lazy<TrackImageManager>(() => new TrackImageManager());
         private readonly string[] _trackImagePaths;
-
-        public static TrackImageManager Instance => Lazy.Value;
+        private const string AssetFolder = "Tracks";
 
         private TrackImageManager()
         {
-            var allTracksFolderPath = Environment.CurrentDirectory + @"\Assets\Tracks\";
+            var allTracksFolderPath = Environment.CurrentDirectory + $@"\Assets\{AssetFolder}\";
 
             if (Directory.Exists(allTracksFolderPath))
             {
@@ -36,7 +37,7 @@ namespace ProjectCarsSeasonExtension.Utils
             }
 
             if (sortedDistance.Count > 0)
-                return "/Assets/Tracks/" + sortedDistance.First().Value;
+                return $"/Assets/{AssetFolder}/" + sortedDistance.First().Value;
 
             return null;
         }
