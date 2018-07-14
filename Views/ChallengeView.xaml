@@ -134,7 +134,7 @@
                         </Grid.RowDefinitions>
                         <Viewbox Width="{StaticResource HeaderIconSize}" Height="{StaticResource HeaderIconSize}">
                             <Canvas Width="24" Height="24">
-                                <Path Data="M9,11H15V8L19,12L15,16V13H9V16L5,12L9,8V11M2,20V4H4V20H2M20,20V4H22V20H20Z" Fill="{StaticResource PrimaryHueLightForegroundBrush}" />
+                                <Path Data="M12,1C8.14,1 5,4.14 5,8A7,7 0 0,0 12,15C15.86,15 19,11.87 19,8C19,4.14 15.86,1 12,1M12,3.15C14.67,3.15 16.85,5.32 16.85,8C16.85,10.68 14.67,12.85 12,12.85A4.85,4.85 0 0,1 7.15,8A4.85,4.85 0 0,1 12,3.15M11,5V8.69L14.19,10.53L14.94,9.23L12.5,7.82V5M4,16V24H6V21H18V24L22,20L18,16V19H6V16" Fill="{StaticResource PrimaryHueLightForegroundBrush}" />
                             </Canvas>
                         </Viewbox>
                         <TextBlock Grid.Row="1" Text="Gap to previous"></TextBlock>
@@ -157,7 +157,7 @@
                         </Grid.RowDefinitions>
                         <Viewbox Width="{StaticResource HeaderIconSize}" Height="{StaticResource HeaderIconSize}">
                             <Canvas Width="24" Height="24">
-                                <Path Data="M12.08,4.08L20,12L12.08,19.92L10.67,18.5L16.17,13H2V11H16.17L10.67,5.5L12.08,4.08M20,12V22H22V2H20V12Z" Fill="{StaticResource PrimaryHueLightForegroundBrush}" />
+                                <Path Data="M12,1C8.14,1 5,4.14 5,8A7,7 0 0,0 12,15C15.86,15 19,11.87 19,8C19,4.14 15.86,1 12,1M12,3.15C14.67,3.15 16.85,5.32 16.85,8C16.85,10.68 14.67,12.85 12,12.85A4.85,4.85 0 0,1 7.15,8A4.85,4.85 0 0,1 12,3.15M11,5V8.69L14.19,10.53L14.94,9.23L12.5,7.82V5M15,16V19H3V21H15V24L19,20M19,20V24H21V16H19" Fill="{StaticResource PrimaryHueLightForegroundBrush}" />
                             </Canvas>
                         </Viewbox>
                         <TextBlock Grid.Row="1" Text="Gap to leader"></TextBlock>
