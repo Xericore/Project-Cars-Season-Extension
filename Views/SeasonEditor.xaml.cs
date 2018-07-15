@@ -37,6 +37,7 @@ namespace ProjectCarsSeasonExtension.Views
         public SeasonEditor(DataView dataView)
         {
             _dataView = dataView;
+            _dataView.ChallengesChanged += UpdateFilteredChallenges;
 
             InitializeComponent();
 
@@ -171,6 +172,7 @@ namespace ProjectCarsSeasonExtension.Views
                     _dataView.RemoveChallenge(SelectedChallenge);
                     SelectedChallenge = AllChallenges.FirstOrDefault();
                     OnPropertyChanged(nameof(SelectedChallenge));
+                    UpdateFilteredChallenges();
                     break;
             }
         }

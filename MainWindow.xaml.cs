@@ -43,7 +43,7 @@ namespace ProjectCarsSeasonExtension
         }
 
         private readonly Player _noPlayer = new Player {Name = "No player logged in", AvatarFileName = "/Assets/Players/NoPlayer.png"};
-        private Player _currentlyLoggedInPlayerName = null;
+        private Player _currentlyLoggedInPlayerName;
 
         public RoutedCommand CloseApplicationCommand { get; private set; } = new RoutedCommand();
         public RoutedCommand LogoutPlayerCommand { get; private set; } = new RoutedCommand();
@@ -63,13 +63,6 @@ namespace ProjectCarsSeasonExtension
         {
             ReadSeasonData();
             InitializeComponent();
-            BindKeyCommands();
-        }
-
-        private void BindKeyCommands()
-        {
-            CommandBindings.Add(new CommandBinding(CloseApplicationCommand, CloseApplication_Executed));   
-            CommandBindings.Add(new CommandBinding(LogoutPlayerCommand, LogoutPlayer_Executed));
         }
 
         private void ReadSeasonData()
@@ -172,6 +165,7 @@ namespace ProjectCarsSeasonExtension
         {
             HotkeyController.Init(this);
             HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd, ToggleWindowState);
+            HotkeyController.Register(9001, HotkeyController.None, VirtualKeyCode.VkNumpad0, LogoutPlayer);
         }
 
         private void OnChallengeResultEvent(ChallengeResult challengeResult)
@@ -237,12 +231,12 @@ namespace ProjectCarsSeasonExtension
             WindowState = WindowState == WindowState.Minimized ? WindowState.Normal : WindowState.Minimized;
         }
 
-        private static void CloseApplication_Executed(object sender, ExecutedRoutedEventArgs e)
+        private static void CloseApplication()
         {
             Application.Current.Shutdown();
         }
 
-        private void LogoutPlayer_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void LogoutPlayer()
         {
             _playerController?.LogoutCurrentPlayer();
         }

@@ -11,6 +11,7 @@ namespace ProjectCarsSeasonExtension.Models
     {
         public event Action PlayerRemoved;
         public event Action HandicapChanged;
+        public event Action ChallengesChanged;
 
         public ObservableCollection<PlayerResult> PlayerResults { get; }
         public ObservableCollection<Player.Player> Players { get; set; }
@@ -61,7 +62,22 @@ namespace ProjectCarsSeasonExtension.Models
 
         public void AddChallenge(Challenge challenge)
         {
-            AllChallenges.Add(challenge);
+            bool isChallengeAlreadyPresent = AllChallenges.FirstOrDefault(c => 
+                                                 c.Name == challenge.Name && 
+                                                 c.TrackName == challenge.TrackName) != null;
+            if (!isChallengeAlreadyPresent)
+            {
+                int maxChallengeId = 0;
+                if (AllChallenges.Count > 0)
+                {
+                    maxChallengeId = AllChallenges.Max(s => s.Id) + 1;
+                }
+                challenge.Id = maxChallengeId;
+                
+                AllChallenges.Add(challenge);
+
+                ChallengesChanged?.Invoke();
+            }
         }
 
         public void RemoveChallenge(Challenge challenge)

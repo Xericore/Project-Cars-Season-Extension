@@ -29,7 +29,7 @@ namespace ProjectCarsSeasonExtension.Models.Player
         }
 
         private Player _selectedPlayer;
-        private DataView _dataView;
+        private readonly DataView _dataView;
 
         public PlayerController(DataView dataView)
         {
@@ -39,7 +39,10 @@ namespace ProjectCarsSeasonExtension.Models.Player
 
         public void AddPlayer(Player newPlayer)
         {
-            var maxId = Players.Max(p => p.Id);
+            var maxId = 0;
+            if (Players.Count > 0)
+                maxId = Players.Max(p => p.Id);
+
             newPlayer.Id = ++maxId;
 
             Players.Add(newPlayer);

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1280"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Background="{StaticResource MainBackgroundColor}"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -45,28 +45,30 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="140"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Track Location" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProjectCarsData.TrackLocation}" />
+            <TextBlock Text="Track" />
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Variant" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProjectCarsData.TrackVariant}" />
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="{Binding ProjectCarsData.TrackLocation}" />
+                <TextBlock Margin="5,0,0,0" Text="{Binding ProjectCarsData.TrackVariant}" />
+            </StackPanel>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Name" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProjectCarsData.CarName}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Car Name" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProjectCarsData.CarName}" />
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Car Class" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProjectCarsData.CarClassName}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Car Class" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ProjectCarsData.CarClassName}" />
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Last Lap Time" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LastLapTime}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Last Lap Time" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ProjectCarsData.LastLapTime}" />
 
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Lap Invalidated" />
-            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Lap Invalidated" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
 
+            <Button Grid.Row="5" Grid.Column="1" Content="Add as race" Click="AddAsRace_OnClick" IsEnabled="{Binding ProjectCarsData.}"/>
         </Grid>
 
         <Grid Grid.Column="1" Margin="10">
@@ -77,14 +79,14 @@
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="140"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Player"/>
             <ComboBox Name="PlayerNameSelector" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AllPlayerNames}" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track Location and Variant"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Track"/>
             <ComboBox Name="RaceNameSelector" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllRaceNames}" VerticalAlignment="Center"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Time"/>

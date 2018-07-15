@@ -164,5 +164,24 @@ namespace ProjectCarsSeasonExtension.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void AddAsRace_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ProjectCarsData?.CarName) || string.IsNullOrEmpty(ProjectCarsData.TrackLocation))
+                return;
+
+            var trackName = ProjectCarsData.TrackLocation;
+            if (!string.IsNullOrEmpty(ProjectCarsData.TrackVariant))
+                trackName += " " + ProjectCarsData.TrackVariant;
+
+            _dataView.AddChallenge(new Challenge
+            {
+                CarName = ProjectCarsData.CarName,
+                TrackName = trackName,
+                Difficulty = Difficulty.Medium,
+                Description = "Default race description."
+            });
+
+        }
     }
 }
