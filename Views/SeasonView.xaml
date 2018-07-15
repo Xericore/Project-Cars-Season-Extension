@@ -128,7 +128,11 @@
 
                                     <Image Grid.Row="1"
                                            Source="{Binding Challenge.TrackName, Converter={StaticResource TrackNameToImageSourceConverter}}"
-                                           Height="{StaticResource ImageSize}" Width="{StaticResource ImageSize}"/>
+                                           Height="{StaticResource ImageSize}" Width="{StaticResource ImageSize}">
+                                        <Image.Effect>
+                                            <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
+                                        </Image.Effect>
+                                    </Image>
 
                                     <TextBlock Grid.Row="2" Text="{Binding Challenge.TrackName}" TextAlignment="Center" Width="256" TextWrapping="Wrap"/>
                                 </Grid>
@@ -144,7 +148,11 @@
 
                                     <Image Grid.Row="1"
                                            Source="{Binding Challenge.CarName, Converter={StaticResource CarNameToImageSourceConverter}}"
-                                           Height="{StaticResource ImageSize}" Width="{StaticResource ImageSize}"/>
+                                           Height="{StaticResource ImageSize}" Width="{StaticResource ImageSize}">
+                                        <Image.Effect>
+                                            <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
+                                        </Image.Effect>
+                                    </Image>
 
                                     <TextBlock Grid.Row="2" Text="{Binding Challenge.CarName}" TextAlignment="Center" Width="256" TextWrapping="Wrap"/>
                                 </Grid>
