@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
       xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1280"
       
@@ -103,41 +104,44 @@
                                     <Style TargetType="TextBlock">
                                         <Setter Property="FontSize" Value="26" />
                                     </Style>
+                                    <GridLength x:Key="CarTrackTextHeightTop">32</GridLength>
+                                    <GridLength x:Key="CarTrackTextHeight">64</GridLength>
+                                    <system:Double x:Key="ImageSize">256</system:Double>
                                 </Grid.Resources>
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                
-                                <Grid>
+
+                                <Grid Margin="10,0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="256"/>
-                                        <RowDefinition />
+                                        <RowDefinition Height="{StaticResource CarTrackTextHeightTop}"/>
+                                        <RowDefinition Height="276"/>
+                                        <RowDefinition Height="{StaticResource CarTrackTextHeight}"/>
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Grid.Row="0" Text="Track" TextAlignment="Center"/>
 
                                     <Image Grid.Row="1"
                                            Source="{Binding Challenge.TrackName, Converter={StaticResource TrackNameToImageSourceConverter}}"
-                                           Height="256" Width="256"/>
+                                           Height="{StaticResource ImageSize}" Width="{StaticResource ImageSize}"/>
 
                                     <TextBlock Grid.Row="2" Text="{Binding Challenge.TrackName}" TextAlignment="Center" Width="256" TextWrapping="Wrap"/>
                                 </Grid>
 
-                                <Grid Grid.Column="1">
+                                <Grid Grid.Column="1" Margin="10,0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="256"/>
-                                        <RowDefinition />
+                                        <RowDefinition Height="{StaticResource CarTrackTextHeightTop}"/>
+                                        <RowDefinition Height="276"/>
+                                        <RowDefinition Height="{StaticResource CarTrackTextHeight}"/>
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Grid.Row="0" Text="Car" TextAlignment="Center"/>
 
                                     <Image Grid.Row="1"
                                            Source="{Binding Challenge.CarName, Converter={StaticResource CarNameToImageSourceConverter}}"
-                                           Height="256" Width="256"/>
+                                           Height="{StaticResource ImageSize}" Width="{StaticResource ImageSize}"/>
 
                                     <TextBlock Grid.Row="2" Text="{Binding Challenge.CarName}" TextAlignment="Center" Width="256" TextWrapping="Wrap"/>
                                 </Grid>
