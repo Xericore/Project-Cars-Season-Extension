@@ -72,7 +72,7 @@
                     <Grid Margin="5">
                         <Image Grid.Column="0"
                                Source="{Binding Challenge.TrackName, Converter={StaticResource TrackNameToImageSourceConverter}}"
-                               Height="96" Width="96"/>
+                               Height="96" Width="96" ToolTip="{Binding Challenge.Name}"/>
                     </Grid>
                 </DataTemplate>
             </TabControl.ItemTemplate>
