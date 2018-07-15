@@ -25,6 +25,8 @@
 
                 <converters:TrackNameToImageSourceConverter x:Key="TrackNameToImageSourceConverter" />
                 <converters:CarNameToImageSourceConverter x:Key="CarNameToImageSourceConverter" />
+                <converters:DifficultyToPathConverter x:Key="DifficultyToPathConverter" />
+                <converters:DifficultyToColorConverter x:Key="DifficultyToColorConverter" />
                 <converters:TabSizeConverter x:Key="TabSizeConverter" />
 
                 <Style TargetType="{x:Type TabItem}">
@@ -111,10 +113,11 @@
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
+                                    <ColumnDefinition Width="128"/>
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
-                                <Grid Margin="10,0">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{StaticResource CarTrackTextHeightTop}"/>
                                         <RowDefinition Height="276"/>
@@ -130,7 +133,7 @@
                                     <TextBlock Grid.Row="2" Text="{Binding Challenge.TrackName}" TextAlignment="Center" Width="256" TextWrapping="Wrap"/>
                                 </Grid>
 
-                                <Grid Grid.Column="1" Margin="10,0">
+                                <Grid Grid.Column="2">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{StaticResource CarTrackTextHeightTop}"/>
                                         <RowDefinition Height="276"/>
@@ -145,27 +148,29 @@
 
                                     <TextBlock Grid.Row="2" Text="{Binding Challenge.CarName}" TextAlignment="Center" Width="256" TextWrapping="Wrap"/>
                                 </Grid>
-
                             </Grid>
 
                             <Grid Grid.Row="1" Margin="0,20,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="Difficulty:"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Challenge.Difficulty}"/>
+                                <TextBlock Grid.Row="0" Text="Difficulty" HorizontalAlignment="Center" TextAlignment="Center"/>
 
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Description:"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Challenge.Description}"/>
+                                <Viewbox Grid.Row="1" Width="96" Height="96" HorizontalAlignment="Center">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="{Binding Challenge.Difficulty, Converter={StaticResource DifficultyToPathConverter}}" 
+                                              Fill="{Binding Challenge.Difficulty, Converter={StaticResource DifficultyToColorConverter}}" 
+                                              Stroke="{StaticResource PrimaryHueLightForegroundBrush}" StrokeThickness="0.4" />
+                                    </Canvas>
+                                </Viewbox>
 
+                                <TextBlock Grid.Row="2" Text="{Binding Challenge.Difficulty}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                <TextBlock Margin="0,20" Grid.Row="3" Grid.Column="0" Text="{Binding Challenge.Description}" HorizontalAlignment="Center" TextAlignment="Center"/>
                             </Grid>
-
                         </Grid>
 
                         <Frame Margin="0,10,0,0" Grid.Row="0" Grid.Column="1" Content="{Binding ChallengeView}" HorizontalAlignment="Center" NavigationUIVisibility="Hidden"/>
