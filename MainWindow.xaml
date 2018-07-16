@@ -28,7 +28,7 @@
         <Line StrokeThickness="2" Stroke="{StaticResource TabItemDisabledForegroundBrush}" 
               X1="0" X2="8192" Y1="81.5" Y2="81.5"/>
 
-        <TabControl x:Name="MainTabControl" BorderThickness="0" HorizontalAlignment="Center">
+        <TabControl x:Name="MainTabControl" BorderThickness="0" HorizontalAlignment="Center" Background="{StaticResource MainBackgroundColor}">
 
             <TabControl.Resources>
                 <system:Double x:Key="TabIconSize">36</system:Double>

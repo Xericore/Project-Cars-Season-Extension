@@ -19,7 +19,7 @@
 
     <Grid Margin="0,20,0,0">
 
-        <TabControl Name="ChallengesTabControl" BorderThickness="0,0,0,0" ItemsSource="{Binding ChallengeStandings}">
+        <TabControl Name="ChallengesTabControl" BorderThickness="0,0,0,0" ItemsSource="{Binding ChallengeStandings}" Background="{StaticResource MainBackgroundColor}">
 
             <TabControl.Resources>
 
