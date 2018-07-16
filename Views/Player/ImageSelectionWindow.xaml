@@ -7,7 +7,7 @@
         xmlns:Utils="clr-namespace:ProjectCarsSeasonExtension.Utils"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Choose your player avatar" Height="480" Width="640" Topmost="True"
+        Title="Choose your player avatar" Height="720" Width="1280" Topmost="True"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Background="{StaticResource MainBackgroundColor}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,7 +15,7 @@
         TextElement.FontSize="{StaticResource MainFontSize}"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}" Closing="ImageSelectionWindow_OnClosing">
+        FontFamily="{DynamicResource MaterialDesignFont}" Closing="ImageSelectionWindow_OnClosing" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="MyEnumValues">
