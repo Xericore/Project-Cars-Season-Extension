@@ -105,6 +105,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Viewbox Width="{StaticResource RightButtonsImageSize}" Height="{StaticResource RightButtonsImageSize}">
                         <Canvas Width="24" Height="24">
@@ -112,6 +113,7 @@
                         </Canvas>
                     </Viewbox>
                     <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Logout Player</TextBlock>
+                    <TextBlock Grid.Row="2" VerticalAlignment="Center" Margin="5" Text="{Binding TimeUntilLogout}"></TextBlock>
                 </Grid>
             </Button>
 

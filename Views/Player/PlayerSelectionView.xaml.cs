@@ -1,9 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
+using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.Views.Player;
 
 namespace ProjectCarsSeasonExtension.Views
@@ -14,7 +17,7 @@ namespace ProjectCarsSeasonExtension.Views
     public partial class PlayerSelection : Page, INotifyPropertyChanged
     {
         public PlayerController PlayerController { get; }
-
+        
         public Visibility RemovePlayerVisibility
         {
             get => _removePlayerVisibility;
@@ -43,12 +46,45 @@ namespace ProjectCarsSeasonExtension.Views
         private Visibility _removePlayerVisibility;
         private string _nameOfPlayerToRemove;
 
+        private readonly BackgroundWorker _idleWorker;
+
+        public TimeSpan TimeUntilLogout { get; set; }
+
         public PlayerSelection(PlayerController playerController)
         {
             PlayerController = playerController;
             PlayerController.PlayerSelectionChanged += PlayerControllerOnPlayerSelectionChanged;
             InitializeComponent();
             SetRemovePlayerButtonVisibility();
+
+            _idleWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+
+            _idleWorker.DoWork += IdleWorker_OnDoWork;
+            _idleWorker.ProgressChanged += IdleWorker_OnProgressChanged;
+
+            _idleWorker.RunWorkerAsync();
+        }
+
+        private void IdleWorker_OnDoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                _idleWorker.ReportProgress(0);
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void IdleWorker_OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(delegate
+            {
+                TimeUntilLogout = TimeSpan.FromMilliseconds(IdleTimeFinder.GetIdleTime());
+                OnPropertyChanged(nameof(TimeUntilLogout));
+            });
         }
 
         private void PlayerControllerOnPlayerSelectionChanged()
