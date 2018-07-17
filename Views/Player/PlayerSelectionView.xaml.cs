@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
+using ProjectCarsSeasonExtension.Properties;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.Views.Player;
 
@@ -48,12 +49,13 @@ namespace ProjectCarsSeasonExtension.Views
 
         private readonly BackgroundWorker _idleWorker;
 
-        public TimeSpan TimeUntilLogout { get; set; }
+        public TimeSpan TimeUserIsIdle { get; set; }
 
         public PlayerSelection(PlayerController playerController)
         {
             PlayerController = playerController;
             PlayerController.PlayerSelectionChanged += PlayerControllerOnPlayerSelectionChanged;
+
             InitializeComponent();
             SetRemovePlayerButtonVisibility();
 
@@ -73,8 +75,10 @@ namespace ProjectCarsSeasonExtension.Views
         {
             while (true)
             {
-                _idleWorker.ReportProgress(0);
-                Thread.Sleep(1000);
+                if(PlayerController.IsAnyPlayerSelected)
+                    _idleWorker.ReportProgress(0);
+
+                Thread.Sleep(3000);
             }
         }
 
@@ -82,8 +86,13 @@ namespace ProjectCarsSeasonExtension.Views
         {
             Application.Current.Dispatcher.Invoke(delegate
             {
-                TimeUntilLogout = TimeSpan.FromMilliseconds(IdleTimeFinder.GetIdleTime());
-                OnPropertyChanged(nameof(TimeUntilLogout));
+                TimeUserIsIdle = TimeSpan.FromMilliseconds(IdleTimeFinder.GetIdleTime());
+                OnPropertyChanged(nameof(TimeUserIsIdle));
+
+                if (TimeUserIsIdle > Settings.Default.IdleTimeUntilLogout)
+                {
+                    PlayerController.LogoutCurrentPlayer();
+                }
             });
         }
 

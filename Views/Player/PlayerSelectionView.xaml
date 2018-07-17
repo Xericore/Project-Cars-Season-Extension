@@ -59,9 +59,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="{StaticResource MainFontSize}" />
+        </Style>
 
-        <GridLength x:Key="RightButtonsRowHeight">108</GridLength>
-        <system:Double x:Key="RightButtonsHeight">96</system:Double>
+        <GridLength x:Key="RightButtonsRowHeight">120</GridLength>
+        <system:Double x:Key="RightButtonsHeight">106</system:Double>
         <system:Double x:Key="RightButtonsImageSize">48</system:Double>
         <Thickness x:Key="RightButtonsMargin">5</Thickness>
 
@@ -70,7 +74,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="220"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1" Margin="10" HorizontalAlignment="Stretch">
@@ -105,7 +109,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Viewbox Width="{StaticResource RightButtonsImageSize}" Height="{StaticResource RightButtonsImageSize}">
                         <Canvas Width="24" Height="24">
@@ -113,7 +116,6 @@
                         </Canvas>
                     </Viewbox>
                     <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Logout Player</TextBlock>
-                    <TextBlock Grid.Row="2" VerticalAlignment="Center" Margin="5" Text="{Binding TimeUntilLogout}"></TextBlock>
                 </Grid>
             </Button>
 
