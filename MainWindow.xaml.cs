@@ -45,9 +45,6 @@ namespace ProjectCarsSeasonExtension
         private readonly Player _noPlayer = new Player {Name = "No player logged in", AvatarFileName = "/Assets/Players/NoPlayer.png"};
         private Player _currentlyLoggedInPlayerName;
 
-        public RoutedCommand CloseApplicationCommand { get; private set; } = new RoutedCommand();
-        public RoutedCommand LogoutPlayerCommand { get; private set; } = new RoutedCommand();
-
         private ProjectCarsLiveView _projectCarsLiveView;
         private PlayerController _playerController;
         private SeasonView _seasonView;
@@ -157,6 +154,12 @@ namespace ProjectCarsSeasonExtension
 
             SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Collapsed : Visibility.Visible;
             ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Collapsed : Visibility.Visible;
+
+            if (MainTabControl.SelectedItem is TabItem selectedTab)
+            {
+                if (Equals(selectedTab, SeasonEditorTab) || Equals(selectedTab, ProjectCarsLiveTab))
+                    MainTabControl.SelectedIndex = 0;
+            }
 
             _visibleTabItemsCount = MainTabControl.Items.Cast<TabItem>().Count(item => item.Visibility == Visibility.Visible);
         }
