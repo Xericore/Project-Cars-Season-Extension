@@ -23,8 +23,6 @@ namespace ProjectCarsSeasonExtension.Converters
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
