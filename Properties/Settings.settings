@@ -8,5 +8,8 @@
     <Setting Name="IdleTimeUntilLogout" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:03:00</Value>
     </Setting>
+    <Setting Name="ScreenSaverCycleTime" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:00:30</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

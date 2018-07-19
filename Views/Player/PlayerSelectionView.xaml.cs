@@ -46,11 +46,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private Visibility _removePlayerVisibility;
         private string _nameOfPlayerToRemove;
-
-        private readonly BackgroundWorker _idleWorker;
-
-        public TimeSpan TimeUserIsIdle { get; set; }
-
+        
         public PlayerSelection(PlayerController playerController)
         {
             PlayerController = playerController;
@@ -59,40 +55,15 @@ namespace ProjectCarsSeasonExtension.Views
             InitializeComponent();
             SetRemovePlayerButtonVisibility();
 
-            _idleWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
-
-            _idleWorker.DoWork += IdleWorker_OnDoWork;
-            _idleWorker.ProgressChanged += IdleWorker_OnProgressChanged;
-
-            _idleWorker.RunWorkerAsync();
+            IdleTimePublisher.Instance.UserIsIdle += IdleTimePublisher_UserIsIdle;
         }
 
-        private void IdleWorker_OnDoWork(object sender, DoWorkEventArgs e)
-        {
-            while (true)
-            {
-                if(PlayerController.IsAnyPlayerSelected)
-                    _idleWorker.ReportProgress(0);
-
-                Thread.Sleep(3000);
-            }
-        }
-
-        private void IdleWorker_OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void IdleTimePublisher_UserIsIdle()
         {
             Application.Current.Dispatcher.Invoke(delegate
             {
-                TimeUserIsIdle = TimeSpan.FromMilliseconds(IdleTimeFinder.GetIdleTime());
-                OnPropertyChanged(nameof(TimeUserIsIdle));
-
-                if (TimeUserIsIdle > Settings.Default.IdleTimeUntilLogout)
-                {
+                if (PlayerController.IsAnyPlayerSelected)
                     PlayerController.LogoutCurrentPlayer();
-                }
             });
         }
 

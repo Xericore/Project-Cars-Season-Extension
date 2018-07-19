@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using ProjectCarsSeasonExtension.Properties;
 
 namespace ProjectCarsSeasonExtension.Utils
 {
@@ -12,20 +13,34 @@ namespace ProjectCarsSeasonExtension.Utils
     {
         private readonly List<CycleableTabControl> _tabControlsToCycle;
         private readonly TimeSpan _cycleTime;
-
+        
         private BackgroundWorker _backgroundWorker;
         private bool _shouldCycle;
         
         private int _currentMainTabIndex;
         private int _currentSubTabIndex;
         private int _selectedSubTab;
+        
 
-        public AutoScreenCycler(List<CycleableTabControl> tabControlsToCycle, TimeSpan cycleTime)
+        public AutoScreenCycler(List<CycleableTabControl> tabControlsToCycle)
         {
+            IdleTimePublisher.Instance.UserIsIdle += IdleTimePublisher_OnUserIsIdle;
+            IdleTimePublisher.Instance.UserNotIdle += IdleTimePublisher_OnUserNotIdle;
+
             _tabControlsToCycle = tabControlsToCycle;
-            _cycleTime = cycleTime;
+            _cycleTime = Settings.Default.ScreenSaverCycleTime;
 
             StartBackgroundWorker();
+        }
+
+        private void IdleTimePublisher_OnUserIsIdle()
+        {
+            Application.Current.Dispatcher.Invoke(StartCycling);
+        }
+
+        private void IdleTimePublisher_OnUserNotIdle()
+        {
+            Application.Current.Dispatcher.Invoke(StopCycling);
         }
 
         private void StartBackgroundWorker()
@@ -40,7 +55,6 @@ namespace ProjectCarsSeasonExtension.Utils
             _backgroundWorker.ProgressChanged += OnCycle;
 
             _backgroundWorker.RunWorkerAsync();
-            StartCycling();
         }
 
         private void StartCyclingWorker(object sender, DoWorkEventArgs e)

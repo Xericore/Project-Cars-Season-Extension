@@ -46,5 +46,17 @@ namespace ProjectCarsSeasonExtension.Properties {
                 this["IdleTimeUntilLogout"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00:30")]
+        public global::System.TimeSpan ScreenSaverCycleTime {
+            get {
+                return ((global::System.TimeSpan)(this["ScreenSaverCycleTime"]));
+            }
+            set {
+                this["ScreenSaverCycleTime"] = value;
+            }
+        }
     }
 }

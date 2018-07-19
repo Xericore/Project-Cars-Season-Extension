@@ -107,6 +107,7 @@
     <Compile Include="Utils\CarImageManager.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\IdleTimeFinder.cs" />
+    <Compile Include="Utils\IdleTimePublisher.cs" />
     <Compile Include="Utils\LevenshteinDistance.cs" />
     <Compile Include="Utils\PlayerImageFolders.cs" />
     <Compile Include="Utils\PlayerImageManager.cs" />
