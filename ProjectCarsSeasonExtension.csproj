@@ -103,6 +103,7 @@
     <Compile Include="Serialization\ISeasonWriter.cs" />
     <Compile Include="Serialization\XmlSeasonReader.cs" />
     <Compile Include="Serialization\XmlSeasonWriter.cs" />
+    <Compile Include="Utils\AutoScreenCycler.cs" />
     <Compile Include="Utils\CarImageManager.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\IdleTimeFinder.cs" />

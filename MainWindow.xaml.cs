@@ -1,6 +1,7 @@
 ﻿using ProjectCarsSeasonExtension.Controller;
 using ProjectCarsSeasonExtension.Views;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -11,6 +12,7 @@ using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
+using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
 using ProjectCarsSeasonExtension.Views.Player;
 using Application = System.Windows.Application;
@@ -54,6 +56,7 @@ namespace ProjectCarsSeasonExtension
 
         private int _visibleTabItemsCount;
         private bool _wasInitialized;
+        private AutoScreenCycler _autoCycler;
 
 
         public MainWindow()
@@ -106,6 +109,8 @@ namespace ProjectCarsSeasonExtension
             _wasInitialized = true;
 
             OnPlayerSelectionChanged();
+
+            AddAutoCycler();
         }
 
         private void UpdateTabWidths()
@@ -122,6 +127,17 @@ namespace ProjectCarsSeasonExtension
                 var tabItem = (TabItem) MainTabControl.Items[i];
                 tabItem.Width = newWidth;
             }
+        }
+
+        private void AddAutoCycler()
+        {
+            var tabsToCycle = new List<CycleableTabControl>
+            {
+                new CycleableTabControl(MainTabControl, new List<int>{0,1}), 
+                new CycleableTabControl(_seasonView.ChallengesTabControl)
+            };
+
+            _autoCycler = new AutoScreenCycler(tabsToCycle, TimeSpan.FromMilliseconds(2000));
         }
 
         private static float CalculateExtraMargin(float visibleTabItemsCount)
