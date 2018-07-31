@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Project Cars Season Extension" Height="800" Width="1280"
+        Title="Project Cars Season Extension" Height="1080" Width="1920"
         Initialized="Window_Initialized"
         SourceInitialized="Window_SourceInitialized"
         Closing="Window_Closing"
