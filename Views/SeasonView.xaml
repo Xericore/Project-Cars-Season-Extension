@@ -88,7 +88,7 @@
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Grid Margin="0,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <Grid Margin="0,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
                             <Grid.Resources>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -96,8 +96,8 @@
                             </Grid.Resources>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
 
                             <Grid>
@@ -106,8 +106,9 @@
                                     <Style TargetType="TextBlock">
                                         <Setter Property="FontSize" Value="26" />
                                     </Style>
-                                    <GridLength x:Key="CarTrackTextHeightTop">32</GridLength>
-                                    <GridLength x:Key="CarTrackTextHeight">64</GridLength>
+                                    <GridLength x:Key="CarTrackTextHeightTop">40</GridLength>
+                                    <GridLength x:Key="CarTrackTextHeight">80</GridLength>
+                                    <GridLength x:Key="ImageRowHeight">276</GridLength>
                                     <system:Double x:Key="ImageSize">256</system:Double>
                                 </Grid.Resources>
 
@@ -120,7 +121,7 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{StaticResource CarTrackTextHeightTop}"/>
-                                        <RowDefinition Height="276"/>
+                                        <RowDefinition Height="{StaticResource ImageRowHeight}"/>
                                         <RowDefinition Height="{StaticResource CarTrackTextHeight}"/>
                                     </Grid.RowDefinitions>
 
@@ -140,7 +141,7 @@
                                 <Grid Grid.Column="2">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="{StaticResource CarTrackTextHeightTop}"/>
-                                        <RowDefinition Height="276"/>
+                                        <RowDefinition Height="{StaticResource ImageRowHeight}"/>
                                         <RowDefinition Height="{StaticResource CarTrackTextHeight}"/>
                                     </Grid.RowDefinitions>
 
@@ -161,9 +162,9 @@
                             <Grid Grid.Row="1" Margin="0,20,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
+                                    <RowDefinition MinHeight="96"/>
                                     <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
+                                    <RowDefinition Height="64"/>
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Grid.Row="0" Text="Difficulty" HorizontalAlignment="Center" TextAlignment="Center"/>

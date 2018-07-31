@@ -1908,10 +1908,10 @@
     <Content Include="Assets\Tracks\Imola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tracks\Laguna Seca.png">
+    <Content Include="Assets\Tracks\Le Mans.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tracks\Le Mans.png">
+    <Content Include="Assets\Tracks\Mazda Raceway Laguna Seca.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Tracks\Mojave.png">
