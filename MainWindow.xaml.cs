@@ -185,8 +185,7 @@ namespace ProjectCarsSeasonExtension
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
             HotkeyController.Init(this);
-            HotkeyController.Register(9000, HotkeyController.None, VirtualKeyCode.VkAdd, ToggleWindowState);
-            HotkeyController.Register(9001, HotkeyController.None, VirtualKeyCode.VkNumpad0, LogoutPlayer);
+            HotkeyController.Register(9001, HotkeyController.ModControl, VirtualKeyCode.VkNumpad0, LogoutPlayer);
         }
 
         private void OnChallengeResultEvent(ChallengeResult challengeResult)
