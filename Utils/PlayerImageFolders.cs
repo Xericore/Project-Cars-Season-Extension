@@ -3,9 +3,10 @@
     public enum PlayerImageFolders
     {
         Avatars,
+        Animals,
         Fantasy,
         Flags,
         Pokemon,
-        Racing
+        Monsters
     }
 }

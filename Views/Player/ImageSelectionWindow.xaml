@@ -96,7 +96,7 @@
                  ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectionChanged="ImageTypeSelector_OnSelectionChanged">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="5"/>
+                    <UniformGrid Columns="6"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ListBox>

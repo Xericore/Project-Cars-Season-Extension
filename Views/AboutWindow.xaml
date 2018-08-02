@@ -20,6 +20,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Text="Project Cars Season Extension created by Xericore." />
-        <TextBlock Grid.Row="1" Text="Player character icons made by Freepik, Roundicons Freebies and monkik from www.flaticon.com." TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" Text="Player character icons made by Freepik, Roundicons Freebies, Smashicons and monkik from www.flaticon.com." TextWrapping="Wrap"/>
     </Grid>
 </Window>
