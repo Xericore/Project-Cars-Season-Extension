@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
@@ -39,15 +39,34 @@ namespace ProjectCarsSeasonExtension.Views
 
             _dataView = dataView;
 
-            var dispatchTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
-            dispatchTimer.Tick += ProjectCarsCarsDataGetterLoop;
-            dispatchTimer.Start();
+            BackgroundWorker worker = new BackgroundWorker { WorkerReportsProgress = true };
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerAsync();
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (!(sender is BackgroundWorker backgroundWorker))
+                return;
+
+            while (true)
+            {
+                backgroundWorker.ReportProgress(0);
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            ProjectCarsCarsDataGetterLoop();
         }
 
         private void ProjectCarsLiveView_OnLoaded(object sender, EventArgs eventArgs)
         {
-            if (_wasInitialized == true)
+            if (_wasInitialized)
                 return;
+
             _wasInitialized = true;
 
             SetAllRaceNames();
@@ -83,7 +102,7 @@ namespace ProjectCarsSeasonExtension.Views
             RaceNameSelector.SelectedIndex = 0;
         }
 
-        private void ProjectCarsCarsDataGetterLoop(object sender, EventArgs e)
+        private void ProjectCarsCarsDataGetterLoop()
         {
             Tuple<bool, pCarsAPIStruct> returnTuple = pCarsAPI_GetData.ReadSharedMemoryData();
 
@@ -91,9 +110,12 @@ namespace ProjectCarsSeasonExtension.Views
 
             if (isDataValid)
             {
-                ProjectCarsData = ProjectCarsData.MapStructToClass(returnTuple.Item2, ProjectCarsData);
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    ProjectCarsData = ProjectCarsData.MapStructToClass(returnTuple.Item2, ProjectCarsData);
 
-                CheckAndFireChallengeResultEvent();
+                    CheckAndFireChallengeResultEvent();
+                });
             }
         }
 
