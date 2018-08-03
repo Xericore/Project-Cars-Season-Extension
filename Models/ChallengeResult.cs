@@ -22,6 +22,11 @@ namespace ProjectCarsSeasonExtension.Models
         {
             return TrackLocationAndVariant + " / " + CarName;
         }
+
+        public string ToLongString()
+        {
+            return TrackLocationAndVariant + ", " + CarName + ", " + LastValidLapTime;
+        }
     }
 
     public class SimulatedChallengeResult : ChallengeResult

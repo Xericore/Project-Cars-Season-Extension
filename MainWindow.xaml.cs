@@ -192,15 +192,22 @@ namespace ProjectCarsSeasonExtension
             Player selectedPlayer = GetSelectedPlayer(challengeResult);
 
             if (selectedPlayer == null)
+            {
+                Logger.MyLogger.Debug($"{challengeResult.ToLongString()} discarded because no player is logged in.");
                 return;
+            }
 
             var wasDataAdded = DataView.AddChallengeResult(selectedPlayer.Id, challengeResult);
 
             if (!wasDataAdded)
+            {
+                Logger.MyLogger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was not added because DataView.AddChallengeResult() returned false.");
                 return;
+            }
 
+            Logger.MyLogger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was added successfully. Updating UIs.");
             UpdateAllUIs(challengeResult);
-
+            Logger.MyLogger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was added successfully. Saving data.");
             SaveData();
         }
 

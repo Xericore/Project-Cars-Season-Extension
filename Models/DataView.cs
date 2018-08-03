@@ -4,6 +4,7 @@ using System.Linq;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Properties;
 using ProjectCarsSeasonExtension.Serialization;
+using ProjectCarsSeasonExtension.Utils;
 
 namespace ProjectCarsSeasonExtension.Models
 {
@@ -88,7 +89,12 @@ namespace ProjectCarsSeasonExtension.Models
         public bool AddChallengeResult(int playerId, ChallengeResult challengeResult)
         {
             if (DateTime.Now > CurrentSeason.EndDate)
+            {
+                Logger.MyLogger.Debug(
+                    $"{challengeResult.ToLongString()} was not added because the season is over. Now: {DateTime.Now}, EndDate: {CurrentSeason.EndDate}");
                 return false;
+            }
+                
 
             Challenge foundChallenge = CurrentSeason.Challenges.FirstOrDefault
             (
@@ -97,7 +103,11 @@ namespace ProjectCarsSeasonExtension.Models
             );
 
             if (foundChallenge == null)
+            {
+                Logger.MyLogger.Debug(
+                    $"{challengeResult.ToLongString()} was not added because the challenge wasn't found in the current season {CurrentSeason}.");
                 return false;
+            }
 
             PlayerResult foundPlayerResult = PlayerResults.FirstOrDefault(p => p.ChallengeId == foundChallenge.Id && p.PlayerId == playerId);
 
@@ -113,7 +123,15 @@ namespace ProjectCarsSeasonExtension.Models
             else
             {
                 if (challengeResult.LastValidLapTime < foundPlayerResult.FastestLap)
+                {
                     foundPlayerResult.FastestLap = challengeResult.LastValidLapTime;
+                }
+                else
+                {
+                    Logger.MyLogger.Debug(
+                        $"PlayerId: {playerId}, {challengeResult.ToLongString()} was not added because it's not a best time. Fastest lap: {foundPlayerResult.FastestLap}, last lap: {challengeResult.LastValidLapTime}.");
+                }
+                    
             }
 
             return true;
