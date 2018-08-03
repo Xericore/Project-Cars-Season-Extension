@@ -3,11 +3,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Utils;
 
 namespace ProjectCarsSeasonExtension.Views
 {
@@ -39,27 +41,26 @@ namespace ProjectCarsSeasonExtension.Views
 
             _dataView = dataView;
 
-            BackgroundWorker worker = new BackgroundWorker { WorkerReportsProgress = true };
-            worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Worker_ProgressChanged;
-            worker.RunWorkerAsync();
+            StartProjectCarsGetterLoop();
         }
 
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private async void StartProjectCarsGetterLoop()
         {
-            if (!(sender is BackgroundWorker backgroundWorker))
-                return;
-
-            while (true)
+            try
             {
-                backgroundWorker.ReportProgress(0);
-                Thread.Sleep(1000);
+                await Task.Run(() =>
+                {
+                    while(true)
+                    {
+                        ProjectCarsCarsDataGetterLoop();
+                        Thread.Sleep(1000);
+                    }
+                });
             }
-        }
-
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            ProjectCarsCarsDataGetterLoop();
+            catch (Exception ex)
+            {
+                Logger.MyLogger.Error(ex);
+            }
         }
 
         private void ProjectCarsLiveView_OnLoaded(object sender, EventArgs eventArgs)
