@@ -124,6 +124,8 @@ namespace ProjectCarsSeasonExtension.Views
             if (!IsResultValid())
                 return;
 
+            Logger.MyLogger.Debug($"_lastFiredLapTime: {_lastFiredLapTime}, ProjectCarsData.LastLapTime: {ProjectCarsData.LastLapTime}, _wasLastLapValid: {_wasLastLapValid}");
+
             _lastFiredLapTime = ProjectCarsData.LastLapTime;
 
             if (!_wasLastLapValid)
@@ -136,6 +138,8 @@ namespace ProjectCarsSeasonExtension.Views
 
             try
             {
+                Logger.MyLogger.Debug(
+                    $"Detected new Challenge result: {challengeResult.CarName}, {challengeResult.TrackLocationAndVariant}, {challengeResult.LastValidLapTime}");
                 ChallengeResultEvent?.Invoke(challengeResult);
             } 
             catch (Exception)
