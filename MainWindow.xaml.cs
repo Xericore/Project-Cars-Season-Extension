@@ -55,7 +55,6 @@ namespace ProjectCarsSeasonExtension
         private ChampionshipView _championshipView;
         private SeasonEditor _seasonEditor;
 
-        private IdleTimePublisher _idleTimePublisher;
         private AutoScreenCycler _autoCycler;
 
         private int _visibleTabItemsCount;
