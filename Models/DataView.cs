@@ -119,17 +119,24 @@ namespace ProjectCarsSeasonExtension.Models
                     ChallengeId = foundChallenge.Id,
                     FastestLap = challengeResult.LastValidLapTime
                 });
+
+                Logger.MyLogger.Debug(
+                    $"PlayerId: {playerId}, {challengeResult.ToLongString()} was added to DataView.PlayerResults.");
             }
             else
             {
                 if (challengeResult.LastValidLapTime < foundPlayerResult.FastestLap)
                 {
                     foundPlayerResult.FastestLap = challengeResult.LastValidLapTime;
+
+                    Logger.MyLogger.Debug(
+                        $"PlayerId: {playerId}, {challengeResult.ToLongString()}. DataView foundPlayerResult was successfully updated.");
                 }
                 else
                 {
                     Logger.MyLogger.Debug(
                         $"PlayerId: {playerId}, {challengeResult.ToLongString()} was not added because it's not a best time. Fastest lap: {foundPlayerResult.FastestLap}, last lap: {challengeResult.LastValidLapTime}.");
+                    return false;
                 }
                     
             }
