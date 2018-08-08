@@ -159,7 +159,7 @@ namespace ProjectCarsSeasonExtension.Views
                 return false;
             }
 
-            var isLapFinished = Math.Abs(_lastFiredLapTime - ProjectCarsData.LastLapTime) > 0.0001;
+            var isLapFinished = Math.Abs(_lastFiredLapTime - ProjectCarsData.LastLapTime) > 0.0001 && !isWarmupLap;
 
             var isDataOk = !string.IsNullOrEmpty(ProjectCarsData.CarName) &&
                            !string.IsNullOrEmpty(ProjectCarsData.TrackLocation) &&
@@ -168,7 +168,7 @@ namespace ProjectCarsSeasonExtension.Views
             if (isLapFinished)
             {
                 Globals.Logger.Debug(
-                    $"IsResultValid = {isDataOk}. {ProjectCarsData.CarName}, {ProjectCarsData.TrackLocation}, isWarmupLap: {isWarmupLap}. isDataOk: {isDataOk}, isWarmupLap: {isWarmupLap}");
+                    $"IsResultValid = {isDataOk}. {ProjectCarsData.CarName}, {ProjectCarsData.TrackLocation}. isDataOk: {isDataOk}");
             }
 
             return isLapFinished && isDataOk;
