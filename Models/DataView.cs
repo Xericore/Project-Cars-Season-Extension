@@ -90,7 +90,7 @@ namespace ProjectCarsSeasonExtension.Models
         {
             if (DateTime.Now > CurrentSeason.EndDate)
             {
-                Logger.MyLogger.Debug(
+                Globals.Logger.Debug(
                     $"{challengeResult.ToLongString()} was not added because the season is over. Now: {DateTime.Now}, EndDate: {CurrentSeason.EndDate}");
                 return false;
             }
@@ -104,7 +104,7 @@ namespace ProjectCarsSeasonExtension.Models
 
             if (foundChallenge == null)
             {
-                Logger.MyLogger.Debug(
+                Globals.Logger.Debug(
                     $"{challengeResult.ToLongString()} was not added because the challenge wasn't found in the current season {CurrentSeason}.");
                 return false;
             }
@@ -120,7 +120,7 @@ namespace ProjectCarsSeasonExtension.Models
                     FastestLap = challengeResult.LastValidLapTime
                 });
 
-                Logger.MyLogger.Debug(
+                Globals.Logger.Debug(
                     $"PlayerId: {playerId}, {challengeResult.ToLongString()} was added to DataView.PlayerResults.");
             }
             else
@@ -129,12 +129,12 @@ namespace ProjectCarsSeasonExtension.Models
                 {
                     foundPlayerResult.FastestLap = challengeResult.LastValidLapTime;
 
-                    Logger.MyLogger.Debug(
+                    Globals.Logger.Debug(
                         $"PlayerId: {playerId}, {challengeResult.ToLongString()}. DataView foundPlayerResult was successfully updated.");
                 }
                 else
                 {
-                    Logger.MyLogger.Debug(
+                    Globals.Logger.Debug(
                         $"PlayerId: {playerId}, {challengeResult.ToLongString()} was not added because it's not a best time. Fastest lap: {foundPlayerResult.FastestLap}, last lap: {challengeResult.LastValidLapTime}.");
                     return false;
                 }

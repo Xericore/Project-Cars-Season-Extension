@@ -7,11 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
-using ProjectCarsSeasonExtension.Properties;
 using ProjectCarsSeasonExtension.Serialization;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
@@ -193,7 +191,7 @@ namespace ProjectCarsSeasonExtension
 
             if (selectedPlayer == null)
             {
-                Logger.MyLogger.Debug($"{challengeResult.ToLongString()} discarded because no player is logged in.");
+                Globals.Logger.Debug($"{challengeResult.ToLongString()} discarded because no player is logged in.");
                 return;
             }
 
@@ -201,14 +199,21 @@ namespace ProjectCarsSeasonExtension
 
             if (!wasDataAdded)
             {
-                Logger.MyLogger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was not added because DataView.AddChallengeResult() returned false.");
+                Globals.Logger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was not added because DataView.AddChallengeResult() returned false.");
                 return;
             }
 
-            Logger.MyLogger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was added successfully. Updating UIs.");
+            Globals.Logger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was added successfully. Updating UIs.");
             UpdateAllUIs(challengeResult);
-            Logger.MyLogger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was added successfully. Saving data.");
+            Globals.Logger.Debug($"Player: {selectedPlayer}, {challengeResult.ToLongString()} was added successfully. Saving data.");
             SaveData();
+
+            Globals.SpeechSynthesizer.SpeakAsync($"New personal best for {selectedPlayer.Name}.");
+            int playerPosition = _allChallengeStandings.GetPlayerPosition(challengeResult, selectedPlayer);
+            if (playerPosition > 0)
+            {
+                Globals.SpeechSynthesizer.SpeakAsync($"You are now in position {playerPosition} in this race.");
+            }
         }
 
         private Player GetSelectedPlayer(ChallengeResult challengeResult)

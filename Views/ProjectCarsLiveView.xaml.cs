@@ -59,7 +59,7 @@ namespace ProjectCarsSeasonExtension.Views
             }
             catch (Exception ex)
             {
-                Logger.MyLogger.Error(ex);
+                Globals.Logger.Error(ex);
             }
         }
 
@@ -125,7 +125,7 @@ namespace ProjectCarsSeasonExtension.Views
             if (!IsResultValid())
                 return;
 
-            Logger.MyLogger.Debug($"_lastFiredLapTime: {_lastFiredLapTime}, ProjectCarsData.LastLapTime: {ProjectCarsData.LastLapTime}, _wasLastLapValid: {_wasLastLapValid}");
+            Globals.Logger.Debug($"_lastFiredLapTime: {_lastFiredLapTime}, ProjectCarsData.LastLapTime: {ProjectCarsData.LastLapTime}, _wasLastLapValid: {_wasLastLapValid}");
 
             _lastFiredLapTime = ProjectCarsData.LastLapTime;
 
@@ -139,7 +139,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             try
             {
-                Logger.MyLogger.Debug(
+                Globals.Logger.Debug(
                     $"Detected new Challenge result: {challengeResult.CarName}, {challengeResult.TrackLocationAndVariant}, {challengeResult.LastValidLapTime}");
                 ChallengeResultEvent?.Invoke(challengeResult);
             } 
@@ -164,6 +164,12 @@ namespace ProjectCarsSeasonExtension.Views
             var isDataOk = !string.IsNullOrEmpty(ProjectCarsData.CarName) &&
                            !string.IsNullOrEmpty(ProjectCarsData.TrackLocation) &&
                            !isWarmupLap;
+
+            if (isLapFinished)
+            {
+                Globals.Logger.Debug(
+                    $"IsResultValid = {isDataOk}. {ProjectCarsData.CarName}, {ProjectCarsData.TrackLocation}, isWarmupLap: {isWarmupLap}. isDataOk: {isDataOk}, isWarmupLap: {isWarmupLap}");
+            }
 
             return isLapFinished && isDataOk;
         }

@@ -75,6 +75,18 @@ namespace ProjectCarsSeasonExtension.ViewModels
             _challengeStandings[playerResult.ChallengeId].SetChallengePlayerStanding(challengePlayerStanding);
         }
 
+        public int GetPlayerPosition(ChallengeResult challengeResult, Player selectedPlayer)
+        {
+            var challengeStanding =
+                ChallengeStandings.FirstOrDefault(
+                    c => c.Challenge.ToString() == challengeResult.ToString());
+
+            if (challengeStanding != null)
+                return challengeStanding.GetPlayerPosition(selectedPlayer.Id);
+            
+            return -1;
+        }
+
         public void UpdateDataAndUI()
         {
             CreateChallengeStandings();
