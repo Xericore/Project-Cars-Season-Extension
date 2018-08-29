@@ -11,6 +11,8 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
         public ObservableCollection<int> ChallengePoints { get; } = new ObservableCollection<int>();
 
+        public uint Position { get; set; }
+
         public int TotalPoints => ChallengePoints.Sum();
 
         public ChampionshipStanding(Player playerName)

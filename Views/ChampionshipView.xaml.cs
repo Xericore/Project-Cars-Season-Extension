@@ -82,6 +82,12 @@ namespace ProjectCarsSeasonExtension.Views
             }
 
             ChampionshipStandings.Sort();
+
+            for (var i = 0; i < ChampionshipStandings.Count; i++)
+            {
+                var championshipStanding = ChampionshipStandings[i];
+                championshipStanding.Position = (uint)i+1;
+            }
         }
 
         private void CreateAllColumns()

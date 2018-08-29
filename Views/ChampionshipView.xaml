@@ -61,10 +61,8 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Grid Height="64" Margin="5" VerticalAlignment="Center">
-                            <Ellipse Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
-                                Converter={StaticResource RowToColorConverter}}" Stroke="{StaticResource PrimaryHueLightForegroundBrush}" Height="36" Width="36" StrokeThickness="{StaticResource CircleStrokeThickness}"/>
-                            <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}, AncestorLevel=1}, 
-                                Converter={StaticResource RowToPositionConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Ellipse Fill="{Binding Position, Converter={StaticResource PositionToColorConverter}}" Stroke="{StaticResource PrimaryHueLightForegroundBrush}" Height="36" Width="36" StrokeThickness="{StaticResource CircleStrokeThickness}"/>
+                            <TextBlock Text="{Binding Position}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
