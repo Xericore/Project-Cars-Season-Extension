@@ -90,11 +90,10 @@
     <Compile Include="Converters\DifficultyToColorConverter.cs" />
     <Compile Include="Converters\DifficultyToPathConverter.cs" />
     <Compile Include="Converters\PointsToColorConverter.cs" />
-    <Compile Include="Converters\RowToColorConverter.cs" />
-    <Compile Include="Converters\RowToPointsConverter.cs" />
+    <Compile Include="Converters\PositionToColorConverter.cs" />
+    <Compile Include="Converters\PositionToPointsConverter.cs" />
     <Compile Include="Converters\TabSizeConverter.cs" />
     <Compile Include="Converters\TrackNameToImageSourceConverter.cs" />
-    <Compile Include="Converters\RowToPositionConverter.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ChallengeResult.cs" />
     <Compile Include="Models\DataView.cs" />

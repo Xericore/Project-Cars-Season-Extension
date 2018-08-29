@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Controls;
 using System.Windows.Data;
 using ProjectCarsSeasonExtension.Utils;
 
 namespace ProjectCarsSeasonExtension.Converters
 {
-    public class RowToPointsConverter : IValueConverter
+    public class PositionToPointsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var rowIndex = 0;
-            if (value is DataGridRow row)
-                rowIndex = row.GetIndex();
+            if (value == null)
+                return null;
 
-            return PointsUtil.PositionToPoints(rowIndex + 1);
+            uint playerPosition = (uint) value;
+
+            return PointsUtil.PositionToPoints((int)playerPosition);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

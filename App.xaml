@@ -24,8 +24,8 @@
 
             <system:Double x:Key="CircleStrokeThickness">0</system:Double>
 
-            <converters:RowToPositionConverter x:Key="RowToPositionConverter" />
-            <converters:RowToColorConverter x:Key="RowToColorConverter" />
+            <converters:PositionToPointsConverter x:Key="PositionToPointsConverter" />
+            <converters:PositionToColorConverter x:Key="PositionToColorConverter" />
 
             <Color x:Key="TabItemDisabledForegroundColor">#aaaaaa</Color>
             <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="{StaticResource TabItemDisabledForegroundColor}" />
