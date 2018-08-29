@@ -4,7 +4,7 @@ namespace ProjectCarsSeasonExtension.Utils
 {
     public static class PointsUtil
     {
-        public static int PositionToPoints(int position)
+        public static int PositionToPoints(uint position)
         {
             int[] positionToPointsMapping = new[] {25, 18, 15, 12, 10, 8, 6, 4, 2, 1};
 

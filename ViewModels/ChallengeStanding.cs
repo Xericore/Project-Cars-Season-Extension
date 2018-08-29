@@ -61,7 +61,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
         public int GetPlayerPoints(int playerId)
         {
-            int position = 0;
+            uint position = 0;
             foreach (var challengePlayerStanding in ChallengePlayerStandings)
             {
                 position++;

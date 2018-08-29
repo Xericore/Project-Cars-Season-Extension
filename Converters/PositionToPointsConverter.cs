@@ -14,7 +14,7 @@ namespace ProjectCarsSeasonExtension.Converters
 
             uint playerPosition = (uint) value;
 
-            return PointsUtil.PositionToPoints((int)playerPosition);
+            return PointsUtil.PositionToPoints(playerPosition);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
