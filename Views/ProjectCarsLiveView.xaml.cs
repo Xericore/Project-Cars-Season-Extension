@@ -151,6 +151,9 @@ namespace ProjectCarsSeasonExtension.Views
 
         private bool IsResultValid()
         {
+            if (ProjectCarsData.GameState != GameState.GameIngamePlaying)
+                return false;
+
             var isWarmupLap = ProjectCarsData.LastLapTime < 0;
 
             if (ProjectCarsData.LapInvalidated && !isWarmupLap)

@@ -42,6 +42,7 @@
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
                 <RowDefinition Height="{DynamicResource RowHeight}"/>
+                <RowDefinition Height="{DynamicResource RowHeight}"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -68,7 +69,10 @@
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Lap Invalidated" />
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ProjectCarsData.LapInvalidated}" />
 
-            <Button Grid.Row="5" Grid.Column="1" Content="Add as race" Click="AddAsRace_OnClick" IsEnabled="{Binding ProjectCarsData.}"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="GameState" />
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ProjectCarsData.GameState}" />
+
+            <Button Grid.Row="6" Grid.Column="1" Content="Add as race" Click="AddAsRace_OnClick" IsEnabled="{Binding ProjectCarsData.}"/>
         </Grid>
 
         <Grid Grid.Column="1" Margin="10">
