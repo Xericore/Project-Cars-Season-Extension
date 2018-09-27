@@ -5,12 +5,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProjectCarsSeasonExtension")]
+[assembly: AssemblyTitle("Project Cars Season Extension")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DASSAULT SYSTEMES")]
-[assembly: AssemblyProduct("ProjectCarsSeasonExtension")]
-[assembly: AssemblyCopyright("Copyright © DASSAULT SYSTEMES 2016")]
+[assembly: AssemblyCompany("Xericore")]
+[assembly: AssemblyProduct("Project Cars Season Extension")]
+[assembly: AssemblyCopyright("Mario Petricevic")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

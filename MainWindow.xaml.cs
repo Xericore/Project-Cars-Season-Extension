@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
+using ProjectCarsSeasonExtension.Properties;
 using ProjectCarsSeasonExtension.Serialization;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.ViewModels;
@@ -169,6 +170,8 @@ namespace ProjectCarsSeasonExtension
 
             SeasonEditorTab.Visibility = group < AuthenticationGroup.Administrator ? Visibility.Collapsed : Visibility.Visible;
             ProjectCarsLiveTab.Visibility = group < AuthenticationGroup.Moderator ? Visibility.Collapsed : Visibility.Visible;
+
+            HandicapsTab.Visibility = Settings.Default.ShowHandicaps ? Visibility.Visible : Visibility.Collapsed;
 
             if (MainTabControl.SelectedItem is TabItem selectedTab)
             {

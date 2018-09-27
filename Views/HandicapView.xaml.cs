@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
+using ProjectCarsSeasonExtension.Properties;
 
 namespace ProjectCarsSeasonExtension.Views
 {
