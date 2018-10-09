@@ -1,0 +1,91 @@
+﻿<Window x:Class="ProjectCarsSeasonExtension.Views.PlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+        mc:Ignorable="d"
+        Title="Add new player" Height="360" Width="400" Topmost="True" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Background="{StaticResource MainBackgroundColor}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="{StaticResource MainFontWeight}"
+        TextElement.FontSize="{StaticResource MainFontSize}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    
+    <Window.Resources>
+        <GridLength x:Key="LeftColumnWidth">170</GridLength>
+    </Window.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="32"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Margin="10" Source="{Binding NewPlayer.AvatarFileName}"/>
+            <Button Name="ChangeImageButton" Grid.Row="1" Content="Change image" Click="ChangeImage_OnClick"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Name="PlayerNameGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource LeftColumnWidth}"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Name" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="TextBoxNewPlayerName" Grid.Column="1" 
+                     ToolTip="Enter your player name here." TabIndex="0" 
+                     Validation.Error="NameValidation_Error" MaxLength="32" MaxLines="1"
+                     Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=NewPlayer.Name,
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" VerticalAlignment="Bottom" />
+        </Grid>
+
+        <CheckBox Name="EnablePasswordCheckBox" Grid.Row="2" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
+
+        <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource LeftColumnWidth}"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Password" VerticalAlignment="Bottom" />
+            <PasswordBox x:Name="PasswordBoxFirst" Grid.Column="1" 
+                     ToolTip="Enter your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" VerticalAlignment="Bottom" />
+        </Grid>
+
+        <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource LeftColumnWidth}"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Repeat password" VerticalAlignment="Bottom" />
+            <PasswordBox x:Name="PasswordBoxRepeated" Grid.Column="1" 
+                     ToolTip="Repeat your password here." TabIndex="3" PasswordChanged="PasswordBox_OnPasswordChanged" VerticalAlignment="Bottom" />
+        </Grid>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button IsDefault="True" Content="OK"  TabIndex="4" Click="OK_OnClick" IsEnabled="{Binding Path=AreAllValidationsPassed, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="2" IsCancel="True" Content="Cancel"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,162 @@
+﻿<Page x:Class="ProjectCarsSeasonExtension.Views.SeasonEditor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
+      xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:models="clr-namespace:ProjectCarsSeasonExtension.Models"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SeasonEditor" DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="16"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Page.Resources>
+        <ObjectDataProvider x:Key="DataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Difficulty"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Text="Currently active Season"/>
+            <ComboBox Name="CurrentlyActiveSeasonSelector" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Width="180"
+                      Margin="10" ItemsSource="{Binding Seasons}" SelectionChanged="CurrentlyActiveSeasonSelector_OnSelectionChanged"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Seasons" VerticalAlignment="Center"/>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="64" />
+                    <ColumnDefinition Width="64"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox VerticalAlignment="Center" Name="SeasonComboBox" ItemsSource="{Binding Seasons}" SelectionChanged="SeasonSelector_OnSelectionChanged"/>
+                <Button Grid.Column="1" Content="+" Margin="5,0" Click="ButtonAddSeason_OnClick" />
+                <Button Grid.Column="2" Content="-" Margin="5,0" Click="ButtonRemoveSeason_OnClick" />
+            </Grid>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Name" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedSeason.Name}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Description" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedSeason.Description}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Start Date" VerticalAlignment="Center"/>
+            <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding SelectedSeason.StartDate}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="End Date" VerticalAlignment="Center"/>
+            <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding SelectedSeason.EndDate}" VerticalAlignment="Center"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="All races" VerticalAlignment="Center"/>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="64" />
+                    <ColumnDefinition Width="64"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Name="ChallengesComboBox" ItemsSource="{Binding AllChallenges}" SelectionChanged="ChallengeSelector_OnSelectionChanged"/>
+                <Button Grid.Column="1" Content="+" Margin="5,0" Click="ButtonAddChallenge_OnClick"/>
+                <Button Grid.Column="2" Content="-" Margin="5,0" Click="ButtonRemoveChallenge_OnClick"/>
+            </Grid>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Id" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedChallenge.Id, Mode=OneWay}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Track name" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedChallenge.TrackName, Mode=TwoWay}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Car name" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedChallenge.CarName, Mode=TwoWay}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Description" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedChallenge.Description, Mode=TwoWay}" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Difficulty" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" Name="DifficultySelector" ItemsSource="{Binding Source={StaticResource DataFromEnum}}" SelectionChanged="DifficultySelector_OnSelectionChanged"/>
+
+        </Grid>
+        
+        <Separator Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" />
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Races in selected season" VerticalAlignment="Bottom"/>
+            <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding SelectedSeason.Challenges}" Name="SeasonChallengesListBox" SelectionMode="Single" SelectionChanged="SeasonChallenges_OnSelectionChanged"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="0"  Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Content="&lt;" Click="ButtonAdd_OnClick"/>
+                <Button Content="&gt;" Click="ButtonRemove_OnClick"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" Margin="5,0" Text="Races not in selected season" VerticalAlignment="Bottom"/>
+            <ListBox Grid.Row="1" Grid.Column="1" Margin="5,0" ItemsSource="{Binding FilteredChallenges}" Name="AllChallengesListBox" SelectionMode="Single" SelectionChanged="AllChallenges_OnSelectionChanged"/>
+
+        </Grid>
+
+    </Grid>
+</Page>

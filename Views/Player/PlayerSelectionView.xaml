@@ -1,0 +1,176 @@
+﻿<Page x:Class="ProjectCarsSeasonExtension.Views.PlayerSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:converters="clr-namespace:ProjectCarsSeasonExtension.Converters"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
+      d:DesignHeight="520" d:DesignWidth="640"
+      Title="PlayerSelection" DataContext="{Binding RelativeSource={RelativeSource Self}}"
+      Background="{StaticResource MainBackgroundColor}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="{StaticResource MainFontWeight}"
+      TextElement.FontSize="{StaticResource MainFontSize}"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Page.Resources>
+
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid Margin="10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="64" />
+                            </Grid.RowDefinitions>
+                            <BulletDecorator Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <BulletDecorator.Bullet>
+                                    <Grid Width="96" Height="96" >
+                                        <Ellipse x:Name="Border" Fill="{StaticResource MaterialDesignBackground}" StrokeThickness="2" Stroke="{DynamicResource PrimaryHueMidBrush}" />
+                                        <Ellipse x:Name="CheckMark" Margin="4" Fill="{DynamicResource PrimaryHueMidBrush}" />
+                                        <Image Grid.Row="0" Height="64" VerticalAlignment="Center" Source="{Binding Path=AvatarFileName}" />
+                                    </Grid>
+                                </BulletDecorator.Bullet>
+                            </BulletDecorator>
+
+                            <TextBlock Grid.Row="1" Margin="0,5" Text="{Binding Path=Name}" TextWrapping="Wrap" Width="200"
+                                       HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" />
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Fill" Value="{DynamicResource PrimaryHueLightBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Fill" Value="Transparent" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="{StaticResource MainFontSize}" />
+        </Style>
+
+        <GridLength x:Key="RightButtonsRowHeight">120</GridLength>
+        <system:Double x:Key="RightButtonsHeight">106</system:Double>
+        <system:Double x:Key="RightButtonsImageSize">48</system:Double>
+        <Thickness x:Key="RightButtonsMargin">5</Thickness>
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="220"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Margin="10" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
+                <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
+                <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="{StaticResource RightButtonsRowHeight}"/>
+            </Grid.RowDefinitions>
+
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}" 
+                    Click="EditPlayer_OnClick" Height="{StaticResource RightButtonsHeight}" Margin="{StaticResource RightButtonsMargin}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Width="{StaticResource RightButtonsImageSize}" Height="{StaticResource RightButtonsImageSize}" VerticalAlignment="Stretch" >
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M21.7,13.35L20.7,14.35L18.65,12.3L19.65,11.3C19.86,11.09 20.21,11.09 20.42,11.3L21.7,12.58C21.91,12.79 21.91,13.14 21.7,13.35M12,18.94L18.06,12.88L20.11,14.93L14.06,21H12V18.94M12,14C7.58,14 4,15.79 4,18V20H10V18.11L14,14.11C13.34,14.03 12.67,14 12,14M12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4Z" Fill="{DynamicResource MaterialDesignDarkForeground}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Edit Player</TextBlock>
+                </Grid>
+            </Button>
+
+            <Button Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding PlayerController.IsAnyPlayerSelected}"
+                    Click="LogoutPlayer_OnClick" Height="{StaticResource RightButtonsHeight}" Margin="{StaticResource RightButtonsMargin}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Width="{StaticResource RightButtonsImageSize}" Height="{StaticResource RightButtonsImageSize}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" Fill="{DynamicResource MaterialDesignDarkForeground}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Logout Player</TextBlock>
+                </Grid>
+            </Button>
+
+            <Button Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="NewPlayer_OnClick"
+                    Height="{StaticResource RightButtonsHeight}" Margin="{StaticResource RightButtonsMargin}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Width="{StaticResource RightButtonsImageSize}" Height="{StaticResource RightButtonsImageSize}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z" Fill="{DynamicResource MaterialDesignDarkForeground}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Add Player</TextBlock>
+                </Grid>
+            </Button>
+            
+            <TextBlock Grid.Row="3" Margin="5,0" Text="Player to remove" VerticalAlignment="Bottom"
+                       Visibility="{Binding RemovePlayerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBox Grid.Row="4" Margin="5,0" Text="{Binding NameOfPlayerToRemove, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Visibility="{Binding RemovePlayerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="RemovePlayer_OnClick"
+                    Height="{StaticResource RightButtonsHeight}" Margin="{StaticResource RightButtonsMargin}"
+                    Visibility="{Binding RemovePlayerVisibility}"
+                    IsEnabled="{Binding IsRemovePlayerButtonEnabled}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Width="{StaticResource RightButtonsImageSize}" Height="{StaticResource RightButtonsImageSize}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M15,14C17.67,14 23,15.33 23,18V20H7V18C7,15.33 12.33,14 15,14M15,12A4,4 0 0,1 11,8A4,4 0 0,1 15,4A4,4 0 0,1 19,8A4,4 0 0,1 15,12M5,9.59L7.12,7.46L8.54,8.88L6.41,11L8.54,13.12L7.12,14.54L5,12.41L2.88,14.54L1.46,13.12L3.59,11L1.46,8.88L2.88,7.46L5,9.59Z" Fill="{DynamicResource MaterialDesignDarkForeground}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="5">Remove Player</TextBlock>
+                </Grid>
+            </Button>
+
+        </Grid>
+
+        <DockPanel Grid.Column="0" Margin="5,10">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListBox Name="PlayersItemsControl" ItemsSource="{Binding Path=PlayerController.Players}" SelectionChanged="PlayerSelected_OnClick" SelectedItem="{Binding PlayerController.SelectedPlayer}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ListBox>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</Page>
