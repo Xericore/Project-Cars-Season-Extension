@@ -24,11 +24,7 @@ namespace ProjectCarsSeasonExtension.Serialization
 
         public ObservableCollection<Season> GetSeasons()
         {
-            var seasons = new ObservableCollection<Season>();
-
-            seasons.Add(GetCurrentSeason());
-
-            return seasons;
+            return new ObservableCollection<Season> {GetCurrentSeason()};
         }
 
         public ObservableCollection<Challenge> GetChallenges()
