@@ -52,10 +52,6 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ShowMeTheXAML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ShowMeTheXAML.1.0.10\lib\net45\ShowMeTheXAML.dll</HintPath>
     </Reference>
@@ -83,9 +79,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\HotkeyController.cs" />
-    <Compile Include="Controller\Injector.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />
-    <Compile Include="Controller\Module.cs" />
     <Compile Include="Converters\CarNameToImageSourceConverter.cs" />
     <Compile Include="Converters\DifficultyToColorConverter.cs" />
     <Compile Include="Converters\DifficultyToPathConverter.cs" />

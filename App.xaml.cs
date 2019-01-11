@@ -1,5 +1,4 @@
-﻿using ProjectCarsSeasonExtension.Controller;
-using System.Windows;
+﻿using System.Windows;
 
 namespace ProjectCarsSeasonExtension
 {
@@ -8,17 +7,11 @@ namespace ProjectCarsSeasonExtension
     /// </summary>
     public partial class App : Application
     {
-        // ----------------------------------------------------------------------------------------
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            Injector.Initialize(new Module());
-            Current.MainWindow = Injector.Get<MainWindow>();
+            Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
         }
-
-        // ----------------------------------------------------------------------------------------
     }
 }

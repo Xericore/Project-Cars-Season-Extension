@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
@@ -8,7 +8,7 @@ using ProjectCarsSeasonExtension.Views;
 
 namespace ProjectCarsSeasonExtensionTests
 {
-    [TestClass]
+    [TestFixture]
     public class PlayersTest
     {
         private static DataView _dataView;
@@ -16,9 +16,8 @@ namespace ProjectCarsSeasonExtensionTests
         private static PlayerController _playerController;
         private static PlayerSelection _playerSelection;
 
-        [TestMethod]
-        [ClassInitialize]
-        public static void ReadSeasonData(TestContext testContext)
+        [SetUp]
+        public static void ReadSeasonData()
         {
             ISeasonReader seasonReader = new DummySeasonReader();
             _dataView = new DataView(seasonReader);
@@ -28,7 +27,7 @@ namespace ProjectCarsSeasonExtensionTests
             _playerSelection = new PlayerSelection(_playerController);
         }
 
-        [TestMethod]
+        [Test]
         public void Given_SlowestChallengeResult_IsPlayerAtSamePosition()
         {
             var challengeResult = new ChallengeResult
@@ -47,7 +46,7 @@ namespace ProjectCarsSeasonExtensionTests
 
             int playerPosition = _allChallengeStandings.GetPlayerPosition(challengeResult, player);
 
-            Assert.AreEqual(0, playerPosition);
+            Assert.That(0, Is.EqualTo(playerPosition));
         }
     }
 }
