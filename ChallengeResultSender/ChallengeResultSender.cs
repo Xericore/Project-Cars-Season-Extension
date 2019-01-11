@@ -1,5 +1,4 @@
 ﻿using System;
-using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.Models;
 
 namespace ProjectCarsSeasonExtension.ChallengeResultSender
@@ -8,7 +7,7 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
     {
         public event Action<ChallengeResult> ChallengeResultEvent;
 
-        public void CheckProjectCarsData(pCarsAPIStruct pCarsApiData)
+        public void CheckProjectCarsStateData(ProjectCarsStateData projectCarsStateData)
         {
             
 
