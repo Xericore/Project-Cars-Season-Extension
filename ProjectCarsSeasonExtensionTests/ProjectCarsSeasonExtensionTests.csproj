@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayersTest.cs" />
+    <Compile Include="ChallengeResultSenderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChallengeResultSender\ChallengeResultSender.cs" />
     <Compile Include="Controller\HotkeyController.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />
     <Compile Include="Converters\CarNameToImageSourceConverter.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Views\HandicapView.xaml.cs">
       <DependentUpon>HandicapView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChallengeResultSender\IChallengeResultSender.cs" />
     <Compile Include="Views\NewChallengeWindow.xaml.cs">
       <DependentUpon>NewChallengeWindow.xaml</DependentUpon>
     </Compile>
