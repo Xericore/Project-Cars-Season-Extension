@@ -4,7 +4,6 @@ using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Models.Player;
 using ProjectCarsSeasonExtension.Serialization;
 using ProjectCarsSeasonExtension.ViewModels;
-using ProjectCarsSeasonExtension.Views;
 
 namespace ProjectCarsSeasonExtensionTests
 {
@@ -13,8 +12,6 @@ namespace ProjectCarsSeasonExtensionTests
     {
         private static DataView _dataView;
         private static AllChallengeStandings _allChallengeStandings;
-        private static PlayerController _playerController;
-        private static PlayerSelection _playerSelection;
 
         [SetUp]
         public static void ReadSeasonData()
@@ -23,8 +20,6 @@ namespace ProjectCarsSeasonExtensionTests
             _dataView = new DataView(seasonReader);
 
             _allChallengeStandings = new AllChallengeStandings(_dataView);
-            _playerController = new PlayerController(_dataView);
-            _playerSelection = new PlayerSelection(_playerController);
         }
 
         [Test]
