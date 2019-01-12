@@ -16,14 +16,14 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void TestMethod1()
+        public void DoesEventFire()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
-                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "GP",
-                lastLapTime: 0, lapInvalidated: false, lapsInEvent: 0,
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 60, lapInvalidated: false, lapsInEvent: 3,
                 gameState: GameState.GameIngamePlaying, 
                 sessionState: SessionState.SessionTimeAttack, 
-                raceState: RaceState.RacestateNotStarted
+                raceState: RaceState.RacestateRacing
                 );
 
             bool eventWasCalled = false;
