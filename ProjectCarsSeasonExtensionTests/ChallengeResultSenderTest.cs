@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.ChallengeResultSender;
 
@@ -16,11 +17,11 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void DoesEventFire()
+        public void Given_DefaultInput_DoesEventFire()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
-                lastLapTime: 60, lapInvalidated: false, lapsInEvent: 3,
+                lastLapTime: 60, lapInvalidated: false,
                 gameState: GameState.GameIngamePlaying, 
                 sessionState: SessionState.SessionTimeAttack, 
                 raceState: RaceState.RacestateRacing
@@ -32,6 +33,29 @@ namespace ProjectCarsSeasonExtensionTests
             _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
 
             Assert.That(eventWasCalled);
+        }
+
+        [Test]
+        public void Given_DefaultInput_IsTimeCorrect()
+        {
+            ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 60, lapInvalidated: false,
+                gameState: GameState.GameIngamePlaying, 
+                sessionState: SessionState.SessionTimeAttack, 
+                raceState: RaceState.RacestateRacing
+                );
+
+            TimeSpan lastValidLapTime = new TimeSpan(0);
+
+            _challengeResultSender.ChallengeResultEvent += result =>
+            {
+                lastValidLapTime = result.LastValidLapTime;
+            };
+
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+
+            Assert.That(lastValidLapTime.TotalSeconds, Is.EqualTo(60d));
         }
     }
 }
