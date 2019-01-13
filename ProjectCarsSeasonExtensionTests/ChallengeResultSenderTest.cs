@@ -57,5 +57,51 @@ namespace ProjectCarsSeasonExtensionTests
 
             Assert.That(lastValidLapTime.TotalSeconds, Is.EqualTo(60d));
         }
+
+        [Test]
+        public void Given_DefaultInput_IsCarNameEqual()
+        {
+            ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 60, lapInvalidated: false,
+                gameState: GameState.GameIngamePlaying, 
+                sessionState: SessionState.SessionTimeAttack, 
+                raceState: RaceState.RacestateRacing
+                );
+
+            string carName = "";
+
+            _challengeResultSender.ChallengeResultEvent += result =>
+            {
+                carName = result.CarName;
+            };
+
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+
+            Assert.That(carName, Is.EqualTo("Formula A"));
+        }
+
+        [Test]
+        public void Given_DefaultInput_IsTrackLocationAndVariantEqual()
+        {
+            ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 60, lapInvalidated: false,
+                gameState: GameState.GameIngamePlaying, 
+                sessionState: SessionState.SessionTimeAttack, 
+                raceState: RaceState.RacestateRacing
+                );
+
+            string trackLocationAndVariant = "";
+
+            _challengeResultSender.ChallengeResultEvent += result =>
+            {
+                trackLocationAndVariant = result.TrackLocationAndVariant;
+            };
+
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+
+            Assert.That(trackLocationAndVariant, Is.EqualTo("Barcelona Club"));
+        }
     }
 }
