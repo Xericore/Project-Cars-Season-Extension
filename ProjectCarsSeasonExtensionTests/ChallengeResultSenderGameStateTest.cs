@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.ChallengeResultSender;
 
@@ -17,7 +16,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
         
         [Test]
-        public void Given_GameExited_IsEventNotFired()
+        public void Given_GameExited_IsEventMissing()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
@@ -37,7 +36,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
         
         [Test]
-        public void Given_GameMax_IsEventNotFired()
+        public void Given_GameMax_IsEventMissing()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
@@ -57,7 +56,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
         
         [Test]
-        public void Given_GameFrontEnd_IsEventNotFired()
+        public void Given_GameFrontEnd_IsEventMissing()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
@@ -77,7 +76,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
         
         [Test]
-        public void Given_GameIngamePaused_IsEventNotFired()
+        public void Given_GameIngamePaused_IsEventMissing()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",

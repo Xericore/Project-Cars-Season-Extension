@@ -103,5 +103,45 @@ namespace ProjectCarsSeasonExtensionTests
 
             Assert.That(trackLocationAndVariant, Is.EqualTo("Barcelona Club"));
         }
+
+        [Test]
+        public void Given_LapTimeZero_IsEventMissing()
+        {
+            ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 0, lapInvalidated: false,
+                gameState: GameState.GameIngamePlaying, 
+                sessionState: SessionState.SessionTimeAttack, 
+                raceState: RaceState.RacestateRacing
+                );
+
+            bool eventWasFired = false;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventWasFired = true; };
+
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+
+            Assert.That(!eventWasFired);
+        }
+
+        [Test]
+        public void Given_InvalidLap_IsEventMissing()
+        {
+            ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 50, lapInvalidated: true,
+                gameState: GameState.GameIngamePlaying, 
+                sessionState: SessionState.SessionTimeAttack, 
+                raceState: RaceState.RacestateRacing
+                );
+
+            bool eventWasFired = false;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventWasFired = true; };
+
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+
+            Assert.That(!eventWasFired);
+        }
     }
 }
