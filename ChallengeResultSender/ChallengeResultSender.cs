@@ -48,6 +48,9 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             if (_projectCarsStateData.RaceState != RaceState.RacestateRacing)
                 return false;
 
+            if (_projectCarsStateData.SessionState != SessionState.SessionTimeAttack)
+                return false;
+
             var isWarmupLap = _projectCarsStateData.LastLapTime < 0;
 
             if (_projectCarsStateData.LapInvalidated && !isWarmupLap)
