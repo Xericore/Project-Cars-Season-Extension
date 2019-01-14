@@ -5,7 +5,7 @@ using ProjectCarsSeasonExtension.ChallengeResultSender;
 namespace ProjectCarsSeasonExtensionTests
 {
     [TestFixture]
-    public class ChallengeResultSenderGameStateTest
+    public class GameStateTest
     {
         private ChallengeResultSender _challengeResultSender;
 
