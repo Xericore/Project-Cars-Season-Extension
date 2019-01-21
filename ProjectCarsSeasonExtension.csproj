@@ -79,6 +79,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ChallengeResultSender\ChallengeResultSender.cs" />
+    <Compile Include="ChallengeResultSender\IProjectCarsStateData.cs" />
     <Compile Include="ChallengeResultSender\ProjectCarsStateData.cs" />
     <Compile Include="Controller\HotkeyController.cs" />
     <Compile Include="Controller\VirtualKeyCode.cs" />

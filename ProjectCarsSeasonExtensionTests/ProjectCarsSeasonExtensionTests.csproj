@@ -50,6 +50,7 @@
     <Compile Include="ChallengeResultSenderTest.cs" />
     <Compile Include="RaceStateTest.cs" />
     <Compile Include="SessionStateTest.cs" />
+    <Compile Include="TestStateData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

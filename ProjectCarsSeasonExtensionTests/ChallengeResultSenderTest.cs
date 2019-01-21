@@ -143,5 +143,108 @@ namespace ProjectCarsSeasonExtensionTests
 
             Assert.That(!eventWasFired);
         }
+
+        [Test]
+        public void Given_CheckingTwice_IsEventFiredOnlyOnce()
+        {
+            ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
+                carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
+                lastLapTime: 100, lapInvalidated: false,
+                gameState: GameState.GameIngamePlaying, 
+                sessionState: SessionState.SessionTimeAttack, 
+                raceState: RaceState.RacestateRacing
+                );
+
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
+
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+            _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
+
+            Assert.That(eventFiredCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Given_0false_1false_IsEventFiredOnlyOnce()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+
+            Assert.That(eventFiredCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Given_0false_0true_1false_IsEventMissing()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: true));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+
+            Assert.That(eventFiredCount, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Given_0f_0f_0f_1f_1f_1f_IsEventFiredOnlyOnce()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+
+            Assert.That(eventFiredCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Given_0f_0f_0f_1f_1t_1f_IsEventFiredOnlyOnce()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: true));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+
+            Assert.That(eventFiredCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Given_0f_1f_2t_3t_4f_IsEventFiredTwice()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result =>
+            {
+                eventFiredCount++;
+            };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 2f, lapInvalidated: true));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 3f, lapInvalidated: true));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 4f, lapInvalidated: false));
+
+            Assert.That(eventFiredCount, Is.EqualTo(2));
+        }
     }
 }

@@ -8,12 +8,12 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
     {
         public event Action<ChallengeResult> ChallengeResultEvent;
 
-        private ProjectCarsStateData _projectCarsStateData;
+        private IProjectCarsStateData _projectCarsStateData;
 
         private float _lastFiredLapTime;
         private bool _wasLastLapValid = true;
 
-        public void CheckProjectCarsStateData(ProjectCarsStateData projectCarsStateData)
+        public void CheckProjectCarsStateData(IProjectCarsStateData projectCarsStateData)
         {
             _projectCarsStateData = projectCarsStateData;
 

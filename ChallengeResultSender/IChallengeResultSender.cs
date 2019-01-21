@@ -7,6 +7,6 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
     {
         event Action<ChallengeResult> ChallengeResultEvent;
 
-        void CheckProjectCarsStateData(ProjectCarsStateData projectCarsState);
+        void CheckProjectCarsStateData(IProjectCarsStateData projectCarsState);
     }
 }
