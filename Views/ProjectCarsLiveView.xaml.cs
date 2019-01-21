@@ -34,6 +34,7 @@ namespace ProjectCarsSeasonExtension.Views
 
         private readonly DataView _dataView;
         private bool _wasInitialized;
+        private string _lastLoggedLine;
 
         public ProjectCarsLiveView(DataView dataView)
         {
@@ -115,9 +116,32 @@ namespace ProjectCarsSeasonExtension.Views
                 {
                     ProjectCarsData = ProjectCarsData.MapStructToClass(returnTuple.Item2, ProjectCarsData);
 
+                    DebugLogging();
+
                     CheckAndFireChallengeResultEvent();
                 });
             }
+        }
+
+        private void DebugLogging()
+        {
+            if (ProjectCarsData.GameState != GameState.GameIngamePlaying)
+                return;
+
+            if (ProjectCarsData.RaceState != RaceState.RacestateRacing)
+                return;
+
+            if (ProjectCarsData.SessionState != SessionState.SessionTimeAttack)
+                return;
+
+            string lineToLog = ProjectCarsData.LastLapTime + ", " + ProjectCarsData.LapInvalidated;
+
+            if (_lastLoggedLine == lineToLog)
+                return;
+
+            _lastLoggedLine = lineToLog;
+
+            Globals.DebugLogger.Debug(_lastLoggedLine);
         }
 
         private void CheckAndFireChallengeResultEvent()

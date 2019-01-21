@@ -244,7 +244,7 @@ namespace ProjectCarsSeasonExtensionTests
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 3f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 4f, lapInvalidated: false));
 
-            Assert.That(eventFiredCount, Is.EqualTo(2));
+            Assert.That(eventFiredCount, Is.EqualTo(1));
         }
     }
 }
