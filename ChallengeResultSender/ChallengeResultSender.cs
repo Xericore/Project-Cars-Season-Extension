@@ -15,6 +15,12 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
 
         public void CheckProjectCarsStateData(IProjectCarsStateData projectCarsStateData)
         {
+            if (!AreGameRaceAndSessionStateCorrect(projectCarsStateData))
+                return;
+
+            if (_projectCarsStateData != null && _projectCarsStateData.Equals(projectCarsStateData))
+                return;
+
             _projectCarsStateData = projectCarsStateData;
 
             if (!IsResultValid())
@@ -40,17 +46,22 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             }
         }
 
+        private static bool AreGameRaceAndSessionStateCorrect(IProjectCarsStateData projectCarsStateData)
+        {
+            if (projectCarsStateData.GameState != GameState.GameIngamePlaying)
+                return false;
+
+            if (projectCarsStateData.RaceState != RaceState.RacestateRacing)
+                return false;
+
+            if (projectCarsStateData.SessionState != SessionState.SessionTimeAttack)
+                return false;
+
+            return true;
+        }
+
         private bool IsResultValid()
         {
-            if (_projectCarsStateData.GameState != GameState.GameIngamePlaying)
-                return false;
-
-            if (_projectCarsStateData.RaceState != RaceState.RacestateRacing)
-                return false;
-
-            if (_projectCarsStateData.SessionState != SessionState.SessionTimeAttack)
-                return false;
-
             var isWarmupLap = _projectCarsStateData.LastLapTime < 0;
 
             if (_projectCarsStateData.LapInvalidated && !isWarmupLap)
@@ -59,7 +70,7 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
                 return false;
             }
 
-            var isLapFinished = Math.Abs(_lastFiredLapTime - _projectCarsStateData.LastLapTime) > 0.0001 && !isWarmupLap;
+            var isLapFinished = Math.Abs(_lastFiredLapTime - _projectCarsStateData.LastLapTime) > 0.00001f && !isWarmupLap;
 
             var isDataOk = !string.IsNullOrEmpty(_projectCarsStateData.CarName) &&
                            !string.IsNullOrEmpty(_projectCarsStateData.TrackLocation) &&

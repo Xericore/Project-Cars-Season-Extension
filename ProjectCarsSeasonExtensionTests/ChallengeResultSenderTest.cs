@@ -166,26 +166,26 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_0false_1false_IsEventFiredOnlyOnce()
+        public void Given_minus1f_1false_IsEventFiredOnlyOnce()
         {
             uint eventFiredCount = 0;
 
             _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
 
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
 
             Assert.That(eventFiredCount, Is.EqualTo(1));
         }
 
         [Test]
-        public void Given_0false_0true_1false_IsEventMissing()
+        public void Given_minus1f_0true_1false_IsEventMissing()
         {
             uint eventFiredCount = 0;
 
             _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
 
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
 
@@ -193,13 +193,13 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_0f_0f_0f_1f_1f_1f_IsEventFiredOnlyOnce()
+        public void Given_minus1f_0f_0f_1f_1f_1f_IsEventFiredOnlyOnce()
         {
             uint eventFiredCount = 0;
 
             _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
 
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
             
@@ -211,13 +211,13 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_0f_0f_0f_1f_1t_1f_IsEventFiredOnlyOnce()
+        public void Given_minus1f_0f_0f_1f_1t_1f_IsEventFiredOnlyOnce()
         {
             uint eventFiredCount = 0;
 
             _challengeResultSender.ChallengeResultEvent += result => { eventFiredCount++; };
 
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
             
@@ -229,7 +229,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_0f_1f_2t_3t_4f_IsEventFiredTwice()
+        public void Given_minus1f_1f_2t_3t_4f_IsEventFiredTwice()
         {
             uint eventFiredCount = 0;
 
@@ -238,13 +238,42 @@ namespace ProjectCarsSeasonExtensionTests
                 eventFiredCount++;
             };
 
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 2f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 3f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 4f, lapInvalidated: false));
 
             Assert.That(eventFiredCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Given_RealGameTest()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result =>
+            {
+                eventFiredCount++;
+            };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 42f, lapInvalidated: false));
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: true));
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 47f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 47f, lapInvalidated: true));
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 39f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 39f, lapInvalidated: true));
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 45f, lapInvalidated: true));
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 43f, lapInvalidated: false));
+
+            Assert.That(eventFiredCount, Is.EqualTo(5));
         }
     }
 }
