@@ -11,7 +11,6 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
         private IProjectCarsStateData _projectCarsStateData;
 
         private float _lastFiredLapTime;
-        private bool _wasLastLapValid = true;
 
         public void CheckProjectCarsStateData(IProjectCarsStateData projectCarsStateData)
         {
@@ -27,12 +26,6 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
                 return;
 
             _lastFiredLapTime = _projectCarsStateData.LastLapTime;
-
-            if (!_wasLastLapValid)
-            {
-                _wasLastLapValid = true;
-                return;
-            }
 
             var challengeResult = new ChallengeResult(_projectCarsStateData);
 
@@ -65,8 +58,7 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             var isWarmupLap = _projectCarsStateData.LastLapTime < 0;
 
             if (_projectCarsStateData.LapInvalidated && !isWarmupLap)
-            {
-                _wasLastLapValid = false;
+            { 
                 return false;
             }
 

@@ -179,7 +179,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_minus1f_0true_1false_IsEventMissing()
+        public void Given_minus1f_0true_1false_IsEventFiredOnlyOnce()
         {
             uint eventFiredCount = 0;
 
@@ -189,7 +189,7 @@ namespace ProjectCarsSeasonExtensionTests
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
 
-            Assert.That(eventFiredCount, Is.EqualTo(0));
+            Assert.That(eventFiredCount, Is.EqualTo(1));
         }
 
         [Test]
@@ -244,7 +244,7 @@ namespace ProjectCarsSeasonExtensionTests
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 3f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 4f, lapInvalidated: false));
 
-            Assert.That(eventFiredCount, Is.EqualTo(1));
+            Assert.That(eventFiredCount, Is.EqualTo(2));
         }
 
         [Test]
