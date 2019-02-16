@@ -31,5 +31,19 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             SessionState = sessionState;
             RaceState = raceState;
         }
+
+        public ProjectCarsStateData(pCarsDataClass projectCarsData)
+        {
+            CarName = projectCarsData.CarName;
+            TrackLocation = projectCarsData.TrackLocation;
+            TrackVariant = projectCarsData.TrackVariant;
+
+            LastLapTime = projectCarsData.LastLapTime;
+            LapInvalidated = projectCarsData.LapInvalidated;
+
+            GameState = projectCarsData.GameState;
+            SessionState = projectCarsData.SessionState;
+            RaceState = projectCarsData.RaceState;
+        }
     }
 }

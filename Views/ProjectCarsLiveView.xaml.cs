@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.Annotations;
+using ProjectCarsSeasonExtension.ChallengeResultSender;
 using ProjectCarsSeasonExtension.Models;
 using ProjectCarsSeasonExtension.Utils;
 
@@ -29,18 +30,18 @@ namespace ProjectCarsSeasonExtension.Views
         public ObservableCollection<string> AllRaceNames { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> AllPlayerNames { get; set; } = new ObservableCollection<string>();
 
-        private float _lastFiredLapTime;
-        private bool _wasLastLapValid = true;
-
+        private readonly ChallengeResultSender.ChallengeResultSender _challengeResultSender = new ChallengeResultSender.ChallengeResultSender();
+        
         private readonly DataView _dataView;
         private bool _wasInitialized;
-        private string _lastLoggedLine;
 
         public ProjectCarsLiveView(DataView dataView)
         {
             InitializeComponent();
 
             _dataView = dataView;
+
+            _challengeResultSender.ChallengeResultEvent += result => ChallengeResultEvent?.Invoke(result);
 
             StartProjectCarsGetterLoop();
         }
@@ -115,90 +116,10 @@ namespace ProjectCarsSeasonExtension.Views
                 Application.Current.Dispatcher.Invoke(delegate
                 {
                     ProjectCarsData = ProjectCarsData.MapStructToClass(returnTuple.Item2, ProjectCarsData);
-
-                    DebugLogging();
-
-                    CheckAndFireChallengeResultEvent();
+                    
+                    _challengeResultSender.CheckProjectCarsStateData(new ProjectCarsStateData(ProjectCarsData));
                 });
             }
-        }
-
-        private void DebugLogging()
-        {
-            if (ProjectCarsData.GameState != GameState.GameIngamePlaying)
-                return;
-
-            if (ProjectCarsData.RaceState != RaceState.RacestateRacing)
-                return;
-
-            if (ProjectCarsData.SessionState != SessionState.SessionTimeAttack)
-                return;
-
-            string lineToLog = ProjectCarsData.LastLapTime + ", " + ProjectCarsData.LapInvalidated;
-
-            if (_lastLoggedLine == lineToLog)
-                return;
-
-            _lastLoggedLine = lineToLog;
-
-            Globals.DebugLogger.Debug(_lastLoggedLine);
-        }
-
-        private void CheckAndFireChallengeResultEvent()
-        {
-            if (!IsResultValid())
-                return;
-
-            Globals.Logger.Debug($"_lastFiredLapTime: {_lastFiredLapTime}, ProjectCarsData.LastLapTime: {ProjectCarsData.LastLapTime}, _wasLastLapValid: {_wasLastLapValid}");
-
-            _lastFiredLapTime = ProjectCarsData.LastLapTime;
-
-            if (!_wasLastLapValid)
-            {
-                _wasLastLapValid = true;
-                return;
-            }
-
-            var challengeResult = new ChallengeResult(ProjectCarsData);
-
-            try
-            {
-                Globals.Logger.Debug(
-                    $"Detected new Challenge result: {challengeResult.CarName}, {challengeResult.TrackLocationAndVariant}, {challengeResult.LastValidLapTime}");
-                ChallengeResultEvent?.Invoke(challengeResult);
-            } 
-            catch (Exception)
-            {
-                // ignored
-            }
-        }
-
-        private bool IsResultValid()
-        {
-            if (ProjectCarsData.GameState != GameState.GameIngamePlaying)
-                return false;
-
-            var isWarmupLap = ProjectCarsData.LastLapTime < 0;
-
-            if (ProjectCarsData.LapInvalidated && !isWarmupLap)
-            {
-                _wasLastLapValid = false;
-                return false;
-            }
-
-            var isLapFinished = Math.Abs(_lastFiredLapTime - ProjectCarsData.LastLapTime) > 0.0001 && !isWarmupLap;
-
-            var isDataOk = !string.IsNullOrEmpty(ProjectCarsData.CarName) &&
-                           !string.IsNullOrEmpty(ProjectCarsData.TrackLocation) &&
-                           !isWarmupLap;
-
-            if (isLapFinished)
-            {
-                Globals.Logger.Debug(
-                    $"IsResultValid = {isDataOk}. {ProjectCarsData.CarName}, {ProjectCarsData.TrackLocation}. isDataOk: {isDataOk}");
-            }
-
-            return isLapFinished && isDataOk;
         }
 
         private void SimulateResult_OnClick(object sender, RoutedEventArgs e)

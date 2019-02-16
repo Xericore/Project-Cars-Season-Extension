@@ -8,26 +8,39 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
     {
         public event Action<ChallengeResult> ChallengeResultEvent;
 
-        private IProjectCarsStateData _projectCarsStateData;
+        private IProjectCarsStateData _lastStoredState;
 
         private float _lastFiredLapTime;
+        private bool _ignoreNextStateChange = false;
 
         public void CheckProjectCarsStateData(IProjectCarsStateData projectCarsStateData)
         {
             if (!AreGameRaceAndSessionStateCorrect(projectCarsStateData))
                 return;
 
-            if (_projectCarsStateData != null && _projectCarsStateData.Equals(projectCarsStateData))
+            if (!DidStateChange(projectCarsStateData))
                 return;
+            
+            if (_ignoreNextStateChange)
+            {
+                _ignoreNextStateChange = false;
+                return;
+            }
 
-            _projectCarsStateData = projectCarsStateData;
+            if (projectCarsStateData.LapInvalidated)
+            {
+                _ignoreNextStateChange = true;
+                return;
+            }
+            
+            _lastStoredState = projectCarsStateData;
 
             if (!IsResultValid())
                 return;
 
-            _lastFiredLapTime = _projectCarsStateData.LastLapTime;
+            _lastFiredLapTime = _lastStoredState.LastLapTime;
 
-            var challengeResult = new ChallengeResult(_projectCarsStateData);
+            var challengeResult = new ChallengeResult(_lastStoredState);
 
             try
             {
@@ -37,6 +50,11 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             {
                 // ignored
             }
+        }
+
+        private bool DidStateChange(IProjectCarsStateData projectCarsStateData)
+        {
+            return _lastStoredState == null || !_lastStoredState.Equals(projectCarsStateData);
         }
 
         private static bool AreGameRaceAndSessionStateCorrect(IProjectCarsStateData projectCarsStateData)
@@ -55,17 +73,17 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
 
         private bool IsResultValid()
         {
-            var isWarmupLap = _projectCarsStateData.LastLapTime < 0;
+            var isWarmupLap = _lastStoredState.LastLapTime < 0;
 
-            if (_projectCarsStateData.LapInvalidated && !isWarmupLap)
+            if (_lastStoredState.LapInvalidated && !isWarmupLap)
             { 
                 return false;
             }
 
-            var isLapFinished = Math.Abs(_lastFiredLapTime - _projectCarsStateData.LastLapTime) > 0.00001f && !isWarmupLap;
+            var isLapFinished = Math.Abs(_lastFiredLapTime - _lastStoredState.LastLapTime) > 0.00001f && !isWarmupLap;
 
-            var isDataOk = !string.IsNullOrEmpty(_projectCarsStateData.CarName) &&
-                           !string.IsNullOrEmpty(_projectCarsStateData.TrackLocation) &&
+            var isDataOk = !string.IsNullOrEmpty(_lastStoredState.CarName) &&
+                           !string.IsNullOrEmpty(_lastStoredState.TrackLocation) &&
                            !isWarmupLap;
 
             return isLapFinished && isDataOk;
