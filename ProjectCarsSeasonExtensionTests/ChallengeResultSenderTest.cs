@@ -179,7 +179,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_minus1f_0true_1false_IsEventFiredOnlyOnce()
+        public void Given_minus1f_0true_1false_IsEventMissing()
         {
             uint eventFiredCount = 0;
 
@@ -189,7 +189,7 @@ namespace ProjectCarsSeasonExtensionTests
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 0f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 1f, lapInvalidated: false));
 
-            Assert.That(eventFiredCount, Is.EqualTo(1));
+            Assert.That(eventFiredCount, Is.EqualTo(0));
         }
 
         [Test]
@@ -229,7 +229,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
 
         [Test]
-        public void Given_minus1f_1f_2t_3t_4f_IsEventFiredTwice()
+        public void Given_minus1f_1f_2t_3t_4f_IsEventFiredOnlyOnce()
         {
             uint eventFiredCount = 0;
 
@@ -244,7 +244,7 @@ namespace ProjectCarsSeasonExtensionTests
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 3f, lapInvalidated: true));
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 4f, lapInvalidated: false));
 
-            Assert.That(eventFiredCount, Is.EqualTo(2));
+            Assert.That(eventFiredCount, Is.EqualTo(1));
         }
 
         [Test]
@@ -258,9 +258,9 @@ namespace ProjectCarsSeasonExtensionTests
             };
 
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 42f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 42f, lapInvalidated: false));  //should fire an event
 
-            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: false));  //should fire an event
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: true));
 
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 47f, lapInvalidated: false));
@@ -273,7 +273,7 @@ namespace ProjectCarsSeasonExtensionTests
 
             _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 43f, lapInvalidated: false));
 
-            Assert.That(eventFiredCount, Is.EqualTo(5));
+            Assert.That(eventFiredCount, Is.EqualTo(2));
         }
     }
 }

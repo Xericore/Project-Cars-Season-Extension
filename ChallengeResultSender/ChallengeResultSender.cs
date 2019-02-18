@@ -11,45 +11,42 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
         private IProjectCarsStateData _lastStoredState;
 
         private float _lastFiredLapTime;
-        private bool _ignoreNextStateChange = false;
+        private bool _ignoreNextLap = false;
 
-        public void CheckProjectCarsStateData(IProjectCarsStateData projectCarsStateData)
+        public void CheckProjectCarsStateData(IProjectCarsStateData state)
         {
-            if (!AreGameRaceAndSessionStateCorrect(projectCarsStateData))
+            if (!DidStateChange(state))
                 return;
 
-            if (!DidStateChange(projectCarsStateData))
-                return;
-            
-            if (_ignoreNextStateChange)
+            if (!IsUserRacing(state))
             {
-                _ignoreNextStateChange = false;
+                ResetState();
                 return;
             }
 
-            if (projectCarsStateData.LapInvalidated)
+            if (IsWarmupLap(state))
+                return;
+
+            _lastStoredState = state;
+
+            if (state.LapInvalidated)
             {
-                _ignoreNextStateChange = true;
+                _ignoreNextLap = true;
                 return;
             }
-            
-            _lastStoredState = projectCarsStateData;
 
-            if (!IsResultValid())
+            if (!IsLapFinished(state))
                 return;
+
+            if (_ignoreNextLap)
+            {
+                _ignoreNextLap = false;
+                return;
+            }
+
+            InvokeChallengeResultEvent();
 
             _lastFiredLapTime = _lastStoredState.LastLapTime;
-
-            var challengeResult = new ChallengeResult(_lastStoredState);
-
-            try
-            {
-                ChallengeResultEvent?.Invoke(challengeResult);
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
         }
 
         private bool DidStateChange(IProjectCarsStateData projectCarsStateData)
@@ -57,7 +54,7 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             return _lastStoredState == null || !_lastStoredState.Equals(projectCarsStateData);
         }
 
-        private static bool AreGameRaceAndSessionStateCorrect(IProjectCarsStateData projectCarsStateData)
+        private static bool IsUserRacing(IProjectCarsStateData projectCarsStateData)
         {
             if (projectCarsStateData.GameState != GameState.GameIngamePlaying)
                 return false;
@@ -68,25 +65,42 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             if (projectCarsStateData.SessionState != SessionState.SessionTimeAttack)
                 return false;
 
+            if (string.IsNullOrEmpty(projectCarsStateData.CarName) ||
+                string.IsNullOrEmpty(projectCarsStateData.TrackLocation))
+                return false;
+
             return true;
         }
 
-        private bool IsResultValid()
+        private void ResetState()
         {
-            var isWarmupLap = _lastStoredState.LastLapTime < 0;
+            _lastStoredState = null;
+            _lastFiredLapTime = 0f;
+            _ignoreNextLap = false;
+        }
 
-            if (_lastStoredState.LapInvalidated && !isWarmupLap)
-            { 
-                return false;
+        private bool IsLapFinished(IProjectCarsStateData projectCarsStateData)
+        {
+            return Math.Abs(_lastFiredLapTime - projectCarsStateData.LastLapTime) > 0.00001f;
+        }
+
+        private static bool IsWarmupLap(IProjectCarsStateData projectCarsStateData)
+        {
+            return projectCarsStateData.LastLapTime < 0;
+        }
+
+        private void InvokeChallengeResultEvent()
+        {
+            var challengeResult = new ChallengeResult(_lastStoredState);
+
+            try
+            {
+                ChallengeResultEvent?.Invoke(challengeResult);
             }
-
-            var isLapFinished = Math.Abs(_lastFiredLapTime - _lastStoredState.LastLapTime) > 0.00001f && !isWarmupLap;
-
-            var isDataOk = !string.IsNullOrEmpty(_lastStoredState.CarName) &&
-                           !string.IsNullOrEmpty(_lastStoredState.TrackLocation) &&
-                           !isWarmupLap;
-
-            return isLapFinished && isDataOk;
+            catch (Exception)
+            {
+                // ignored
+            }
         }
     }
 }
