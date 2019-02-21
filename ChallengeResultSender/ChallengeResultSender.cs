@@ -56,7 +56,7 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
 
         private static bool IsUserRacing(IProjectCarsStateData projectCarsStateData)
         {
-            if (projectCarsStateData.GameState != GameState.GameIngamePlaying)
+            if (projectCarsStateData.GameState != GameState.GameIngamePlaying && projectCarsStateData.GameState != GameState.GameIngamePaused)
                 return false;
 
             if (projectCarsStateData.RaceState != RaceState.RacestateRacing)

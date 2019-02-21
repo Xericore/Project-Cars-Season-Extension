@@ -76,7 +76,7 @@ namespace ProjectCarsSeasonExtensionTests
         }
         
         [Test]
-        public void Given_GameIngamePaused_IsEventMissing()
+        public void Given_GameIngamePaused_IsEventFired()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",
@@ -92,11 +92,11 @@ namespace ProjectCarsSeasonExtensionTests
 
             _challengeResultSender.CheckProjectCarsStateData(projectCarsStateData);
 
-            Assert.That(!eventWasFired);
+            Assert.That(eventWasFired);
         }
         
         [Test]
-        public void Given_GameIngamePaused_IsEventFired()
+        public void Given_GameIngamePlaying_IsEventFired()
         {
             ProjectCarsStateData projectCarsStateData = new ProjectCarsStateData(
                 carName: "Formula A", trackLocation: "Barcelona", trackVariant: "Club",

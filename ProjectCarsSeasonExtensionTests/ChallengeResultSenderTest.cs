@@ -275,5 +275,27 @@ namespace ProjectCarsSeasonExtensionTests
 
             Assert.That(eventFiredCount, Is.EqualTo(2));
         }
+
+        [Test]
+        public void DoesPausingWork()
+        {
+            uint eventFiredCount = 0;
+
+            _challengeResultSender.ChallengeResultEvent += result =>
+            {
+                eventFiredCount++;
+            };
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: -1f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 42f, lapInvalidated: false));  //should fire an event
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: false, gameState: GameState.GameIngamePaused)); 
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 40f, lapInvalidated: true));
+
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 47f, lapInvalidated: false));
+            _challengeResultSender.CheckProjectCarsStateData(new TestStateData(lastLapTime: 47f, lapInvalidated: false));   //should fire an event
+
+            Assert.That(eventFiredCount, Is.EqualTo(2));
+        }
     }
 }
