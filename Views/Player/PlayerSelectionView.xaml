@@ -162,7 +162,7 @@
         </Grid>
 
         <DockPanel Grid.Column="0" Margin="5,10">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
                 <ListBox Name="PlayersItemsControl" ItemsSource="{Binding Path=PlayerController.Players}" SelectionChanged="PlayerSelected_OnClick" SelectedItem="{Binding PlayerController.SelectedPlayer}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

@@ -1,12 +1,10 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ProjectCarsSeasonExtension.Annotations;
 using ProjectCarsSeasonExtension.Models.Player;
-using ProjectCarsSeasonExtension.Properties;
 using ProjectCarsSeasonExtension.Utils;
 using ProjectCarsSeasonExtension.Views.Player;
 
@@ -17,6 +15,8 @@ namespace ProjectCarsSeasonExtension.Views
     /// </summary>
     public partial class PlayerSelection : Page, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public PlayerController PlayerController { get; }
         
         public Visibility RemovePlayerVisibility
@@ -174,12 +174,17 @@ namespace ProjectCarsSeasonExtension.Views
             NameOfPlayerToRemove = "";
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void UIElement_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            var scrollViewer = (ScrollViewer)sender;
+            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }
