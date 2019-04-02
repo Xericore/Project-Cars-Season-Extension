@@ -180,7 +180,7 @@ namespace ProjectCarsSeasonExtension.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void UIElement_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private void PlayerListScrollView_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             var scrollViewer = (ScrollViewer)sender;
             scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
