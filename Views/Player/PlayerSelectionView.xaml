@@ -40,7 +40,7 @@
                                 </BulletDecorator.Bullet>
                             </BulletDecorator>
 
-                            <TextBlock Grid.Row="1" Margin="0,5" Text="{Binding Path=Name}" TextWrapping="Wrap" Width="200"
+                            <TextBlock Grid.Row="1" Margin="0,5" Text="{Binding Path=Name}" TextWrapping="Wrap" Width="188"
                                        HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" />
                         </Grid>
 
