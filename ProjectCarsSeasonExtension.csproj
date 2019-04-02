@@ -456,7 +456,7 @@
     <Content Include="Assets\Cars\KTM X-Bow R.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Cars\Lotus 49 Cosworth.jpg">
+    <Content Include="Assets\Cars\Lotus Type 49 Cosworth.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Cars\Lotus 72D Cosworth.jpg">
