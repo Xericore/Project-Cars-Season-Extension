@@ -21,7 +21,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
 
-        Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600" SnapsToDevicePixels="True">
+        Loaded="MainWindow_OnLoaded" SizeChanged="MainWindow_OnSizeChanged" MinWidth="1024" MinHeight="600" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Grid>
 
