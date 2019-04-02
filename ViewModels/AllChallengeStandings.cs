@@ -46,7 +46,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
             AddChallengeStandingsWithoutPlayerResults();
 
             ChallengeStandings.Clear();
-            foreach (ChallengeStanding challengeStanding in _challengeStandings.Values)
+            foreach (ChallengeStanding challengeStanding in _challengeStandings.Values.OrderBy(c => c.Challenge.Difficulty))
             {
                 ChallengeStandings.Add(challengeStanding);
             }
