@@ -1,6 +1,7 @@
 ﻿using System;
 using pCarsAPI_Demo;
 using ProjectCarsSeasonExtension.Models;
+using ProjectCarsSeasonExtension.Utils;
 
 namespace ProjectCarsSeasonExtension.ChallengeResultSender
 {
@@ -15,25 +16,30 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
 
         public void CheckProjectCarsStateData(IProjectCarsStateData state)
         {
-            if (!DidStateChange(state))
+            if(state.GameState == GameState.GameIngamePaused)
                 return;
+
+            if (_lastStoredState != null && _lastStoredState.Equals(state))
+            {
+                return;
+            }
+
+            _lastStoredState = state;
 
             if (!IsUserRacing(state))
             {
                 ResetState();
                 return;
             }
-
-            if (IsWarmupLap(state))
-                return;
-
-            _lastStoredState = state;
-
+            
             if (state.LapInvalidated)
             {
                 _ignoreNextLap = true;
                 return;
             }
+
+            if (IsWarmupLap(state))
+                return;
 
             if (!IsLapFinished(state))
                 return;
@@ -47,11 +53,6 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             InvokeChallengeResultEvent();
 
             _lastFiredLapTime = _lastStoredState.LastLapTime;
-        }
-
-        private bool DidStateChange(IProjectCarsStateData projectCarsStateData)
-        {
-            return _lastStoredState == null || !_lastStoredState.Equals(projectCarsStateData);
         }
 
         private static bool IsUserRacing(IProjectCarsStateData projectCarsStateData)
@@ -74,7 +75,6 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
 
         private void ResetState()
         {
-            _lastStoredState = null;
             _lastFiredLapTime = 0f;
             _ignoreNextLap = false;
         }

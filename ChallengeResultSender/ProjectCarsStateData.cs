@@ -45,5 +45,10 @@ namespace ProjectCarsSeasonExtension.ChallengeResultSender
             SessionState = projectCarsData.SessionState;
             RaceState = projectCarsData.RaceState;
         }
+
+        public override string ToString()
+        {
+            return $"LapTime: {LastLapTime}, LapInv: {LapInvalidated}, Car: {CarName}, Location: {TrackLocation}, Variant: {TrackVariant}, Game: {GameState}, Session: {SessionState}, Race: {RaceState}";
+        }
     }
 }
