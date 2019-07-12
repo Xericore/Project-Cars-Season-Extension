@@ -9,6 +9,8 @@ namespace ProjectCarsSeasonExtension.Views.Player
     {
         private readonly ObservableCollection<Models.Player.Player> _alreadyPresentPlayers;
 
+        public bool IsRequestingRookieStatus = false;
+
         public NewPlayer(){ }
 
         public NewPlayer(ObservableCollection<Models.Player.Player> alreadyPresentPlayers)

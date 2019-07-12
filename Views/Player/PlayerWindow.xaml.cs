@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -55,6 +56,16 @@ namespace ProjectCarsSeasonExtension.Views
 
         public bool AreAllValidationsPassed => IsNameValidationPassed && IsPasswordValidationPassed;
 
+        public bool IsRookie
+        {
+            get => _isRookie;
+            set
+            {
+                _isRookie = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool UsePassword
         {
             get => _usePassword;
@@ -82,6 +93,7 @@ namespace ProjectCarsSeasonExtension.Views
         private bool _isPasswordValidationPassed = true;
         private bool _usePassword;
         private bool _isInEditMode;
+        private bool _isRookie;
 
 
         public PlayerWindow(PlayerController playerController, bool isInEditMode = false)
@@ -110,6 +122,7 @@ namespace ProjectCarsSeasonExtension.Views
                 }
 
                 NewPlayer.AvatarFileName = playerController.SelectedPlayer.AvatarFileName;
+                IsRookie = NewPlayer.IsRequestingRookieStatus = playerController.IsSelectedPlayerRookieInCurrentSeason;
                 OnPropertyChanged(nameof(NewPlayer));
             }
             else
@@ -120,6 +133,8 @@ namespace ProjectCarsSeasonExtension.Views
 
         private void OK_OnClick(object sender, RoutedEventArgs e)
         {
+            NewPlayer.IsRequestingRookieStatus = IsRookie;
+
             if (!string.IsNullOrEmpty(PasswordBoxFirst.Password) && 
                 !string.Equals(PasswordBoxFirst.Password, DummyPassword))
             {

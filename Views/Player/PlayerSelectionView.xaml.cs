@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -115,8 +116,22 @@ namespace ProjectCarsSeasonExtension.Views
                 AvatarFileName = newPlayerWindow.NewPlayer.AvatarFileName
             };
 
+            SetRookieSeasons(newPlayer, newPlayerWindow);
+
             PlayerController.AddPlayer(newPlayer);
         }
+
+        private void SetRookieSeasons(Models.Player.Player newPlayer, PlayerWindow newPlayerWindow)
+        {
+            if (!newPlayerWindow.NewPlayer.IsRequestingRookieStatus)
+                return;
+
+            newPlayer.RookieSeasons = new List<int>
+            {
+                PlayerController.CurrentSeasonId
+            };
+        }
+
 
         private void ShowAndHandlePlayerPassword(Models.Player.Player player)
         {

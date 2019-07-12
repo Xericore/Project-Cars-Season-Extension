@@ -130,6 +130,9 @@
       <DependentUpon>ChallengeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ChampionshipStanding.cs" />
+    <Compile Include="Views\RookieChampionshipView.xaml.cs">
+      <DependentUpon>RookieChampionshipView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChampionshipView.xaml.cs">
       <DependentUpon>ChampionshipView.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
     <Page Include="Views\ChallengeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RookieChampionshipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ChampionshipView.xaml">
       <SubType>Designer</SubType>

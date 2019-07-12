@@ -10,6 +10,8 @@ namespace ProjectCarsSeasonExtension.Models.Player
 
         public ObservableCollection<Player> Players { get; set; }
 
+        public int CurrentSeasonId => _dataView.CurrentSeason.Id;
+
         public bool IsAnyPlayerSelected => SelectedPlayer != null;
 
         public Player SelectedPlayer
@@ -25,6 +27,17 @@ namespace ProjectCarsSeasonExtension.Models.Player
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsAnyPlayerSelected));
                 PlayerSelectionChanged?.Invoke();
+            }
+        }
+
+        public bool IsSelectedPlayerRookieInCurrentSeason
+        {
+            get
+            {
+                if (_selectedPlayer == null)
+                    return false;
+
+                return _selectedPlayer.RookieSeasons.Contains(_dataView.CurrentSeason.Id);
             }
         }
 

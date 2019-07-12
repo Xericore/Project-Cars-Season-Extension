@@ -52,6 +52,7 @@ namespace ProjectCarsSeasonExtension
         private SeasonView _seasonView;
         private AllChallengeStandings _allChallengeStandings;
         private ChampionshipView _championshipView;
+        private RookieChampionshipView _rookieChampionshipView;
         private SeasonEditor _seasonEditor;
 
         private AutoScreenCycler _autoCycler;
@@ -84,6 +85,9 @@ namespace ProjectCarsSeasonExtension
 
             _championshipView = new ChampionshipView(DataView, _allChallengeStandings, _playerController);
             ChampionshipFrame.Content = _championshipView;
+
+            _rookieChampionshipView = new RookieChampionshipView(DataView, _allChallengeStandings, _playerController);
+            RookieChampionshipFrame.Content = _rookieChampionshipView;
             
             _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings);
             SeasonViewFrame.Content = _seasonView;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCarsSeasonExtension.Views"
         mc:Ignorable="d"
-        Title="Add new player" Height="360" Width="400" Topmost="True" 
+        Title="Add new player" Height="392" Width="400" Topmost="True" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Background="{StaticResource MainBackgroundColor}"
@@ -23,6 +23,7 @@
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
@@ -56,9 +57,11 @@
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" VerticalAlignment="Bottom" />
         </Grid>
 
-        <CheckBox Name="EnablePasswordCheckBox" Grid.Row="2" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
+        <CheckBox Name="IsRookieCheckBox" Grid.Row="2" Content="I am a rookie" TabIndex="1" IsChecked="{Binding Path=IsRookie, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
 
-        <Grid Grid.Row="3" IsEnabled="{Binding Path=UsePassword}">
+        <CheckBox Name="EnablePasswordCheckBox" Grid.Row="3" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
+
+        <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource LeftColumnWidth}"/>
                 <ColumnDefinition/>
@@ -68,7 +71,7 @@
                      ToolTip="Enter your password here." TabIndex="2" PasswordChanged="PasswordBox_OnPasswordChanged" VerticalAlignment="Bottom" />
         </Grid>
 
-        <Grid Grid.Row="4" IsEnabled="{Binding Path=UsePassword}">
+        <Grid Grid.Row="5" IsEnabled="{Binding Path=UsePassword}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource LeftColumnWidth}"/>
                 <ColumnDefinition/>
@@ -78,7 +81,7 @@
                      ToolTip="Repeat your password here." TabIndex="3" PasswordChanged="PasswordBox_OnPasswordChanged" VerticalAlignment="Bottom" />
         </Grid>
 
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="5"/>

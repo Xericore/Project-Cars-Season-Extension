@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ProjectCarsSeasonExtension.Models.Player
 {
@@ -11,6 +12,7 @@ namespace ProjectCarsSeasonExtension.Models.Player
         public string PasswordHash { get; set; }
         public string AvatarFileName { get; set; }
         public AuthenticationGroup Group { get; set; }
+        public List<int> RookieSeasons { get; set; }
 
         public override string ToString()
         {
