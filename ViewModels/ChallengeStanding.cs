@@ -71,22 +71,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
             return 0;
         }
-        public int GetRookiePlayerPoints(int playerId)
-        {
-            uint position = 0;
-            foreach (var challengePlayerStanding in ChallengePlayerStandings)
-            {
-                //if(challengePlayerStanding.Player.RookieSeasons.Contains())
-
-                position++;
-
-                if (challengePlayerStanding.Player.Id == playerId)
-                    return PointsUtil.PositionToPoints(position);
-            }
-
-            return 0;
-        }
-
+        
         public int GetPlayerPosition(int playerId)
         {
             int position = 0;
