@@ -247,6 +247,7 @@ namespace ProjectCarsSeasonExtension
             _allRookieChallengeStandings.UpdateDataAndUI();
             _seasonView.UpdateUI(challengeResult);
             _championshipView.UpdateUI();
+            _rookieChampionshipView.UpdateUI();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
