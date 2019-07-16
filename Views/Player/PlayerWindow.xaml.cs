@@ -93,7 +93,7 @@ namespace ProjectCarsSeasonExtension.Views
         private bool _isPasswordValidationPassed = true;
         private bool _usePassword;
         private bool _isInEditMode;
-        private bool _isRookie;
+        private bool _isRookie = true;
 
 
         public PlayerWindow(PlayerController playerController, bool isInEditMode = false)
