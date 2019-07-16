@@ -12,6 +12,7 @@ namespace ProjectCarsSeasonExtension.Models
     {
         public event Action PlayerRemoved;
         public event Action HandicapChanged;
+        public event Action PlayerRookieStatusChanged;
         public event Action ChallengesChanged;
 
         public ObservableCollection<PlayerResult> PlayerResults { get; }
@@ -195,6 +196,11 @@ namespace ProjectCarsSeasonExtension.Models
                 Handicaps.Add(playerHandicap);
 
             HandicapChanged?.Invoke();
+        }
+
+        public void InvokePlayerRookieStatusChanged()
+        {
+            PlayerRookieStatusChanged?.Invoke();
         }
     }
 }

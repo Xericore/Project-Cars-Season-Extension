@@ -77,5 +77,10 @@ namespace ProjectCarsSeasonExtension.Models.Player
         {
             return Players.Any(p => p.Name == nameOfPlayerToRemove);
         }
+
+        public void RookieStatusChanged()
+        {
+            _dataView.InvokePlayerRookieStatusChanged();
+        }
     }
 }

@@ -132,7 +132,6 @@ namespace ProjectCarsSeasonExtension.Views
             };
         }
 
-
         private void ShowAndHandlePlayerPassword(Models.Player.Player player)
         {
             var passwordWindow = new PasswordWindow(player);
@@ -164,7 +163,7 @@ namespace ProjectCarsSeasonExtension.Views
 
             var lastSelectedPlayer = PlayerController.SelectedPlayer;
 
-            // Calling OnPropertyChanged() doesn't work for any of the property (PlayerController, etc.).
+            // Calling OnPropertyChanged() doesn't work for any of the properties (PlayerController, etc.).
             // Thus I had to resort to this workaround.
             PlayersItemsControl.ItemsSource = null;
             PlayersItemsControl.ItemsSource = PlayerController.Players;
@@ -192,6 +191,8 @@ namespace ProjectCarsSeasonExtension.Views
             {
                 rookieSeasons?.Remove(PlayerController.CurrentSeasonId);
             }
+
+            PlayerController.RookieStatusChanged();
         }
 
         private void LogoutPlayer_OnClick(object sender, RoutedEventArgs e)

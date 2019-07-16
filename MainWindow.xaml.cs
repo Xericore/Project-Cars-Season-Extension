@@ -74,6 +74,7 @@ namespace ProjectCarsSeasonExtension
 
             DataView.PlayerRemoved += () => UpdateAllUIs();
             DataView.HandicapChanged += () => UpdateAllUIs();
+            DataView.PlayerRookieStatusChanged += () => UpdateAllUIs();
         }
 
         private void Window_Initialized(object sender, EventArgs e)
