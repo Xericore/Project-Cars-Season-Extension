@@ -116,12 +116,12 @@ namespace ProjectCarsSeasonExtension.Views
                 AvatarFileName = newPlayerWindow.NewPlayer.AvatarFileName
             };
 
-            SetRookieSeasons(newPlayer, newPlayerWindow);
+            SetNewPlayerRookieSeasons(newPlayer, newPlayerWindow);
 
             PlayerController.AddPlayer(newPlayer);
         }
 
-        private void SetRookieSeasons(Models.Player.Player newPlayer, PlayerWindow newPlayerWindow)
+        private void SetNewPlayerRookieSeasons(Models.Player.Player newPlayer, PlayerWindow newPlayerWindow)
         {
             if (!newPlayerWindow.NewPlayer.IsRequestingRookieStatus)
                 return;
@@ -153,6 +153,8 @@ namespace ProjectCarsSeasonExtension.Views
             if (dialogResult != true || editedPlayer == null) return;
 
             PlayerController.SelectedPlayer.AvatarFileName = editedPlayer.AvatarFileName;
+            
+            SetEditedPlayerRookieSeasons(editedPlayer.IsRequestingRookieStatus);
 
             if (!string.IsNullOrEmpty(editedPlayer.PasswordHash))
             {
@@ -168,6 +170,28 @@ namespace ProjectCarsSeasonExtension.Views
             PlayersItemsControl.ItemsSource = PlayerController.Players;
 
             PlayerController.SelectedPlayer = lastSelectedPlayer;
+        }
+
+        private void SetEditedPlayerRookieSeasons(bool editedPlayerIsRequestingRookieStatus)
+        {
+            var rookieSeasons = PlayerController.SelectedPlayer.RookieSeasons;
+
+            if (editedPlayerIsRequestingRookieStatus)
+            {
+                if (rookieSeasons == null)
+                {
+                    PlayerController.SelectedPlayer.RookieSeasons = new List<int> { PlayerController.CurrentSeasonId };
+                }
+                else
+                {
+                    if(!rookieSeasons.Contains(PlayerController.CurrentSeasonId))
+                        rookieSeasons.Add(PlayerController.CurrentSeasonId);
+                }
+            }
+            else
+            {
+                rookieSeasons?.Remove(PlayerController.CurrentSeasonId);
+            }
         }
 
         private void LogoutPlayer_OnClick(object sender, RoutedEventArgs e)

@@ -57,7 +57,7 @@
                 ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}" VerticalAlignment="Bottom" />
         </Grid>
 
-        <CheckBox Name="IsRookieCheckBox" Grid.Row="2" Content="I am a rookie" TabIndex="1" IsChecked="{Binding Path=IsRookie, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
+        <CheckBox Name="IsRookieCheckBox" Grid.Row="2" Content="I am a rookie this season" TabIndex="1" IsChecked="{Binding Path=IsRookie, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
 
         <CheckBox Name="EnablePasswordCheckBox" Grid.Row="3" Content="Enable optional password" TabIndex="1" IsChecked="{Binding Path=UsePassword, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></CheckBox>
 
