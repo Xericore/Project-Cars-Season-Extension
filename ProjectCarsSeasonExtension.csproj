@@ -120,6 +120,7 @@
     <Compile Include="Utils\PlayerImageManager.cs" />
     <Compile Include="Utils\TrackImageManager.cs" />
     <Compile Include="Utils\UiUtils.cs" />
+    <Compile Include="ViewModels\AllChallengeStandingsFactory.cs" />
     <Compile Include="ViewModels\ChallengePlayerStanding.cs" />
     <Compile Include="ViewModels\ChallengeStanding.cs" />
     <Compile Include="ViewModels\AllChallengeStandings.cs" />

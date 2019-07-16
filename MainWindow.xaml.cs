@@ -51,6 +51,7 @@ namespace ProjectCarsSeasonExtension
         private PlayerController _playerController;
         private SeasonView _seasonView;
         private AllChallengeStandings _allChallengeStandings;
+        private AllChallengeStandings _allRookieChallengeStandings;
         private ChampionshipView _championshipView;
         private RookieChampionshipView _rookieChampionshipView;
         private SeasonEditor _seasonEditor;
@@ -77,7 +78,8 @@ namespace ProjectCarsSeasonExtension
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            _allChallengeStandings = new AllChallengeStandings(DataView);
+            _allChallengeStandings = AllChallengeStandingsFactory.CreateAllChallengeStandings(DataView);
+            _allRookieChallengeStandings = AllChallengeStandingsFactory.CreateAllRookieChallengeStandings(DataView);
             _playerController = new PlayerController(DataView);
             _playerController.PlayerSelectionChanged += OnPlayerSelectionChanged;
 
@@ -86,7 +88,7 @@ namespace ProjectCarsSeasonExtension
             _championshipView = new ChampionshipView(DataView, _allChallengeStandings, _playerController);
             ChampionshipFrame.Content = _championshipView;
 
-            _rookieChampionshipView = new RookieChampionshipView(DataView, _allChallengeStandings, _playerController);
+            _rookieChampionshipView = new RookieChampionshipView(DataView, _allRookieChallengeStandings, _playerController);
             RookieChampionshipFrame.Content = _rookieChampionshipView;
             
             _seasonView = new SeasonView(_allChallengeStandings.ChallengeStandings);

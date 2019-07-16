@@ -76,7 +76,7 @@ namespace ProjectCarsSeasonExtension.ViewModels
             uint position = 0;
             foreach (var challengePlayerStanding in ChallengePlayerStandings)
             {
-                if(challengePlayerStanding.Player.RookieSeasons.Contains())
+                //if(challengePlayerStanding.Player.RookieSeasons.Contains())
 
                 position++;
 

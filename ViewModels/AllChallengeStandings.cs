@@ -10,16 +10,20 @@ namespace ProjectCarsSeasonExtension.ViewModels
     {
         public ObservableCollection<ChallengeStanding> ChallengeStandings { get; set; } = new ObservableCollection<ChallengeStanding>();
 
+        protected bool IsRookieChallengeStanding = false;
+
         private readonly DataView _dataView;
         private readonly Dictionary<int, ChallengeStanding> _challengeStandings = new Dictionary<int, ChallengeStanding>();
         
-        public AllChallengeStandings(DataView dataView)
+        public AllChallengeStandings(DataView dataView, bool isRookieChallengeStanding = false)
         {
             _dataView = dataView;
+            IsRookieChallengeStanding = isRookieChallengeStanding;
+
             CreateChallengeStandings();
         }
 
-        private void CreateChallengeStandings()
+        protected void CreateChallengeStandings()
         {
             _challengeStandings.Clear();
 
@@ -37,10 +41,12 @@ namespace ProjectCarsSeasonExtension.ViewModels
 
                 Player foundPlayer = _dataView.Players.FirstOrDefault(p => p.Id == playerResult.PlayerId);
 
-                if (foundPlayer != null)
-                {
-                    SetChallengeStanding(playerResult, foundPlayer);
-                }
+                if (foundPlayer == null) continue;
+
+                if (IsRookieChallengeStanding && !foundPlayer.RookieSeasons.Contains(_dataView.CurrentSeason.Id))
+                    continue;
+
+                SetChallengeStanding(playerResult, foundPlayer);
             }
 
             AddChallengeStandingsWithoutPlayerResults();
