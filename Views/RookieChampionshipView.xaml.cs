@@ -76,7 +76,7 @@ namespace ProjectCarsSeasonExtension.Views
 
                 foreach (ChallengeStanding challengeStanding in _allChallengeStandings.ChallengeStandings)
                 {
-                    var playerPoints = challengeStanding.GetRookiePlayerPoints(player.Id);
+                    var playerPoints = challengeStanding.GetPlayerPoints(player.Id);
                     championshipStanding.ChallengePoints.Add(playerPoints);
                 }
 

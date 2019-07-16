@@ -244,6 +244,7 @@ namespace ProjectCarsSeasonExtension
         private void UpdateAllUIs(ChallengeResult challengeResult = null)
         {
             _allChallengeStandings.UpdateDataAndUI();
+            _allRookieChallengeStandings.UpdateDataAndUI();
             _seasonView.UpdateUI(challengeResult);
             _championshipView.UpdateUI();
         }
