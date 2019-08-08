@@ -26,6 +26,7 @@
 
             <converters:PositionToPointsConverter x:Key="PositionToPointsConverter" />
             <converters:PositionToColorConverter x:Key="PositionToColorConverter" />
+            <converters:PlayerLevelToColorConverter x:Key="PlayerLevelToColorConverter" />
 
             <Color x:Key="TabItemDisabledForegroundColor">#aaaaaa</Color>
             <SolidColorBrush x:Key="TabItemDisabledForegroundBrush" Color="{StaticResource TabItemDisabledForegroundColor}" />

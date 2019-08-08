@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPlayerHandicap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PlayerHandicap>
+    <PlayerId>1</PlayerId>
+    <SeasonId>0</SeasonId>
+    <Handicap>PT2S</Handicap>
+  </PlayerHandicap>
+</ArrayOfPlayerHandicap>

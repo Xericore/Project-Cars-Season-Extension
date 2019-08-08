@@ -87,6 +87,7 @@
     <Compile Include="Converters\DifficultyToColorConverter.cs" />
     <Compile Include="Converters\DifficultyToPathConverter.cs" />
     <Compile Include="Converters\PointsToColorConverter.cs" />
+    <Compile Include="Converters\PlayerLevelToColorConverter.cs" />
     <Compile Include="Converters\PositionToColorConverter.cs" />
     <Compile Include="Converters\PositionToPointsConverter.cs" />
     <Compile Include="Converters\TabSizeConverter.cs" />
@@ -2307,6 +2308,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Players\Pokemon\zubat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savedata\challenges.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savedata\handicaps.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savedata\playerResults.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savedata\players.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savedata\seasons.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\Application_Logo.ico" />

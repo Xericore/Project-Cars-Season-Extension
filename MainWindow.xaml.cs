@@ -44,6 +44,16 @@ namespace ProjectCarsSeasonExtension
             }
         }
 
+        /// <summary>
+        ///   Checks if the player with given id is a rookie in the current active season.
+        /// </summary>
+        /// <param name="id">Player id to check.</param>
+        /// <returns>If the player with given id is a rookie in the current active season.</returns>
+        public bool IsPlayerRookieInCurrentSeason(int id)
+        {
+            return _playerController.IsPlayerRookieInCurrentSeason(id);
+        }
+
         private readonly Player _noPlayer = new Player {Name = "No player logged in", AvatarFileName = "/Assets/Players/NoPlayer.png"};
         private Player _currentlyLoggedInPlayerName;
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSeason xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Season>
+    <ChallengeIds>
+      <int>0</int>
+      <int>1</int>
+      <int>2</int>
+      <int>3</int>
+    </ChallengeIds>
+    <Id>0</Id>
+    <StartDate>2018-07-27T00:00:00+02:00</StartDate>
+    <EndDate>2019-04-30T00:00:00</EndDate>
+    <Name>Test season</Name>
+    <Description>Just testing</Description>
+  </Season>
+  <Season>
+    <ChallengeIds>
+      <int>9</int>
+      <int>5</int>
+      <int>7</int>
+      <int>6</int>
+    </ChallengeIds>
+    <Id>1</Id>
+    <StartDate>2019-03-12T00:00:00</StartDate>
+    <EndDate>2019-09-30T00:00:00</EndDate>
+    <Name>Goodbye Rosenheimer</Name>
+    <Description>The last season in the Rosenheimer Str.</Description>
+  </Season>
+</ArrayOfSeason>

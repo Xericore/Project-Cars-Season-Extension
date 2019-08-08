@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfChallenge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Challenge>
+    <Id>0</Id>
+    <TrackName>Azure Circuit Grand Prix</TrackName>
+    <CarName>250cc Superkart</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Hard</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>1</Id>
+    <TrackName>Circuit de Barcelona-Catalunya Club</TrackName>
+    <CarName>Formula C</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Easy</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>2</Id>
+    <TrackName>Mazda Raceway Laguna Seca</TrackName>
+    <CarName>Lotus Type 72D Cosworth</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Medium</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>3</Id>
+    <TrackName>Sonoma Raceway Grand Prix</TrackName>
+    <CarName>Chevrolet Corvette C7.R</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Medium</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>9</Id>
+    <TrackName>Mojave Boa Ascent</TrackName>
+    <CarName>Ariel Atom 500 V8</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Insane</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>5</Id>
+    <TrackName>Mojave Sidewinder</TrackName>
+    <CarName>Formula Gulf 1000</CarName>
+    <Description>Kickstart your racing career on this track!</Description>
+    <Difficulty>Easy</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>6</Id>
+    <TrackName>Dubai Autodrome Club</TrackName>
+    <CarName>Palmer Jaguar JP-LM</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Medium</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>8</Id>
+    <TrackName>Cadwell Grand Prix</TrackName>
+    <CarName>Lotus Type 49 Cosworth</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Hard</Difficulty>
+  </Challenge>
+  <Challenge>
+    <Id>7</Id>
+    <TrackName>Sakitto Sprint</TrackName>
+    <CarName>Alpine A450</CarName>
+    <Description>Default race description.</Description>
+    <Difficulty>Medium</Difficulty>
+  </Challenge>
+</ArrayOfChallenge>

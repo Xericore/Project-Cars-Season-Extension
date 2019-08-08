@@ -34,6 +34,7 @@
             <Style TargetType="DataGridRow">
                 <Setter Property="Height" Value="64"/>
                 <Setter Property="FontSize" Value="{StaticResource MainFontSize}"/>
+                <Setter Property="Background" Value="{Binding Player, Converter={StaticResource PlayerLevelToColorConverter}}"></Setter>
             </Style>
 
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Primary500}"/>

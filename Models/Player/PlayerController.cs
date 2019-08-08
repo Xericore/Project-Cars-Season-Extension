@@ -37,8 +37,13 @@ namespace ProjectCarsSeasonExtension.Models.Player
                 if (_selectedPlayer == null)
                     return false;
 
-                return _selectedPlayer.RookieSeasons.Contains(_dataView.CurrentSeason.Id);
+                return _selectedPlayer?.RookieSeasons?.Contains(_dataView.CurrentSeason.Id) ?? false;
             }
+        }
+
+        public bool IsPlayerRookieInCurrentSeason(int id)
+        {
+            return Players.FirstOrDefault(x => x.Id == id)?.RookieSeasons.Contains(_dataView.CurrentSeason.Id) ?? false;
         }
 
         private Player _selectedPlayer;

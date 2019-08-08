@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPlayer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Player>
+    <Id>1</Id>
+    <Name>Mario</Name>
+    <AvatarFileName>/Assets/Players/Pokemon/squirtle.png</AvatarFileName>
+    <Group>Administrator</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>2</Id>
+    <Name>Luca</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/007-robot.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>4</Id>
+    <Name>Tom</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/012-devil.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>5</Id>
+    <Name>kv47</Name>
+    <AvatarFileName>/Assets/Players/Avatars/023-businessman.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>6</Id>
+    <Name>M.A.X</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/003-dinosaur.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>9</Id>
+    <Name>shehroz</Name>
+    <AvatarFileName>/Assets/Players/Avatars/025-man-1.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>11</Id>
+    <Name>Sascha</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/037-cyclops.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>12</Id>
+    <Name>Doctor</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/029-vampire.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>13</Id>
+    <Name>Carsum</Name>
+    <AvatarFileName>/Assets/Players/Pokemon/eevee.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>15</Id>
+    <Name>Mari</Name>
+    <AvatarFileName>/Assets/Players/Pokemon/mew.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>16</Id>
+    <Name>Thomas</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/003-dinosaur.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>18</Id>
+    <Name>vlad</Name>
+    <AvatarFileName>/Assets/Players/Avatars/049-dracula.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>19</Id>
+    <Name>Stefan W.</Name>
+    <AvatarFileName>/Assets/Players/Avatars/013-mariachi.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>20</Id>
+    <Name>Hazem</Name>
+    <AvatarFileName>/Assets/Players/Avatars/035-zombie.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>22</Id>
+    <Name>Jan D.</Name>
+    <AvatarFileName>/Assets/Players/Avatars/001-man-13.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>25</Id>
+    <Name>Lauraa</Name>
+    <AvatarFileName>/Assets/Players/Pokemon/jigglypuff.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>31</Id>
+    <Name>Janko</Name>
+    <AvatarFileName>/Assets/Players/Avatars/028-boy-5.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>32</Id>
+    <Name>Alexander</Name>
+    <AvatarFileName>/Assets/Players/Avatars/048-american-football-player.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>34</Id>
+    <Name>Italianboy</Name>
+    <AvatarFileName>/Assets/Players/Animals/bear.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>36</Id>
+    <Name>Dominic</Name>
+    <AvatarFileName>/Assets/Players/Monsters/003-monster-25.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>38</Id>
+    <Name>lokesh</Name>
+    <AvatarFileName>/Assets/Players/Avatars/005-reaper.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>39</Id>
+    <Name>Martin</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/034-chimera.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>40</Id>
+    <Name>ChrisR</Name>
+    <AvatarFileName>/Assets/Players/Avatars/008-surgeon.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>41</Id>
+    <Name>fla</Name>
+    <AvatarFileName>/Assets/Players/Avatars/044-fireman.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons />
+  </Player>
+  <Player>
+    <Id>45</Id>
+    <Name>Cookie</Name>
+    <AvatarFileName>/Assets/Players/Fantasy/011-dragon-1.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons>
+      <int>1</int>
+    </RookieSeasons>
+  </Player>
+  <Player>
+    <Id>46</Id>
+    <Name>Tutorial Player</Name>
+    <AvatarFileName>/Assets/Players/Avatars/015-gothic.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons>
+      <int>1</int>
+    </RookieSeasons>
+  </Player>
+  <Player>
+    <Id>47</Id>
+    <Name>Mike S.</Name>
+    <AvatarFileName>/Assets/Players/Avatars/025-monster.png</AvatarFileName>
+    <Group>User</Group>
+    <RookieSeasons>
+      <int>1</int>
+    </RookieSeasons>
+  </Player>
+</ArrayOfPlayer>
