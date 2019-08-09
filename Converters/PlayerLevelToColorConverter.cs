@@ -15,16 +15,14 @@ namespace ProjectCarsSeasonExtension.Converters
                 return null;
 
             Player player = (Player) value;
-
+            
             var mainWindow = (MainWindow) Application.Current.MainWindow;
             if (mainWindow == null) return null;
-
+            
             if (mainWindow.IsPlayerRookieInCurrentSeason(player.Id))
-                return new SolidColorBrush(Color.FromRgb(230, 230, 230));
+                return new SolidColorBrush(Color.FromRgb(242, 242, 242));
 
             return new SolidColorBrush(Color.FromScRgb(0, 255, 255, 255));
-
-            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
