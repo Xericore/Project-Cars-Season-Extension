@@ -93,6 +93,7 @@ namespace ProjectCarsSeasonExtension.Models
             {
                 Globals.Logger.Debug(
                     $"{challengeResult.ToLongString()} was not added because the season is over. Now: {DateTime.Now}, EndDate: {CurrentSeason.EndDate}");
+                Globals.SpeechSynthesizer.SpeakAsync("Your result was not added because the season is over.");
                 return false;
             }
                 
